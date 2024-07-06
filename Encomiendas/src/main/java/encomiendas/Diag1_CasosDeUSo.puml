@@ -1,2 +1,164 @@
 @startuml
+left to right direction 
+
+actor "Empleado " as EA 
+
+actor "Administrador" as AD 
+  
+rectangle "Modulo de Almacenamiento" { 
+
+  usecase "RegistrarPaqueteAgencia" as UC1 
+
+  usecase "ActualizarEstadoPaquete" as UC2 
+
+  usecase "ActualizarUbicaciónPaquete" as UC3 
+
+  usecase "IngresarSeccionesAlmacenamiento" as UC4 
+
+  usecase "MonitorearTiempoAlmacenamiento" as UC5 
+
+  usecase "IngresarTiempoMáximoCaducidad" as UC6 
+
+  usecase "GenerarAlertaCaducidad" as UC7 
+
+  usecase "RetirarPaquetesCaducados" as UC8 
+
+} 
+EA --> UC1 
+EA --> UC2 
+EA --> UC3 
+EA --> UC5 
+EA --> UC6
+EA --> UC8 
+AD --> UC8 
+AD --> UC4 
+AD --> UC6 
+UC5 ..> UC7 : <<include>> 
+UC7 <.. UC8 : <<extend>> 
+
+actor Cliente
+actor Empleado
+actor Administrador
+actor Conductor
+
+rectangle "Modulo de Gestion de paquetes" {
+    Cliente --> (RegistrarEncomienda)
+    Empleado --> (RegistrarEncomienda)
+    (RegistrarEncomienda) ..> (CalcularPrecio) : <<include>>
+    
+    Conductor --> (ActualizarEstado "Recogida")
+    Conductor --> (ActualizarEstado "Domicilio")
+    
+    Administrador --> (AsignarEncomienda)
+    Empleado --> (AsignarEncomienda)
+    
+    Cliente --> (ConsultarEstadoEncomienda)
+    Empleado --> (ConsultarEstadoEncomienda)
+    Administrador --> (ConsultarEstadoEncomienda)
+    Conductor --> (ConsultarEstadoEncomienda)
+}
+
+actor Administrador as AdT
+rectangle "Modulo de Gestion de Transporte" {
+  usecase "RegistrarCamiones" as UC_RF01
+  usecase "GestionarParadasEntrega" as UC_RF03
+  usecase "RegistrarTiempoLlegada" as UC_RF04
+  usecase "RegistrarTiempoSalida" as UC_RF04.2
+  usecase "Mantener Listado de destinos" as UC_RF05
+  usecase "Gestionar información de choferes y camiones" as UC_RF07
+  usecase "Validar requisitos para viaje" as UC_RF08
+  usecase "Asignar choferes a camiones" as UC_RF09
+  usecase "Hacer seguimiento de camiones y entregas" as UC_RF10
+  usecase "Mantener historial de mantenimiento y kilometraje" as UC_RF11
+}
+
+AdT --> UC_RF01
+AdT --> UC_RF03
+AdT --> UC_RF04
+AdT --> UC_RF04.2
+AdT --> UC_RF05
+AdT --> UC_RF07
+AdT --> UC_RF08
+AdT --> UC_RF09
+AdT --> UC_RF10
+AdT -->UC_RF11
+
+
+left to right direction
+actor "Administrador" as agU
+actor "Empleado" as Empleado
+actor "Cliente" as cgu
+
+rectangle "Modulo de Gestión de Usuarios y Perfiles" {
+    usecase "CrearCuentaConductor" as CU1
+    usecase "CrearCuentaAdministrador" as CU2
+    usecase "CrearCuentaEmpleado" as CU3
+    usecase "RegistroCliente" as CU4
+    usecase "AutenticaciónUsuario" as CU5
+    usecase "VisualizarPerfil" as CU6
+    usecase "SubirFotoPerfil" as CU7
+    usecase "ModificarInformaciónPerfil" as CU8
+    usecase "ConsultarInformaciónPerfiles" as CU9
+    usecase "RecuperarContraseña" as CU10
+}
+
+agU -- CU1
+agU -- CU2
+agU -- CU3
+
+cgu -- CU4
+cgu -- CU5
+cgu -- CU6
+cgu -- CU7
+cgu -- CU8
+cgu -- CU10
+
+
+actor "Cliente" as CL
+actor "Empleado" as EM
+ 
+rectangle "Modulo de Facturación y Finanzas" {
+  usecase "RegistrarPagosClientes" as UF1
+  usecase "GenerarFacturas" as UF2
+  usecase "GestionarPreciosTarifas" as UF3
+  usecase "IncluirCostosAdicionales" as UF4
+  usecase "ActualizarEstadoPedido" as UF5
+}
+ 
+CL --> UF1 
+EM --> UF2 
+EM --> UF3 
+EM --> UF4 
+
+UF1 ..> UF5 : <<extend>> 
+UF2 ..> UF4 : <<include>> 
+
+
+actor Usuario as Ud
+
+actor Administrador as AdS
+
+actor Empleado as EmS
+
+  
+rectangle "Modulo de Gestion de Agencias"{
+(RF04) .> (Verificar Condiciones de Eliminación) : <<extend>> 
+usecase "Consultar detalles de agencias y sucursales" as RF01 
+
+usecase "Consultar chóferes de cada agencia" as RF02 
+
+usecase "Crear nueva sucursal" as RF03 
+
+usecase "Eliminar una sucursal" as RF04 
+
+usecase "Modificar información de una sucursal" as RF05 
+}
+AdS --> RF01 
+AdS --> RF02 
+AdS --> RF03 
+AdS --> RF04 
+AdS --> RF05 
+Ud --> RF01 
+EmS --> RF02 
+EmS --> RF01 
 @enduml
