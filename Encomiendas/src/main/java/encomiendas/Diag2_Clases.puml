@@ -129,47 +129,67 @@ package "Modulo de Gestión de almacenamiento"{
     
 
 
-    class RegistroPaquete {
-    - id: String
-    - ubicacion: SeccionAlmacenamiento
-    - fechaEntrada: Date
-    - fechaCaducidad: Date
+    class Paquete {
+  - id: String
+  - ubicacion: SeccionAlmacenamiento
+  - fechaEntrada: Date
+  - estado: EstadoPaquete
+  - tiempoAlmacenamiento: int
 
-    + registrarPaquete(id: String, ubicacion: SeccionAlmacenamiento, fechaEntrada: Date, fechaCaducidad: Date): Paquete
-    }
-
-    class Almacen {
-    - secciones: List<SeccionAlmacenamiento>
-
-    + actualizarPaquete(id: String, nuevoEstado: EstadoPaquete)
-    + obtenerPaquete(id: String): Paquete
-    + monitorearPaquetes()
-    + generarAlertasCaducidad()
-    + retirarPaquetesCaducados()
-    }
-
-    class SeccionAlmacenamiento {
-    - id: String
-    - nombre: String
-    - rangoCaducidad: int
-    - paquetes: List<Paquete>
-
-    + ingresarPaquete(paquete: Paquete)
-    }
-
-    
-
-    class AlertaCaducidad {
-    - mensaje: String
-    - fechaGeneracion: Date
-
-    + generarAlerta(paquete: Paquete)
+  + actualizarEstado(nuevoEstado: EstadoPaquete)
+  + actualizarUbicacion(nuevaUbicacion: SeccionAlmacenamiento)
+  + calcularTiempoAlmacenado(): int
 }
 
-AlertaCaducidad "1" -- "1" EmpleadoAgencia : genera <
-Almacen "1" -- "*" SeccionAlmacenamiento
 
-EmpleadoAgencia -- RegistroPaquete: gestiona >
+class RegistroPaquete {
+  - id: String
+  - ubicacion: SeccionAlmacenamiento
+  - fechaEntrada: Date
+  - fechaCaducidad: Date
+
+  + registrarPaquete(id: String, ubicacion: SeccionAlmacenamiento, fechaEntrada: Date, fechaCaducidad: Date): Paquete
+}
+
+class Almacen {
+  - secciones: List<SeccionAlmacenamiento>
+
+  + actualizarPaquete(id: String, nuevoEstado: EstadoPaquete)
+  + obtenerPaquete(id: String): Paquete
+  + monitorearPaquetes()
+  + generarAlertasCaducidad()
+  + retirarPaquetesCaducados()
+}
+
+class SeccionAlmacenamiento {
+  - id: String
+  - nombre: String
+  - rangoCaducidad: int
+  - paquetes: List<Paquete>
+
+  + ingresarPaquete(paquete: Paquete)
+}
+
+class Empleado {
+  + actualizarEstadoPaquete(id: String, nuevoEstado: EstadoPaquete)
+  + actualizarUbicacionPaquete(id: String, nuevaUbicacion: SeccionAlmacenamiento)
+  + monitorearTiempoAlmacenamiento()
+}
+
+class Administrador {
+  + ingresarSeccion(id: String, nombre: String, rangoCaducidad: int)
+  + establecerTiempoCaducidad(id: String, tiempo: int)
+}
+class AlertaCaducidad {
+  - mensaje: String
+  - fechaGeneracion: Date
+
+  + generarAlerta(paquete: Paquete)
+}
+
+AlertaCaducidad "1" -- "1" SeccionAlmacenamiento : genera <
+Almacen *-- SeccionAlmacenamiento: contiene
+Empleado -- RegistroPaquete: gestiona >
 Administrador -- Almacen : administra >
 SeccionAlmacenamiento -- RegistroPaquete : maneja >
 RegistroPaquete -- Paquete : crea >
@@ -230,24 +250,24 @@ Empleado  "1" -- "0..*" Servicio : actualiza
 
 package "modulo de gestion de trasporte"{
     class Administrador {
-    +registrarCamion(Camion)
-    +gestionarParadas(Ruta, Parada)
-    +registrarTiempos(Parada, Tiempo)
-    +registrarDestinos(Agencia, Destino)
+    +registrarTransporte(Transporte)
     +gestionarChoferes(Chofer)
-    +validarRequisitos(Chofer, Camion): bool
-    +asignarChofer(Camion, Chofer)
+    +validarRequisitos(Chofer, Transporte): bool
+    +asignarChofer(Transporte, Chofer)
     +hacerSeguimiento()
-    +registrarMantenimiento(Camion, Mantenimiento)
 }
 
-class Camion {
+class Transporte {
     -id: int
     -capacidad: double
     -modelo: String
     -anioFabricacion: int
     -kilometraje: double
-    +agregarMantenimiento(Mantenimiento)
+}
+
+class Camion extends Transporte {
+    -estado: String
+    -fechaUltimoMantenimiento: Date
 }
 
 class Parada {
@@ -262,21 +282,13 @@ class Ruta {
     -paradas: List<Parada>
     +agregarParada(Parada)
 }
-
-class Destino {
-    -id: int
-    -direccion: String
-    -ciudad: String
-    -codigoPostal: String
-}
-
 class Agencia {
     -id: int
     -nombre: String
     -direccion: String
     -ciudad: String
-    -destinos: List<Destino>
-    +agregarDestino(Destino)
+    -rutas: List<Ruta>
+    +agregarRuta(Ruta)
 }
 
 class Chofer {
@@ -286,88 +298,30 @@ class Chofer {
     -disponibilidad: bool
 }
 
+class Mecanico {
+    +realizarMantenimiento(Camion, Mantenimiento)
+}
+
 class Mantenimiento {
     -id: int
     -fecha: Date
     -descripcion: String
     -kilometraje: double
 }
+class HistorialMantenimiento {
+    -mantenimientos: List<Mantenimiento>
+    +agregarMantenimiento(Mantenimiento)
+}
 
-Administrador "1" -- "*" Camion
+Administrador "1" -- "*" Transporte
 Administrador "1" -- "*" Chofer
-Administrador "1" -- "*" Agencia
-Administrador "1" -- "*" Ruta
-Administrador "1" -- "*" Parada
-Administrador "1" -- "*" Destino
-Camion "1" -- "*" Mantenimiento
+Agencia "1" -- "*" Ruta
 Ruta "1" -- "*" Parada
-Agencia "1" -- "*" Destino
+Transporte "1" -- "1" HistorialMantenimiento
+HistorialMantenimiento "1" -- "*" Mantenimiento
+Mecanico "1" -- "*" Mantenimiento
+Agencia "*" -- "1" Administrador
 
-}
-package "modulo de agencias"{
-   class Agencia {
-  - idAgencia: int
-  - nombreAgencia: String
-}
-
-class Sucursal {
-  - idSucursal: int
-  - idAgencia: int
-  - provinciaSucursal: String
-  - ciudadSucursal: String
-  - nombreSucursal: String
-  - callePrincipalSucursal: String
-  - calleSecundariaSucursal: String
-  - ubicacionReferencialSucursal: String
-  - telefonoSucursal: String
-  + crearSucursal(): void
-  + eliminarSucursal(): void
-  + modificarSucursal(): void
-}
-
-class Chófer {
-  - idChofer: int
-  - nombreChofer: String
-  - licenciaChofer: String
-}
-
-class Administrador {
-  - idAdmin: int
-  - nombreAdmin: String
-  - emailAdmin: String
-  - idSucursal: int
-  - idAgencia: int
-  + crearSucursal(): void
-  + eliminarSucursal(): void
-  + modificarSucursal(): void
-  + consultarChóferes(): void
-}
-
-class Empleado {
-  - id: int
-  - nombre: String
-  - email: String
-  - idSucursal: int
-  - idAgencia: int
-  + consultarChóferes(): void
-}
-
-class Usuario {
-  - id: int
-  - nombre: String
-  - email: String
-}
-
-class ConsultaDetalles {
-  + consultarDetalles(): void
-}
-
-Agencia o-- "0..*" Sucursal : contiene
-Sucursal "1" -- "0..*" Chófer : emplea
-Usuario --> ConsultaDetalles 
-Administrador --> ConsultaDetalles 
-Empleado --> ConsultaDetalles 
-ConsultaDetalles --> Agencia
 
 }
 
