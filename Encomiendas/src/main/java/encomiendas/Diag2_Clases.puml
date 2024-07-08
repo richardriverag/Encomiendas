@@ -3,10 +3,73 @@
 
 class SistemaEncominedas{}
 class administradorGeneral{
-
 }
 class administradorXM{
 
+}
+package "Modulo de gestion de Agencias"{
+    class Agencia {
+  - idAgencia: int
+  - nombreAgencia: String
+}
+
+class Sucursal {
+  - idSucursal: int
+  - idAgencia: int
+  - provinciaSucursal: String
+  - ciudadSucursal: String
+  - nombreSucursal: String
+  - callePrincipalSucursal: String
+  - calleSecundariaSucursal: String
+  - ubicacionReferencialSucursal: String
+  - telefonoSucursal: String
+  + crearSucursal(): void
+  + eliminarSucursal(): void
+  + modificarSucursal(): void
+}
+
+class Chófer {
+  - idChofer: int
+  - nombreChofer: String
+  - licenciaChofer: String
+}
+class Administrador {
+  - idAdmin: int
+  - nombreAdmin: String
+  - emailAdmin: String
+  - idSucursal: int
+  - idAgencia: int
+  + crearSucursal(): void
+  + eliminarSucursal(): void
+  + modificarSucursal(): void
+  + consultarChóferes(): void
+}
+
+class Empleado {
+  - id: int
+  - nombre: String
+  - email: String
+  - idSucursal: int
+  - idAgencia: int
+  + consultarChóferes(): void
+}
+
+class Usuario {
+  - id: int
+  - nombre: String
+  - email: String
+}
+
+class ConsultaDetalles {
+  + consultarDetalles(): void
+}
+
+Agencia o-- "0..*" Sucursal : contiene
+Sucursal "1" -- "0..*" Chófer : emplea
+Usuario --> ConsultaDetalles 
+Administrador --> ConsultaDetalles 
+Empleado --> ConsultaDetalles 
+ConsultaDetalles --> Agencia
 }
 
 package "Modulo de Gestión de paquetes"{
