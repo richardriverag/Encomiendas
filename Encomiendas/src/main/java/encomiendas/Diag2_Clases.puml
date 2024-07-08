@@ -1,2 +1,374 @@
 @startuml
+
+
+class SistemaEncominedas{}
+class administradorGeneral{
+
+}
+class administradorXM{
+
+}
+
+package "Modulo de Gestión de paquetes"{
+    
+    class Encomienda {
+        - cedeOrigen: Cede
+        - emisor: Cliente // 
+        - receptor: Cliente //
+        - cedeDestino: Cede
+        - fechaEnvio: Date
+        - fechallegadaCede: Date
+        - cambiarEstado()
+        - calcularPrecioTotal(): double
+        + consultarEstado(): Estado
+    }
+    class EncomiendaCede {
+        
+    }
+    class EncomiendaDomicilio {
+        - fechaEnntrega: Date
+        - direccionEntrega: String
+        - codigoPostal: int
+    }
+
+    enum Estado {
+        + RECOGIDA
+        + POR_RECOLECTAR
+        + RECOLECTADO
+        + EN_BODEGA
+        + EN_TRANSITO
+        + ENTREGADO
+    }
+    Encomienda <|-- EncomiendaCede
+    Encomienda <|-- EncomiendaDomicilio
+    
+    Encomienda "1" --* "1" Estado
+}
+
+Encomienda "1"--*"1..*" Paquete
+package "Modulo de Gestión de Usuarios"{
+    class Registro {
+        + registrar(nombres, apellidos, numeroCedula, correo, contraseña): void
+    }
+    class Ingreso {
+        + autenticar(correo, contraseña): bool
+    }
+    class RecuperacionContraseña {
+        + recuperarContraseña(correo): void
+    }
+    class Usuario{
+        - String nombres
+        - String apellidos
+        - String numeroCedula
+        - String correo
+        - String contraseña
+        - String fotoPerfil
+        + visualizarPerfil(): void
+        + subirFotoPerfil(foto): void
+    }
+
+    class Administrador extends Usuario {
+        + ingresarSeccion(id: String, nombre: String, rangoCaducidad: int)
+        + establecerTiempoCaducidad(id: String, tiempo: int)
+        + crearCuentaConductor(): void
+        + actualizarCuentaConductor(conductor): void
+        + eliminarCuentaConductor(conductorId): void
+        + crearCuentaAdministrador(): void
+        + actualizarCuentaAdministrador(admin): void
+        + eliminarCuentaAdministrador(adminId): void
+        + crearCuentaEmpleado(): void
+        + actualizarCuentaEmpleado(empleado): void
+        + eliminarCuentaEmpleado(empleadoId): void
+        + registrarEncomienda()
+    }
+
+    class EmpleadoAgencia extends Usuario {
+        + consultarInfoPerfilCliente(clienteId): Cliente
+        + consultarInfoPerfilConductor(conductorId): Conductor
+        + actualizarEstadoPaquete(id: String, nuevoEstado: EstadoPaquete)
+        + actualizarUbicacionPaquete(id: String, nuevaUbicacion: SeccionAlmacenamiento)
+        + monitorearTiempoAlmacenamiento()
+    }
+
+    class Cliente extends Usuario {
+        - String direccion
+        - String numeroContacto
+        + registrarEncomienda()
+        + modificarInfoPerfil(): void
+    }
+
+    class Conductor extends Usuario {
+        - String tipoLicencia
+        + actualizarEstadoEncomienda()
+        + Conductor()
+    }
+
+ 
+
+   
+      SistemaEncominedas ---* Usuario
+      Usuario --- Encomienda
+}
+class Paquete {
+    - id: String
+    - ubicacion: SeccionAlmacenamiento
+    - fechaEntrada: Date
+    - estado: EstadoPaquete
+    - tiempoAlmacenamiento: int
+    
+    - peso: double
+    - volumen: double
+    - isFragil: boolean
+    - calcularPrecioTotal()
+
+    + actualizarEstado(nuevoEstado: EstadoPaquete)
+    + actualizarUbicacion(nuevaUbicacion: SeccionAlmacenamiento)
+    + calcularTiempoAlmacenado(): int
+    }
+package "Modulo de Gestión de almacenamiento"{
+    
+
+
+    class RegistroPaquete {
+    - id: String
+    - ubicacion: SeccionAlmacenamiento
+    - fechaEntrada: Date
+    - fechaCaducidad: Date
+
+    + registrarPaquete(id: String, ubicacion: SeccionAlmacenamiento, fechaEntrada: Date, fechaCaducidad: Date): Paquete
+    }
+
+    class Almacen {
+    - secciones: List<SeccionAlmacenamiento>
+
+    + actualizarPaquete(id: String, nuevoEstado: EstadoPaquete)
+    + obtenerPaquete(id: String): Paquete
+    + monitorearPaquetes()
+    + generarAlertasCaducidad()
+    + retirarPaquetesCaducados()
+    }
+
+    class SeccionAlmacenamiento {
+    - id: String
+    - nombre: String
+    - rangoCaducidad: int
+    - paquetes: List<Paquete>
+
+    + ingresarPaquete(paquete: Paquete)
+    }
+
+    
+
+    class AlertaCaducidad {
+    - mensaje: String
+    - fechaGeneracion: Date
+
+    + generarAlerta(paquete: Paquete)
+}
+
+AlertaCaducidad "1" -- "1" EmpleadoAgencia : genera <
+Almacen "1" -- "*" SeccionAlmacenamiento
+
+EmpleadoAgencia -- RegistroPaquete: gestiona >
+Administrador -- Almacen : administra >
+SeccionAlmacenamiento -- RegistroPaquete : maneja >
+RegistroPaquete -- Paquete : crea >
+}
+
+package "Modulo de Gestion de Facturacion"{
+    class Cliente {
+    - nombre: String
+    - direccion: String
+    - telefono: String
+    - email: String
+    + consultarPrecios(): void
+    + registrarPago(metodo: String, monto: float): void
+}
+
+class Empleado {
+    - id: int
+    - nombre: String
+    - cargo: String
+    + generarFactura(): void
+    + actualizarTarifas(servicio: String, tarifa: float): void
+    + registrarCostosAdicionales(servicio: String, costo: float): void
+}
+
+class Servicio {
+    - nombre: String
+    - descripcion: String
+    - tarifa: float
+    + obtenerTarifa(): float
+}
+
+class Factura {
+    - id: int
+    - fecha: Date
+    - cliente: Cliente
+    - servicios: List <Servicio>
+    - impuestos: float
+    - descuentos: float
+    - total: float
+    + calcularTotal(): float
+    + incluirCostosAdicionales(costos: List<float>): void
+}
+
+class Pedido {
+    - id: int
+    - estado: String
+    - factura: Factura
+    + actualizarEstado(nuevoEstado: String): void
+}
+
+Cliente   "1" -- "0..*" Pedido : realiza
+Pedido    "1" -- "1"    Factura : contiene
+Factura   "1" -- "0..*" Servicio : incluye
+Empleado  "1" -- "0..*" Factura : genera
+Empleado  "1" -- "0..*" Servicio : actualiza
+
+}
+
+package "modulo de gestion de trasporte"{
+    class Administrador {
+    +registrarCamion(Camion)
+    +gestionarParadas(Ruta, Parada)
+    +registrarTiempos(Parada, Tiempo)
+    +registrarDestinos(Agencia, Destino)
+    +gestionarChoferes(Chofer)
+    +validarRequisitos(Chofer, Camion): bool
+    +asignarChofer(Camion, Chofer)
+    +hacerSeguimiento()
+    +registrarMantenimiento(Camion, Mantenimiento)
+}
+
+class Camion {
+    -id: int
+    -capacidad: double
+    -modelo: String
+    -anioFabricacion: int
+    -kilometraje: double
+    +agregarMantenimiento(Mantenimiento)
+}
+
+class Parada {
+    -id: int
+    -ubicacion: String
+    -tiempoLlegada: DateTime
+    -tiempoSalida: DateTime
+}
+
+class Ruta {
+    -id: int
+    -paradas: List<Parada>
+    +agregarParada(Parada)
+}
+
+class Destino {
+    -id: int
+    -direccion: String
+    -ciudad: String
+    -codigoPostal: String
+}
+
+class Agencia {
+    -id: int
+    -nombre: String
+    -direccion: String
+    -ciudad: String
+    -destinos: List<Destino>
+    +agregarDestino(Destino)
+}
+
+class Chofer {
+    -id: int
+    -nombre: String
+    -licencia: String
+    -disponibilidad: bool
+}
+
+class Mantenimiento {
+    -id: int
+    -fecha: Date
+    -descripcion: String
+    -kilometraje: double
+}
+
+Administrador "1" -- "*" Camion
+Administrador "1" -- "*" Chofer
+Administrador "1" -- "*" Agencia
+Administrador "1" -- "*" Ruta
+Administrador "1" -- "*" Parada
+Administrador "1" -- "*" Destino
+Camion "1" -- "*" Mantenimiento
+Ruta "1" -- "*" Parada
+Agencia "1" -- "*" Destino
+
+}
+package "modulo de agencias"{
+   class Agencia {
+  - idAgencia: int
+  - nombreAgencia: String
+}
+
+class Sucursal {
+  - idSucursal: int
+  - idAgencia: int
+  - provinciaSucursal: String
+  - ciudadSucursal: String
+  - nombreSucursal: String
+  - callePrincipalSucursal: String
+  - calleSecundariaSucursal: String
+  - ubicacionReferencialSucursal: String
+  - telefonoSucursal: String
+  + crearSucursal(): void
+  + eliminarSucursal(): void
+  + modificarSucursal(): void
+}
+
+class Chófer {
+  - idChofer: int
+  - nombreChofer: String
+  - licenciaChofer: String
+}
+
+class Administrador {
+  - idAdmin: int
+  - nombreAdmin: String
+  - emailAdmin: String
+  - idSucursal: int
+  - idAgencia: int
+  + crearSucursal(): void
+  + eliminarSucursal(): void
+  + modificarSucursal(): void
+  + consultarChóferes(): void
+}
+
+class Empleado {
+  - id: int
+  - nombre: String
+  - email: String
+  - idSucursal: int
+  - idAgencia: int
+  + consultarChóferes(): void
+}
+
+class Usuario {
+  - id: int
+  - nombre: String
+  - email: String
+}
+
+class ConsultaDetalles {
+  + consultarDetalles(): void
+}
+
+Agencia o-- "0..*" Sucursal : contiene
+Sucursal "1" -- "0..*" Chófer : emplea
+Usuario --> ConsultaDetalles 
+Administrador --> ConsultaDetalles 
+Empleado --> ConsultaDetalles 
+ConsultaDetalles --> Agencia
+
+}
+
 @enduml
