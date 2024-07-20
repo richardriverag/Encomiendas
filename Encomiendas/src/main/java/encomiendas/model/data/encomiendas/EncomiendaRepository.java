@@ -53,16 +53,16 @@ public class EncomiendaRepository implements Repository<Encomienda> {
                      "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try(PreparedStatement myStament = myConn.prepareStatement(sql)){
-            myStament.setLong(1, encomienda.getAgenciaOrigen().getId());
-            myStament.setLong(2, encomienda.getAgenciaDestino().getId());
-            myStament.setLong(3, encomienda.getReceptor().getId());
-            myStament.setLong(4, encomienda.getEmisor().getId());
-            myStament.setDate(5, java.sql.Date.valueOf(encomienda.getFechaEmision()));
-            myStament.setString(6, String.valueOf(encomienda.getTipoEntrega()));
-            myStament.setString(7, encomienda.getDireccionEntrega());
-            myStament.setInt(8, encomienda.getCodigoPostal());
-            myStament.setString(9, encomienda.getEstado().name());
-            myStament.executeUpdate();
+//            myStament.setLong(1, encomienda.getAgenciaOrigen().getId());
+//            myStament.setLong(2, encomienda.getAgenciaDestino().getId());
+//            myStament.setLong(3, encomienda.getReceptor().getId());
+//            myStament.setLong(4, encomienda.getEmisor().getId());
+//            myStament.setDate(5, java.sql.Date.valueOf(encomienda.getFechaEmision()));
+//            myStament.setString(6, String.valueOf(encomienda.getTipoEntrega()));
+//            myStament.setString(7, encomienda.getDireccionEntrega());
+//            myStament.setInt(8, encomienda.getCodigoPostal());
+//            myStament.setString(9, encomienda.getEstado().name());
+//            myStament.executeUpdate();
         }
     }
 
