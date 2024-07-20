@@ -117,7 +117,7 @@ CREATE TABLE AGENCIA_RUTA (
                               FOREIGN KEY (agencia_id) REFERENCES AGENCIA(id_agencia),
                               FOREIGN KEY (ruta_id) REFERENCES RUTA(ruta_id)
 );
-
+-- Base de datos para el almacen
 CREATE TABLE Almacen (
                          id_almacen INT PRIMARY KEY AUTO_INCREMENT,
                          limite_superior_caducidad INT,
