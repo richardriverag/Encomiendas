@@ -6,7 +6,7 @@ package encomiendas.views.usuarios;
 
 /**
  *
- * @author kedos
+ * @author USER-PC
  */
 public class Login extends javax.swing.JFrame {
 
@@ -15,6 +15,7 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -26,21 +27,103 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        fondoLogin = new javax.swing.JPanel();
+        imagen = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        usuario = new javax.swing.JTextField();
+        contrasenia = new javax.swing.JPasswordField();
+        botonIngresar = new javax.swing.JButton();
+        resetiarContrasenia = new javax.swing.JButton();
+        registrarse = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Login");
+        setResizable(false);
+
+        fondoLogin.setBackground(new java.awt.Color(39, 39, 61));
+        fondoLogin.setMaximumSize(new java.awt.Dimension(320, 420));
+        fondoLogin.setMinimumSize(new java.awt.Dimension(320, 420));
+        fondoLogin.setName(""); // NOI18N
+        fondoLogin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        imagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo.jpg"))); // NOI18N
+        fondoLogin.add(imagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, -1, -1));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Usuario:");
+        fondoLogin.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Contraseña:");
+        fondoLogin.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, -1, -1));
+
+        usuario.setToolTipText("");
+        usuario.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        fondoLogin.add(usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, 120, -1));
+
+        contrasenia.setToolTipText("");
+        contrasenia.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        fondoLogin.add(contrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, 120, -1));
+
+        botonIngresar.setBackground(new java.awt.Color(223, 216, 241));
+        botonIngresar.setText("Login");
+        botonIngresar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 51), new java.awt.Color(0, 0, 51), null, null));
+        fondoLogin.add(botonIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, 80, 20));
+
+        resetiarContrasenia.setForeground(new java.awt.Color(255, 255, 255));
+        resetiarContrasenia.setText("¿Olvidaste tu contraseña?");
+        resetiarContrasenia.setToolTipText("");
+        resetiarContrasenia.setBorder(null);
+        resetiarContrasenia.setContentAreaFilled(false);
+        resetiarContrasenia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resetiarContraseniaActionPerformed(evt);
+            }
+        });
+        fondoLogin.add(resetiarContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, 150, 20));
+
+        registrarse.setForeground(new java.awt.Color(255, 255, 255));
+        registrarse.setText("¿No tienes cuenta? Registrate");
+        registrarse.setToolTipText("");
+        registrarse.setBorder(null);
+        registrarse.setContentAreaFilled(false);
+        registrarse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registrarseActionPerformed(evt);
+            }
+        });
+        fondoLogin.add(registrarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 360, 170, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(fondoLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(fondoLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void resetiarContraseniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetiarContraseniaActionPerformed
+        // TODO add your handling code here:
+        RecuperarContrasenia recuperarContrasenia  = new RecuperarContrasenia();
+            recuperarContrasenia.setVisible(true);
+            this.dispose();
+    }//GEN-LAST:event_resetiarContraseniaActionPerformed
+
+    private void registrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarseActionPerformed
+        // TODO add your handling code here:
+            Registro nuevoRegistro = new Registro();
+            nuevoRegistro.setVisible(true);
+            this.dispose();
+    }//GEN-LAST:event_registrarseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -68,6 +151,7 @@ public class Login extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -78,5 +162,14 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonIngresar;
+    private javax.swing.JPasswordField contrasenia;
+    private javax.swing.JPanel fondoLogin;
+    private javax.swing.JLabel imagen;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton registrarse;
+    private javax.swing.JButton resetiarContrasenia;
+    private javax.swing.JTextField usuario;
     // End of variables declaration//GEN-END:variables
 }
