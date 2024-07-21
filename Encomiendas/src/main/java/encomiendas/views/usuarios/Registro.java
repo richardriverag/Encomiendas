@@ -44,6 +44,7 @@ public class Registro extends javax.swing.JFrame {
         direccionTxt = new javax.swing.JTextField();
         botonRegistrarse = new javax.swing.JButton();
         logoRegistro = new javax.swing.JLabel();
+        jComboBoxCiudad = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registro");
@@ -177,7 +178,7 @@ public class Registro extends javax.swing.JFrame {
                 direccionTxtActionPerformed(evt);
             }
         });
-        fondoRegistro.add(direccionTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 270, -1));
+        fondoRegistro.add(direccionTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 170, -1));
 
         botonRegistrarse.setBackground(new java.awt.Color(223, 216, 241));
         botonRegistrarse.setText("Registrarse");
@@ -191,6 +192,10 @@ public class Registro extends javax.swing.JFrame {
 
         logoRegistro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LogoPequenio.jpg"))); // NOI18N
         fondoRegistro.add(logoRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, -1, -1));
+
+        jComboBoxCiudad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Quito", "Guayaquil", "Cuenca", " " }));
+        jComboBoxCiudad.setToolTipText("");
+        fondoRegistro.add(jComboBoxCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 330, 90, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -408,6 +413,7 @@ public class Registro extends javax.swing.JFrame {
     private javax.swing.JTextField correoTxt;
     private javax.swing.JTextField direccionTxt;
     private javax.swing.JPanel fondoRegistro;
+    private javax.swing.JComboBox<String> jComboBoxCiudad;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel logoRegistro;
