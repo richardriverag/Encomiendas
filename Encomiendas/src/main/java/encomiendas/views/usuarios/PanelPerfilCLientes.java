@@ -8,12 +8,12 @@ package encomiendas.views.usuarios;
  *
  * @author USER-PC
  */
-public class PanelPerfil extends javax.swing.JPanel {
+public class PanelPerfilCLientes extends javax.swing.JPanel {
 
     /**
      * Creates new form PanelPerfil
      */
-    public PanelPerfil() {
+    public PanelPerfilCLientes() {
         initComponents();
     }
 
@@ -28,18 +28,21 @@ public class PanelPerfil extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
 
+        setMinimumSize(new java.awt.Dimension(690, 430));
+
         jPanel1.setBackground(new java.awt.Color(204, 0, 51));
+        jPanel1.setMinimumSize(new java.awt.Dimension(690, 430));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 690, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
