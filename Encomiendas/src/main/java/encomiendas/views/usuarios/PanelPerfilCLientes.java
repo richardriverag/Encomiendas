@@ -8,12 +8,12 @@ package encomiendas.views.usuarios;
  *
  * @author USER-PC
  */
-public class PanelPerfilCLientes extends javax.swing.JPanel {
+public class PanelPerfilClientes extends javax.swing.JPanel {
 
     /**
      * Creates new form PanelPerfil
      */
-    public PanelPerfilCLientes() {
+    public PanelPerfilClientes() {
         initComponents();
     }
 
@@ -29,6 +29,7 @@ public class PanelPerfilCLientes extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
 
         setMinimumSize(new java.awt.Dimension(690, 430));
+        setPreferredSize(new java.awt.Dimension(690, 430));
 
         jPanel1.setBackground(new java.awt.Color(204, 0, 51));
         jPanel1.setMinimumSize(new java.awt.Dimension(690, 430));

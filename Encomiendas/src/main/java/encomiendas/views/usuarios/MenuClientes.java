@@ -40,6 +40,8 @@ public class MenuClientes extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menú - Cliente");
+        setResizable(false);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -128,7 +130,7 @@ public class MenuClientes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPerfilActionPerformed
-        PanelPerfilCLientes panel1 = new PanelPerfilCLientes();
+        PanelPerfilClientes panel1 = new PanelPerfilClientes();
         panel1.setSize(690,430);
         panel1.setLocation(0,0);
 

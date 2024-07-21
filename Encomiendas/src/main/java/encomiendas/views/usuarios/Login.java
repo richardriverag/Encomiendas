@@ -38,7 +38,7 @@ public class Login extends javax.swing.JFrame {
         registrarse = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Login");
+        setTitle("Iniciar sesión");
         setResizable(false);
 
         fondoLogin.setBackground(new java.awt.Color(39, 39, 61));
@@ -71,6 +71,7 @@ public class Login extends javax.swing.JFrame {
         botonIngresar.setBackground(new java.awt.Color(223, 216, 241));
         botonIngresar.setText("Login");
         botonIngresar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 51), new java.awt.Color(0, 0, 51), null, null));
+        botonIngresar.setFocusable(false);
         fondoLogin.add(botonIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, 80, 20));
 
         resetiarContrasenia.setForeground(new java.awt.Color(255, 255, 255));
@@ -135,12 +136,7 @@ public class Login extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
+            javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {

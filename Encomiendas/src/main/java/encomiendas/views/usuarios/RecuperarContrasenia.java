@@ -40,7 +40,7 @@ public class RecuperarContrasenia extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(320, 420));
+        setTitle("Recuperación de contraseña");
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(37, 37, 58));
@@ -80,6 +80,7 @@ public class RecuperarContrasenia extends javax.swing.JFrame {
         botonEnviarContrasenia.setBackground(new java.awt.Color(223, 216, 241));
         botonEnviarContrasenia.setText("Enviar");
         botonEnviarContrasenia.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 51), new java.awt.Color(0, 0, 51), null, null));
+        botonEnviarContrasenia.setFocusable(false);
         botonEnviarContrasenia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonEnviarContraseniaActionPerformed(evt);
@@ -166,12 +167,7 @@ public class RecuperarContrasenia extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
+            javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(RecuperarContrasenia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
