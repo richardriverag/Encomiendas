@@ -1,4 +1,4 @@
 package encomiendas.services.usuarios;
 
-public class usuarioService {
+public class UsuarioService {
 }

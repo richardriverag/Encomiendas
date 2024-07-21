@@ -8,10 +8,11 @@ import lombok.*;
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
 public class Paquete {
 
-   private long idPaquete;
-   private double peso;
-   private double volumen;
-   private boolean isFragil;
+   private Integer idPaquete;
+   private Double peso;
+   private Double volumen;
+   private Boolean isFragil;
+   private Integer idEncomienda;
 
    public Double calcularPrecio(){
        double precio = 0;
