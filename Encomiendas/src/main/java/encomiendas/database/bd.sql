@@ -85,7 +85,7 @@ CREATE TABLE PAQUETE (
                          id_paquete INT PRIMARY KEY AUTO_INCREMENT,
                          peso FLOAT,
                          volumen FLOAT,
-                         isFragil BOOLEAN,
+                         is_fragil BOOLEAN,
                          id_encomienda INT,
                          FOREIGN KEY (id_encomienda) REFERENCES ENCOMIENDA(id_encomienda)
 );
