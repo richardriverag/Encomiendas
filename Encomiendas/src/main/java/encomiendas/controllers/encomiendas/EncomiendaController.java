@@ -1,4 +1,4 @@
 package encomiendas.controllers.encomiendas;
 
-public class encomiendaController {
+public class EncomiendaController {
 }
