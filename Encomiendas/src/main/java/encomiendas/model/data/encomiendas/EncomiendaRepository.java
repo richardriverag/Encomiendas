@@ -1,4 +1,4 @@
-/*package encomiendas.model.data.encomiendas;
+package encomiendas.model.data.encomiendas;
 
 
 import encomiendas.model.data.Repository;
@@ -108,4 +108,4 @@ public class EncomiendaRepository implements Repository<Encomienda> {
 
         return encomienda;
     }
-}*/
+}
