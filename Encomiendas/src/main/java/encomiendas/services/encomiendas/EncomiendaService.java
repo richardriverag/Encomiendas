@@ -1,7 +1,6 @@
 package encomiendas.services.encomiendas;
 
 import encomiendas.model.data.encomiendas.EncomiendaRepository;
-import encomiendas.model.entity.encomiendas.ESTADOS_ENCOMIENDA;
 import encomiendas.model.entity.encomiendas.Encomienda;
 
 import java.sql.SQLException;
@@ -41,7 +40,7 @@ public class EncomiendaService {
     }
 
     //Consultar el estado de una encomienda
-    public ESTADOS_ENCOMIENDA consultarEstado(Integer idEncomienda) throws SQLException {
+    public String consultarEstado(Integer idEncomienda) throws SQLException {
         Encomienda encomienda = getEncomiendaById(idEncomienda);
         return encomienda.consultarEstado();
     }

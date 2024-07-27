@@ -4,6 +4,12 @@
 
 package encomiendas;
 
+import encomiendas.controllers.encomiendas.PaqueteController;
+import encomiendas.database.Conexion;
+import encomiendas.model.data.encomiendas.PaqueteRepository;
+import encomiendas.services.encomiendas.PaqueteService;
+import encomiendas.view.encomiendas.PaqueteView;
+
 /**
  *
  * @author Richard
@@ -11,6 +17,16 @@ package encomiendas;
 public class Encomiendas {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        // Inicializar conexión, repositorio y servicio
+        Conexion conexion = new Conexion();
+        PaqueteRepository paqueteRepository = new PaqueteRepository(conexion.getInstance());
+        PaqueteService paqueteService = new PaqueteService(paqueteRepository);
+
+        // Inicializar vista y controlador
+        PaqueteView paqueteView = new PaqueteView();
+        PaqueteController paqueteController = new PaqueteController(paqueteService, paqueteView);
+
+        // Mostrar la vista
+        paqueteView.setVisible(true);
     }
 }

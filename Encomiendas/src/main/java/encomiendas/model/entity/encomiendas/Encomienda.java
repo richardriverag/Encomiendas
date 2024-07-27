@@ -19,11 +19,11 @@
         private Character tipoEntrega;
         private String direccionEntrega;
         private Integer codigoPostal;
-        private ESTADOS_ENCOMIENDA estado;
+        private Estado estado;
         private List<Paquete> paquetes;
 
         //En caso de que la encomienda sea de entrega a domicilio
-        public Encomienda(Integer id, Agencia agenciaOrigen, Agencia agenciaDestino, Cliente receptor, Cliente emisor, LocalDate fechaEmision, Character tipoEntrega, String direccionEntrega, Integer codigoPostal, List<Paquete> paquetes) {
+        public Encomienda(Integer id, Agencia agenciaOrigen, Agencia agenciaDestino, Cliente receptor, Cliente emisor, LocalDate fechaEmision, Character tipoEntrega, String direccionEntrega, Integer codigoPostal, List<Paquete> paquetes){
             this.idEncomienda = id;
             this.agenciaOrigen = agenciaOrigen;
             this.agenciaDestino = agenciaDestino;
@@ -34,7 +34,7 @@
             this.direccionEntrega = direccionEntrega;
             this.codigoPostal = codigoPostal;
             this.paquetes = paquetes;
-            this.estado =  ESTADOS_ENCOMIENDA.EN_BODEGA;
+            this.estado =  new EnBodegaO();
         }
 
         //En caso de que la encomienda sea de entrega en agencia
@@ -47,12 +47,7 @@
             this.fechaEmision = fechaEmision;
             this.tipoEntrega = tipoEntrega;
             this.paquetes = paquetes;
-            this.estado =  ESTADOS_ENCOMIENDA.EN_BODEGA;
-        }
-
-
-        public void cambiarEstado(){
-            estado = (tipoEntrega == 'D') ? estado.siguienteEstadoD() : estado.siguienteEstadoA();
+            this.estado =  new EnBodegaO();
         }
 
         public double calcularPrecioTotal(){
@@ -63,8 +58,12 @@
             return precioTotal;
         }
 
-
-        public ESTADOS_ENCOMIENDA consultarEstado() {
-            return estado;
+        public String consultarEstado(){
+            return estado.ConsultarEstado();
         }
+
+        public void cambiarEstado(){
+            estado.siguiente(this);
+        }
+
     }

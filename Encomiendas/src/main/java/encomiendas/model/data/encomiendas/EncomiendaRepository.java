@@ -2,7 +2,6 @@ package encomiendas.model.data.encomiendas;
 
 
 import encomiendas.model.data.Repository;
-import encomiendas.model.entity.encomiendas.ESTADOS_ENCOMIENDA;
 import encomiendas.model.entity.encomiendas.Encomienda;
 import encomiendas.model.entity.usuarios.Agencia;
 import encomiendas.model.entity.usuarios.Cliente;
