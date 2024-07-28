@@ -12,6 +12,7 @@ public class Paquete {
    private Double peso;
    private Double volumen;
    private Boolean isFragil;
+   private String descripcion;
    private Integer idEncomienda;
 
    public Double calcularPrecio(){

@@ -1,69 +1,94 @@
-    package encomiendas.model.entity.encomiendas;
+package encomiendas.model.entity.encomiendas;
 
-    import encomiendas.model.entity.usuarios.Agencia;
-    import encomiendas.model.entity.usuarios.Cliente;
-    import lombok.*;
+import encomiendas.model.entity.usuarios.Agencia;
+import encomiendas.model.entity.usuarios.Cliente;
+import lombok.*;
 
-    import java.time.LocalDate;
-    import java.util.List;
+import java.time.LocalDate;
+import java.util.List;
 
-    @Getter @Setter @NoArgsConstructor
-    public class Encomienda {
+@Getter
+@Setter
+@NoArgsConstructor
+public class Encomienda {
 
-        private Integer idEncomienda;
-        private Agencia agenciaOrigen;
-        private Agencia agenciaDestino;
-        private Cliente receptor;
-        private Cliente emisor;
-        private LocalDate fechaEmision;
-        private Character tipoEntrega;
-        private String direccionEntrega;
-        private Integer codigoPostal;
-        private Estado estado;
-        private List<Paquete> paquetes;
+    private Integer idEncomienda;
+    private Agencia agenciaOrigen;
+    private Agencia agenciaDestino;
+    private Cliente receptor;
+    private Cliente emisor;
+    private LocalDate fechaEmision;
+    private Character tipoEntrega;
+    private String direccionEntrega;
+    private Integer codigoPostal;
+    private Estado estado;
+    private List<Paquete> paquetes;
 
-        //En caso de que la encomienda sea de entrega a domicilio
-        public Encomienda(Integer id, Agencia agenciaOrigen, Agencia agenciaDestino, Cliente receptor, Cliente emisor, LocalDate fechaEmision, Character tipoEntrega, String direccionEntrega, Integer codigoPostal, List<Paquete> paquetes){
-            this.idEncomienda = id;
-            this.agenciaOrigen = agenciaOrigen;
-            this.agenciaDestino = agenciaDestino;
-            this.receptor = receptor;
-            this.emisor = emisor;
-            this.fechaEmision = fechaEmision;
-            this.tipoEntrega = tipoEntrega;
-            this.direccionEntrega = direccionEntrega;
-            this.codigoPostal = codigoPostal;
-            this.paquetes = paquetes;
-            this.estado =  new EnBodegaO();
-        }
-
-        //En caso de que la encomienda sea de entrega en agencia
-        public Encomienda(Integer id, Agencia agenciaOrigen, Agencia agenciaDestino, Cliente receptor, Cliente emisor, LocalDate fechaEmision, Character tipoEntrega, List<Paquete> paquetes) {
-            this.idEncomienda = id;
-            this.agenciaOrigen = agenciaOrigen;
-            this.agenciaDestino = agenciaDestino;
-            this.receptor = receptor;
-            this.emisor = emisor;
-            this.fechaEmision = fechaEmision;
-            this.tipoEntrega = tipoEntrega;
-            this.paquetes = paquetes;
-            this.estado =  new EnBodegaO();
-        }
-
-        public double calcularPrecioTotal(){
-            double precioTotal = 0;
-            for(Paquete p: paquetes){
-                precioTotal += p.calcularPrecio();
-            }
-            return precioTotal;
-        }
-
-        public String consultarEstado(){
-            return estado.ConsultarEstado();
-        }
-
-        public void cambiarEstado(){
-            estado.siguiente(this);
-        }
-
+    //En caso de que la encomienda sea de entrega a domicilio
+    public Encomienda(Integer id, Agencia agenciaOrigen, Agencia agenciaDestino, Cliente receptor, Cliente emisor, LocalDate fechaEmision, Character tipoEntrega, String direccionEntrega, Integer codigoPostal, List<Paquete> paquetes) {
+        this.idEncomienda = id;
+        this.agenciaOrigen = agenciaOrigen;
+        this.agenciaDestino = agenciaDestino;
+        this.receptor = receptor;
+        this.emisor = emisor;
+        this.fechaEmision = fechaEmision;
+        this.tipoEntrega = tipoEntrega;
+        this.direccionEntrega = direccionEntrega;
+        this.codigoPostal = codigoPostal;
+        this.paquetes = paquetes;
+        this.estado = new EnBodegaO();
     }
+
+    //En caso de que la encomienda sea de entrega en agencia
+    public Encomienda(Integer id, Agencia agenciaOrigen, Agencia agenciaDestino, Cliente receptor, Cliente emisor, LocalDate fechaEmision, Character tipoEntrega, List<Paquete> paquetes) {
+        this.idEncomienda = id;
+        this.agenciaOrigen = agenciaOrigen;
+        this.agenciaDestino = agenciaDestino;
+        this.receptor = receptor;
+        this.emisor = emisor;
+        this.fechaEmision = fechaEmision;
+        this.tipoEntrega = tipoEntrega;
+        this.paquetes = paquetes;
+        this.estado = new EnBodegaO();
+    }
+
+    public double calcularPrecioTotal() {
+        double precioTotal = 0;
+        for (Paquete p : paquetes) {
+            precioTotal += p.calcularPrecio();
+        }
+        return precioTotal;
+    }
+
+    public String consultarEstado() {
+        return estado.ConsultarEstado();
+    }
+
+    public void cambiarEstado() {
+        estado.siguiente(this);
+    }
+
+    public void setEstadoFromString(String estadoStr) {
+        switch (estadoStr) {
+            case "EnBodegaD":
+                this.estado = new EnBodegaD();
+                break;
+            case "EnBodegaO":
+                this.estado = new EnBodegaO();
+                break;
+            case "EnTransito":
+                this.estado = new EnTransito();
+                break;
+            case "Entregado":
+                this.estado = new Entregado();
+                break;
+            case "Recolectado":
+                this.estado = new Recolectado();
+                break;
+            // Añadir más casos según sea necesario
+            default:
+                throw new IllegalArgumentException("Estado desconocido: " + estadoStr);
+        }
+    }
+
+}

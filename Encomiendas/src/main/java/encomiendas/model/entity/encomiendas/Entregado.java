@@ -14,9 +14,4 @@ public class Entregado implements Estado {
         return "La encomienda ha sido entregada";
     }
 
-    @Override
-    public LocalDateTime getFechaCambio() {
-        return null;
-    }
-
 }

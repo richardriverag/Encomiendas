@@ -36,7 +36,7 @@ public class EncomiendaRepository implements Repository<Encomienda> {
     @Override
     public Encomienda getById(Integer id) throws SQLException {
         Encomienda encomienda = null;
-        try(PreparedStatement myStament = myConn.prepareStatement("select * from encomienda where id_paquete = ?")) {
+        try(PreparedStatement myStament = myConn.prepareStatement("select * from encomienda where id_encomienda = ?")) {
             myStament.setInt(1, id);
             ResultSet myRs = myStament.executeQuery();
             if (myRs.next()) {
@@ -103,7 +103,7 @@ public class EncomiendaRepository implements Repository<Encomienda> {
         encomienda.setTipoEntrega(myRs.getString("tipo_entrega").charAt(0));
         encomienda.setDireccionEntrega(myRs.getString("direccion_entrega"));
         encomienda.setCodigoPostal(myRs.getInt("codigo_postal"));
-        encomienda.setEstado(ESTADOS_ENCOMIENDA.valueOf(myRs.getString("estado")));
+        encomienda.setEstadoFromString(myRs.getString("estado"));
 
         return encomienda;
     }
