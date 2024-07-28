@@ -37,7 +37,7 @@ public class EncomiendaRepository implements Repository<Encomienda> {
     @Override
     public Encomienda getById(Integer id) throws SQLException {
         Encomienda encomienda = null;
-        try(PreparedStatement myStament = myConn.prepareStatement("select * from encomienda where id = ?")) {
+        try(PreparedStatement myStament = myConn.prepareStatement("select * from encomienda where id_paquete = ?")) {
             myStament.setInt(1, id);
             ResultSet myRs = myStament.executeQuery();
             if (myRs.next()) {
@@ -49,7 +49,7 @@ public class EncomiendaRepository implements Repository<Encomienda> {
 
     @Override
     public void save(Encomienda encomienda) throws SQLException {
-        String sql = "INSERT INTO encomiendas (agencia_origen, agencia_destino, receptor, emisor, fecha_emision, tipo_entrega, direccion_entrega, codigo_postal, estado) " +
+        String sql = "INSERT INTO encomiendas (id_agencia_origen, id_agencia_destino, receptor, emisor, fecha_emision, tipo_entrega, direccion_entrega, codigo_postal, estado) " +
                      "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try(PreparedStatement myStament = myConn.prepareStatement(sql)){
@@ -85,7 +85,7 @@ public class EncomiendaRepository implements Repository<Encomienda> {
 
     private Encomienda createEncomienda(ResultSet myRs) throws SQLException {
         Encomienda encomienda = new Encomienda();
-        encomienda.setId(myRs.getLong("id"));
+        encomienda.setIdEncomienda(myRs.getInt("id"));
         Agencia agenciaOrigen = new Agencia();
         agenciaOrigen = agenciaOrigen.getById(myRs.getLong("agencia_origen"));
         Agencia agenciaDestino = new Agencia();
