@@ -44,7 +44,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
         jLBienvenida = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Menú - Cliente");
+        setTitle("Menú - Administrador");
         setResizable(false);
 
         jPMenúAdministrador.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
