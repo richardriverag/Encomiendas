@@ -34,9 +34,9 @@ public class MenuAdministrador extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLAdministrador = new javax.swing.JLabel();
         jTFUsuarioAdministrador = new javax.swing.JTextField();
-        btVisualizarUsuarios = new javax.swing.JButton();
+        btRegistroUsuarios = new javax.swing.JButton();
         btIngresoUsuarios = new javax.swing.JButton();
-        btEditarUsuarios = new javax.swing.JButton();
+        btActualizarUsuarios = new javax.swing.JButton();
         btVisualizarAgencias = new javax.swing.JButton();
         btIngresoAgencias = new javax.swing.JButton();
         btEditarAgencias = new javax.swing.JButton();
@@ -64,16 +64,16 @@ public class MenuAdministrador extends javax.swing.JFrame {
         jPAdministradorMétodos.add(jLAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
         jPAdministradorMétodos.add(jTFUsuarioAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 130, -1));
 
-        btVisualizarUsuarios.setBackground(new java.awt.Color(200, 0, 0));
-        btVisualizarUsuarios.setForeground(new java.awt.Color(255, 255, 255));
-        btVisualizarUsuarios.setText("Visualizar Usuarios");
-        btVisualizarUsuarios.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 255, 255), null, null));
-        btVisualizarUsuarios.addActionListener(new java.awt.event.ActionListener() {
+        btRegistroUsuarios.setBackground(new java.awt.Color(200, 0, 0));
+        btRegistroUsuarios.setForeground(new java.awt.Color(255, 255, 255));
+        btRegistroUsuarios.setText("Registro Usuarios");
+        btRegistroUsuarios.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 255, 255), null, null));
+        btRegistroUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btVisualizarUsuariosActionPerformed(evt);
+                btRegistroUsuariosActionPerformed(evt);
             }
         });
-        jPAdministradorMétodos.add(btVisualizarUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 150, 30));
+        jPAdministradorMétodos.add(btRegistroUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 150, 30));
 
         btIngresoUsuarios.setBackground(new java.awt.Color(200, 0, 0));
         btIngresoUsuarios.setForeground(new java.awt.Color(255, 255, 255));
@@ -86,16 +86,16 @@ public class MenuAdministrador extends javax.swing.JFrame {
         });
         jPAdministradorMétodos.add(btIngresoUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 150, 30));
 
-        btEditarUsuarios.setBackground(new java.awt.Color(200, 0, 0));
-        btEditarUsuarios.setForeground(new java.awt.Color(255, 255, 255));
-        btEditarUsuarios.setText("Editar Usuarios");
-        btEditarUsuarios.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 255, 255), null, null));
-        btEditarUsuarios.addActionListener(new java.awt.event.ActionListener() {
+        btActualizarUsuarios.setBackground(new java.awt.Color(200, 0, 0));
+        btActualizarUsuarios.setForeground(new java.awt.Color(255, 255, 255));
+        btActualizarUsuarios.setText("Actualizar Usuarios");
+        btActualizarUsuarios.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 255, 255), null, null));
+        btActualizarUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btEditarUsuariosActionPerformed(evt);
+                btActualizarUsuariosActionPerformed(evt);
             }
         });
-        jPAdministradorMétodos.add(btEditarUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 150, 30));
+        jPAdministradorMétodos.add(btActualizarUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 150, 30));
 
         btVisualizarAgencias.setBackground(new java.awt.Color(200, 0, 0));
         btVisualizarAgencias.setForeground(new java.awt.Color(255, 255, 255));
@@ -171,8 +171,8 @@ public class MenuAdministrador extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btVisualizarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVisualizarUsuariosActionPerformed
-        PanelAVisualizarUsuarios panelAVU = new PanelAVisualizarUsuarios();
+    private void btRegistroUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistroUsuariosActionPerformed
+        PanelARegistroUsuarios panelAVU = new PanelARegistroUsuarios();
         panelAVU.setSize(690, 430);
         panelAVU.setLocation(0, 0);
 
@@ -180,7 +180,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
         jPAdministrador.add(panelAVU, BorderLayout.CENTER);
         jPAdministrador.revalidate();
         jPAdministrador.repaint();
-    }//GEN-LAST:event_btVisualizarUsuariosActionPerformed
+    }//GEN-LAST:event_btRegistroUsuariosActionPerformed
 
     private void btIngresoUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btIngresoUsuariosActionPerformed
         PanelAIngresoUsuarios panelAIU = new PanelAIngresoUsuarios();
@@ -193,8 +193,8 @@ public class MenuAdministrador extends javax.swing.JFrame {
         jPAdministrador.repaint();
     }//GEN-LAST:event_btIngresoUsuariosActionPerformed
 
-    private void btEditarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarUsuariosActionPerformed
-        PanelAEditarUsuarios panelAEU = new PanelAEditarUsuarios();
+    private void btActualizarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btActualizarUsuariosActionPerformed
+        PanelAActualizarUsuarios panelAEU = new PanelAActualizarUsuarios();
         panelAEU.setSize(690, 430);
         panelAEU.setLocation(0, 0);
 
@@ -202,7 +202,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
         jPAdministrador.add(panelAEU, BorderLayout.CENTER);
         jPAdministrador.revalidate();
         jPAdministrador.repaint();
-    }//GEN-LAST:event_btEditarUsuariosActionPerformed
+    }//GEN-LAST:event_btActualizarUsuariosActionPerformed
 
     private void btVisualizarAgenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVisualizarAgenciasActionPerformed
         // TODO add your handling code here:
@@ -255,12 +255,12 @@ public class MenuAdministrador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btActualizarUsuarios;
     private javax.swing.JButton btEditarAgencias;
-    private javax.swing.JButton btEditarUsuarios;
     private javax.swing.JButton btIngresoAgencias;
     private javax.swing.JButton btIngresoUsuarios;
+    private javax.swing.JButton btRegistroUsuarios;
     private javax.swing.JButton btVisualizarAgencias;
-    private javax.swing.JButton btVisualizarUsuarios;
     private javax.swing.JLabel jLAdministrador;
     private javax.swing.JLabel jLBienvenida;
     private javax.swing.JLabel jLabel1;

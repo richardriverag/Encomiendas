@@ -74,7 +74,7 @@
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="jTFApellidos" pref="270" max="32767" attributes="0"/>
+                                          <Component id="jTFApellidos" max="32767" attributes="0"/>
                                           <Component id="jTFCorreo" max="32767" attributes="0"/>
                                           <Component id="jCBRol" min="-2" pref="121" max="-2" attributes="0"/>
                                       </Group>
@@ -100,12 +100,6 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                      <Component id="jLCiudad" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="jTFCiudad" min="-2" pref="180" max="-2" attributes="0"/>
-                                  </Group>
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="jTeléfonoSecundario" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -133,9 +127,10 @@
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
-                                      <Component id="jLDirección" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="jTFDirección" min="-2" pref="180" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      <Component id="jLCiudad" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="jTFCiudad" min="-2" pref="180" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
@@ -144,7 +139,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="267" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="265" max="-2" attributes="0"/>
                       <Component id="jBIngresoUsuario" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -157,38 +152,36 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLCédula" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jTFCédula" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTFDirección" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLDirección" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLNombres" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jTFNombres" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLTípoLicencia" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jCBTípoLicencia" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLApellidos" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jTFApellidos" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLEstado" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jCBEstado" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLCorreo" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jTFCorreo" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLTeléfonoPrincipal" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jTFTeléfonoPrincipal" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLRol" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jCBRol" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jTeléfonoSecundario" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jTFTeléfonoSecundario" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLTablaAgencía" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLAgencia" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -196,11 +189,11 @@
                           <Component id="jTFCiudad" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLCiudad" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="107" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="125" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jBIngresoUsuario" min="-2" pref="31" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jBIngresoUsuario" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="44" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -349,13 +342,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTFAgencia">
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLDirecci&#xf3;n">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Direcci&#xf3;n:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="jTFDirecci&#xf3;n">
             </Component>
             <Component class="javax.swing.JButton" name="jBIngresoUsuario">
               <Properties>

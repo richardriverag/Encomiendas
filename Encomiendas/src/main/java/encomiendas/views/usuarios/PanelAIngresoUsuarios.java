@@ -53,8 +53,6 @@ public class PanelAIngresoUsuarios extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         jLAgencia = new javax.swing.JLabel();
         jTFAgencia = new javax.swing.JTextField();
-        jLDirección = new javax.swing.JLabel();
-        jTFDirección = new javax.swing.JTextField();
         jBIngresoUsuario = new javax.swing.JButton();
 
         setMinimumSize(new java.awt.Dimension(690, 430));
@@ -108,8 +106,6 @@ public class PanelAIngresoUsuarios extends javax.swing.JPanel {
 
         jLAgencia.setText("Agencia:");
 
-        jLDirección.setText("Dirección:");
-
         jBIngresoUsuario.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jBIngresoUsuario.setText("Ingreso de Usuario");
         jBIngresoUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -136,7 +132,7 @@ public class PanelAIngresoUsuarios extends javax.swing.JPanel {
                                         .addComponent(jLCorreo)))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPAIngresoUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTFApellidos, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+                                    .addComponent(jTFApellidos)
                                     .addComponent(jTFCorreo)
                                     .addComponent(jCBRol, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPAIngresoUsuariosLayout.createSequentialGroup()
@@ -155,11 +151,6 @@ public class PanelAIngresoUsuarios extends javax.swing.JPanel {
                                     .addComponent(jTFNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(18, 18, 18)
                         .addGroup(jPAIngresoUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPAIngresoUsuariosLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLCiudad)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTFCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPAIngresoUsuariosLayout.createSequentialGroup()
                                 .addComponent(jTeléfonoSecundario)
                                 .addGap(18, 18, 18)
@@ -180,13 +171,14 @@ public class PanelAIngresoUsuarios extends javax.swing.JPanel {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jTFTeléfonoPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPAIngresoUsuariosLayout.createSequentialGroup()
-                                .addComponent(jLDirección)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTFDirección, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLCiudad)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTFCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(11, 11, 11)))
                 .addContainerGap())
             .addGroup(jPAIngresoUsuariosLayout.createSequentialGroup()
-                .addGap(267, 267, 267)
+                .addGap(265, 265, 265)
                 .addComponent(jBIngresoUsuario)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -196,45 +188,43 @@ public class PanelAIngresoUsuarios extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPAIngresoUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLCédula)
-                    .addComponent(jTFCédula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTFDirección, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLDirección))
-                .addGap(15, 15, 15)
+                    .addComponent(jTFCédula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPAIngresoUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLNombres)
                     .addComponent(jTFNombres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLTípoLicencia)
                     .addComponent(jCBTípoLicencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPAIngresoUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLApellidos)
                     .addComponent(jTFApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLEstado)
                     .addComponent(jCBEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPAIngresoUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLCorreo)
                     .addComponent(jTFCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLTeléfonoPrincipal)
                     .addComponent(jTFTeléfonoPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPAIngresoUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLRol)
                     .addComponent(jCBRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTeléfonoSecundario)
                     .addComponent(jTFTeléfonoSecundario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPAIngresoUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLTablaAgencía)
                     .addComponent(jLAgencia)
                     .addComponent(jTFAgencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTFCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLCiudad))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBIngresoUsuario)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jBIngresoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jPMétodoIngreso.add(jPAIngresoUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 5, 680, 420));
@@ -266,7 +256,6 @@ public class PanelAIngresoUsuarios extends javax.swing.JPanel {
     private javax.swing.JLabel jLCiudad;
     private javax.swing.JLabel jLCorreo;
     private javax.swing.JLabel jLCédula;
-    private javax.swing.JLabel jLDirección;
     private javax.swing.JLabel jLEstado;
     private javax.swing.JLabel jLNombres;
     private javax.swing.JLabel jLRol;
@@ -281,7 +270,6 @@ public class PanelAIngresoUsuarios extends javax.swing.JPanel {
     private javax.swing.JTextField jTFCiudad;
     private javax.swing.JTextField jTFCorreo;
     private javax.swing.JTextField jTFCédula;
-    private javax.swing.JTextField jTFDirección;
     private javax.swing.JTextField jTFNombres;
     private javax.swing.JTextField jTFTeléfonoPrincipal;
     private javax.swing.JTextField jTFTeléfonoSecundario;

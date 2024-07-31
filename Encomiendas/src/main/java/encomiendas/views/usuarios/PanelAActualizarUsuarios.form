@@ -32,7 +32,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPMétodoEditar" alignment="0" pref="455" max="32767" attributes="0"/>
+          <Component id="jPMétodoEditar" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -51,7 +51,7 @@
         <Property name="useNullLayout" type="boolean" value="false"/>
       </Layout>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="jPAEditarUsuarios">
+        <Container class="javax.swing.JPanel" name="jPAM&#xf3;dificarUsuarios">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="5" y="5" width="680" height="420"/>
@@ -63,48 +63,45 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="jLSelecciónMétodo1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jBEliminar" min="-2" pref="180" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                              <Component id="jBModificar" min="-2" pref="180" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="jLSelecciónMétodoBusqueda" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace pref="18" max="32767" attributes="0"/>
-                                              <Component id="jCBMétodoBusqueda" min="-2" pref="129" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="-2" pref="227" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="jBBuscar" alignment="1" pref="129" max="32767" attributes="0"/>
-                                                  <Component id="jTFMétodoBusqueda" alignment="1" max="32767" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                      </Group>
+                                      <Component id="jLSelecciónMétodoBusqueda" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="jLSelecciónMétodo" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jTFMétodoBusqueda" min="-2" pref="180" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jBEliminar" min="-2" pref="129" max="-2" attributes="0"/>
-                                          <Component id="jBEditar" min="-2" pref="129" max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="jBBuscar" min="-2" pref="180" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="jScrollPane1" alignment="0" min="-2" pref="666" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="0" pref="8" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="jLTablaUsuarios" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jLUsuarioSeleccionado" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="jTFUsuarioSeleccionado" min="-2" pref="180" max="-2" attributes="0"/>
+                                  </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLRol" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="jCBRol" min="-2" pref="121" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="8" max="32767" attributes="0"/>
                           </Group>
                       </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="231" max="-2" attributes="0"/>
+                      <Component id="jLActualizarUsuarios" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -112,31 +109,32 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLRol" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jCBRol" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLSelecciónMétodoBusqueda" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jCBMétodoBusqueda" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLSelecciónMétodo" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jBEliminar" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jTFMétodoBusqueda" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="jBEditar" alignment="1" min="-2" pref="28" max="-2" attributes="0"/>
+                      <Component id="jLActualizarUsuarios" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLRol" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBRol" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                      <Component id="jBBuscar" min="-2" pref="28" max="-2" attributes="0"/>
-                      <EmptySpace pref="20" max="32767" attributes="0"/>
-                      <Component id="jLTablaUsuarios" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLSelecciónMétodoBusqueda" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTFMétodoBusqueda" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jBBuscar" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="190" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLUsuarioSeleccionado" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTFUsuarioSeleccionado" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLSelecciónMétodo1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jBEliminar" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                          <Component id="jBModificar" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -152,8 +150,7 @@
                 <Component class="javax.swing.JTable" name="jTUsuarios">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="13" rowCount="7">
-                        <Column editable="true" title="Id Usuario" type="java.lang.String"/>
+                      <Table columnCount="12" rowCount="7">
                         <Column editable="true" title="C&#xe9;dula" type="java.lang.String"/>
                         <Column editable="true" title="Nombres" type="java.lang.String"/>
                         <Column editable="true" title="Apellidos" type="java.lang.String"/>
@@ -170,11 +167,6 @@
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                           <Title/>
                           <Editor/>
@@ -257,24 +249,8 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Selecci&#xf3;n m&#xe9;todo de busqueda:"/>
+                <Property name="text" type="java.lang.String" value="Busqueda de Usuarios:"/>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JComboBox" name="jCBM&#xe9;todoBusqueda">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="14" style="0"/>
-                </Property>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="2">
-                    <StringItem index="0" value="Id Usuario"/>
-                    <StringItem index="1" value="C&#xe9;dula"/>
-                  </StringArray>
-                </Property>
-              </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-              </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="jTFM&#xe9;todoBusqueda">
               <Properties>
@@ -294,24 +270,21 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBBuscarActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLTablaUsuarios">
+            <Component class="javax.swing.JLabel" name="jLActualizarUsuarios">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="14" style="1"/>
+                  <Font name="Segoe UI" size="18" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Tabla de Usuarios:"/>
+                <Property name="text" type="java.lang.String" value="Actualizaci&#xf3;n de Usuarios"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jBEditar">
+            <Component class="javax.swing.JButton" name="jBModificar">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="12" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Editar"/>
+                <Property name="text" type="java.lang.String" value="M&#xf3;dificar"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBEditarActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jBEliminar">
               <Properties>
@@ -335,7 +308,22 @@
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLSelecci&#xf3;nM&#xe9;todo">
+            <Component class="javax.swing.JLabel" name="jLUsuarioSeleccionado">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="C&#xe9;dula Seleccionada:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="jTFUsuarioSeleccionado">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="14" style="0"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLSelecci&#xf3;nM&#xe9;todo1">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="1"/>

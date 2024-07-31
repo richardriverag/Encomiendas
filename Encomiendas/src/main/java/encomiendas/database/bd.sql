@@ -16,8 +16,7 @@ CREATE TABLE agencia (
 );
 
 CREATE TABLE usuario (
-    id_usuario VARCHAR(100) PRIMARY KEY,
-    cedula VARCHAR(10) UNIQUE NOT NULL,
+    cedula VARCHAR(10) PRIMARY KEY,
     nombres VARCHAR(100) NOT NULL,
     apellidos VARCHAR(100) NOT NULL,
     correo VARCHAR(100) NOT NULL,
@@ -27,17 +26,17 @@ CREATE TABLE usuario (
     ciudad VARCHAR(100),
     telefono_adicional VARCHAR(15),
     tipo_licencia CHAR(1),
-    estado BOOLEAN,
+    activo BOOLEAN,
     id_agencia INT,
     FOREIGN KEY (id_agencia) REFERENCES AGENCIA(id_agencia)
 );
 
 CREATE TABLE cuenta (
     id_cuenta INT PRIMARY KEY AUTO_INCREMENT,
-    id_usuario VARCHAR(100) NOT NULL,
+    cedula VARCHAR(10),
     username VARCHAR(50) NOT NULL,
     contrasenia VARCHAR(50) NOT NULL,
-    FOREIGN KEY (id_usuario) REFERENCES USUARIO(id_usuario)
+    FOREIGN KEY (cedula) REFERENCES USUARIO(cedula)
 );
 
 CREATE TABLE transporte (

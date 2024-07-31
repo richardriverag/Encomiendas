@@ -8,12 +8,12 @@ package encomiendas.views.usuarios;
  *
  * @author USER-PC
  */
-public class PanelAVisualizarUsuarios extends javax.swing.JPanel {
+public class PanelARegistroUsuarios extends javax.swing.JPanel {
 
     /**
      * Creates new form PanelPerfil
      */
-    public PanelAVisualizarUsuarios() {
+    public PanelARegistroUsuarios() {
         initComponents();
     }
 
@@ -31,12 +31,12 @@ public class PanelAVisualizarUsuarios extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTUsuarios = new javax.swing.JTable();
         jLRol = new javax.swing.JLabel();
-        jLSelecciónMétodoBusqueda = new javax.swing.JLabel();
-        jCBMétodoBusqueda = new javax.swing.JComboBox<>();
+        jLBuscarUsuario = new javax.swing.JLabel();
         jTFMétodoBusqueda = new javax.swing.JTextField();
         jBBuscar = new javax.swing.JButton();
         jLTablaUsuarios = new javax.swing.JLabel();
         jCBRol = new javax.swing.JComboBox<>();
+        jLRégistroUsuarios = new javax.swing.JLabel();
 
         setMinimumSize(new java.awt.Dimension(690, 430));
         setPreferredSize(new java.awt.Dimension(690, 430));
@@ -72,11 +72,8 @@ public class PanelAVisualizarUsuarios extends javax.swing.JPanel {
         jLRol.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLRol.setText("Rol:");
 
-        jLSelecciónMétodoBusqueda.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLSelecciónMétodoBusqueda.setText("Selección método de busqueda:");
-
-        jCBMétodoBusqueda.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jCBMétodoBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Id Usuario", "Cédula" }));
+        jLBuscarUsuario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLBuscarUsuario.setText("Buscar Usuario:");
 
         jTFMétodoBusqueda.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
@@ -93,6 +90,9 @@ public class PanelAVisualizarUsuarios extends javax.swing.JPanel {
 
         jCBRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Empleado", "Conductor" }));
 
+        jLRégistroUsuarios.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLRégistroUsuarios.setText("Régistro de Usuarios");
+
         javax.swing.GroupLayout jPAVisualizarUsuariosLayout = new javax.swing.GroupLayout(jPAVisualizarUsuarios);
         jPAVisualizarUsuarios.setLayout(jPAVisualizarUsuariosLayout);
         jPAVisualizarUsuariosLayout.setHorizontalGroup(
@@ -101,44 +101,50 @@ public class PanelAVisualizarUsuarios extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPAVisualizarUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPAVisualizarUsuariosLayout.createSequentialGroup()
+                        .addComponent(jLTablaUsuarios)
+                        .addContainerGap(555, Short.MAX_VALUE))
+                    .addGroup(jPAVisualizarUsuariosLayout.createSequentialGroup()
                         .addGroup(jPAVisualizarUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPAVisualizarUsuariosLayout.createSequentialGroup()
-                                .addComponent(jLSelecciónMétodoBusqueda)
-                                .addGap(18, 18, 18)
-                                .addComponent(jCBMétodoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLBuscarUsuario)
                                 .addGap(18, 18, 18)
                                 .addComponent(jTFMétodoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jBBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 666, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 8, Short.MAX_VALUE))
-                    .addGroup(jPAVisualizarUsuariosLayout.createSequentialGroup()
-                        .addGroup(jPAVisualizarUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 666, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPAVisualizarUsuariosLayout.createSequentialGroup()
                                 .addComponent(jLRol)
-                                .addGap(18, 18, 18)
-                                .addComponent(jCBRol, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLTablaUsuarios))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGroup(jPAVisualizarUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPAVisualizarUsuariosLayout.createSequentialGroup()
+                                        .addGap(213, 213, 213)
+                                        .addComponent(jLRégistroUsuarios))
+                                    .addGroup(jPAVisualizarUsuariosLayout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jCBRol, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPAVisualizarUsuariosLayout.setVerticalGroup(
             jPAVisualizarUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPAVisualizarUsuariosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPAVisualizarUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLRol)
-                    .addComponent(jCBRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPAVisualizarUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPAVisualizarUsuariosLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLRégistroUsuarios))
+                    .addGroup(jPAVisualizarUsuariosLayout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addGroup(jPAVisualizarUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jCBRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLRol))))
                 .addGap(18, 18, 18)
                 .addGroup(jPAVisualizarUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLSelecciónMétodoBusqueda)
-                    .addComponent(jCBMétodoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLBuscarUsuario)
                     .addComponent(jTFMétodoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLTablaUsuarios)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                .addGap(16, 16, 16))
         );
 
         jPMétodoVisualizar.add(jPAVisualizarUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 5, 680, 420));
@@ -162,10 +168,10 @@ public class PanelAVisualizarUsuarios extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBBuscar;
-    private javax.swing.JComboBox<String> jCBMétodoBusqueda;
     private javax.swing.JComboBox<String> jCBRol;
+    private javax.swing.JLabel jLBuscarUsuario;
     private javax.swing.JLabel jLRol;
-    private javax.swing.JLabel jLSelecciónMétodoBusqueda;
+    private javax.swing.JLabel jLRégistroUsuarios;
     private javax.swing.JLabel jLTablaUsuarios;
     private javax.swing.JPanel jPAVisualizarUsuarios;
     private javax.swing.JPanel jPMétodoVisualizar;
