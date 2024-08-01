@@ -3,7 +3,9 @@ package encomiendas.controllers.usuarios;
 import encomiendas.model.entity.usuarios.Cliente;
 import encomiendas.model.entity.usuarios.DbUsuarios;
 import encomiendas.views.usuarios.Login;
+import encomiendas.views.usuarios.MenuAdministrador;
 import encomiendas.views.usuarios.MenuClientes;
+import encomiendas.views.usuarios.MenuEmpleado;
 import encomiendas.views.usuarios.RecuperarContrasenia;
 import encomiendas.views.usuarios.Registro;
 import java.awt.event.ActionEvent;
@@ -55,15 +57,24 @@ public class usuarioController implements ActionListener{
                     MenuClientes frmCliente= new MenuClientes();
                     frmLogin.dispose();
                     frmCliente.setVisible(true);
-                    
                 }
                 
                 if(rol.equals("Administrador")){
                     JOptionPane.showMessageDialog(null, "hola soy un Administrador");
+                    MenuAdministrador frmAdministrador= new MenuAdministrador();
+                    frmLogin.dispose();
+                    frmAdministrador.setVisible(true);
                 }
                 
                 if(rol.equals("Conductor")){
                     JOptionPane.showMessageDialog(null, "hola soy un Conductor");
+                    
+                }
+                if(rol.equals("Agencia")){
+                    JOptionPane.showMessageDialog(null, "hola soy un Conductor");
+                    MenuEmpleado frmEmpleado= new MenuEmpleado();
+                    frmLogin.dispose();
+                    frmEmpleado.setVisible(true);
                 }
                 
             }else{
