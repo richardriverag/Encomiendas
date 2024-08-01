@@ -1,6 +1,12 @@
 package encomiendas.model.entity.usuarios;
 
-public class Usuario {
+
+import encomiendas.database.Conexion;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+public class Usuario extends Conexion{
 
     private String cedula;
     private String nombres;
@@ -100,6 +106,10 @@ public class Usuario {
 
     public void setCuenta(Cuenta cuenta) {
         this.cuenta = cuenta;
+    }
+    
+    public Boolean obtenerDatos(String cedula){
+        return true;
     }
 
 }

@@ -53,7 +53,10 @@ public class usuarioController implements ActionListener{
                 String rol = modeloDb.obtenerRol(cedula);
                 if(rol.equals("Cliente")){
                     JOptionPane.showMessageDialog(null, "hola soy un cliente");
-                    //Cliente cliente = new Cliente();
+                    Cliente cliente = new Cliente();
+                    cliente.setCedula(cedula);
+                    cliente.obtenerDatos(cedula);//con esto obtengo todos los datos del cliente
+                    
                     MenuClientes frmCliente= new MenuClientes();
                     frmLogin.dispose();
                     frmCliente.setVisible(true);

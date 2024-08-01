@@ -21,7 +21,7 @@ public class DbUsuarios {
         PreparedStatement ps = null;
         Connection con = getInstance();
         String sql = "INSERT INTO USUARIO (cedula, nombres, apellidos, correo,"
-                + " telefono, rol, direccion, ciudad, telefono_adicional, tipo_licencia, estado_usuario, id_agencia) "
+                + " telefono, rol, direccion, ciudad, telefono_adicional, tipo_licencia, activo, id_agencia) "
                 + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
         try{
             ps = con.prepareStatement(sql);
