@@ -62,6 +62,8 @@ public class MenuAdministrador extends javax.swing.JFrame {
         jLAdministrador.setForeground(new java.awt.Color(255, 255, 255));
         jLAdministrador.setText("Administrador:");
         jPAdministradorMétodos.add(jLAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
+
+        jTFUsuarioAdministrador.setEditable(false);
         jPAdministradorMétodos.add(jTFUsuarioAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 130, -1));
 
         btRegistroUsuarios.setBackground(new java.awt.Color(200, 0, 0));

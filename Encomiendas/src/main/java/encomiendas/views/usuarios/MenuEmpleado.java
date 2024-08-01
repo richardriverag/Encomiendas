@@ -28,8 +28,8 @@ public class MenuEmpleado extends javax.swing.JFrame {
         jPMenúAdministrador = new javax.swing.JPanel();
         jPAdministradorMétodos = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLAdministrador = new javax.swing.JLabel();
-        jTFUsuarioAdministrador = new javax.swing.JTextField();
+        jLEmpleado = new javax.swing.JLabel();
+        jTFUsuarioEmpleado = new javax.swing.JTextField();
         btEPerfil = new javax.swing.JButton();
         btEClientes = new javax.swing.JButton();
         btEConductores = new javax.swing.JButton();
@@ -52,11 +52,13 @@ public class MenuEmpleado extends javax.swing.JFrame {
         jLabel1.setToolTipText("");
         jPAdministradorMétodos.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 90, 90));
 
-        jLAdministrador.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        jLAdministrador.setForeground(new java.awt.Color(255, 255, 255));
-        jLAdministrador.setText("Empleado:");
-        jPAdministradorMétodos.add(jLAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
-        jPAdministradorMétodos.add(jTFUsuarioAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 130, -1));
+        jLEmpleado.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        jLEmpleado.setForeground(new java.awt.Color(255, 255, 255));
+        jLEmpleado.setText("Empleado:");
+        jPAdministradorMétodos.add(jLEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, -1));
+
+        jTFUsuarioEmpleado.setEditable(false);
+        jPAdministradorMétodos.add(jTFUsuarioEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 130, -1));
 
         btEPerfil.setBackground(new java.awt.Color(200, 0, 0));
         btEPerfil.setForeground(new java.awt.Color(255, 255, 255));
@@ -234,12 +236,12 @@ public class MenuEmpleado extends javax.swing.JFrame {
     private javax.swing.JButton btEConductores;
     private javax.swing.JButton btEEncomiendas;
     private javax.swing.JButton btEPerfil;
-    private javax.swing.JLabel jLAdministrador;
     private javax.swing.JLabel jLBienvenida;
+    private javax.swing.JLabel jLEmpleado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPAdministradorMétodos;
     private javax.swing.JPanel jPEmpleado;
     private javax.swing.JPanel jPMenúAdministrador;
-    private javax.swing.JTextField jTFUsuarioAdministrador;
+    private javax.swing.JTextField jTFUsuarioEmpleado;
     // End of variables declaration//GEN-END:variables
 }
