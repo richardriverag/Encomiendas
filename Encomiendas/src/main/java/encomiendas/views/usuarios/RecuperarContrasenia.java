@@ -34,7 +34,7 @@ public class RecuperarContrasenia extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         correoTxt = new javax.swing.JTextField();
         cedulaTxt = new javax.swing.JTextField();
-        botonEnviarContrasenia = new javax.swing.JButton();
+        btnEnviarContrasenia = new javax.swing.JButton();
         logoRecuperarContrasenia = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -77,16 +77,11 @@ public class RecuperarContrasenia extends javax.swing.JFrame {
         });
         jPanel1.add(cedulaTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 130, -1));
 
-        botonEnviarContrasenia.setBackground(new java.awt.Color(223, 216, 241));
-        botonEnviarContrasenia.setText("Enviar");
-        botonEnviarContrasenia.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 51), new java.awt.Color(0, 0, 51), null, null));
-        botonEnviarContrasenia.setFocusable(false);
-        botonEnviarContrasenia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonEnviarContraseniaActionPerformed(evt);
-            }
-        });
-        jPanel1.add(botonEnviarContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 80, 20));
+        btnEnviarContrasenia.setBackground(new java.awt.Color(223, 216, 241));
+        btnEnviarContrasenia.setText("Enviar");
+        btnEnviarContrasenia.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 51), new java.awt.Color(0, 0, 51), null, null));
+        btnEnviarContrasenia.setFocusable(false);
+        jPanel1.add(btnEnviarContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 80, 20));
 
         logoRecuperarContrasenia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LogoPequenio.jpg"))); // NOI18N
         jPanel1.add(logoRecuperarContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, -1, -1));
@@ -114,16 +109,6 @@ public class RecuperarContrasenia extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void botonEnviarContraseniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEnviarContraseniaActionPerformed
-        //Aqui va toda la logica de creación de nuevo usuario
-        //Aquí se valida de que si existe el correo y el numero de cedula se envía el correo
-
-        JOptionPane.showMessageDialog(this, "Las credenciales fueron enviadas al correo");
-        Login login= new Login();
-        login.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_botonEnviarContraseniaActionPerformed
 
     private void cedulaTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cedulaTxtFocusLost
         // TODO add your handling code here:
@@ -189,9 +174,9 @@ public class RecuperarContrasenia extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonEnviarContrasenia;
-    private javax.swing.JTextField cedulaTxt;
-    private javax.swing.JTextField correoTxt;
+    public javax.swing.JButton btnEnviarContrasenia;
+    public javax.swing.JTextField cedulaTxt;
+    public javax.swing.JTextField correoTxt;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
