@@ -86,9 +86,9 @@ public class EncomiendaRepository implements Repository<Encomienda> {
         Encomienda encomienda = new Encomienda();
         encomienda.setIdEncomienda(myRs.getInt("id"));
         Agencia agenciaOrigen = new Agencia();
-        agenciaOrigen = agenciaOrigen.getById(myRs.getLong("agencia_origen"));
+        //agenciaOrigen = agenciaOrigen.getById(myRs.getLong("agencia_origen"));
         Agencia agenciaDestino = new Agencia();
-        agenciaDestino = agenciaDestino.getById(myRs.getLong("agencia_destino"));
+        //agenciaDestino = agenciaDestino.getById(myRs.getLong("agencia_destino"));
         encomienda.setAgenciaOrigen(agenciaOrigen);
         encomienda.setAgenciaDestino(agenciaDestino);
 
