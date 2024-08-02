@@ -1,7 +1,7 @@
 package encomiendas.controllers.usuarios;
 
 import encomiendas.model.entity.usuarios.Cliente;
-import encomiendas.model.entity.usuarios.DbUsuarios;
+import encomiendas.model.data.usuarios.DbUsuarios;
 import encomiendas.views.usuarios.Login;
 import encomiendas.views.usuarios.MenuAdministrador;
 import encomiendas.views.usuarios.MenuClientes;
@@ -45,9 +45,11 @@ public class usuarioController implements ActionListener{
         //si se presiono el botón Ingresar
         if(e.getSource()== frmLogin.botonIngresar){
             String username= frmLogin.txtUsername.getText();
+            System.out.println(username);
             String contrasenia= frmLogin.txtContrasenia.getText();
+            System.out.println(contrasenia);
             String cedula=modeloDb.validarExistencia(username, contrasenia);
-            
+            System.out.println(cedula);
             if(cedula != null){
                 //JOptionPane.showMessageDialog(null, "Se encontro el usuario");
                 String rol = modeloDb.obtenerRol(cedula);

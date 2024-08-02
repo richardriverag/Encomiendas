@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package encomiendas.model.entity.usuarios;
+package encomiendas.model.data.usuarios;
 
 import static encomiendas.database.Conexion.getInstance;
 import java.sql.Connection;

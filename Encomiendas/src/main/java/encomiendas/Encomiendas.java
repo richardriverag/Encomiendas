@@ -5,7 +5,7 @@
 package encomiendas;
 
 import encomiendas.controllers.usuarios.usuarioController;
-import encomiendas.model.entity.usuarios.DbUsuarios;
+import encomiendas.model.data.usuarios.DbUsuarios;
 import encomiendas.views.usuarios.Login;
 import encomiendas.views.usuarios.RecuperarContrasenia;
 import encomiendas.views.usuarios.Registro;
