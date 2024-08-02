@@ -4,6 +4,12 @@
 
 package encomiendas;
 
+import encomiendas.controllers.usuarios.usuarioController;
+import encomiendas.model.data.usuarios.DbUsuarios;
+import encomiendas.views.usuarios.Login;
+import encomiendas.views.usuarios.RecuperarContrasenia;
+import encomiendas.views.usuarios.Registro;
+
 /**
  *
  * @author Richard
@@ -11,6 +17,16 @@ package encomiendas;
 public class Encomiendas {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        DbUsuarios modDbCliente = new DbUsuarios();
+        Login frmLogin = new Login();
+        Registro frmRegistro = new Registro();
+        frmRegistro.setVisible(false);
+        RecuperarContrasenia frmRContrasenia = new RecuperarContrasenia();
+        frmRContrasenia.setVisible(false);
+        
+        usuarioController crtUsuario = new usuarioController(modDbCliente, frmLogin, frmRegistro, frmRContrasenia);
+        
+        crtUsuario.iniciar();
+        frmLogin.setVisible(true);
     }
 }
