@@ -15,6 +15,7 @@ public class PanelPerfilClientes extends javax.swing.JPanel {
      */
     public PanelPerfilClientes() {
         initComponents();
+        // Comentario para erreglar el PANEL PerfilClientes
     }
 
     /**
