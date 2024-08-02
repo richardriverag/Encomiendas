@@ -33,7 +33,7 @@ public class PaqueteView extends JFrame {
     public void setPaquetes(List<Paquete> paquetes) {
         tableModel.setRowCount(0); // Clear existing data
         for (Paquete paquete : paquetes) {
-            tableModel.addRow(new Object[]{paquete.getIdPaquete(), paquete.getPeso(), paquete.getVolumen(), paquete.getIsFragil(), paquete.calcularPrecio()});
+            tableModel.addRow(new Object[]{paquete.getIdPaquete(), paquete.getPeso(), paquete.getVolumen(), paquete.getFragil(), paquete.calcularPrecio()});
         }
     }
 

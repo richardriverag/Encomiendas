@@ -93,9 +93,9 @@ public class EncomiendaRepository implements Repository<Encomienda> {
         encomienda.setAgenciaDestino(agenciaDestino);
 
         Usuario receptor = new Cliente();
-        receptor = receptor.getById(myRs.getLong("receptor"));
+        //receptor = receptor.getById(myRs.getLong("receptor"));
         Usuario emisor = new Cliente();
-        emisor = emisor.getById(myRs.getLong("emisor"));
+        //emisor = emisor.get(myRs.getLong("emisor"));
         encomienda.setReceptor((Cliente) receptor);
         encomienda.setEmisor((Cliente) emisor);
 

@@ -1,7 +1,5 @@
 package encomiendas.model.entity.encomiendas;
 
-import java.time.LocalDateTime;
-
 public class Entregado implements Estado {
 
     @Override

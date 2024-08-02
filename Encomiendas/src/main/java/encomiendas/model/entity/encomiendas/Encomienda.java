@@ -2,14 +2,11 @@ package encomiendas.model.entity.encomiendas;
 
 import encomiendas.model.entity.usuarios.Agencia;
 import encomiendas.model.entity.usuarios.Cliente;
-import lombok.*;
 
 import java.time.LocalDate;
 import java.util.List;
 
-@Getter
-@Setter
-@NoArgsConstructor
+
 public class Encomienda {
 
     private Integer idEncomienda;
@@ -50,6 +47,97 @@ public class Encomienda {
         this.tipoEntrega = tipoEntrega;
         this.paquetes = paquetes;
         this.estado = new EnBodegaO();
+    }
+
+    public Encomienda() {
+    }
+
+    public Integer getIdEncomienda() {
+        return idEncomienda;
+    }
+
+    public void setIdEncomienda(Integer idEncomienda) {
+        this.idEncomienda = idEncomienda;
+    }
+
+    public Agencia getAgenciaOrigen() {
+        return agenciaOrigen;
+    }
+
+    public void setAgenciaOrigen(Agencia agenciaOrigen) {
+        this.agenciaOrigen = agenciaOrigen;
+    }
+
+    public Agencia getAgenciaDestino() {
+        return agenciaDestino;
+    }
+
+    public void setAgenciaDestino(Agencia agenciaDestino) {
+        this.agenciaDestino = agenciaDestino;
+    }
+
+    public Cliente getReceptor() {
+        return receptor;
+    }
+
+    public void setReceptor(Cliente receptor) {
+        this.receptor = receptor;
+    }
+
+    public Cliente getEmisor() {
+        return emisor;
+    }
+
+    public void setEmisor(Cliente emisor) {
+        this.emisor = emisor;
+    }
+
+    public LocalDate getFechaEmision() {
+        return fechaEmision;
+    }
+
+    public void setFechaEmision(LocalDate fechaEmision) {
+        this.fechaEmision = fechaEmision;
+    }
+
+    public Character getTipoEntrega() {
+        return tipoEntrega;
+    }
+
+    public void setTipoEntrega(Character tipoEntrega) {
+        this.tipoEntrega = tipoEntrega;
+    }
+
+    public String getDireccionEntrega() {
+        return direccionEntrega;
+    }
+
+    public void setDireccionEntrega(String direccionEntrega) {
+        this.direccionEntrega = direccionEntrega;
+    }
+
+    public Integer getCodigoPostal() {
+        return codigoPostal;
+    }
+
+    public void setCodigoPostal(Integer codigoPostal) {
+        this.codigoPostal = codigoPostal;
+    }
+
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
+
+    public List<Paquete> getPaquetes() {
+        return paquetes;
+    }
+
+    public void setPaquetes(List<Paquete> paquetes) {
+        this.paquetes = paquetes;
     }
 
     public double calcularPrecioTotal() {
