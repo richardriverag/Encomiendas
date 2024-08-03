@@ -16,7 +16,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <exec.mainClass>encomiendas.views.usuarios.Login</exec.mainClass>
+        <exec.mainClass>encomiendas.Encomiendas</exec.mainClass>
     </properties>
     <dependencies>
         <!-- Lombok Dependency -->
@@ -39,7 +39,7 @@
         <dependency>
             <groupId>org.netbeans.external</groupId>
             <artifactId>AbsoluteLayout</artifactId>
-            <version>RELEASE190</version>
+            <version>RELEASE220</version>
         </dependency>
     </dependencies>
 </project>
