@@ -179,7 +179,7 @@ public class MenuEmpleado extends javax.swing.JFrame {
     }//GEN-LAST:event_btEConductoresActionPerformed
 
     private void btEEncomiendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEEncomiendasActionPerformed
-        PanelEEncomiendas panelEEncomienda = new PanelEEncomiendas();
+        PanelEncomiendas panelEEncomienda = new PanelEncomiendas();
         panelEEncomienda.setSize(690, 430);
         panelEEncomienda.setLocation(0, 0);
 
