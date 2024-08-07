@@ -48,8 +48,8 @@ public class EncomiendaRepository implements Repository<Encomienda> {
 
     @Override
     public void save(Encomienda encomienda) throws SQLException {
-        String sql = "INSERT INTO encomiendas (id_agencia_origen, id_agencia_destino, receptor, emisor, fecha_emision, tipo_entrega, direccion_entrega, codigo_postal, estado) " +
-                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO encomiendas (id_agencia_origen, id_agencia_destino, cedula_receptor, cedula_emisor, fecha_envio, fecha_llegada, tipo_entrega, direccion_entrega, cod_postal_entrega, estado_encomienda, precio_encomienda) " +
+                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?)";
 
         try(PreparedStatement myStament = myConn.prepareStatement(sql)){
 //            myStament.setLong(1, encomienda.getAgenciaOrigen().getId());
@@ -67,7 +67,7 @@ public class EncomiendaRepository implements Repository<Encomienda> {
 
     @Override
     public void delete(Integer id) throws SQLException {
-        try(PreparedStatement myStament = myConn.prepareStatement("delete from encomienda where id = ?")){
+        try(PreparedStatement myStament = myConn.prepareStatement("delete from encomienda where id_agencia = ?")){
             myStament.setInt(1, id);
             myStament.executeUpdate();
         }
@@ -75,16 +75,17 @@ public class EncomiendaRepository implements Repository<Encomienda> {
 
     @Override
     public void update(Integer id, Encomienda encomienda) throws SQLException {
-        try(PreparedStatement myStament = myConn.prepareStatement("update encomienda set estado = ? where id = ?")){
+        try(PreparedStatement myStament = myConn.prepareStatement("update encomienda set estado = ? where id_agencia = ?")){
             myStament.setString(1, String.valueOf(encomienda.getTipoEntrega()));
             myStament.executeUpdate();
         }
 
     }
 
+    //TO DO: HACER TODOO
     private Encomienda createEncomienda(ResultSet myRs) throws SQLException {
         Encomienda encomienda = new Encomienda();
-        encomienda.setIdEncomienda(myRs.getInt("id"));
+        encomienda.setIdEncomienda(myRs.getInt("id_agencia"));
         Agencia agenciaOrigen = new Agencia();
         //agenciaOrigen = agenciaOrigen.getById(myRs.getLong("agencia_origen"));
         Agencia agenciaDestino = new Agencia();
