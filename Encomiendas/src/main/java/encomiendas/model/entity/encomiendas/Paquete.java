@@ -1,11 +1,10 @@
 package encomiendas.model.entity.encomiendas;
 
-import lombok.*;
 
 /**
  * Clase que representa un paquete
  */
-@Getter @Setter @NoArgsConstructor @AllArgsConstructor
+
 public class Paquete {
 
    private Integer idPaquete;
@@ -34,4 +33,55 @@ public class Paquete {
        return precio;
    }
 
+    public Paquete(Integer idPaquete, Double peso, Double volumen, Boolean isFragil, Integer idEncomienda) {
+        this.idPaquete = idPaquete;
+        this.peso = peso;
+        this.volumen = volumen;
+        this.isFragil = isFragil;
+        this.idEncomienda = idEncomienda;
+    }
+
+    public Paquete() {
+    }
+
+    public Integer getIdPaquete() {
+        return idPaquete;
+    }
+
+    public void setIdPaquete(Integer idPaquete) {
+        this.idPaquete = idPaquete;
+    }
+
+    public Double getPeso() {
+        return peso;
+    }
+
+    public void setPeso(Double peso) {
+        this.peso = peso;
+    }
+
+    public Double getVolumen() {
+        return volumen;
+    }
+
+    public void setVolumen(Double volumen) {
+        this.volumen = volumen;
+    }
+
+    public Boolean getFragil() {
+        return isFragil;
+    }
+
+    public void setFragil(Boolean fragil) {
+        isFragil = fragil;
+    }
+
+
+    public Integer getIdEncomienda() {
+        return idEncomienda;
+    }
+
+    public void setIdEncomienda(Integer idEncomienda) {
+        this.idEncomienda = idEncomienda;
+    }
 }

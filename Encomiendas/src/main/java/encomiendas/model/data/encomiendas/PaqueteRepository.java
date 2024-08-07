@@ -48,12 +48,12 @@ public class PaqueteRepository implements Repository<Paquete>{
 
     @Override
     public void save(Paquete paquete) throws SQLException {
-        String sql = "INSERT INTO paquete (peso, volumen, isFragil, id_encomienda) " +
-                     "VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO paquete (peso, volumen, isFragil,, id_encomienda) " +
+                     "VALUES (?, ?, ?, ?, ?)";
         try(PreparedStatement myStament = myConn.prepareStatement(sql)){
             myStament.setFloat(1, paquete.getPeso().floatValue());
             myStament.setFloat(2, paquete.getVolumen().floatValue());
-            myStament.setBoolean(3, paquete.getIsFragil());
+            myStament.setBoolean(3, paquete.getFragil());
             myStament.setLong(4, paquete.getIdEncomienda());
             myStament.executeUpdate();
         }
@@ -77,7 +77,7 @@ public class PaqueteRepository implements Repository<Paquete>{
         paquete.setIdPaquete(myRs.getInt("id_paquete"));
         paquete.setPeso((double)myRs.getFloat("peso"));
         paquete.setVolumen((double)myRs.getFloat("volumen"));
-        paquete.setIsFragil((myRs.getBoolean("isFragil")));
+        paquete.setFragil((myRs.getBoolean("isFragil")));
         paquete.setIdEncomienda(myRs.getInt("id_encomienda"));
         return paquete;
     }

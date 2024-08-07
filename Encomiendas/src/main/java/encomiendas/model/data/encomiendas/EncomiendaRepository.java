@@ -2,7 +2,6 @@ package encomiendas.model.data.encomiendas;
 
 
 import encomiendas.model.data.Repository;
-import encomiendas.model.entity.encomiendas.ESTADOS_ENCOMIENDA;
 import encomiendas.model.entity.encomiendas.Encomienda;
 import encomiendas.model.entity.usuarios.Agencia;
 import encomiendas.model.entity.usuarios.Cliente;
@@ -37,7 +36,7 @@ public class EncomiendaRepository implements Repository<Encomienda> {
     @Override
     public Encomienda getById(Integer id) throws SQLException {
         Encomienda encomienda = null;
-        try(PreparedStatement myStament = myConn.prepareStatement("select * from encomienda where id_paquete = ?")) {
+        try(PreparedStatement myStament = myConn.prepareStatement("select * from encomienda where id_encomienda = ?")) {
             myStament.setInt(1, id);
             ResultSet myRs = myStament.executeQuery();
             if (myRs.next()) {
@@ -87,16 +86,16 @@ public class EncomiendaRepository implements Repository<Encomienda> {
         Encomienda encomienda = new Encomienda();
         encomienda.setIdEncomienda(myRs.getInt("id"));
         Agencia agenciaOrigen = new Agencia();
-        agenciaOrigen = agenciaOrigen.getById(myRs.getLong("agencia_origen"));
+        //agenciaOrigen = agenciaOrigen.getById(myRs.getLong("agencia_origen"));
         Agencia agenciaDestino = new Agencia();
-        agenciaDestino = agenciaDestino.getById(myRs.getLong("agencia_destino"));
+        //agenciaDestino = agenciaDestino.getById(myRs.getLong("agencia_destino"));
         encomienda.setAgenciaOrigen(agenciaOrigen);
         encomienda.setAgenciaDestino(agenciaDestino);
 
         Usuario receptor = new Cliente();
-        receptor = receptor.getById(myRs.getLong("receptor"));
+        //receptor = receptor.getById(myRs.getLong("receptor"));
         Usuario emisor = new Cliente();
-        emisor = emisor.getById(myRs.getLong("emisor"));
+        //emisor = emisor.get(myRs.getLong("emisor"));
         encomienda.setReceptor((Cliente) receptor);
         encomienda.setEmisor((Cliente) emisor);
 
@@ -104,7 +103,7 @@ public class EncomiendaRepository implements Repository<Encomienda> {
         encomienda.setTipoEntrega(myRs.getString("tipo_entrega").charAt(0));
         encomienda.setDireccionEntrega(myRs.getString("direccion_entrega"));
         encomienda.setCodigoPostal(myRs.getInt("codigo_postal"));
-        encomienda.setEstado(ESTADOS_ENCOMIENDA.valueOf(myRs.getString("estado")));
+        encomienda.setEstadoFromString(myRs.getString("estado"));
 
         return encomienda;
     }
