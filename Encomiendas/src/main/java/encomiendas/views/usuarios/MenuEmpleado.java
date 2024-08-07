@@ -1,6 +1,6 @@
 package encomiendas.views.usuarios;
 
-import encomiendas.views.encomiendas.PanelEncomiendas;
+import encomiendas.views.encomiendas.JFEncomiendas;
 import java.awt.BorderLayout;
 
 /**
@@ -180,14 +180,18 @@ public class MenuEmpleado extends javax.swing.JFrame {
     }//GEN-LAST:event_btEConductoresActionPerformed
 
     private void btEEncomiendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEEncomiendasActionPerformed
-        PanelEncomiendas panelEEncomienda = new PanelEncomiendas();
-        panelEEncomienda.setSize(690, 430);
-        panelEEncomienda.setLocation(0, 0);
-
-        jPEmpleado.removeAll();
-        jPEmpleado.add(panelEEncomienda, BorderLayout.CENTER);
-        jPEmpleado.revalidate();
-        jPEmpleado.repaint();
+//        PanelEncomiendas panelEEncomienda = new PanelEncomiendas();
+//        
+//        panelEEncomienda.setSize(690, 430);
+//        panelEEncomienda.setLocation(0, 0);
+//
+//        jPEmpleado.removeAll();
+//        jPEmpleado.add(panelEEncomienda, BorderLayout.CENTER);
+//        jPEmpleado.revalidate();
+//        jPEmpleado.repaint();
+        
+        JFEncomiendas encomiendas = new JFEncomiendas();
+        encomiendas.setVisible(true);
     }//GEN-LAST:event_btEEncomiendasActionPerformed
 
     /**
