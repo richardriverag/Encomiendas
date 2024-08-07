@@ -11,7 +11,6 @@ public class Paquete {
    private Double peso;
    private Double volumen;
    private Boolean isFragil;
-   private String descripcion;
    private Integer idEncomienda;
 
    public Double calcularPrecio(){
@@ -34,12 +33,11 @@ public class Paquete {
        return precio;
    }
 
-    public Paquete(Integer idPaquete, Double peso, Double volumen, Boolean isFragil, String descripcion, Integer idEncomienda) {
+    public Paquete(Integer idPaquete, Double peso, Double volumen, Boolean isFragil, Integer idEncomienda) {
         this.idPaquete = idPaquete;
         this.peso = peso;
         this.volumen = volumen;
         this.isFragil = isFragil;
-        this.descripcion = descripcion;
         this.idEncomienda = idEncomienda;
     }
 
@@ -76,14 +74,6 @@ public class Paquete {
 
     public void setFragil(Boolean fragil) {
         isFragil = fragil;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
     }
 
 
