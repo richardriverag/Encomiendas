@@ -191,6 +191,11 @@ public class JFEncomiendas extends javax.swing.JFrame {
         panelOpciones.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones"));
 
         jButton1.setText("Agregar paquete");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Crear encomienda");
 
@@ -355,7 +360,13 @@ public class JFEncomiendas extends javax.swing.JFrame {
 
     private void btnFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarActionPerformed
         VentanaFiltar ventanaFiltar = new VentanaFiltar();
+        ventanaFiltar.setVisible(true);
     }//GEN-LAST:event_btnFiltrarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        JFAgregarPaquete ventanaPaquete = new JFAgregarPaquete();
+        ventanaPaquete.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
