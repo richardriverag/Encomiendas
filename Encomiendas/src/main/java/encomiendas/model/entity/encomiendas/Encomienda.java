@@ -19,10 +19,11 @@ public class Encomienda {
     private String direccionEntrega;
     private Integer codigoPostal;
     private Estado estado;
+    private Double precioEncomienda;
     private List<Paquete> paquetes;
 
     //En caso de que la encomienda sea de entrega a domicilio
-    public Encomienda(Integer id, Agencia agenciaOrigen, Agencia agenciaDestino, Cliente receptor, Cliente emisor, LocalDate fechaEmision, Character tipoEntrega, String direccionEntrega, Integer codigoPostal, List<Paquete> paquetes) {
+    public Encomienda(Integer id, Agencia agenciaOrigen, Agencia agenciaDestino, Cliente receptor, Cliente emisor, LocalDate fechaEmision, Character tipoEntrega, String direccionEntrega, Integer codigoPostal, Double precioEncomienda, List<Paquete> paquetes) {
         this.idEncomienda = id;
         this.agenciaOrigen = agenciaOrigen;
         this.agenciaDestino = agenciaDestino;
@@ -32,12 +33,13 @@ public class Encomienda {
         this.tipoEntrega = tipoEntrega;
         this.direccionEntrega = direccionEntrega;
         this.codigoPostal = codigoPostal;
+        this.precioEncomienda = precioEncomienda;
         this.paquetes = paquetes;
         this.estado = new EnBodegaO();
     }
 
     //En caso de que la encomienda sea de entrega en agencia
-    public Encomienda(Integer id, Agencia agenciaOrigen, Agencia agenciaDestino, Cliente receptor, Cliente emisor, LocalDate fechaEmision, Character tipoEntrega, List<Paquete> paquetes) {
+    public Encomienda(Integer id, Agencia agenciaOrigen, Agencia agenciaDestino, Cliente receptor, Cliente emisor, LocalDate fechaEmision, Double precioEncomienda, Character tipoEntrega, List<Paquete> paquetes) {
         this.idEncomienda = id;
         this.agenciaOrigen = agenciaOrigen;
         this.agenciaDestino = agenciaDestino;
@@ -46,6 +48,7 @@ public class Encomienda {
         this.fechaEmision = fechaEmision;
         this.tipoEntrega = tipoEntrega;
         this.paquetes = paquetes;
+        this.precioEncomienda = precioEncomienda;
         this.estado = new EnBodegaO();
     }
 
@@ -178,5 +181,15 @@ public class Encomienda {
                 throw new IllegalArgumentException("Estado desconocido: " + estadoStr);
         }
     }
+
+    public Double getPrecioEncomienda() {
+        return precioEncomienda;
+    }
+
+    public void setPrecioEncomienda(Double precioEncomienda) {
+        this.precioEncomienda = precioEncomienda;
+    }
+    
+    
 
 }

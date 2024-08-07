@@ -15,6 +15,11 @@ public class JFEncomiendas extends javax.swing.JFrame {
      */
     public JFEncomiendas() {
         initComponents();
+        panelInterprovincial.setVisible(false);
+        panelEntregaDomicilio.setVisible(false);
+        btnCrearEncomienda.setVisible(false);
+        this.setLocationRelativeTo(this);
+        this.setTitle("Panel de encomiendas");
     }
 
     /**
@@ -28,128 +33,114 @@ public class JFEncomiendas extends javax.swing.JFrame {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        txtCedulaReceptor = new javax.swing.JTextField();
-        txtcedulaEmisor = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jCheckInterprovincial = new javax.swing.JCheckBox();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        JCheckDomicilio = new javax.swing.JCheckBox();
-        jDCFechaEnvio = new com.toedter.calendar.JDateChooser();
-        jCBAgenciaOrigen = new javax.swing.JComboBox<>();
-        panelInterprovincial = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        jCBAgenciaDestino = new javax.swing.JComboBox<>();
+        panelOpciones = new javax.swing.JPanel();
+        btnAddPaquetes = new javax.swing.JButton();
+        btnCrearEncomienda = new javax.swing.JButton();
+        btnVerListaPaquetes = new javax.swing.JButton();
+        btnGuardarEncomienda = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
+        panelDatos = new javax.swing.JPanel();
         panelEntregaDomicilio = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         txtDirEntrega = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         txtCodPostal = new javax.swing.JTextField();
-        panelOpciones = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        btnGuardarEncomienda = new javax.swing.JButton();
-        btnCancelar = new javax.swing.JButton();
-        panelDatos = new javax.swing.JPanel();
+        panelInterprovincial = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        jCBAgenciaDestino = new javax.swing.JComboBox<>();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        JCheckDomicilio = new javax.swing.JCheckBox();
+        jCheckInterprovincial = new javax.swing.JCheckBox();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jCBAgenciaOrigen = new javax.swing.JComboBox<>();
+        jDCFechaEnvio = new com.toedter.calendar.JDateChooser();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        txtcedulaEmisor = new javax.swing.JTextField();
+        txtCedulaReceptor = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         btnFiltrar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMISalir = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setText("Número de cédula del receptor");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 36, -1, -1));
-
-        jLabel2.setText("Número de cédula del emisor");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 76, -1, -1));
-
-        jLabel3.setText("Fecha de envío:");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 113, -1, -1));
-
-        txtCedulaReceptor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCedulaReceptorActionPerformed(evt);
-            }
-        });
-        jPanel2.add(txtCedulaReceptor, new org.netbeans.lib.awtextra.AbsoluteConstraints(201, 33, 254, -1));
-
-        txtcedulaEmisor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtcedulaEmisorActionPerformed(evt);
-            }
-        });
-        jPanel2.add(txtcedulaEmisor, new org.netbeans.lib.awtextra.AbsoluteConstraints(201, 73, 254, -1));
-
-        jLabel4.setText("Agencia de origen");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 153, -1, -1));
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(104, 193, -1, -1));
 
-        jCheckInterprovincial.addActionListener(new java.awt.event.ActionListener() {
+        panelOpciones.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones"));
+
+        btnAddPaquetes.setText("Agregar paquete");
+        btnAddPaquetes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckInterprovincialActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jCheckInterprovincial, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 193, -1, -1));
-
-        jLabel6.setText("Interprovincial:");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 193, -1, -1));
-
-        jLabel7.setText("Entrega a domicilio:");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(188, 193, -1, -1));
-
-        JCheckDomicilio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JCheckDomicilioActionPerformed(evt);
-            }
-        });
-        jPanel2.add(JCheckDomicilio, new org.netbeans.lib.awtextra.AbsoluteConstraints(311, 193, -1, -1));
-        jPanel2.add(jDCFechaEnvio, new org.netbeans.lib.awtextra.AbsoluteConstraints(281, 113, 174, -1));
-
-        jCBAgenciaOrigen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel2.add(jCBAgenciaOrigen, new org.netbeans.lib.awtextra.AbsoluteConstraints(281, 153, 174, -1));
-
-        panelInterprovincial.setBorder(javax.swing.BorderFactory.createTitledBorder("entrega interprovincial"));
-
-        jLabel8.setText("Agencia de destino:");
-
-        jCBAgenciaDestino.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jCBAgenciaDestino.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCBAgenciaDestinoActionPerformed(evt);
+                btnAddPaquetesActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout panelInterprovincialLayout = new javax.swing.GroupLayout(panelInterprovincial);
-        panelInterprovincial.setLayout(panelInterprovincialLayout);
-        panelInterprovincialLayout.setHorizontalGroup(
-            panelInterprovincialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelInterprovincialLayout.createSequentialGroup()
+        btnCrearEncomienda.setText("Crear encomienda");
+
+        btnVerListaPaquetes.setText("Ver lista de paquetes");
+        btnVerListaPaquetes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerListaPaquetesActionPerformed(evt);
+            }
+        });
+
+        btnGuardarEncomienda.setText("Guardar encomienda");
+        btnGuardarEncomienda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarEncomiendaActionPerformed(evt);
+            }
+        });
+
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelOpcionesLayout = new javax.swing.GroupLayout(panelOpciones);
+        panelOpciones.setLayout(panelOpcionesLayout);
+        panelOpcionesLayout.setHorizontalGroup(
+            panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelOpcionesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 137, Short.MAX_VALUE)
-                .addComponent(jCBAgenciaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnGuardarEncomienda, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                    .addComponent(btnAddPaquetes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnVerListaPaquetes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCrearEncomienda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        panelInterprovincialLayout.setVerticalGroup(
-            panelInterprovincialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelInterprovincialLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addGroup(panelInterprovincialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jCBAgenciaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(13, Short.MAX_VALUE))
+        panelOpcionesLayout.setVerticalGroup(
+            panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelOpcionesLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(btnGuardarEncomienda)
+                .addGap(18, 18, 18)
+                .addComponent(btnAddPaquetes)
+                .addGap(18, 18, 18)
+                .addComponent(btnVerListaPaquetes)
+                .addGap(18, 18, 18)
+                .addComponent(btnCrearEncomienda)
+                .addGap(18, 18, 18)
+                .addComponent(btnCancelar)
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
-        jPanel2.add(panelInterprovincial, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 440, 70));
+        jPanel2.add(panelOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 30, 190, 290));
+
+        panelDatos.setBorder(javax.swing.BorderFactory.createTitledBorder("Encomienda"));
 
         panelEntregaDomicilio.setBorder(javax.swing.BorderFactory.createTitledBorder("Entrega a domicilio"));
 
@@ -169,7 +160,7 @@ public class JFEncomiendas extends javax.swing.JFrame {
                 .addGap(52, 52, 52)
                 .addGroup(panelEntregaDomicilioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtDirEntrega)
-                    .addComponent(txtCodPostal, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE))
+                    .addComponent(txtCodPostal))
                 .addContainerGap())
         );
         panelEntregaDomicilioLayout.setVerticalGroup(
@@ -183,69 +174,171 @@ public class JFEncomiendas extends javax.swing.JFrame {
                 .addGroup(panelEntregaDomicilioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel10)
                     .addComponent(txtCodPostal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2.add(panelEntregaDomicilio, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 440, 110));
+        panelInterprovincial.setBorder(javax.swing.BorderFactory.createTitledBorder("Entrega interprovincial"));
 
-        panelOpciones.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones"));
+        jLabel8.setText("Agencia de destino:");
 
-        jButton1.setText("Agregar paquete");
+        jCBAgenciaDestino.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jCBAgenciaDestino.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBAgenciaDestinoActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Crear encomienda");
-
-        jButton3.setText("Ver lista de paquetes");
-
-        btnGuardarEncomienda.setText("Guardar encomienda");
-
-        btnCancelar.setText("Cancelar");
-
-        javax.swing.GroupLayout panelOpcionesLayout = new javax.swing.GroupLayout(panelOpciones);
-        panelOpciones.setLayout(panelOpcionesLayout);
-        panelOpcionesLayout.setHorizontalGroup(
-            panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelOpcionesLayout.createSequentialGroup()
+        javax.swing.GroupLayout panelInterprovincialLayout = new javax.swing.GroupLayout(panelInterprovincial);
+        panelInterprovincial.setLayout(panelInterprovincialLayout);
+        panelInterprovincialLayout.setHorizontalGroup(
+            panelInterprovincialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelInterprovincialLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnGuardarEncomienda, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jCBAgenciaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-        panelOpcionesLayout.setVerticalGroup(
-            panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelOpcionesLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(btnGuardarEncomienda)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnCancelar)
-                .addContainerGap(10, Short.MAX_VALUE))
+        panelInterprovincialLayout.setVerticalGroup(
+            panelInterprovincialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelInterprovincialLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addGroup(panelInterprovincialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(jCBAgenciaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
-        jPanel2.add(panelOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, 190, 210));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos de la encomienda"));
 
-        panelDatos.setBorder(javax.swing.BorderFactory.createTitledBorder("datos de la encomienda"));
+        jLabel11.setText("Entrega a domicilio:");
+
+        JCheckDomicilio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JCheckDomicilioActionPerformed(evt);
+            }
+        });
+
+        jCheckInterprovincial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckInterprovincialActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setText("Interprovincial:");
+
+        jLabel13.setText("Agencia de origen");
+
+        jCBAgenciaOrigen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel14.setText("Fecha de envío:");
+
+        jLabel15.setText("Número de cédula del emisor");
+
+        txtcedulaEmisor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtcedulaEmisorActionPerformed(evt);
+            }
+        });
+
+        txtCedulaReceptor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCedulaReceptorActionPerformed(evt);
+            }
+        });
+
+        jLabel16.setText("Número de cédula del receptor");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel16)
+                        .addGap(16, 16, 16)
+                        .addComponent(txtCedulaReceptor, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel15)
+                        .addGap(24, 24, 24)
+                        .addComponent(txtcedulaEmisor, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel14)
+                        .addGap(180, 180, 180)
+                        .addComponent(jDCFechaEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addGap(164, 164, 164)
+                        .addComponent(jCBAgenciaOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addGap(25, 25, 25)
+                        .addComponent(jCheckInterprovincial)
+                        .addGap(47, 47, 47)
+                        .addComponent(jLabel11)
+                        .addGap(17, 17, 17)
+                        .addComponent(JCheckDomicilio)))
+                .addContainerGap(8, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel16))
+                    .addComponent(txtCedulaReceptor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel15))
+                    .addComponent(txtcedulaEmisor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel14)
+                    .addComponent(jDCFechaEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel13)
+                    .addComponent(jCBAgenciaOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel12)
+                    .addComponent(jCheckInterprovincial)
+                    .addComponent(jLabel11)
+                    .addComponent(JCheckDomicilio))
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout panelDatosLayout = new javax.swing.GroupLayout(panelDatos);
         panelDatos.setLayout(panelDatosLayout);
         panelDatosLayout.setHorizontalGroup(
             panelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 450, Short.MAX_VALUE)
+            .addGroup(panelDatosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(panelEntregaDomicilio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelInterprovincial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         panelDatosLayout.setVerticalGroup(
             panelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 397, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDatosLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelInterprovincial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(panelEntregaDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(125, Short.MAX_VALUE))
         );
 
-        jPanel2.add(panelDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 460, 420));
+        jPanel2.add(panelDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 530, 600));
 
         jTabbedPane1.addTab("Crear encomienda", jPanel2);
 
@@ -255,6 +348,8 @@ public class JFEncomiendas extends javax.swing.JFrame {
                 btnFiltrarActionPerformed(evt);
             }
         });
+
+        jScrollPane2.setBorder(javax.swing.BorderFactory.createTitledBorder("Tabla de encomiendas"));
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -305,29 +400,47 @@ public class JFEncomiendas extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(229, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Consultar encomienda", jPanel3);
+
+        jMenu1.setText("Opciones");
+
+        jMISalir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_W, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMISalir.setText("Salir");
+        jMISalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMISalirActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMISalir);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPane1)
+                .addGap(23, 23, 23))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jTabbedPane1)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -337,12 +450,49 @@ public class JFEncomiendas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCBAgenciaDestinoActionPerformed
 
+    private void btnFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarActionPerformed
+        VentanaFiltar ventanaFiltar = new VentanaFiltar();
+        ventanaFiltar.setVisible(true);
+    }//GEN-LAST:event_btnFiltrarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        limpiar();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void limpiar() {
+        panelInterprovincial.setVisible(false);
+        panelEntregaDomicilio.setVisible(false);
+        txtCedulaReceptor.setText("");
+        txtCodPostal.setText("");
+        txtDirEntrega.setText("");
+        txtcedulaEmisor.setText("");
+        jCBAgenciaDestino.setSelectedIndex(0);
+        jCBAgenciaOrigen.setSelectedIndex(0);
+        btnCrearEncomienda.setVisible(false);
+        JCheckDomicilio.setSelected(false);
+        jCheckInterprovincial.setSelected(false);
+        jDCFechaEnvio.setDate(null);
+    }
+
+    private void jMISalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMISalirActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_jMISalirActionPerformed
+
     private void JCheckDomicilioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCheckDomicilioActionPerformed
-        // TODO add your handling code here:
+        
+        if (JCheckDomicilio.isSelected()) {
+            panelEntregaDomicilio.setVisible(true);
+        } else {
+            panelEntregaDomicilio.setVisible(false);
+        }
     }//GEN-LAST:event_JCheckDomicilioActionPerformed
 
     private void jCheckInterprovincialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckInterprovincialActionPerformed
-        // TODO add your handling code here:
+        if (jCheckInterprovincial.isSelected()) {
+            panelInterprovincial.setVisible(true);
+        } else {
+            panelInterprovincial.setVisible(false);
+        }
     }//GEN-LAST:event_jCheckInterprovincialActionPerformed
 
     private void txtcedulaEmisorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcedulaEmisorActionPerformed
@@ -353,9 +503,18 @@ public class JFEncomiendas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCedulaReceptorActionPerformed
 
-    private void btnFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarActionPerformed
-        VentanaFiltar ventanaFiltar = new VentanaFiltar();
-    }//GEN-LAST:event_btnFiltrarActionPerformed
+    private void btnGuardarEncomiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarEncomiendaActionPerformed
+
+    }//GEN-LAST:event_btnGuardarEncomiendaActionPerformed
+
+    private void btnAddPaquetesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPaquetesActionPerformed
+        btnCrearEncomienda.setVisible(true);
+    }//GEN-LAST:event_btnAddPaquetesActionPerformed
+
+    private void btnVerListaPaquetesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerListaPaquetesActionPerformed
+        JFListaPaquetes listaPaquetes = new JFListaPaquetes();
+        listaPaquetes.setVisible(true);
+    }//GEN-LAST:event_btnVerListaPaquetesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -394,26 +553,30 @@ public class JFEncomiendas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox JCheckDomicilio;
+    private javax.swing.JButton btnAddPaquetes;
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnCrearEncomienda;
     public javax.swing.JButton btnFiltrar;
     private javax.swing.JButton btnGuardarEncomienda;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnVerListaPaquetes;
     private javax.swing.JComboBox<String> jCBAgenciaDestino;
     private javax.swing.JComboBox<String> jCBAgenciaOrigen;
     private javax.swing.JCheckBox jCheckInterprovincial;
     private com.toedter.calendar.JDateChooser jDCFechaEnvio;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenuItem jMISalir;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;

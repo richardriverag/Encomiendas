@@ -8,10 +8,12 @@ package encomiendas.model.entity.encomiendas;
 public class Paquete {
 
    private Integer idPaquete;
+   private String descripcion;
    private Double peso;
    private Double volumen;
    private Boolean isFragil;
    private Integer idEncomienda;
+   private Double precioPaquete;
 
    public Double calcularPrecio(){
        double precio = 0;
@@ -33,13 +35,17 @@ public class Paquete {
        return precio;
    }
 
-    public Paquete(Integer idPaquete, Double peso, Double volumen, Boolean isFragil, Integer idEncomienda) {
+    public Paquete(Integer idPaquete, String descripcion, Double peso, Double volumen, Boolean isFragil, Integer idEncomienda, Double precioPaquete) {
         this.idPaquete = idPaquete;
+        this.descripcion = descripcion;
         this.peso = peso;
         this.volumen = volumen;
         this.isFragil = isFragil;
         this.idEncomienda = idEncomienda;
+        this.precioPaquete = precioPaquete;
     }
+
+    
 
     public Paquete() {
     }
@@ -84,4 +90,33 @@ public class Paquete {
     public void setIdEncomienda(Integer idEncomienda) {
         this.idEncomienda = idEncomienda;
     }
+
+    public Boolean getIsFragil() {
+        return isFragil;
+    }
+
+    public void setIsFragil(Boolean isFragil) {
+        this.isFragil = isFragil;
+    }
+
+    public Double getPrecioPaquete() {
+        return precioPaquete;
+    }
+
+    public void setPrecioPaquete(Double precioPaquete) {
+        this.precioPaquete = precioPaquete;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+    
+    
+    
+    
+    
 }
