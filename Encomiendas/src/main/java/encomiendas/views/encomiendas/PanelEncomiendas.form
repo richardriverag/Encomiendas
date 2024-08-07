@@ -225,11 +225,7 @@
                     <Component class="javax.swing.JLabel" name="jLabel5">
                     </Component>
                     <Component class="javax.swing.JCheckBox" name="jCheckBox1">
-                      <Properties>
-                        <Property name="actionCommand" type="java.lang.String" value=""/>
-                      </Properties>
                       <AccessibilityProperties>
-                        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value=""/>
                         <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value=""/>
                       </AccessibilityProperties>
                       <Events>

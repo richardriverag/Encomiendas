@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package encomiendas.views.usuarios;
+package encomiendas.views.encomiendas;
 
 /**
  *
@@ -75,7 +75,6 @@ public class PanelEncomiendas extends javax.swing.JPanel {
 
         jLabel4.setText("Agencia de origen");
 
-        jCheckBox1.setActionCommand("");
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBox1ActionPerformed(evt);
@@ -180,7 +179,6 @@ public class PanelEncomiendas extends javax.swing.JPanel {
                 .addGap(27, 27, 27))
         );
 
-        jCheckBox1.getAccessibleContext().setAccessibleName("");
         jCheckBox1.getAccessibleContext().setAccessibleDescription("");
 
         jTabbedPane1.addTab("Crear encomienda", jPanel1);

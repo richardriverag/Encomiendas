@@ -1,5 +1,6 @@
 package encomiendas.views.usuarios;
 
+import encomiendas.views.encomiendas.PanelEncomiendas;
 import java.awt.BorderLayout;
 
 /**
