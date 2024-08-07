@@ -8,12 +8,12 @@ package encomiendas.views.encomiendas;
  *
  * @author USER
  */
-public class PanelFiltrarEncomiendas extends javax.swing.JPanel {
+public class PanelFiltrarEncomienda extends javax.swing.JPanel {
 
     /**
      * Creates new form PanelFiltrarEncomiendas
      */
-    public PanelFiltrarEncomiendas() {
+    public PanelFiltrarEncomienda() {
         initComponents();
     }
 
