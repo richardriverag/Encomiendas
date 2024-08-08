@@ -4,6 +4,8 @@
  */
 package encomiendas.views.encomiendas;
 
+import javax.swing.table.TableModel;
+
 /**
  *
  * @author djimm
@@ -22,6 +24,8 @@ public class JFEncomiendas extends javax.swing.JFrame {
         this.setTitle("Panel de encomiendas");
     }
 
+    JFPaquetes paquetes;
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -66,7 +70,7 @@ public class JFEncomiendas extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         btnFiltrar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jTEncomiendas = new javax.swing.JTable();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
 
@@ -344,7 +348,7 @@ public class JFEncomiendas extends javax.swing.JFrame {
             }
         });
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jTEncomiendas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -363,7 +367,12 @@ public class JFEncomiendas extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
+        jTEncomiendas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTEncomiendasMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTEncomiendas);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -504,6 +513,12 @@ public class JFEncomiendas extends javax.swing.JFrame {
         this.setLocationRelativeTo(this);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void jTEncomiendasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTEncomiendasMouseClicked
+//        int index = jTEncomiendas.getSelectedRow();
+//        TableModel model = jTEncomiendas.getModel();
+
+    }//GEN-LAST:event_jTEncomiendasMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -568,8 +583,8 @@ public class JFEncomiendas extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTEncomiendas;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JPanel panelDatos;
     private javax.swing.JPanel panelEntregaDomicilio;
     private javax.swing.JPanel panelInterprovincial;

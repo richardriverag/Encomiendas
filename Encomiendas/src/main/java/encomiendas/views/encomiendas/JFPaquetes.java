@@ -285,7 +285,7 @@ public class JFPaquetes extends javax.swing.JFrame {
     private javax.swing.JButton btnAddPaquete;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnVolver;
-    private javax.swing.JCheckBox jCBIsFragil;
+    public javax.swing.JCheckBox jCBIsFragil;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -297,10 +297,10 @@ public class JFPaquetes extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel panelDatosPaquete;
-    private javax.swing.JTextField txtDescripPaquete;
-    private javax.swing.JTextField txtIDPaquete;
-    private javax.swing.JTextField txtPesoPaquete;
-    private javax.swing.JTextField txtPrecioPaquete;
-    private javax.swing.JTextField txtVolPaquete;
+    public javax.swing.JTextField txtDescripPaquete;
+    public javax.swing.JTextField txtIDPaquete;
+    public javax.swing.JTextField txtPesoPaquete;
+    public javax.swing.JTextField txtPrecioPaquete;
+    public javax.swing.JTextField txtVolPaquete;
     // End of variables declaration//GEN-END:variables
 }
