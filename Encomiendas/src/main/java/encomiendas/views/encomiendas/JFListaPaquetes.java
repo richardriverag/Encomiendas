@@ -4,7 +4,15 @@
  */
 package encomiendas.views.encomiendas;
 
+import encomiendas.controllers.encomiendas.PaqueteController;
+import encomiendas.database.Conexion;
+import encomiendas.model.data.encomiendas.PaqueteRepository;
+import encomiendas.services.encomiendas.PaqueteService;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 /**
@@ -13,17 +21,28 @@ import javax.swing.table.TableModel;
  */
 public class JFListaPaquetes extends javax.swing.JFrame {
 
-    /**
-     * Creates new form JFListaPaquetes
-     */
+    Conexion con = new Conexion();
+
+    PaqueteRepository paqueteRepository;
+    PaqueteService paqueteService;
+    PaqueteController paqueteController;
+
     public JFListaPaquetes() {
         initComponents();
         setLocationRelativeTo(this);
         setTitle("Lista de paquetes");
+
+        //instancia del controlador
+        paqueteRepository = new PaqueteRepository(con.getInstance());
+        paqueteService = new PaqueteService(paqueteRepository);
+        paqueteController = new PaqueteController(this, paqueteService);
+
+        paqueteController.mostrarPaquetes((DefaultTableModel) this.jTListaPaquetes.getModel());
+
     }
 
     JFPaquetes paquetes = new JFPaquetes();
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -56,23 +75,23 @@ public class JFListaPaquetes extends javax.swing.JFrame {
 
         jTListaPaquetes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                { new Integer(1), "Hola",  new Float(12.0),  new Float(2.0),  new Boolean(true),  new Integer(1)},
-                { new Integer(2), "Jeje",  new Float(2.0),  new Float(3.0), null,  new Integer(1)},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                { new Integer(1), "Hola",  new Float(12.0),  new Float(2.0),  new Boolean(true), null,  new Integer(1)},
+                { new Integer(2), "Jeje",  new Float(2.0),  new Float(3.0), null, null,  new Integer(1)},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID Paquete", "Descripcion", "Peso", "Volumen", "Es frágil", "ID Encomienda"
+                "ID Paquete", "Descripcion", "Peso", "Volumen", "Es frágil", "Precio", "ID Encomienda"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Float.class, java.lang.Float.class, java.lang.Boolean.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Float.class, java.lang.Float.class, java.lang.Boolean.class, java.lang.Float.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -140,19 +159,18 @@ public class JFListaPaquetes extends javax.swing.JFrame {
         String volumenPaquete = model.getValueAt(index, 3).toString();
         Boolean isFragil = (Boolean) model.getValueAt(index, 4);
         String precioPaquete = model.getValueAt(index, 5).toString();
-        
-       
+
         paquetes.setVisible(true);
         paquetes.pack();
         paquetes.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        
+
         paquetes.txtIDPaquete.setText(idPaquete);
         paquetes.txtDescripPaquete.setText(descripcion);
         paquetes.txtPesoPaquete.setText(pesoPaquete);
         paquetes.txtVolPaquete.setText(volumenPaquete);
         paquetes.txtPrecioPaquete.setText(precioPaquete);
         paquetes.jCBIsFragil.setSelected(isFragil);
-        
+
     }//GEN-LAST:event_jTListaPaquetesMouseClicked
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -193,7 +211,9 @@ public class JFListaPaquetes extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+
                 new JFListaPaquetes().setVisible(true);
+
             }
         });
     }
@@ -206,6 +226,6 @@ public class JFListaPaquetes extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTListaPaquetes;
+    public javax.swing.JTable jTListaPaquetes;
     // End of variables declaration//GEN-END:variables
 }

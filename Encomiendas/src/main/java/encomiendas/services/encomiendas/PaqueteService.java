@@ -1,5 +1,6 @@
 package encomiendas.services.encomiendas;
 
+import encomiendas.database.Conexion;
 import encomiendas.model.data.encomiendas.PaqueteRepository;
 import encomiendas.model.entity.encomiendas.Paquete;
 
@@ -8,7 +9,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class PaqueteService {
-//
+    
     private final PaqueteRepository paqueteRepository;
 
     public PaqueteService(PaqueteRepository paqueteRepository) {

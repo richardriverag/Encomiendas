@@ -4,6 +4,8 @@
  */
 package encomiendas.views.encomiendas;
 
+import java.sql.SQLException;
+
 /**
  *
  * @author djimm
@@ -431,8 +433,10 @@ public class JFInfoEncomiendas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnVerPaquetesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerPaquetesActionPerformed
-        JFListaPaquetes listaPaquetes = new JFListaPaquetes();
-        listaPaquetes.setVisible(true);
+
+            JFListaPaquetes listaPaquetes = new JFListaPaquetes();
+            listaPaquetes.setVisible(true);
+       
     }//GEN-LAST:event_btnVerPaquetesActionPerformed
 
     /**

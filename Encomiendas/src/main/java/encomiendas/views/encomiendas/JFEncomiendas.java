@@ -4,18 +4,23 @@
  */
 package encomiendas.views.encomiendas;
 
-import javax.swing.JFrame;
+import encomiendas.controllers.encomiendas.PaqueteController;
+import encomiendas.database.Conexion;
+import encomiendas.model.data.encomiendas.PaqueteRepository;
+import encomiendas.services.encomiendas.PaqueteService;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.TableModel;
 
-/**
- *
- * @author djimm
- */
 public class JFEncomiendas extends javax.swing.JFrame {
 
-    /**
-     * Creates new form JFEncomiendas
-     */
+    Conexion con = new Conexion();
+
+    PaqueteRepository paqueteRepository;
+    PaqueteService paqueteService;
+    PaqueteController paqueteController;
+
     public JFEncomiendas() {
         initComponents();
         panelInterprovincial.setVisible(false);
@@ -23,10 +28,15 @@ public class JFEncomiendas extends javax.swing.JFrame {
         btnCrearEncomienda.setVisible(false);
         this.setLocationRelativeTo(this);
         this.setTitle("Panel de encomiendas");
+
+        //instancia del controlador
+        paqueteRepository = new PaqueteRepository(con.getInstance());
+        paqueteService = new PaqueteService(paqueteRepository);
+        paqueteController = new PaqueteController(this, paqueteService);
     }
 
     JFPaquetes paquetes;
-  
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -488,7 +498,7 @@ public class JFEncomiendas extends javax.swing.JFrame {
     private void JCheckDomicilioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCheckDomicilioActionPerformed
         if (JCheckDomicilio.isSelected()) {
             panelEntregaDomicilio.setVisible(true);
-        }else{
+        } else {
             panelEntregaDomicilio.setVisible(false);
         }
     }//GEN-LAST:event_JCheckDomicilioActionPerformed
@@ -504,15 +514,17 @@ public class JFEncomiendas extends javax.swing.JFrame {
     private void JCheckInterprovincialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCheckInterprovincialActionPerformed
         if (JCheckInterprovincial.isSelected()) {
             panelInterprovincial.setVisible(true);
-        }else{
+        } else {
             panelInterprovincial.setVisible(false);
         }
     }//GEN-LAST:event_JCheckInterprovincialActionPerformed
 
     private void btnVerPaquetesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerPaquetesActionPerformed
+
         JFListaPaquetes listaPaquetes = new JFListaPaquetes();
         listaPaquetes.setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
         listaPaquetes.setVisible(true);
+
     }//GEN-LAST:event_btnVerPaquetesActionPerformed
 
     private void jMISalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -527,13 +539,13 @@ public class JFEncomiendas extends javax.swing.JFrame {
         String destiantarioE = model.getValueAt(index, 2).toString();
         String agenciaO = model.getValueAt(index, 3).toString();
         String agenciaD = model.getValueAt(index, 4).toString();
-        
-        JFInfoEncomiendas infoEncomienda = new JFInfoEncomiendas(); 
+
+        JFInfoEncomiendas infoEncomienda = new JFInfoEncomiendas();
         infoEncomienda.setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
         infoEncomienda.setVisible(true);
-        
+
         //encomienda.txtIDPaquete.setText(idPaquete);
-       // encomienda.txtDescripPaquete.setText(descripcion);
+        // encomienda.txtDescripPaquete.setText(descripcion);
         //encomienda.txtPesoPaquete.setText(pesoPaquete);
         //encomienda.txtVolPaquete.setText(volumenPaquete);
         //encomienda.txtPrecioPaquete.setText(precioPaquete);
