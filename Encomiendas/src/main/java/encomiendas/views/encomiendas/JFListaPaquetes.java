@@ -141,6 +141,7 @@ public class JFListaPaquetes extends javax.swing.JFrame {
         Boolean isFragil = (Boolean) model.getValueAt(index, 4);
         String precioPaquete = model.getValueAt(index, 5).toString();
         
+       
         paquetes.setVisible(true);
         paquetes.pack();
         paquetes.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

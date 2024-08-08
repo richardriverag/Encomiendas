@@ -53,6 +53,9 @@
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
         <Container class="javax.swing.JPanel" name="jPanel2">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="Crear encomienda">
@@ -568,12 +571,47 @@
                     <Component class="javax.swing.JTable" name="jTEncomiendas">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="5" rowCount="4">
-                            <Column editable="true" title="ID Encomienda" type="java.lang.String"/>
-                            <Column editable="true" title="Remitente" type="java.lang.String"/>
-                            <Column editable="true" title="Destinatario" type="java.lang.String"/>
-                            <Column editable="true" title="Agencia Origen" type="java.lang.String"/>
-                            <Column editable="true" title="Agencia Destino" type="java.lang.String"/>
+                          <Table columnCount="5" rowCount="6">
+                            <Column editable="true" title="ID Encomienda" type="java.lang.String">
+                              <Data value="10223"/>
+                              <Data value="11233"/>
+                              <Data value="null"/>
+                              <Data value="null"/>
+                              <Data value="null"/>
+                              <Data value="null"/>
+                            </Column>
+                            <Column editable="true" title="Remitente" type="java.lang.String">
+                              <Data value="Michael"/>
+                              <Data value="Micos"/>
+                              <Data value="null"/>
+                              <Data value="null"/>
+                              <Data value="null"/>
+                              <Data value="null"/>
+                            </Column>
+                            <Column editable="true" title="Destinatario" type="java.lang.String">
+                              <Data value="Micos"/>
+                              <Data value="Jimmy"/>
+                              <Data value="null"/>
+                              <Data value="null"/>
+                              <Data value="null"/>
+                              <Data value="null"/>
+                            </Column>
+                            <Column editable="true" title="Agencia Origen" type="java.lang.String">
+                              <Data value="XD1"/>
+                              <Data value="XD3"/>
+                              <Data value="null"/>
+                              <Data value="null"/>
+                              <Data value="null"/>
+                              <Data value="null"/>
+                            </Column>
+                            <Column editable="true" title="Agencia Destino" type="java.lang.String">
+                              <Data value="XD2"/>
+                              <Data value="XD5"/>
+                              <Data value="null"/>
+                              <Data value="null"/>
+                              <Data value="null"/>
+                              <Data value="null"/>
+                            </Column>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

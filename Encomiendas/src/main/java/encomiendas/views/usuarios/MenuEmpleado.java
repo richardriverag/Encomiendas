@@ -191,6 +191,7 @@ public class MenuEmpleado extends javax.swing.JFrame {
 //        jPEmpleado.repaint();
         
         JFEncomiendas encomiendas = new JFEncomiendas();
+        encomiendas.setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
         encomiendas.setVisible(true);
     }//GEN-LAST:event_btEEncomiendasActionPerformed
 

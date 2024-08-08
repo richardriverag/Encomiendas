@@ -4,6 +4,7 @@
  */
 package encomiendas.views.encomiendas;
 
+import javax.swing.JFrame;
 import javax.swing.table.TableModel;
 
 /**
@@ -25,7 +26,7 @@ public class JFEncomiendas extends javax.swing.JFrame {
     }
 
     JFPaquetes paquetes;
-    
+  
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -350,6 +351,8 @@ public class JFEncomiendas extends javax.swing.JFrame {
 
         jTEncomiendas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {"10223", "Michael", "Micos", "XD1", "XD2"},
+                {"11233", "Micos", "Jimmy", "XD3", "XD5"},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -441,6 +444,7 @@ public class JFEncomiendas extends javax.swing.JFrame {
 
     private void btnFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarActionPerformed
         VentanaFiltar ventanaFiltar = new VentanaFiltar();
+        ventanaFiltar.setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
         ventanaFiltar.setVisible(true);
     }//GEN-LAST:event_btnFiltrarActionPerformed
 
@@ -473,6 +477,7 @@ public class JFEncomiendas extends javax.swing.JFrame {
 
     private void btnAgregarPaqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPaqueteActionPerformed
         JFPaquetes ventanaPaquete = new JFPaquetes();
+        ventanaPaquete.setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
         ventanaPaquete.setVisible(true);
     }//GEN-LAST:event_btnAgregarPaqueteActionPerformed
 
@@ -506,6 +511,7 @@ public class JFEncomiendas extends javax.swing.JFrame {
 
     private void btnVerPaquetesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerPaquetesActionPerformed
         JFListaPaquetes listaPaquetes = new JFListaPaquetes();
+        listaPaquetes.setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
         listaPaquetes.setVisible(true);
     }//GEN-LAST:event_btnVerPaquetesActionPerformed
 
@@ -514,9 +520,24 @@ public class JFEncomiendas extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jTEncomiendasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTEncomiendasMouseClicked
-//        int index = jTEncomiendas.getSelectedRow();
-//        TableModel model = jTEncomiendas.getModel();
-
+        int index = jTEncomiendas.getSelectedRow();
+        TableModel model = jTEncomiendas.getModel();
+        String idEncomienda = model.getValueAt(index, 0).toString();
+        String remitenteE = model.getValueAt(index, 1).toString();
+        String destiantarioE = model.getValueAt(index, 2).toString();
+        String agenciaO = model.getValueAt(index, 3).toString();
+        String agenciaD = model.getValueAt(index, 4).toString();
+        
+        JFInfoEncomiendas infoEncomienda = new JFInfoEncomiendas(); 
+        infoEncomienda.setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
+        infoEncomienda.setVisible(true);
+        
+        //encomienda.txtIDPaquete.setText(idPaquete);
+       // encomienda.txtDescripPaquete.setText(descripcion);
+        //encomienda.txtPesoPaquete.setText(pesoPaquete);
+        //encomienda.txtVolPaquete.setText(volumenPaquete);
+        //encomienda.txtPrecioPaquete.setText(precioPaquete);
+        //encomienda.jCBIsFragil.setSelected(isFragil);
     }//GEN-LAST:event_jTEncomiendasMouseClicked
 
     /**
@@ -579,7 +600,7 @@ public class JFEncomiendas extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    public javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane2;
