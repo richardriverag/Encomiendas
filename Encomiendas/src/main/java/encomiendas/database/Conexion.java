@@ -18,7 +18,7 @@ public class Conexion {
     //Patron singleton
         private static String url = "jdbc:mysql://localhost:3306/encomiendas";
         private static String user = "root";
-        private static String password = "P@ssw0rd";
+        private static String password = "12345";
         private static Connection myConn = null;
 
         public static Connection getInstance()  {
