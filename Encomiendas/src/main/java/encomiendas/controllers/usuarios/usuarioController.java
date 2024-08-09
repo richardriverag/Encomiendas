@@ -1,5 +1,6 @@
 package encomiendas.controllers.usuarios;
 
+import encomiendas.model.data.usuarios.DbCliente;
 import encomiendas.model.data.usuarios.DbEmpleado;
 import encomiendas.model.entity.usuarios.Cliente;
 import encomiendas.model.data.usuarios.DbUsuarios;
@@ -9,6 +10,7 @@ import encomiendas.views.usuarios.Login;
 import encomiendas.views.usuarios.MenuAdministrador;
 import encomiendas.views.usuarios.MenuClientes;
 import encomiendas.views.usuarios.MenuEmpleado;
+import encomiendas.views.usuarios.PanelPerfilClientes;
 import encomiendas.views.usuarios.RecuperarContrasenia;
 import encomiendas.views.usuarios.Registro;
 import java.awt.event.ActionEvent;
@@ -60,9 +62,8 @@ public class usuarioController implements ActionListener {
                     cliente.setCedula(cedula);
                     cliente.obtenerDatos(cedula);//con esto obtengo todos los datos del cliente
 
-                    MenuClientes frmCliente = new MenuClientes();
                     frmLogin.dispose();
-                    frmCliente.setVisible(true);
+                    abrirMenuCliente();
                 }
 
                 if (rol.equals("Empleado")) {
@@ -94,7 +95,7 @@ public class usuarioController implements ActionListener {
                 }
 
             } else {
-                JOptionPane.showMessageDialog(null, "Usuario o Contraseña Incorrectos\nRegistrese si aun no lo ha hecho");
+                JOptionPane.showMessageDialog(null, "Usuario o Contraña Incorrectos\nregistrese si aun no lo ha hecho");
             }
         }
 
@@ -179,6 +180,23 @@ public class usuarioController implements ActionListener {
                 
             }
     }*/
+    
+    private void abrirMenuCliente() {
+        DbCliente modClienteDb = new DbCliente();
+        Cliente modCliente = new Cliente();
+        MenuClientes frmClienteMenu = new MenuClientes();
+        Cuenta modCuenta = new Cuenta();
+        PanelPerfilClientes panelCliente = new PanelPerfilClientes();
+
+        clienteController ctrCliente = new clienteController(modClienteDb, frmClienteMenu, panelCliente, modCliente, modCuenta);
+        String username = frmLogin.txtUsername.getText();
+        String contrasenia = frmLogin.txtContrasenia.getText();
+        String cedula = modeloDb.validarExistencia(username, contrasenia);
+        frmClienteMenu.jTFUsuarioCliente.setText(cedula);
+        ctrCliente.iniciar();
+    }
+
+    
     private void abrirMenuEmpleado() {
         DbEmpleado modEmpleadoDb = new DbEmpleado();
         Empleado modEmp = new Empleado();
@@ -192,4 +210,5 @@ public class usuarioController implements ActionListener {
         frmEmpMenu.jTFUsuarioEmpleado.setText(cedula);
         ctrEmpleado.iniciar();
     }
+   
 }
