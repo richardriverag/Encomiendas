@@ -1,22 +1,31 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package encomiendas.views.encomiendas;
 
-/**
- *
- * @author djimm
- */
+import encomiendas.controllers.encomiendas.PaqueteController;
+import encomiendas.database.Conexion;
+import encomiendas.model.data.encomiendas.PaqueteRepository;
+import encomiendas.services.encomiendas.PaqueteService;
+import javax.swing.table.DefaultTableModel;
+
+
 public class JFPaquetes extends javax.swing.JFrame {
 
-    /**
-     * Creates new form JFPaquetes
-     */
+      Conexion con = new Conexion();
+
+    PaqueteRepository paqueteRepository;
+    PaqueteService paqueteService;
+    PaqueteController paqueteController;
+    
+   
     public JFPaquetes() {
         initComponents();
         this.setLocationRelativeTo(this);
         this.setTitle("Paquetes");
+        
+         //instancia del controlador
+        paqueteRepository = new PaqueteRepository(con.getInstance());
+        paqueteService = new PaqueteService(paqueteRepository);
+        paqueteController = new PaqueteController(this, paqueteService);
     }
 
     /**
@@ -41,6 +50,8 @@ public class JFPaquetes extends javax.swing.JFrame {
         txtDescripPaquete = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtPrecioPaquete = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        txtIdEncomienda = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         btnAddPaquete = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
@@ -68,21 +79,29 @@ public class JFPaquetes extends javax.swing.JFrame {
 
         jLabel4.setText("El paquete es fragil:");
 
+        jCBIsFragil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBIsFragilActionPerformed(evt);
+            }
+        });
+
         jLabel5.setText("Descripción del paquete:");
 
         jLabel6.setText("Precio del paquete: ");
+
+        jLabel7.setText("Id de la encomienda:");
 
         javax.swing.GroupLayout panelDatosPaqueteLayout = new javax.swing.GroupLayout(panelDatosPaquete);
         panelDatosPaquete.setLayout(panelDatosPaqueteLayout);
         panelDatosPaqueteLayout.setHorizontalGroup(
             panelDatosPaqueteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelDatosPaqueteLayout.createSequentialGroup()
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtPrecioPaquete, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(panelDatosPaqueteLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelDatosPaqueteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelDatosPaqueteLayout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtIDPaquete, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDatosPaqueteLayout.createSequentialGroup()
                         .addGroup(panelDatosPaqueteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -96,18 +115,26 @@ public class JFPaquetes extends javax.swing.JFrame {
                             .addComponent(jCBIsFragil, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelDatosPaqueteLayout.createSequentialGroup()
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                        .addComponent(txtDescripPaquete, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDatosPaqueteLayout.createSequentialGroup()
+                        .addGroup(panelDatosPaqueteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtDescripPaquete, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(panelDatosPaqueteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtIDPaquete, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+                            .addComponent(txtIdEncomienda))))
                 .addContainerGap())
-            .addGroup(panelDatosPaqueteLayout.createSequentialGroup()
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtPrecioPaquete, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         panelDatosPaqueteLayout.setVerticalGroup(
             panelDatosPaqueteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelDatosPaqueteLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addContainerGap(25, Short.MAX_VALUE)
+                .addGroup(panelDatosPaqueteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(txtIdEncomienda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
                 .addGroup(panelDatosPaqueteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtIDPaquete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -115,7 +142,7 @@ public class JFPaquetes extends javax.swing.JFrame {
                 .addGroup(panelDatosPaqueteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtDescripPaquete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(panelDatosPaqueteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPesoPaquete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -137,6 +164,11 @@ public class JFPaquetes extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones"));
 
         btnAddPaquete.setText("Agregar paquete");
+        btnAddPaquete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddPaqueteActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setText("Cancelar");
         btnCancelar.setToolTipText("");
@@ -211,10 +243,10 @@ public class JFPaquetes extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(panelDatosPaquete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelDatosPaquete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addGap(42, 42, 42))
         );
 
         pack();
@@ -236,6 +268,14 @@ public class JFPaquetes extends javax.swing.JFrame {
         limpiar();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    private void jCBIsFragilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBIsFragilActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBIsFragilActionPerformed
+
+    private void btnAddPaqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPaqueteActionPerformed
+        paqueteController.actionPerformed(evt);
+    }//GEN-LAST:event_btnAddPaqueteActionPerformed
+
     
     public void limpiar(){
         txtDescripPaquete.setText("");
@@ -244,6 +284,7 @@ public class JFPaquetes extends javax.swing.JFrame {
         txtPesoPaquete.setText("");
         txtVolPaquete.setText("");
         jCBIsFragil.setSelected(false);
+        txtIdEncomienda.setText("");
     }
     
     /**
@@ -282,25 +323,27 @@ public class JFPaquetes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAddPaquete;
-    private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnVolver;
-    private javax.swing.JCheckBox jCBIsFragil;
+    public javax.swing.JButton btnAddPaquete;
+    public javax.swing.JButton btnCancelar;
+    public javax.swing.JButton btnVolver;
+    public javax.swing.JCheckBox jCBIsFragil;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JMenu jMISalir;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JPanel jPanel1;
+    public javax.swing.JPanel jPanel1;
     private javax.swing.JPanel panelDatosPaquete;
-    private javax.swing.JTextField txtDescripPaquete;
-    private javax.swing.JTextField txtIDPaquete;
-    private javax.swing.JTextField txtPesoPaquete;
-    private javax.swing.JTextField txtPrecioPaquete;
-    private javax.swing.JTextField txtVolPaquete;
+    public javax.swing.JTextField txtDescripPaquete;
+    public javax.swing.JTextField txtIDPaquete;
+    public javax.swing.JTextField txtIdEncomienda;
+    public javax.swing.JTextField txtPesoPaquete;
+    public javax.swing.JTextField txtPrecioPaquete;
+    public javax.swing.JTextField txtVolPaquete;
     // End of variables declaration//GEN-END:variables
 }

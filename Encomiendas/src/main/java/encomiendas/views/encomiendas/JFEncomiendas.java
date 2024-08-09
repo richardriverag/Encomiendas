@@ -4,15 +4,35 @@
  */
 package encomiendas.views.encomiendas;
 
-/**
- *
- * @author djimm
- */
+import encomiendas.controllers.encomiendas.EncomiendaController;
+import encomiendas.controllers.encomiendas.PaqueteController;
+import encomiendas.database.Conexion;
+import encomiendas.model.data.encomiendas.EncomiendaRepository;
+import encomiendas.model.data.encomiendas.PaqueteRepository;
+import encomiendas.model.entity.encomiendas.Encomienda;
+import encomiendas.services.encomiendas.PaqueteService;
+import encomiendas.services.encomiendas.EncomiendaService;
+import encomiendas.services.encomiendas.PaqueteService;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
 public class JFEncomiendas extends javax.swing.JFrame {
 
-    /**
-     * Creates new form JFEncomiendas
-     */
+    Conexion con = new Conexion();
+
+    PaqueteRepository paqueteRepository;
+    PaqueteService paqueteService;
+    PaqueteController paqueteController;
+    
+    private Encomienda encomienda = new Encomienda();
+    EncomiendaRepository encomiendaRepository;
+    EncomiendaController encomiendaController; 
+    EncomiendaService encomiedaService;
+    
+
     public JFEncomiendas() {
         initComponents();
         panelInterprovincial.setVisible(false);
@@ -20,7 +40,19 @@ public class JFEncomiendas extends javax.swing.JFrame {
         btnCrearEncomienda.setVisible(false);
         this.setLocationRelativeTo(this);
         this.setTitle("Panel de encomiendas");
+
+        //instancia del controlador
+        paqueteRepository = new PaqueteRepository(con.getInstance());
+        paqueteService = new PaqueteService(paqueteRepository);
+        paqueteController = new PaqueteController(this, paqueteService);
+        
+        encomiendaRepository = new EncomiendaRepository(con.getInstance()); 
+        encomiedaService = new EncomiendaService(encomiendaRepository);
+        encomiendaController = new EncomiendaController(this, encomiedaService);
+        encomiendaController.mostrarEncomienda((DefaultTableModel)this.jTEncomiendas.getModel());
     }
+
+    JFPaquetes paquetes;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -66,7 +98,7 @@ public class JFEncomiendas extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         btnFiltrar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jTEncomiendas = new javax.swing.JTable();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
 
@@ -87,6 +119,11 @@ public class JFEncomiendas extends javax.swing.JFrame {
         btnCrearEncomienda.setText("Crear encomienda");
 
         btnGuardarEncomienda.setText("Guardar encomienda");
+        btnGuardarEncomienda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarEncomiendaActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -123,8 +160,8 @@ public class JFEncomiendas extends javax.swing.JFrame {
                 .addComponent(btnGuardarEncomienda)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnAgregarPaquete)
-                .addGap(12, 12, 12)
-                .addComponent(btnVerPaquetes)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnVerPaquetes, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCrearEncomienda)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -344,12 +381,10 @@ public class JFEncomiendas extends javax.swing.JFrame {
             }
         });
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jTEncomiendas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {"10223", "Michael", "Micos", "XD1", "XD2"},
+                {"11233", "Micos", "Jimmy", "XD3", "XD5"}
             },
             new String [] {
                 "ID Encomienda", "Remitente", "Destinatario", "Agencia Origen", "Agencia Destino"
@@ -363,7 +398,12 @@ public class JFEncomiendas extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
+        jTEncomiendas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTEncomiendasMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTEncomiendas);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -432,6 +472,7 @@ public class JFEncomiendas extends javax.swing.JFrame {
 
     private void btnFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarActionPerformed
         VentanaFiltar ventanaFiltar = new VentanaFiltar();
+        ventanaFiltar.setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
         ventanaFiltar.setVisible(true);
     }//GEN-LAST:event_btnFiltrarActionPerformed
 
@@ -464,7 +505,12 @@ public class JFEncomiendas extends javax.swing.JFrame {
 
     private void btnAgregarPaqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPaqueteActionPerformed
         JFPaquetes ventanaPaquete = new JFPaquetes();
+        ventanaPaquete.setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
         ventanaPaquete.setVisible(true);
+        ventanaPaquete.btnAddPaquete.setVisible(true);
+        //ventanaPaquete.txtIdEncomienda.setText(encomienda.getIdEncomienda().toString());
+        //ESTO BORRAR
+        ventanaPaquete.txtIdEncomienda.setText("1");
     }//GEN-LAST:event_btnAgregarPaqueteActionPerformed
 
     private void btnVerListaPaquetesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -474,7 +520,7 @@ public class JFEncomiendas extends javax.swing.JFrame {
     private void JCheckDomicilioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCheckDomicilioActionPerformed
         if (JCheckDomicilio.isSelected()) {
             panelEntregaDomicilio.setVisible(true);
-        }else{
+        } else {
             panelEntregaDomicilio.setVisible(false);
         }
     }//GEN-LAST:event_JCheckDomicilioActionPerformed
@@ -490,19 +536,43 @@ public class JFEncomiendas extends javax.swing.JFrame {
     private void JCheckInterprovincialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCheckInterprovincialActionPerformed
         if (JCheckInterprovincial.isSelected()) {
             panelInterprovincial.setVisible(true);
-        }else{
+        } else {
             panelInterprovincial.setVisible(false);
         }
     }//GEN-LAST:event_JCheckInterprovincialActionPerformed
 
     private void btnVerPaquetesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerPaquetesActionPerformed
         JFListaPaquetes listaPaquetes = new JFListaPaquetes();
+        listaPaquetes.setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
         listaPaquetes.setVisible(true);
+        
+
     }//GEN-LAST:event_btnVerPaquetesActionPerformed
 
     private void jMISalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         this.setLocationRelativeTo(this);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jTEncomiendasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTEncomiendasMouseClicked
+        int index = jTEncomiendas.getSelectedRow();
+        TableModel model = jTEncomiendas.getModel();
+        String idEncomienda = model.getValueAt(index, 0).toString();
+        String remitenteE = model.getValueAt(index, 1).toString();
+        String destiantarioE = model.getValueAt(index, 2).toString();
+        String agenciaO = model.getValueAt(index, 3).toString();
+        String agenciaD = model.getValueAt(index, 4).toString();
+
+        JFInfoEncomiendas infoEncomienda = new JFInfoEncomiendas();
+        infoEncomienda.setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
+        infoEncomienda.setVisible(true);
+
+        //encomienda.txtIDPaquete.setText(idPaquete);
+        // encomienda.txtDescripPaquete.setText(descripcion);
+        //encomienda.txtPesoPaquete.setText(pesoPaquete);
+        //encomienda.txtVolPaquete.setText(volumenPaquete);
+        //encomienda.txtPrecioPaquete.setText(precioPaquete);
+        //encomienda.jCBIsFragil.setSelected(isFragil);
+    }//GEN-LAST:event_jTEncomiendasMouseClicked
 
     /**
      * @param args the command line arguments
@@ -564,12 +634,12 @@ public class JFEncomiendas extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    public javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane2;
+    public javax.swing.JTable jTEncomiendas;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JPanel panelDatos;
     private javax.swing.JPanel panelEntregaDomicilio;
     private javax.swing.JPanel panelInterprovincial;
