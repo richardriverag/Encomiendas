@@ -150,8 +150,8 @@ VALUES
 -- Insertar datos en la tabla USUARIO
 INSERT INTO usuario (cedula, nombres, apellidos, correo, telefono, rol, direccion, ciudad, telefono_adicional, tipo_licencia, activo, id_agencia)
 VALUES
-('V12345678', 'Juan', 'Pérez', 'juan.perez@example.com', '1234567890', 'Empleado', 'Av. Ejemplo 1', 'Ciudad A', '0987654321', 'A', TRUE, 1),
-('V87654321', 'Ana', 'Gómez', 'ana.gomez@example.com', '2345678901', 'Cliente', 'Av. Ejemplo 2', 'Ciudad B', '0123456789', 'B', TRUE, 2);
+('V12345678', 'Juan', 'Pérez', 'juan.perez@example.com', '1234567890', 'Empleado', 'Av. Ejemplo 1', 'Ciudad A', '0987654321', '', TRUE, 1),
+('V87654321', 'Ana', 'Gómez', 'ana.gomez@example.com', '2345678901', 'Cliente', 'Av. Ejemplo 2', 'Ciudad B', '0123456789', '', TRUE, 2);
 
 -- Insertar datos en la tabla CUENTA
 INSERT INTO cuenta (cedula, username, contrasenia)

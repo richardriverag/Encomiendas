@@ -128,7 +128,7 @@ public class MenuPerfilConductor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPerfilActionPerformed
-        PanelPerfilCLientes panel1 = new PanelPerfilCLientes();
+        PanelPerfilClientes panel1 = new PanelPerfilClientes();
         panel1.setSize(690,430);
         panel1.setLocation(0,0);
 

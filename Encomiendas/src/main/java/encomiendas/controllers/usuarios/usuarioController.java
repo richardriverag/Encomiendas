@@ -94,7 +94,7 @@ public class usuarioController implements ActionListener {
                 }
 
             } else {
-                JOptionPane.showMessageDialog(null, "Usuario o Contraña Incorrectos\nregistrese si aun no lo ha hecho");
+                JOptionPane.showMessageDialog(null, "Usuario o Contraseña Incorrectos\nRegistrese si aun no lo ha hecho");
             }
         }
 
