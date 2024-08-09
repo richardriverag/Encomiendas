@@ -3,6 +3,7 @@ package encomiendas.model.data.encomiendas;
 
 import encomiendas.model.data.Agencia.AgenciaRepository;
 import encomiendas.model.data.Repository;
+import encomiendas.model.data.usuarios.ClienteRepository;
 import encomiendas.model.entity.encomiendas.Encomienda;
 import encomiendas.model.entity.usuarios.Agencia;
 import encomiendas.model.entity.usuarios.Cliente;
@@ -16,7 +17,7 @@ public class EncomiendaRepository implements Repository<Encomienda> {
 
     private Connection myConn;
     private AgenciaRepository agenciaRepo;
-    
+    private ClienteRepository clienteRepo;
     public EncomiendaRepository(Connection myConn) {
         this.myConn = myConn;
     }
@@ -96,10 +97,10 @@ public class EncomiendaRepository implements Repository<Encomienda> {
         encomienda.setAgenciaOrigen(agenciaOrigen);
         encomienda.setAgenciaDestino(agenciaDestino);
 
-        Usuario receptor = new Cliente();
-        //receptor = receptor.getById(myRs.getLong("receptor"));
-        Usuario emisor = new Cliente();
-        //emisor = emisor.get(myRs.getLong("emisor"));
+        Usuario receptor = null;
+        receptor = clienteRepo.getById(myRs.getString("receptor"));
+        Usuario emisor = null;
+        emisor = clienteRepo.getById(myRs.getString("receptor"));
         encomienda.setReceptor((Cliente) receptor);
         encomienda.setEmisor((Cliente) emisor);
 

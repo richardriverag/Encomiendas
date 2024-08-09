@@ -6,16 +6,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Cliente extends Usuario {  
+public class Cliente extends Usuario {
 
     private String direccion;
 
-    public Cliente(String cedula, String nombres, String apellidos, String correo, String telefono, String ciudad, String telefonoAdicional, String fotoPerfil, Boolean activo, int idAgencia, Cuenta cuenta, String direccion) {
-        super(cedula, nombres, apellidos, correo, telefono, ciudad, telefonoAdicional, fotoPerfil, activo, idAgencia, cuenta);
+    public Cliente(String cedula, String nombres, String apellidos, String correo, String telefono, String ciudad, String telefonoAdicional, String fotoPerfil, Boolean activo, int idAgencia, String direccion) {
+        super(cedula, nombres, apellidos, correo, telefono, ciudad, telefonoAdicional, fotoPerfil, activo, idAgencia);
         this.direccion = direccion;
     }
-   
-    
+
     public String getDireccion() {
         return direccion;
     }
