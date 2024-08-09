@@ -7,10 +7,8 @@ package encomiendas.views.encomiendas;
 import encomiendas.controllers.encomiendas.PaqueteController;
 import encomiendas.database.Conexion;
 import encomiendas.model.data.encomiendas.PaqueteRepository;
+import encomiendas.model.entity.encomiendas.Encomienda;
 import encomiendas.services.encomiendas.PaqueteService;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.table.TableModel;
 
 public class JFEncomiendas extends javax.swing.JFrame {
@@ -20,6 +18,8 @@ public class JFEncomiendas extends javax.swing.JFrame {
     PaqueteRepository paqueteRepository;
     PaqueteService paqueteService;
     PaqueteController paqueteController;
+    
+    private Encomienda encomienda = new Encomienda();
 
     public JFEncomiendas() {
         initComponents();
@@ -102,6 +102,11 @@ public class JFEncomiendas extends javax.swing.JFrame {
         btnCrearEncomienda.setText("Crear encomienda");
 
         btnGuardarEncomienda.setText("Guardar encomienda");
+        btnGuardarEncomienda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarEncomiendaActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -138,8 +143,8 @@ public class JFEncomiendas extends javax.swing.JFrame {
                 .addComponent(btnGuardarEncomienda)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnAgregarPaquete)
-                .addGap(12, 12, 12)
-                .addComponent(btnVerPaquetes)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnVerPaquetes, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCrearEncomienda)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -489,6 +494,10 @@ public class JFEncomiendas extends javax.swing.JFrame {
         JFPaquetes ventanaPaquete = new JFPaquetes();
         ventanaPaquete.setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
         ventanaPaquete.setVisible(true);
+        ventanaPaquete.btnAddPaquete.setVisible(true);
+        //ventanaPaquete.txtIdEncomienda.setText(encomienda.getIdEncomienda().toString());
+        //ESTO BORRAR
+        ventanaPaquete.txtIdEncomienda.setText("1");
     }//GEN-LAST:event_btnAgregarPaqueteActionPerformed
 
     private void btnVerListaPaquetesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -520,10 +529,10 @@ public class JFEncomiendas extends javax.swing.JFrame {
     }//GEN-LAST:event_JCheckInterprovincialActionPerformed
 
     private void btnVerPaquetesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerPaquetesActionPerformed
-
         JFListaPaquetes listaPaquetes = new JFListaPaquetes();
         listaPaquetes.setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
         listaPaquetes.setVisible(true);
+        
 
     }//GEN-LAST:event_btnVerPaquetesActionPerformed
 

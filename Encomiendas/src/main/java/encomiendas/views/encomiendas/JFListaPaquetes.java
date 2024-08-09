@@ -8,9 +8,6 @@ import encomiendas.controllers.encomiendas.PaqueteController;
 import encomiendas.database.Conexion;
 import encomiendas.model.data.encomiendas.PaqueteRepository;
 import encomiendas.services.encomiendas.PaqueteService;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -163,6 +160,7 @@ public class JFListaPaquetes extends javax.swing.JFrame {
         paquetes.setVisible(true);
         paquetes.pack();
         paquetes.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        paquetes.btnAddPaquete.setVisible(false);
 
         paquetes.txtIDPaquete.setText(idPaquete);
         paquetes.txtDescripPaquete.setText(descripcion);
