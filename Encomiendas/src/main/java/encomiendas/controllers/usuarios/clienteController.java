@@ -6,9 +6,19 @@ import encomiendas.model.entity.usuarios.Cuenta;
 import encomiendas.views.usuarios.MenuClientes;
 import encomiendas.views.usuarios.PanelPerfilClientes;
 import java.awt.BorderLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class clienteController implements ActionListener {
 
@@ -40,6 +50,15 @@ public class clienteController implements ActionListener {
         panelCliente.jTFCedula.setText(modCliente.getCedula());
         panelCliente.jTFCorreo.setText(modCliente.getCorreo());
         panelCliente.jTFTelefono.setText(modCliente.getTelefono());
+        ImageIcon imagen;
+        if(modCliente.getFotoPerfil() == null){
+            imagen = new ImageIcon(new ImageIcon("src/main/resources/fotoPerfilDefault.jpg").getImage().getScaledInstance(157, 157, Image.SCALE_DEFAULT));
+            panelCliente.jLFotoPerfil.setIcon(imagen);
+        }else{
+            ImageIcon img = new ImageIcon(modCliente.getFotoPerfil());
+            imagen = new ImageIcon(img.getImage().getScaledInstance(157, 157, Image.SCALE_DEFAULT));
+            panelCliente.jLFotoPerfil.setIcon(imagen);
+        }
 
         modCuenta.setCedula((frmCliente.jTFUsuarioCliente.getText()));
         modCuenta.obtenerDatosCuenta(modCuenta.getCedula());
@@ -59,6 +78,7 @@ public class clienteController implements ActionListener {
             this.panelCliente = panel1;
             this.panelCliente.jBModificarPerfil.addActionListener(this);
             this.panelCliente.jBVerContrasenia.addActionListener(this);
+            this.panelCliente.jBCambiarFoto.addActionListener(this);
 
             frmCliente.jPDefault.removeAll();
             frmCliente.jPDefault.add(panelCliente,BorderLayout.CENTER);
@@ -95,6 +115,8 @@ public class clienteController implements ActionListener {
                                                  String.valueOf(panelCliente.jPFContrasenia.getPassword()),
                                                  panelCliente.jTFCedula.getText()))
                         JOptionPane.showMessageDialog(null, "Cambios guardados con éxito.");
+                    else
+                        JOptionPane.showMessageDialog(null, "Error al guardar los cambios.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
                 
                 panelCliente.jTFCorreo.setEditable(false);
@@ -103,6 +125,44 @@ public class clienteController implements ActionListener {
                 panelCliente.jBModificarPerfil.setText("Modificar perfil");
                 cargarDatos();
             }
+        }
+        
+        // Si en el panel del Perfil se presiona el botón Cambiar foto
+        if(e.getSource() == panelCliente.jBCambiarFoto){
+            JFileChooser seleccion = new JFileChooser();
+            seleccion.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            seleccion.setAcceptAllFileFilterUsed(false);
+            seleccion.addChoosableFileFilter(new FileNameExtensionFilter("Imágenes (*.jpg; *.png)", "jpg", "png"));
+            int op = seleccion.showOpenDialog(null);
+            if(op == JFileChooser.APPROVE_OPTION) {
+                FileInputStream fis = null;
+                try {
+                    File imagen = seleccion.getSelectedFile();
+                    byte[] bytesImagen = new byte[(int) imagen.length()];
+                    fis = new FileInputStream(imagen);
+                    fis.read(bytesImagen);
+                    fis.close();
+                    
+                    if(modeloDb.cambiarImagenPerfil(bytesImagen, modCliente.getCedula()))
+                        JOptionPane.showMessageDialog(null, "Foto de perfil cambiada con éxito.");
+                    else
+                        JOptionPane.showMessageDialog(null, "Error al cargar la foto de perfil.", "Error", JOptionPane.ERROR_MESSAGE);
+                    
+                    cargarDatos();
+                    
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(clienteController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(clienteController.class.getName()).log(Level.SEVERE, null, ex);
+                } finally {
+                    try {
+                        fis.close();
+                    } catch (IOException ex) {
+                        Logger.getLogger(clienteController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+            
         }
         
     }

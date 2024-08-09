@@ -1,10 +1,6 @@
 package encomiendas.model.entity.usuarios;
 
-
 import encomiendas.database.Conexion;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
 public class Usuario extends Conexion{
 
@@ -15,7 +11,7 @@ public class Usuario extends Conexion{
     private String telefono;
     private String ciudad;
     private String telefonoAdicional;
-    private String fotoPerfil;
+    private byte[] fotoPerfil;
     private Boolean activo;
     private int idAgencia;
     private Cuenta cuenta;
@@ -76,11 +72,11 @@ public class Usuario extends Conexion{
         this.telefonoAdicional = telefonoAdicional;
     }
 
-    public String getFotoPerfil() {
+    public byte[] getFotoPerfil() {
         return fotoPerfil;
     }
 
-    public void setFotoPerfil(String fotoPerfil) {
+    public void setFotoPerfil(byte[] fotoPerfil) {
         this.fotoPerfil = fotoPerfil;
     }
 

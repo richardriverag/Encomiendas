@@ -41,6 +41,7 @@ public class Cliente extends Usuario {
                 this.setCiudad(rs.getString("ciudad"));
                 this.setActivo(rs.getBoolean("activo"));
                 this.setIdAgencia(rs.getInt("id_agencia"));
+                this.setFotoPerfil(rs.getBytes("fotoPerfil"));
                 return true; // Retorna true si el usuario existe
             }
             return false;

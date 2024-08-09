@@ -28,6 +28,7 @@ CREATE TABLE usuario (
     tipo_licencia CHAR(1),
     activo BOOLEAN,
     id_agencia INT,
+    fotoPerfil LONGBLOB,
     FOREIGN KEY (id_agencia) REFERENCES AGENCIA(id_agencia)
 );
 
