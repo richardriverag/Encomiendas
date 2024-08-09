@@ -20,6 +20,20 @@ public class Usuario extends Conexion{
     private int idAgencia;
     private Cuenta cuenta;
 
+    public Usuario(String cedula, String nombres, String apellidos, String correo, String telefono, String ciudad, String telefonoAdicional, String fotoPerfil, Boolean activo, int idAgencia, Cuenta cuenta) {
+        this.cedula = cedula;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.correo = correo;
+        this.telefono = telefono;
+        this.ciudad = ciudad;
+        this.telefonoAdicional = telefonoAdicional;
+        this.fotoPerfil = fotoPerfil;
+        this.activo = activo;
+        this.idAgencia = idAgencia;
+        this.cuenta = cuenta;
+    }
+    
     public String getCedula() {
         return cedula;
     }
