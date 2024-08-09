@@ -24,7 +24,7 @@ public class AgenciaRepository implements Repository<Agencia> {
     
     private Connection myConn;
     
-    public AgenciaRepository() {
+    public AgenciaRepository(Connection myConn) {
         this.myConn = myConn;
     }
     

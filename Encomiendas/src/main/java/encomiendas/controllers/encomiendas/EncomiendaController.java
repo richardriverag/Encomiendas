@@ -33,10 +33,10 @@ public class EncomiendaController  {
                 // Convertir el paquete en un array de objetos para agregarlo como una fila
                 Object[] fila = new Object[]{
                     encomienda.getIdEncomienda(),
-                    encomienda.getEmisor(),
-                    encomienda.getReceptor(),
-                    encomienda.getAgenciaOrigen(),
-                    encomienda.getAgenciaDestino()
+                    encomienda.getEmisor().getNombres(),
+                    encomienda.getReceptor().getNombres(),
+                    encomienda.getAgenciaOrigen().getNombreAgencia(),
+                    encomienda.getAgenciaDestino().getNombreAgencia()
                         
                 };
                 

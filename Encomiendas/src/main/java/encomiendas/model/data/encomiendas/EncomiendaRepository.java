@@ -20,6 +20,8 @@ public class EncomiendaRepository implements Repository<Encomienda> {
     private ClienteRepository clienteRepo;
     public EncomiendaRepository(Connection myConn) {
         this.myConn = myConn;
+        this.agenciaRepo = new AgenciaRepository(myConn);
+        this.clienteRepo = new ClienteRepository(myConn);
     }
 
 
@@ -88,28 +90,31 @@ public class EncomiendaRepository implements Repository<Encomienda> {
     //TO DO: HACER TODOO
     private Encomienda createEncomienda(ResultSet myRs) throws SQLException {
         Encomienda encomienda = new Encomienda();
-        //encomienda.setIdEncomienda(myRs.getInt("id_agencia"));
+        encomienda.setIdEncomienda(myRs.getInt("id_encomienda"));
         Agencia agenciaOrigen = new Agencia();
-        agenciaOrigen = agenciaRepo.getById(myRs.getInt("agencia_origen"));
+        
+        agenciaOrigen = agenciaRepo.getById(myRs.getInt("id_agencia_origen"));
         //agenciaOrigen = agenciaOrigen.getById(myRs.getLong("agencia_origen"));
         Agencia agenciaDestino = new Agencia();
-        agenciaDestino = agenciaRepo.getById(myRs.getInt("agencia_destino"));
+        agenciaDestino = agenciaRepo.getById(myRs.getInt("id_agencia_destino"));
         encomienda.setAgenciaOrigen(agenciaOrigen);
         encomienda.setAgenciaDestino(agenciaDestino);
 
         Usuario receptor = null;
-        receptor = clienteRepo.getById(myRs.getString("receptor"));
+        receptor = clienteRepo.getById(myRs.getString("cedula_receptor"));
         Usuario emisor = null;
-        emisor = clienteRepo.getById(myRs.getString("receptor"));
+        emisor = clienteRepo.getById(myRs.getString("cedula_emisor"));
         encomienda.setReceptor((Cliente) receptor);
         encomienda.setEmisor((Cliente) emisor);
 
-        encomienda.setFechaEmision(myRs.getDate("fecha_emision").toLocalDate());
+        encomienda.setFechaEmision(myRs.getDate("fecha_envio").toLocalDate());
+        encomienda.setFechaLLegada(myRs.getDate("fecha_llegada").toLocalDate());
         encomienda.setTipoEntrega(myRs.getString("tipo_entrega").charAt(0));
         encomienda.setDireccionEntrega(myRs.getString("direccion_entrega"));
-        encomienda.setCodigoPostal(myRs.getInt("codigo_postal"));
-        encomienda.setEstadoFromString(myRs.getString("estado"));
-
+        encomienda.setCodigoPostal(myRs.getInt("cod_postal_entrega"));
+        encomienda.setPrecioEncomienda(myRs.getDouble("precio_encomienda"));
+        encomienda.setEstadoFromString(myRs.getString("estado_encomienda"));
+        
         return encomienda;
     }
 }

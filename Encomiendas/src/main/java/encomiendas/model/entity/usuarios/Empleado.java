@@ -5,8 +5,8 @@ public class Empleado extends Usuario {
 
     private String telefonoAdicional;
 
-    public Empleado(String cedula, String nombres, String apellidos, String correo, String telefono, String ciudad, String telefonoAdicional, String fotoPerfil, Boolean activo, int idAgencia) {
-        super(cedula, nombres, apellidos, correo, telefono, ciudad, telefonoAdicional, fotoPerfil, activo, idAgencia);
+    public Empleado(String cedula, String nombres, String apellidos, String correo, String telefono, String ciudad, String telefonoAdicional,Boolean activo, int idAgencia) {
+        super(cedula, nombres, apellidos, correo, telefono, ciudad, telefonoAdicional, activo, idAgencia);
     }
 
 

@@ -15,6 +15,7 @@ public class Encomienda {
     private Cliente receptor;
     private Cliente emisor;
     private LocalDate fechaEmision;
+    private LocalDate fechaLLegada; 
     private Character tipoEntrega;
     private String direccionEntrega;
     private Integer codigoPostal;
@@ -23,13 +24,14 @@ public class Encomienda {
     private List<Paquete> paquetes;
 
     //En caso de que la encomienda sea de entrega a domicilio
-    public Encomienda(Integer id, Agencia agenciaOrigen, Agencia agenciaDestino, Cliente receptor, Cliente emisor, LocalDate fechaEmision, Character tipoEntrega, String direccionEntrega, Integer codigoPostal, Double precioEncomienda, List<Paquete> paquetes) {
+    public Encomienda(Integer id, Agencia agenciaOrigen, Agencia agenciaDestino, Cliente receptor, Cliente emisor, LocalDate fechaEmision, LocalDate fechaLLegada, Character tipoEntrega, String direccionEntrega, Integer codigoPostal, Double precioEncomienda, List<Paquete> paquetes) {
         this.idEncomienda = id;
         this.agenciaOrigen = agenciaOrigen;
         this.agenciaDestino = agenciaDestino;
         this.receptor = receptor;
         this.emisor = emisor;
         this.fechaEmision = fechaEmision;
+        this.fechaLLegada = fechaLLegada;
         this.tipoEntrega = tipoEntrega;
         this.direccionEntrega = direccionEntrega;
         this.codigoPostal = codigoPostal;
@@ -77,6 +79,14 @@ public class Encomienda {
 
     public void setAgenciaDestino(Agencia agenciaDestino) {
         this.agenciaDestino = agenciaDestino;
+    }
+
+    public LocalDate getFechaLLegada() {
+        return fechaLLegada;
+    }
+
+    public void setFechaLLegada(LocalDate fechaLLegada) {
+        this.fechaLLegada = fechaLLegada;
     }
 
     public Cliente getReceptor() {
@@ -161,7 +171,7 @@ public class Encomienda {
 
     public void setEstadoFromString(String estadoStr) {
         switch (estadoStr) {
-            case "EnBodegaD":
+            case "En bodega":
                 this.estado = new EnBodegaD();
                 break;
             case "EnBodegaO":
