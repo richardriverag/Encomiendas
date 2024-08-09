@@ -1,6 +1,5 @@
 package encomiendas.services.encomiendas;
 
-import encomiendas.database.Conexion;
 import encomiendas.model.data.encomiendas.PaqueteRepository;
 import encomiendas.model.entity.encomiendas.Paquete;
 

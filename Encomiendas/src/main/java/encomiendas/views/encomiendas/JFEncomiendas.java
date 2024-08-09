@@ -4,13 +4,17 @@
  */
 package encomiendas.views.encomiendas;
 
+import encomiendas.controllers.encomiendas.EncomiendaController;
 import encomiendas.controllers.encomiendas.PaqueteController;
 import encomiendas.database.Conexion;
+import encomiendas.model.data.encomiendas.EncomiendaRepository;
 import encomiendas.model.data.encomiendas.PaqueteRepository;
+import encomiendas.services.encomiendas.EncomiendaService;
 import encomiendas.services.encomiendas.PaqueteService;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 public class JFEncomiendas extends javax.swing.JFrame {
@@ -20,6 +24,10 @@ public class JFEncomiendas extends javax.swing.JFrame {
     PaqueteRepository paqueteRepository;
     PaqueteService paqueteService;
     PaqueteController paqueteController;
+    EncomiendaRepository encomiendaRepository;
+    EncomiendaController encomiendaController; 
+    EncomiendaService encomiedaService;
+    
 
     public JFEncomiendas() {
         initComponents();
@@ -33,6 +41,11 @@ public class JFEncomiendas extends javax.swing.JFrame {
         paqueteRepository = new PaqueteRepository(con.getInstance());
         paqueteService = new PaqueteService(paqueteRepository);
         paqueteController = new PaqueteController(this, paqueteService);
+        
+        encomiendaRepository = new EncomiendaRepository(con.getInstance()); 
+        encomiedaService = new EncomiendaService(encomiendaRepository);
+        encomiendaController = new EncomiendaController(this, encomiedaService);
+        encomiendaController.mostrarEncomienda((DefaultTableModel)this.jTEncomiendas.getModel());
     }
 
     JFPaquetes paquetes;
@@ -362,11 +375,7 @@ public class JFEncomiendas extends javax.swing.JFrame {
         jTEncomiendas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"10223", "Michael", "Micos", "XD1", "XD2"},
-                {"11233", "Micos", "Jimmy", "XD3", "XD5"},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {"11233", "Micos", "Jimmy", "XD3", "XD5"}
             },
             new String [] {
                 "ID Encomienda", "Remitente", "Destinatario", "Agencia Origen", "Agencia Destino"
@@ -616,7 +625,7 @@ public class JFEncomiendas extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTEncomiendas;
+    public javax.swing.JTable jTEncomiendas;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JPanel panelDatos;
     private javax.swing.JPanel panelEntregaDomicilio;
