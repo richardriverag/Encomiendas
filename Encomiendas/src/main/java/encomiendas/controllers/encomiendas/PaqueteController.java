@@ -21,8 +21,6 @@ public class PaqueteController implements ActionListener {
     private JFPaquetes viewPaquetes;
     private JFEncomiendas viewEncomiendas;
 
-    public List<Paquete> listaPaqueteFramePaquete;
-
     public PaqueteController(JFrame viewListaPaquetes, PaqueteService paquete) {
         this.paquete = paquete;
         this.viewListaPaquetes = viewListaPaquetes;
@@ -31,35 +29,47 @@ public class PaqueteController implements ActionListener {
     public PaqueteController(JFEncomiendas viewEncomiendas, PaqueteService paquete) {
         this.paquete = paquete;
         this.viewEncomiendas = viewEncomiendas;
-        this.listaPaqueteFramePaquete = new ArrayList<>();
     }
 
     public PaqueteController(JFPaquetes viewPaquetes, PaqueteService paquete) {
         this.paquete = paquete;
         this.viewPaquetes = viewPaquetes;
-        this.listaPaqueteFramePaquete = new ArrayList<>();
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
+        if (e.getSource() == viewPaquetes.btnGuardarPaquete) {
+            Paquete nuevoPaquete = new Paquete(
+                    null,
+                    viewPaquetes.txtDescripPaquete.getText(),
+                    Double.parseDouble(viewPaquetes.txtPesoPaquete.getText()),
+                    Double.parseDouble(viewPaquetes.txtVolPaquete.getText()),
+                    viewPaquetes.jCBIsFragil.isSelected(),
+                    null
+            );
+
+            viewPaquetes.listaPaquetes.add(nuevoPaquete);
+
+            System.out.println("ANTES DEL PRECIO:\n" + nuevoPaquete.toString());
+
+            JOptionPane.showMessageDialog(null, "Se agrego el paquete, verifique su precio");
+
+            viewPaquetes.txtPrecioPaquete.setText(String.valueOf(nuevoPaquete.getPrecioPaquete()));
+
+            System.out.println("DESPUES DEL PRECIO:\n" + nuevoPaquete.toString());
+
+            viewPaquetes.btnAddPaquete.setVisible(true);
+        }
+
+        if (e.getSource() == viewPaquetes.btnCancelar) {
+            
+            viewPaquetes.listaPaquetes = new ArrayList<>();
+        
+        }
+
         if (e.getSource() == viewPaquetes.btnAddPaquete) {
-            Paquete nuevoPaquete = new Paquete();
-            nuevoPaquete.setDescripcion(viewPaquetes.txtDescripPaquete.getText());
-            nuevoPaquete.setPeso(Double.parseDouble(viewPaquetes.txtPesoPaquete.getText()));
-            nuevoPaquete.setVolumen(Double.parseDouble(viewPaquetes.txtVolPaquete.getText()));
-            nuevoPaquete.setIsFragil(viewPaquetes.jCBIsFragil.isSelected());
-            nuevoPaquete.setPrecioPaquete(Double.parseDouble(viewPaquetes.txtPrecioPaquete.getText()));
-            //nuevoPaquete.setIdEncomienda(Integer.parseInt(viewPaquetes.txtIdEncomienda.getText()));
-            //nuevoPaquete.setIdEncomienda(1);
 
-            listaPaqueteFramePaquete.add(nuevoPaquete);
-            System.out.println("DENTRO DEL BOTON ADD");
-            System.out.println(listaPaqueteFramePaquete.toString());
-            System.out.println("");
-            //paquete.savePaquete(nuevoPaquete);
-
-            viewPaquetes.limpiar2();
             JOptionPane.showMessageDialog(null, "El paquete se insertó con éxito.");
             // Mostrar diálogo de confirmación
             int respuesta = JOptionPane.showConfirmDialog(
@@ -69,16 +79,14 @@ public class PaqueteController implements ActionListener {
                     JOptionPane.YES_NO_OPTION
             );
             if (respuesta == JOptionPane.YES_OPTION) {
-                // Si el usuario desea agregar otro paquete, simplemente continuar
                 viewPaquetes.limpiar2(); // Limpiar los campos para el nuevo paquete
-            } 
+                viewPaquetes.btnAddPaquete.setVisible(false);
+            }
+            viewPaquetes.btnAddPaquete.setVisible(false);
         }
-        System.out.println("ANTES DEL BOTON VOLVER");
-        System.out.println(listaPaqueteFramePaquete.toString());
-        System.out.println("----------------------");
+
         if (e.getSource() == viewPaquetes.btnVolver) {
-            System.out.println(listaPaqueteFramePaquete.toString());
-            viewEncomiendas.listaPaquete = listaPaqueteFramePaquete;
+            System.out.println(viewPaquetes.listaPaquetes.toString());
         }
 
     }

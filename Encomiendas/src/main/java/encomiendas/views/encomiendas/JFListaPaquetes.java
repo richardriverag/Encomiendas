@@ -162,7 +162,6 @@ public class JFListaPaquetes extends javax.swing.JFrame {
         paquetes.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         paquetes.btnAddPaquete.setVisible(false);
 
-        paquetes.txtIDPaquete.setText(idPaquete);
         paquetes.txtDescripPaquete.setText(descripcion);
         paquetes.txtPesoPaquete.setText(pesoPaquete);
         paquetes.txtVolPaquete.setText(volumenPaquete);

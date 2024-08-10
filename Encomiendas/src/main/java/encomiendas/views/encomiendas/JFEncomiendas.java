@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package encomiendas.views.encomiendas;
 
 import encomiendas.controllers.encomiendas.EncomiendaController;
@@ -13,14 +9,10 @@ import encomiendas.model.data.encomiendas.PaqueteRepository;
 import encomiendas.model.data.usuarios.ClienteRepository;
 import encomiendas.model.entity.encomiendas.Encomienda;
 import encomiendas.model.entity.encomiendas.Paquete;
-import encomiendas.services.encomiendas.PaqueteService;
 import encomiendas.services.encomiendas.EncomiendaService;
 import encomiendas.services.encomiendas.PaqueteService;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -31,18 +23,19 @@ public class JFEncomiendas extends javax.swing.JFrame {
     PaqueteRepository paqueteRepository;
     PaqueteService paqueteService;
     PaqueteController paqueteController;
-    
+
     private Encomienda encomienda = new Encomienda();
     EncomiendaRepository encomiendaRepository;
-    EncomiendaController encomiendaController; 
-    
+    EncomiendaController encomiendaController;
+
     ClienteRepository clienteRepository;
     AgenciaRepository agenciaRepository;
-    
+
     EncomiendaService encomiedaService;
-    
-    public List<Paquete> listaPaquete;
-    
+
+    JFPaquetes ventanaPaquete = new JFPaquetes();
+
+    public List<Paquete> listaPaquete = new ArrayList<>();
 
     public JFEncomiendas() {
         initComponents();
@@ -52,21 +45,17 @@ public class JFEncomiendas extends javax.swing.JFrame {
         this.setLocationRelativeTo(this);
         this.setTitle("Panel de encomiendas");
 
-        listaPaquete = new ArrayList<>();
-        
         //instancia del controlador
         paqueteRepository = new PaqueteRepository(con.getInstance());
         clienteRepository = new ClienteRepository(con.getInstance());
         paqueteService = new PaqueteService(paqueteRepository);
         paqueteController = new PaqueteController(this, paqueteService);
-        
-        encomiendaRepository = new EncomiendaRepository(con.getInstance()); 
+
+        encomiendaRepository = new EncomiendaRepository(con.getInstance());
         encomiedaService = new EncomiendaService(encomiendaRepository, clienteRepository, agenciaRepository);
         encomiendaController = new EncomiendaController(this, encomiedaService);
-        encomiendaController.mostrarEncomienda((DefaultTableModel)this.jTEncomiendas.getModel());
+        encomiendaController.mostrarEncomienda((DefaultTableModel) this.jTEncomiendas.getModel());
     }
-
-    JFPaquetes paquetes;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -133,6 +122,11 @@ public class JFEncomiendas extends javax.swing.JFrame {
         });
 
         btnCrearEncomienda.setText("Crear encomienda");
+        btnCrearEncomienda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearEncomiendaActionPerformed(evt);
+            }
+        });
 
         btnGuardarEncomienda.setText("Guardar encomienda");
         btnGuardarEncomienda.addActionListener(new java.awt.event.ActionListener() {
@@ -509,6 +503,10 @@ public class JFEncomiendas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFiltrarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+
+        listaPaquete = ventanaPaquete.listaPaquetes;
+//        System.out.println(listaPaquete.toString());
+        encomiendaController.actionPerformed(evt);
         limpiar();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
@@ -537,13 +535,9 @@ public class JFEncomiendas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddPaquetesActionPerformed
 
     private void btnAgregarPaqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPaqueteActionPerformed
-        JFPaquetes ventanaPaquete = new JFPaquetes();
         ventanaPaquete.setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
         ventanaPaquete.setVisible(true);
         ventanaPaquete.btnAddPaquete.setVisible(true);
-        //ventanaPaquete.txtIdEncomienda.setText(encomienda.getIdEncomienda().toString());
-        //ESTO BORRAR
-        ventanaPaquete.txtIdEncomienda.setText("1");
     }//GEN-LAST:event_btnAgregarPaqueteActionPerformed
 
     private void btnVerListaPaquetesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -578,7 +572,7 @@ public class JFEncomiendas extends javax.swing.JFrame {
         JFListaPaquetes listaPaquetes = new JFListaPaquetes();
         listaPaquetes.setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
         listaPaquetes.setVisible(true);
-        
+
 
     }//GEN-LAST:event_btnVerPaquetesActionPerformed
 
@@ -606,6 +600,10 @@ public class JFEncomiendas extends javax.swing.JFrame {
         //encomienda.txtPrecioPaquete.setText(precioPaquete);
         //encomienda.jCBIsFragil.setSelected(isFragil);
     }//GEN-LAST:event_jTEncomiendasMouseClicked
+
+    private void btnCrearEncomiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearEncomiendaActionPerformed
+
+    }//GEN-LAST:event_btnCrearEncomiendaActionPerformed
 
     /**
      * @param args the command line arguments

@@ -26,7 +26,7 @@ public class EncomiendaController implements ActionListener {
         this.encomiendaService = encomienda;
     }
 
-    public EncomiendaController(EncomiendaService encomienda, JFEncomiendas viewEncomienda) {
+    public EncomiendaController(JFEncomiendas viewEncomienda, EncomiendaService encomienda ) {
         this.encomiendaService = encomienda;
         this.viewEncomienda = viewEncomienda;
     }
