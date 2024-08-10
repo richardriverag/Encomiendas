@@ -41,7 +41,7 @@ public class EncomiendaController implements ActionListener, ItemListener {
         try {
             // Obtener la lista de paquetes desde el servicio
             List<Encomienda> listaEncomienda = encomiendaService.getAllEncomiendas();
-
+            
             // Limpiar cualquier fila existente en la tabla (opcional)
             modeloTablaEncomienda.setRowCount(0);
 
@@ -64,6 +64,33 @@ public class EncomiendaController implements ActionListener, ItemListener {
             System.out.println(ex);
         }
     }
+    public void mostrarEncomiendaFiltro(DefaultTableModel modeloTablaEncomienda, String cedulaR, String cedulaE, String agenciaD, String agenciaO, String tipoEntrega) {
+        try {
+            // Obtener la lista de paquetes desde el servicio
+            List<Encomienda> listaEncomienda = encomiendaService.getAllEncomiendasFiltro(cedulaR, cedulaE, agenciaD, agenciaO, tipoEntrega);
+            
+            // Limpiar cualquier fila existente en la tabla (opcional)
+            modeloTablaEncomienda.setRowCount(0);
+            // Iterar sobre la lista de paquetes e insertar cada uno en la tabla
+            for (Encomienda encomienda : listaEncomienda) {
+                // Convertir el paquete en un array de objetos para agregarlo como una fila
+                Object[] fila = new Object[]{
+                    encomienda.getIdEncomienda(),
+                    encomienda.getEmisor().getNombres(),
+                    encomienda.getReceptor().getNombres(),
+                    encomienda.getAgenciaOrigen().getNombreAgencia(),
+                    encomienda.getAgenciaDestino().getNombreAgencia()
+
+                };
+
+                // Agregar la fila al modelo de la tabla
+                modeloTablaEncomienda.addRow(fila);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
 
     public void cargarAgenciasOrigen() {
         try {

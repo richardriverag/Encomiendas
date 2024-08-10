@@ -36,6 +36,70 @@ public class EncomiendaRepository implements Repository<Encomienda> {
         return encomiendas;
     }
 
+    public List<Encomienda> findAllFiltro(String cedulaR, String cedulaE, String agenciaD, String agenciaO, String tipoEntrega) throws SQLException {
+        List<Encomienda> encomiendas = new ArrayList<>();
+
+        // Obtener IDs de las agencias
+        Integer idAgenciaDestino = agenciaRepo.getByNombre(agenciaD).getIdAgencia();
+        Integer idAgenciaOrigen = agenciaRepo.getByNombre(agenciaO).getIdAgencia();
+
+        // Usar StringBuilder para construir la consulta SQL
+        StringBuilder queryBuilder = new StringBuilder("SELECT * FROM encomienda WHERE 1=1");
+
+        // Añadir condiciones a la consulta SQL dependiendo de los parámetros proporcionados
+        if (cedulaR != null && !cedulaR.trim().isEmpty()) {
+            queryBuilder.append(" AND cedula_receptor = ?");
+        }
+        if (cedulaE != null && !cedulaE.trim().isEmpty()) {
+            queryBuilder.append(" AND cedula_emisor = ?");
+        }
+        if (idAgenciaDestino != null) {
+            queryBuilder.append(" AND id_agencia_destino = ?");
+        }
+        if (idAgenciaOrigen != null) {
+            queryBuilder.append(" AND id_agencia_origen = ?");
+        }
+        if (tipoEntrega != null && !tipoEntrega.trim().isEmpty()) {
+            queryBuilder.append(" AND tipo_entrega = ?");
+        }
+
+        String query = queryBuilder.toString();
+
+        // Verificar la consulta generada
+        //System.out.println("Consulta SQL generada: " + query);
+
+        try (PreparedStatement myStmt = myConn.prepareStatement(query)) {
+            int parameterIndex = 1;
+
+            // Establecer los parámetros en el PreparedStatement
+            if (cedulaR != null && !cedulaR.trim().isEmpty()) {
+                myStmt.setString(parameterIndex++, cedulaR);
+            }
+            if (cedulaE != null && !cedulaE.trim().isEmpty()) {
+                myStmt.setString(parameterIndex++, cedulaE);
+            }
+            if (idAgenciaDestino != null) {
+                myStmt.setInt(parameterIndex++, idAgenciaDestino);
+            }
+            if (idAgenciaOrigen != null) {
+                myStmt.setInt(parameterIndex++, idAgenciaOrigen);
+            }
+            if (tipoEntrega != null && !tipoEntrega.trim().isEmpty()) {
+                myStmt.setString(parameterIndex++, tipoEntrega);
+            }
+
+            // Ejecutar la consulta
+            try (ResultSet myRs = myStmt.executeQuery()) {
+                while (myRs.next()) {
+                    Encomienda e = createEncomienda(myRs);
+                    encomiendas.add(e);
+                }
+            }
+        }
+
+        return encomiendas;
+    }
+    
     @Override
     public Encomienda getById(Integer id) throws SQLException {
         Encomienda encomienda = null;

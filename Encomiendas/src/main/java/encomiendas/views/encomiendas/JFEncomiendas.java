@@ -511,7 +511,7 @@ public class JFEncomiendas extends javax.swing.JFrame {
     }//GEN-LAST:event_jCBAgenciaDestinoActionPerformed
 
     private void btnFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarActionPerformed
-        VentanaFiltar ventanaFiltar = new VentanaFiltar();
+        VentanaFiltar ventanaFiltar = new VentanaFiltar(this);
         ventanaFiltar.setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
         ventanaFiltar.setVisible(true);
     }//GEN-LAST:event_btnFiltrarActionPerformed
