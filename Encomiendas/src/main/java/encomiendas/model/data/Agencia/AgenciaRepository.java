@@ -32,7 +32,7 @@ public class AgenciaRepository implements Repository<Agencia> {
     public List<Agencia> findAll() throws SQLException {
         List<Agencia> agencia = new ArrayList<>();
         try(Statement myStament = myConn.createStatement();
-            ResultSet myRs = myStament.executeQuery("select * from paquete")){
+            ResultSet myRs = myStament.executeQuery("select * from agencia")){
             while (myRs.next()) {
                 Agencia e = createAgencia(myRs);
                 agencia.add(e);
