@@ -27,7 +27,11 @@ public class EncomiendaService {
     public List<Encomienda> getAllEncomiendas() throws SQLException {
         return encomiendaRepository.findAll();
     }
-
+    
+    public List<Encomienda> getAllEncomiendasFiltro(String cedulaR,String cedulaE,String agenciaD, String agenciaO, String tipoEntrega) throws SQLException {
+        return encomiendaRepository.findAllFiltro(cedulaR, cedulaE, agenciaD, agenciaO, tipoEntrega);
+    }
+    
     //Obtener una encomienda por id
     public Encomienda getEncomiendaById(Integer id) throws SQLException {
         return encomiendaRepository.getById(id);
