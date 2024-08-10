@@ -2,6 +2,7 @@ package encomiendas.services.encomiendas;
 
 import encomiendas.model.data.Agencia.AgenciaRepository;
 import encomiendas.model.data.encomiendas.EncomiendaRepository;
+import encomiendas.model.data.encomiendas.PaqueteRepository;
 import encomiendas.model.data.usuarios.ClienteRepository;
 import encomiendas.model.entity.encomiendas.Encomienda;
 import encomiendas.model.entity.usuarios.Agencia;
@@ -15,11 +16,13 @@ public class EncomiendaService {
     private final EncomiendaRepository encomiendaRepository;
     private final ClienteRepository clienteRepository;
     private final AgenciaRepository agenciaRepository;
+    public final PaqueteService paqueteService;
 
-    public EncomiendaService(EncomiendaRepository encomiendaRepository, ClienteRepository clienteRepository, AgenciaRepository agenciaRepository) {
+    public EncomiendaService(EncomiendaRepository encomiendaRepository, ClienteRepository clienteRepository, AgenciaRepository agenciaRepository, PaqueteService paqueteService) {
         this.encomiendaRepository = encomiendaRepository;
         this.clienteRepository = clienteRepository;
         this.agenciaRepository = agenciaRepository;
+        this.paqueteService = paqueteService;
     }
 
    
@@ -78,6 +81,10 @@ public class EncomiendaService {
     
     public List<Agencia> obtenerAgencias () throws  SQLException{
         return agenciaRepository.findAll();
+    }
+    
+    public Encomienda obtenerUltimaEncomienda() throws SQLException{
+        return encomiendaRepository.getLastEncomienda();
     }
 
 }
