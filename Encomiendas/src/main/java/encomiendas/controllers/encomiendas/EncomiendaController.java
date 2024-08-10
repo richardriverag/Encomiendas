@@ -32,9 +32,9 @@ public class EncomiendaController implements ActionListener, ItemListener {
     public EncomiendaController(JFEncomiendas viewEncomienda, EncomiendaService encomienda) {
         this.encomiendaService = encomienda;
         this.viewEncomienda = viewEncomienda;
-         // Agregar ItemListener al comboBox
+        // Agregar ItemListener al comboBox
         viewEncomienda.jCBAgenciaOrigen.addItemListener(this);
-        
+
     }
 
     public void mostrarEncomienda(DefaultTableModel modeloTablaEncomienda) {
@@ -105,19 +105,49 @@ public class EncomiendaController implements ActionListener, ItemListener {
                     }
                 }
 
-                if (viewEncomienda.JCheckDomicilio.isSelected()) {
+                if (viewEncomienda.JCheckDomicilio.isSelected() && !viewEncomienda.JCheckInterprovincial.isSelected()) {
                     encomiendaParaGuardar.setDireccionEntrega(viewEncomienda.txtDirEntrega.getText());
                     encomiendaParaGuardar.setCodigoPostal(Integer.parseInt(viewEncomienda.txtCodPostal.getText()));
+                    encomiendaParaGuardar.setAgenciaDestino(encomiendaService.obtenerAgenciaPorNombre(viewEncomienda.jCBAgenciaOrigen.getSelectedItem().toString()));
                 }
 
-                JOptionPane.showMessageDialog(null, "La encomienda se ha guardado.\nIngrese un paquete");
+                //toca crear una encomienda segun los parametros llenados
+                JOptionPane.showMessageDialog(null, "Para guardar la encomienda.\nIngrese almenos un paquete");
+
             } catch (SQLException ex) {
                 System.out.println("ERROR EN CONTROLADOR" + ex);
             }
             System.out.println(viewEncomienda.listaPaquete.toString());
         }
         if (e.getSource() == viewEncomienda.btnCrearEncomienda) {
-            encomiendaParaGuardar.setPrecioEncomienda(encomiendaParaGuardar.calcularPrecioTotal() + encomiendaParaGuardar.calcularPrecioTotal() * 0.12);
+           
+            try {
+                // Calcular el precio total de la encomienda
+                encomiendaParaGuardar.setPrecioEncomienda(encomiendaParaGuardar.calcularPrecioTotal() + encomiendaParaGuardar.calcularPrecioTotal() * 0.12);
+
+                // Guardar la encomienda en la base de datos
+                encomiendaService.saveEncomienda(encomiendaParaGuardar);
+
+                // Obtener la última encomienda para obtener su ID
+                Encomienda ultimaEncomienda = encomiendaService.obtenerUltimaEncomienda();
+
+                if (ultimaEncomienda != null) {
+                    int idEncomienda = ultimaEncomienda.getIdEncomienda();
+
+                    // Asignar el ID de la encomienda a cada paquete
+                    for (Paquete paquete : viewEncomienda.listaPaquete) {
+                        paquete.setIdEncomienda(idEncomienda);
+                        encomiendaService.paqueteService.savePaquete(paquete);
+                    }
+
+                    JOptionPane.showMessageDialog(null, "La encomienda se ha guardado exitosamente.");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error al obtener la última encomienda.");
+                }
+            } catch (SQLException ex) {
+                System.out.println("Error al crear la encomienda: " + ex);
+            }
+
         }
         if (e.getSource() == viewEncomienda.btnCancelar) {
             System.out.println(viewEncomienda.listaPaquete.toString());
