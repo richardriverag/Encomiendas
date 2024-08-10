@@ -7,13 +7,18 @@ package encomiendas.views.encomiendas;
 import encomiendas.controllers.encomiendas.EncomiendaController;
 import encomiendas.controllers.encomiendas.PaqueteController;
 import encomiendas.database.Conexion;
+import encomiendas.model.data.Agencia.AgenciaRepository;
 import encomiendas.model.data.encomiendas.EncomiendaRepository;
 import encomiendas.model.data.encomiendas.PaqueteRepository;
+import encomiendas.model.data.usuarios.ClienteRepository;
 import encomiendas.model.entity.encomiendas.Encomienda;
+import encomiendas.model.entity.encomiendas.Paquete;
 import encomiendas.services.encomiendas.PaqueteService;
 import encomiendas.services.encomiendas.EncomiendaService;
 import encomiendas.services.encomiendas.PaqueteService;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -30,7 +35,13 @@ public class JFEncomiendas extends javax.swing.JFrame {
     private Encomienda encomienda = new Encomienda();
     EncomiendaRepository encomiendaRepository;
     EncomiendaController encomiendaController; 
+    
+    ClienteRepository clienteRepository;
+    AgenciaRepository agenciaRepository;
+    
     EncomiendaService encomiedaService;
+    
+    public List<Paquete> listaPaquete;
     
 
     public JFEncomiendas() {
@@ -41,13 +52,16 @@ public class JFEncomiendas extends javax.swing.JFrame {
         this.setLocationRelativeTo(this);
         this.setTitle("Panel de encomiendas");
 
+        listaPaquete = new ArrayList<>();
+        
         //instancia del controlador
         paqueteRepository = new PaqueteRepository(con.getInstance());
+        clienteRepository = new ClienteRepository(con.getInstance());
         paqueteService = new PaqueteService(paqueteRepository);
         paqueteController = new PaqueteController(this, paqueteService);
         
         encomiendaRepository = new EncomiendaRepository(con.getInstance()); 
-        encomiedaService = new EncomiendaService(encomiendaRepository);
+        encomiedaService = new EncomiendaService(encomiendaRepository, clienteRepository, agenciaRepository);
         encomiendaController = new EncomiendaController(this, encomiedaService);
         encomiendaController.mostrarEncomienda((DefaultTableModel)this.jTEncomiendas.getModel());
     }
@@ -94,6 +108,8 @@ public class JFEncomiendas extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         txtCedulaReceptor = new javax.swing.JTextField();
         JCheckInterprovincial = new javax.swing.JCheckBox();
+        jLabel17 = new javax.swing.JLabel();
+        jDCFechaLlegada = new com.toedter.calendar.JDateChooser();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         btnFiltrar = new javax.swing.JButton();
@@ -280,6 +296,8 @@ public class JFEncomiendas extends javax.swing.JFrame {
             }
         });
 
+        jLabel17.setText("Fecha de llegada:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -287,15 +305,6 @@ public class JFEncomiendas extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel13)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(JCheckInterprovincial)
-                        .addGap(60, 60, 60)
-                        .addComponent(jLabel12)
-                        .addGap(17, 17, 17)
-                        .addComponent(JCheckDomicilio))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
@@ -307,12 +316,27 @@ public class JFEncomiendas extends javax.swing.JFrame {
                                     .addComponent(jLabel15)
                                     .addComponent(jLabel14))
                                 .addGap(24, 24, 24)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jDCFechaEnvio, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jDCFechaEnvio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txtcedulaEmisor)
-                                    .addComponent(jCBAgenciaOrigen, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(26, 26, 26)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jCBAgenciaOrigen, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jDCFechaLlegada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(26, 26, 26))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel13)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel11)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(JCheckInterprovincial)))
+                                .addGap(60, 60, 60)
+                                .addComponent(jLabel12)
+                                .addGap(17, 17, 17)
+                                .addComponent(JCheckDomicilio)))
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -333,7 +357,15 @@ public class JFEncomiendas extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel14)
                     .addComponent(jDCFechaEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                        .addComponent(jLabel17)
+                        .addGap(24, 24, 24))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jDCFechaLlegada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(jCBAgenciaOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -343,7 +375,7 @@ public class JFEncomiendas extends javax.swing.JFrame {
                     .addComponent(jLabel12)
                     .addComponent(JCheckDomicilio)
                     .addComponent(JCheckInterprovincial))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addGap(17, 17, 17))
         );
 
         javax.swing.GroupLayout panelDatosLayout = new javax.swing.GroupLayout(panelDatos);
@@ -365,12 +397,12 @@ public class JFEncomiendas extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelInterprovincial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelEntregaDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addContainerGap(135, Short.MAX_VALUE))
         );
 
-        jPanel2.add(panelDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 480, 600));
+        jPanel2.add(panelDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 480, 650));
 
         jTabbedPane1.addTab("Crear encomienda", jPanel2);
 
@@ -440,7 +472,7 @@ public class JFEncomiendas extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(214, Short.MAX_VALUE))
+                .addContainerGap(264, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Consultar encomienda", jPanel3);
@@ -460,7 +492,7 @@ public class JFEncomiendas extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jTabbedPane1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
@@ -493,6 +525,7 @@ public class JFEncomiendas extends javax.swing.JFrame {
         JCheckDomicilio.setSelected(false);
         JCheckInterprovincial.setSelected(false);
         jDCFechaEnvio.setDate(null);
+        jDCFechaLlegada.setDate(null);
     }
 
     private void btnGuardarEncomiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarEncomiendaActionPerformed
@@ -610,17 +643,18 @@ public class JFEncomiendas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox JCheckDomicilio;
-    private javax.swing.JCheckBox JCheckInterprovincial;
-    private javax.swing.JButton btnAgregarPaquete;
-    private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnCrearEncomienda;
+    public javax.swing.JCheckBox JCheckDomicilio;
+    public javax.swing.JCheckBox JCheckInterprovincial;
+    public javax.swing.JButton btnAgregarPaquete;
+    public javax.swing.JButton btnCancelar;
+    public javax.swing.JButton btnCrearEncomienda;
     public javax.swing.JButton btnFiltrar;
-    private javax.swing.JButton btnGuardarEncomienda;
-    private javax.swing.JButton btnVerPaquetes;
-    private javax.swing.JComboBox<String> jCBAgenciaDestino;
-    private javax.swing.JComboBox<String> jCBAgenciaOrigen;
-    private com.toedter.calendar.JDateChooser jDCFechaEnvio;
+    public javax.swing.JButton btnGuardarEncomienda;
+    public javax.swing.JButton btnVerPaquetes;
+    public javax.swing.JComboBox<String> jCBAgenciaDestino;
+    public javax.swing.JComboBox<String> jCBAgenciaOrigen;
+    public com.toedter.calendar.JDateChooser jDCFechaEnvio;
+    public com.toedter.calendar.JDateChooser jDCFechaLlegada;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -628,6 +662,7 @@ public class JFEncomiendas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -644,9 +679,9 @@ public class JFEncomiendas extends javax.swing.JFrame {
     private javax.swing.JPanel panelEntregaDomicilio;
     private javax.swing.JPanel panelInterprovincial;
     private javax.swing.JPanel panelOpciones;
-    private javax.swing.JTextField txtCedulaReceptor;
-    private javax.swing.JTextField txtCodPostal;
-    private javax.swing.JTextField txtDirEntrega;
-    private javax.swing.JTextField txtcedulaEmisor;
+    public javax.swing.JTextField txtCedulaReceptor;
+    public javax.swing.JTextField txtCodPostal;
+    public javax.swing.JTextField txtDirEntrega;
+    public javax.swing.JTextField txtcedulaEmisor;
     // End of variables declaration//GEN-END:variables
 }

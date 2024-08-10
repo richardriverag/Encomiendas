@@ -43,15 +43,28 @@ public class AgenciaRepository implements Repository<Agencia> {
 
     @Override
     public Agencia getById(Integer id) throws SQLException {
-        Agencia Agencia = null;
+        Agencia agencia = null;
         try(PreparedStatement myStament = myConn.prepareStatement("select * from agencia where id_agencia = ?")) {
             myStament.setInt(1, id);
             ResultSet myRs = myStament.executeQuery();
             if (myRs.next()) {
-                Agencia = createAgencia(myRs);
+                agencia = createAgencia(myRs);
             }
         }
-        return Agencia;
+        return agencia;
+    }
+    
+    public Agencia getByNombre (String nombre) throws  SQLException{
+    
+        Agencia agencia = null;
+        try (PreparedStatement myStament = myConn.prepareStatement("select * from agencia where nombre_agencia = ?")){
+            myStament.setString(1, nombre);
+            ResultSet myRs = myStament.executeQuery();
+            if (myRs.next()) {
+                agencia = createAgencia(myRs);
+            }
+        } 
+        return agencia;        
     }
 
     @Override

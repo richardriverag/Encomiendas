@@ -261,6 +261,7 @@ public class JFPaquetes extends javax.swing.JFrame {
     }//GEN-LAST:event_txtIDPaqueteActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        paqueteController.actionPerformed(evt);
         this.setVisible(false);
     }//GEN-LAST:event_btnVolverActionPerformed
 
@@ -285,6 +286,15 @@ public class JFPaquetes extends javax.swing.JFrame {
         txtVolPaquete.setText("");
         jCBIsFragil.setSelected(false);
         txtIdEncomienda.setText("");
+    }
+    
+     public void limpiar2(){
+        txtDescripPaquete.setText("");
+        txtPrecioPaquete.setText("");
+        txtIDPaquete.setText("");
+        txtPesoPaquete.setText("");
+        txtVolPaquete.setText("");
+        jCBIsFragil.setSelected(false);
     }
     
     /**

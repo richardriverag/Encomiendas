@@ -29,7 +29,7 @@ public class JFListaPaquetes extends javax.swing.JFrame {
         setLocationRelativeTo(this);
         setTitle("Lista de paquetes");
 
-        //instancia del controlador
+        //inicializas del controlador
         paqueteRepository = new PaqueteRepository(con.getInstance());
         paqueteService = new PaqueteService(paqueteRepository);
         paqueteController = new PaqueteController(this, paqueteService);

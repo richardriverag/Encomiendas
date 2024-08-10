@@ -1,7 +1,11 @@
 package encomiendas.services.encomiendas;
 
+import encomiendas.model.data.Agencia.AgenciaRepository;
 import encomiendas.model.data.encomiendas.EncomiendaRepository;
+import encomiendas.model.data.usuarios.ClienteRepository;
 import encomiendas.model.entity.encomiendas.Encomienda;
+import encomiendas.model.entity.usuarios.Agencia;
+import encomiendas.model.entity.usuarios.Cliente;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -9,11 +13,16 @@ import java.util.List;
 public class EncomiendaService {
 
     private final EncomiendaRepository encomiendaRepository;
+    private final ClienteRepository clienteRepository;
+    private final AgenciaRepository agenciaRepository;
 
-    public EncomiendaService(EncomiendaRepository encomiendaRepository) {
+    public EncomiendaService(EncomiendaRepository encomiendaRepository, ClienteRepository clienteRepository, AgenciaRepository agenciaRepository) {
         this.encomiendaRepository = encomiendaRepository;
+        this.clienteRepository = clienteRepository;
+        this.agenciaRepository = agenciaRepository;
     }
 
+   
     //Obtener toda las encomiendas
     public List<Encomienda> getAllEncomiendas() throws SQLException {
         return encomiendaRepository.findAll();
@@ -53,9 +62,18 @@ public class EncomiendaService {
     }
 
     //Calcular el precio total de una encomienda
-    public double calcularPrecioTotal(Integer idEncomienda) throws SQLException {
-        Encomienda encomienda = getEncomiendaById(idEncomienda);
-        return encomienda.calcularPrecioTotal();
+//    public double calcularPrecioTotal() throws SQLException {
+//        Encomienda encomienda = getEncomiendaById(idEncomienda);
+//        return encomienda.calcularPrecioTotal();
+//    }
+    
+    //Retonar un cliente
+    public Cliente obtenerCliente(String cedula) throws SQLException{
+        return clienteRepository.getById(cedula);
+    }
+    
+    public Agencia obtenerAgenciaPorNombre(String nombre) throws SQLException{
+        return agenciaRepository.getByNombre(nombre);
     }
 
 }

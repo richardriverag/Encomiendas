@@ -31,6 +31,12 @@ public class Usuario extends Conexion{
         this.activo = activo;
         this.idAgencia = idAgencia;
     }
+
+    public Usuario() {
+    }
+    
+    
+    
     
     public String getCedula() {
         return cedula;
