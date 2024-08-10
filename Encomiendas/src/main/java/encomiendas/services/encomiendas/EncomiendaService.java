@@ -75,5 +75,9 @@ public class EncomiendaService {
     public Agencia obtenerAgenciaPorNombre(String nombre) throws SQLException{
         return agenciaRepository.getByNombre(nombre);
     }
+    
+    public List<Agencia> obtenerAgencias () throws  SQLException{
+        return agenciaRepository.findAll();
+    }
 
 }

@@ -38,6 +38,7 @@ public class JFEncomiendas extends javax.swing.JFrame {
     public List<Paquete> listaPaquete = new ArrayList<>();
 
     public JFEncomiendas() {
+        
         initComponents();
         panelInterprovincial.setVisible(false);
         panelEntregaDomicilio.setVisible(false);
@@ -48,12 +49,16 @@ public class JFEncomiendas extends javax.swing.JFrame {
         //instancia del controlador
         paqueteRepository = new PaqueteRepository(con.getInstance());
         clienteRepository = new ClienteRepository(con.getInstance());
+        agenciaRepository = new AgenciaRepository(con.getInstance());
+        
         paqueteService = new PaqueteService(paqueteRepository);
-        paqueteController = new PaqueteController(this, paqueteService);
+        paqueteController = new PaqueteController(this, paqueteService);      
+        
 
         encomiendaRepository = new EncomiendaRepository(con.getInstance());
         encomiedaService = new EncomiendaService(encomiendaRepository, clienteRepository, agenciaRepository);
         encomiendaController = new EncomiendaController(this, encomiedaService);
+        encomiendaController.cargarAgenciasOrigen();
         encomiendaController.mostrarEncomienda((DefaultTableModel) this.jTEncomiendas.getModel());
     }
 
@@ -263,6 +268,16 @@ public class JFEncomiendas extends javax.swing.JFrame {
         });
 
         jCBAgenciaOrigen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jCBAgenciaOrigen.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jCBAgenciaOrigenMouseReleased(evt);
+            }
+        });
+        jCBAgenciaOrigen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBAgenciaOrigenActionPerformed(evt);
+            }
+        });
 
         jLabel13.setText("Agencia de origen");
 
@@ -604,6 +619,14 @@ public class JFEncomiendas extends javax.swing.JFrame {
     private void btnCrearEncomiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearEncomiendaActionPerformed
 
     }//GEN-LAST:event_btnCrearEncomiendaActionPerformed
+
+    private void jCBAgenciaOrigenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBAgenciaOrigenActionPerformed
+         
+    }//GEN-LAST:event_jCBAgenciaOrigenActionPerformed
+
+    private void jCBAgenciaOrigenMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCBAgenciaOrigenMouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBAgenciaOrigenMouseReleased
 
     /**
      * @param args the command line arguments
