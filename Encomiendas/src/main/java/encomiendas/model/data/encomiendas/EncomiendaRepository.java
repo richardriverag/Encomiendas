@@ -119,16 +119,18 @@ public class EncomiendaRepository implements Repository<Encomienda> {
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?)";
 
         try (PreparedStatement myStament = myConn.prepareStatement(sql)) {
-//            myStament.setLong(1, encomienda.getAgenciaOrigen().getId());
-//            myStament.setLong(2, encomienda.getAgenciaDestino().getId());
-//            myStament.setLong(3, encomienda.getReceptor().getId());
-//            myStament.setLong(4, encomienda.getEmisor().getId());
-//            myStament.setDate(5, java.sql.Date.valueOf(encomienda.getFechaEmision()));
-//            myStament.setString(6, String.valueOf(encomienda.getTipoEntrega()));
-//            myStament.setString(7, encomienda.getDireccionEntrega());
-//            myStament.setInt(8, encomienda.getCodigoPostal());
-//            myStament.setString(9, encomienda.getEstado().name());
-//            myStament.executeUpdate();
+            myStament.setLong(1, encomienda.getAgenciaOrigen().getIdAgencia());
+            myStament.setLong(2, encomienda.getAgenciaDestino().getIdAgencia());
+            myStament.setString(3, encomienda.getReceptor().getCedula());
+            myStament.setString(4, encomienda.getEmisor().getCedula());
+            myStament.setDate(5, java.sql.Date.valueOf(encomienda.getFechaEmision()));
+            myStament.setDate(6, java.sql.Date.valueOf(encomienda.getFechaLLegada()));
+            myStament.setString(7, String.valueOf(encomienda.getTipoEntrega()));
+            myStament.setString(8, encomienda.getDireccionEntrega());
+            myStament.setInt(9, encomienda.getCodigoPostal());
+            myStament.setString(10, encomienda.getEstado().nombreEstado());
+            myStament.setFloat(11, Float.parseFloat(encomienda.getPrecioEncomienda().toString()));
+            myStament.executeUpdate();
         }
     }
 
@@ -171,7 +173,7 @@ public class EncomiendaRepository implements Repository<Encomienda> {
 
         encomienda.setFechaEmision(myRs.getDate("fecha_envio").toLocalDate());
         encomienda.setFechaLLegada(myRs.getDate("fecha_llegada").toLocalDate());
-        encomienda.setTipoEntrega(myRs.getString("tipo_entrega").charAt(0));
+        encomienda.setTipoEntrega(myRs.getString("tipo_entrega"));
         encomienda.setDireccionEntrega(myRs.getString("direccion_entrega"));
         encomienda.setCodigoPostal(myRs.getInt("cod_postal_entrega"));
         encomienda.setPrecioEncomienda(myRs.getDouble("precio_encomienda"));

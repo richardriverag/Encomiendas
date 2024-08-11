@@ -14,4 +14,10 @@ public class EnTransito implements Estado{
     public String ConsultarEstado() {
         return "La encomienda está en tránsito.";
     }
+    
+    @Override
+    public String nombreEstado() {
+        return "En transito";
+    }
+
 }

@@ -41,7 +41,7 @@ public class EncomiendaController implements ActionListener, ItemListener {
         try {
             // Obtener la lista de paquetes desde el servicio
             List<Encomienda> listaEncomienda = encomiendaService.getAllEncomiendas();
-            
+
             // Limpiar cualquier fila existente en la tabla (opcional)
             modeloTablaEncomienda.setRowCount(0);
 
@@ -64,11 +64,12 @@ public class EncomiendaController implements ActionListener, ItemListener {
             System.out.println(ex);
         }
     }
+
     public void mostrarEncomiendaFiltro(DefaultTableModel modeloTablaEncomienda, String cedulaR, String cedulaE, String agenciaD, String agenciaO, String tipoEntrega) {
         try {
             // Obtener la lista de paquetes desde el servicio
             List<Encomienda> listaEncomienda = encomiendaService.getAllEncomiendasFiltro(cedulaR, cedulaE, agenciaD, agenciaO, tipoEntrega);
-            
+
             // Limpiar cualquier fila existente en la tabla (opcional)
             modeloTablaEncomienda.setRowCount(0);
             // Iterar sobre la lista de paquetes e insertar cada uno en la tabla
@@ -90,7 +91,6 @@ public class EncomiendaController implements ActionListener, ItemListener {
             System.out.println(ex);
         }
     }
-    
 
     public void cargarAgenciasOrigen() {
         try {
@@ -111,7 +111,10 @@ public class EncomiendaController implements ActionListener, ItemListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        
         Encomienda encomiendaParaGuardar = new Encomienda();
+        
+        Encomienda encomiendaAGuardar = new Encomienda();
 
         if (e.getSource() == viewEncomienda.btnGuardarEncomienda) {
             try {
@@ -126,16 +129,69 @@ public class EncomiendaController implements ActionListener, ItemListener {
                 // Si es interprovincial y opcional domicilio
                 if (viewEncomienda.JCheckInterprovincial.isSelected()) {
                     encomiendaParaGuardar.setAgenciaDestino(encomiendaService.obtenerAgenciaPorNombre(viewEncomienda.jCBAgenciaDestino.getSelectedItem().toString()));
+                    encomiendaParaGuardar.setTipoEntrega("Agencia");
+
+                    //Caso cuando es una encomienda para retirar en agencia
+                    encomiendaAGuardar = new Encomienda(
+                            null,
+                            encomiendaParaGuardar.getAgenciaOrigen(),
+                            encomiendaParaGuardar.getAgenciaDestino(),
+                            receptor,
+                            emisor,
+                            encomiendaParaGuardar.getFechaEmision(),
+                            encomiendaParaGuardar.getFechaLLegada(),
+                            encomiendaParaGuardar.getTipoEntrega(),
+                            null,
+                            null
+                    );
+
                     if (viewEncomienda.JCheckDomicilio.isSelected()) {
+                        encomiendaParaGuardar.setTipoEntrega("Domicilio");
                         encomiendaParaGuardar.setDireccionEntrega(viewEncomienda.txtDirEntrega.getText());
                         encomiendaParaGuardar.setCodigoPostal(Integer.parseInt(viewEncomienda.txtCodPostal.getText()));
+
+                        //En el caso de que sea a domicillio y seleccione una agencia de destino para que descanse el paquete uwu 
+                        encomiendaAGuardar = new Encomienda(
+                                null,
+                                encomiendaParaGuardar.getAgenciaOrigen(),
+                                encomiendaParaGuardar.getAgenciaDestino(),
+                                receptor,
+                                emisor,
+                                encomiendaParaGuardar.getFechaEmision(),
+                                encomiendaParaGuardar.getFechaLLegada(),
+                                encomiendaParaGuardar.getTipoEntrega(),
+                                encomiendaParaGuardar.getDireccionEntrega(),
+                                encomiendaParaGuardar.getCodigoPostal(),
+                                null,
+                                null
+                        );
+
                     }
+
                 }
 
                 if (viewEncomienda.JCheckDomicilio.isSelected() && !viewEncomienda.JCheckInterprovincial.isSelected()) {
                     encomiendaParaGuardar.setDireccionEntrega(viewEncomienda.txtDirEntrega.getText());
                     encomiendaParaGuardar.setCodigoPostal(Integer.parseInt(viewEncomienda.txtCodPostal.getText()));
                     encomiendaParaGuardar.setAgenciaDestino(encomiendaService.obtenerAgenciaPorNombre(viewEncomienda.jCBAgenciaOrigen.getSelectedItem().toString()));
+                    
+                    //Cuando es en la misma ciudad a domicillio
+                    encomiendaAGuardar = new Encomienda(
+                            null,
+                            encomiendaParaGuardar.getAgenciaOrigen(),
+                            encomiendaParaGuardar.getAgenciaDestino(),
+                            receptor,
+                            emisor,
+                            encomiendaParaGuardar.getFechaEmision(),
+                            encomiendaParaGuardar.getFechaLLegada(),
+                            encomiendaParaGuardar.getTipoEntrega(),
+                            encomiendaParaGuardar.getDireccionEntrega(),
+                            encomiendaParaGuardar.getCodigoPostal(),
+                            null,
+                            null
+                    );
+                    
+
                 }
 
                 //toca crear una encomienda segun los parametros llenados
@@ -147,17 +203,17 @@ public class EncomiendaController implements ActionListener, ItemListener {
             System.out.println(viewEncomienda.listaPaquete.toString());
         }
         if (e.getSource() == viewEncomienda.btnCrearEncomienda) {
-           
+
             try {
-                // Calcular el precio total de la encomienda
-                encomiendaParaGuardar.setPrecioEncomienda(encomiendaParaGuardar.calcularPrecioTotal() + encomiendaParaGuardar.calcularPrecioTotal() * 0.12);
 
                 // Guardar la encomienda en la base de datos
-                encomiendaService.saveEncomienda(encomiendaParaGuardar);
+                System.out.println(encomiendaAGuardar);
+                encomiendaService.saveEncomienda(encomiendaAGuardar);
 
                 // Obtener la última encomienda para obtener su ID
                 Encomienda ultimaEncomienda = encomiendaService.obtenerUltimaEncomienda();
-
+                System.out.println(ultimaEncomienda);                
+                
                 if (ultimaEncomienda != null) {
                     int idEncomienda = ultimaEncomienda.getIdEncomienda();
 

@@ -11,5 +11,11 @@ public class Entregado implements Estado {
     public String ConsultarEstado() {
         return "La encomienda ha sido entregada";
     }
+    
+    @Override
+    public String nombreEstado() {
+        return "Entregado";
+    }
+
 
 }

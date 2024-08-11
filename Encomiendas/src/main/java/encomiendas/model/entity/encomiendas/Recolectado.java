@@ -12,4 +12,10 @@ public class Recolectado implements Estado {
         return "La encomienda ha sido recolectada.";
     }
 
+    @Override
+    public String nombreEstado() {
+        return "Recolectado";
+    }
+
+    
 }

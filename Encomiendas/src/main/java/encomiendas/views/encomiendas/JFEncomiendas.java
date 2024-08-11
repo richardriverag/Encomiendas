@@ -542,7 +542,7 @@ public class JFEncomiendas extends javax.swing.JFrame {
 
     private void btnGuardarEncomiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarEncomiendaActionPerformed
         encomiendaController.actionPerformed(evt);
-        this.setVisible(false);
+        btnGuardarEncomienda.setVisible(false);
     }//GEN-LAST:event_btnGuardarEncomiendaActionPerformed
 
     private void btnAddPaquetesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPaquetesActionPerformed
@@ -553,7 +553,7 @@ public class JFEncomiendas extends javax.swing.JFrame {
         ventanaPaquete.setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
         ventanaPaquete.setVisible(true);
         ventanaPaquete.btnAddPaquete.setVisible(true);
-        btnAgregarPaquete.setVisible(true);
+        btnCrearEncomienda.setVisible(true);
     }//GEN-LAST:event_btnAgregarPaqueteActionPerformed
 
     private void btnVerListaPaquetesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -618,7 +618,7 @@ public class JFEncomiendas extends javax.swing.JFrame {
     }//GEN-LAST:event_jTEncomiendasMouseClicked
 
     private void btnCrearEncomiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearEncomiendaActionPerformed
-
+        encomiendaController.actionPerformed(evt);
     }//GEN-LAST:event_btnCrearEncomiendaActionPerformed
 
     private void jCBAgenciaOrigenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBAgenciaOrigenActionPerformed
