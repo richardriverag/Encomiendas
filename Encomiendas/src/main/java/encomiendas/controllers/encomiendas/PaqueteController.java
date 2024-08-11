@@ -92,14 +92,15 @@ public class PaqueteController implements ActionListener {
 
     }
 
-    public void mostrarPaquetes(DefaultTableModel modeloTablaPaquetes) {
+    public void mostrarPaquetes(DefaultTableModel modeloTablaPaquetes, Integer idEncomienda) {
 
         try {
             // Obtener la lista de paquetes desde el servicio
-            List<Paquete> listaDePaquetes = paquete.getAllPaquetes();
-
-            // Limpiar cualquier fila existente en la tabla (opcional)
-            modeloTablaPaquetes.setRowCount(0);
+            System.out.println("ID ENCOMIENDA DENTRO DEL CONTROLADOR:" + idEncomienda);
+            List<Paquete> listaDePaquetes = paquete.getAllPaquetesByEncomienda(idEncomienda);
+            System.out.println(listaDePaquetes.toString());
+//            // Limpiar cualquier fila existente en la tabla (opcional)
+//            modeloTablaPaquetes.setRowCount(0);
 
             // Iterar sobre la lista de paquetes e insertar cada uno en la tabla
             for (Paquete paquete : listaDePaquetes) {
@@ -117,6 +118,7 @@ public class PaqueteController implements ActionListener {
 
                 // Agregar la fila al modelo de la tabla
                 modeloTablaPaquetes.addRow(fila);
+                System.out.println("SE AGREGO UNA FILA");
             }
         } catch (SQLException ex) {
             System.out.println(ex);

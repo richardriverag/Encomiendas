@@ -104,6 +104,7 @@ public class EncomiendaController implements ActionListener, ItemListener {
     public void MostrarInfoEncomida(JFInfoEncomiendas viewInfoEncominda,String idEncominda) throws SQLException{
         Integer idEncomienda = Integer.parseInt(idEncominda);
         Encomienda encomienda = encomiendaService.getEncomiendaById(idEncomienda);
+        viewInfoEncominda.txtIdEncomienda.setText(encomienda.getIdEncomienda().toString());
         viewInfoEncominda.txtCedulaReceptor.setText(encomienda.getReceptor().getCedula());
         viewInfoEncominda.txtcedulaEmisor.setText(encomienda.getEmisor().getCedula());
         LocalDate localDate = encomienda.getFechaEmision();
@@ -141,30 +142,6 @@ public class EncomiendaController implements ActionListener, ItemListener {
         }
     }
     
- 
-    
-
-    public void MostrarInfoEncomida(JFInfoEncomiendas viewInfoEncominda, String idEncominda) throws SQLException {
-        Integer idEncomienda = Integer.parseInt(idEncominda);
-        Encomienda encomienda = encomiendaService.getEncomiendaById(idEncomienda);
-        viewInfoEncominda.txtCedulaReceptor.setText(encomienda.getReceptor().getCedula());
-        viewInfoEncominda.txtcedulaEmisor.setText(encomienda.getEmisor().getCedula());
-        LocalDate localDate = encomienda.getFechaEmision();
-        viewInfoEncominda.txtEstadoEncomienda.setText(encomienda.consultarEstado());
-        viewInfoEncominda.jDCFechaEnvio.setDate(Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant()));
-        viewInfoEncominda.txtAgenciaO.setText(encomienda.getAgenciaOrigen().getNombreAgencia());
-        viewInfoEncominda.txtAgenD.setText(encomienda.getAgenciaDestino().getNombreAgencia());
-        viewInfoEncominda.txtDirEntrega.setText(encomienda.getDireccionEntrega());
-        viewInfoEncominda.txtCodPostal.setText(encomienda.getCodigoPostal().toString());
-        if ("Domicilio".equals(encomienda.getTipoEntrega()) && encomienda.getAgenciaDestino().getIdAgencia() != encomienda.getAgenciaOrigen().getIdAgencia()) {
-            viewInfoEncominda.JCheckDomicilio.setSelected(true);
-            viewInfoEncominda.jCheckInterprovincial.setSelected(true);
-        } else if ("Domicilio".equals(encomienda.getTipoEntrega()) && encomienda.getAgenciaDestino().getIdAgencia() == encomienda.getAgenciaOrigen().getIdAgencia()) {
-            viewInfoEncominda.JCheckDomicilio.setSelected(true);
-        } else {
-            viewInfoEncominda.jCheckInterprovincial.setSelected(true);
-        }
-    }
 
     @Override
     public void actionPerformed(ActionEvent e) {

@@ -34,7 +34,7 @@ public class JFListaPaquetes extends javax.swing.JFrame {
         paqueteService = new PaqueteService(paqueteRepository);
         paqueteController = new PaqueteController(this, paqueteService);
 
-        paqueteController.mostrarPaquetes((DefaultTableModel) this.jTListaPaquetes.getModel());
+//        paqueteController.mostrarPaquetes((DefaultTableModel) this.jTListaPaquetes.getModel());
 
     }
 
@@ -49,6 +49,8 @@ public class JFListaPaquetes extends javax.swing.JFrame {
         btnVolver = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTListaPaquetes = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        txtIdEncomienda = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -72,8 +74,6 @@ public class JFListaPaquetes extends javax.swing.JFrame {
 
         jTListaPaquetes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                { new Integer(1), "Hola",  new Float(12.0),  new Float(2.0),  new Boolean(true), null,  new Integer(1)},
-                { new Integer(2), "Jeje",  new Float(2.0),  new Float(3.0), null, null,  new Integer(1)},
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -107,6 +107,10 @@ public class JFListaPaquetes extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTListaPaquetes);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 53, 629, 174));
+
+        jLabel2.setText("ID de la encomienda:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 10, -1, -1));
+        jPanel1.add(txtIdEncomienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, -1, -1));
 
         jMenu1.setText("Archivo");
 
@@ -218,11 +222,13 @@ public class JFListaPaquetes extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel1;
+    public javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     public javax.swing.JTable jTListaPaquetes;
+    public javax.swing.JTextField txtIdEncomienda;
     // End of variables declaration//GEN-END:variables
 }

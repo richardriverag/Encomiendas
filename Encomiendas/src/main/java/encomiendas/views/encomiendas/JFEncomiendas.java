@@ -534,6 +534,7 @@ public class JFEncomiendas extends javax.swing.JFrame {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         encomiendaController.actionPerformed(evt);
+        
         limpiar();
     }//GEN-LAST:event_btnCancelarActionPerformed
 

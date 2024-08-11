@@ -31,6 +31,7 @@ public class PaqueteRepository implements Repository<Paquete> {
     public List<Paquete> findAllByEncomienda(Integer idEncomienda) throws SQLException {
 
         List<Paquete> paquete = new ArrayList<>();
+        System.out.println("ID DE LA ENCOMIENDA DENTRO DE REPOSITORY" + idEncomienda);
         try (PreparedStatement myStament = myConn.prepareStatement("select * from paquete where id_encomienda = ?")) {
             myStament.setInt(1, idEncomienda);
             ResultSet myRs = myStament.executeQuery();
@@ -39,6 +40,7 @@ public class PaqueteRepository implements Repository<Paquete> {
                 paquete.add(e);
             }
         }
+        System.out.println(paquete.toString());
         return paquete;
     }
 
