@@ -26,7 +26,6 @@ public class JFEncomiendas extends javax.swing.JFrame {
     PaqueteRepository paqueteRepository;
     PaqueteService paqueteService;
     PaqueteController paqueteController;
-    
 
     private Encomienda encomienda = new Encomienda();
     EncomiendaRepository encomiendaRepository;
@@ -557,7 +556,7 @@ public class JFEncomiendas extends javax.swing.JFrame {
 
     private void btnGuardarEncomiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarEncomiendaActionPerformed
         encomiendaController.actionPerformed(evt);
-        
+
         btnGuardarEncomienda.setVisible(false);
     }//GEN-LAST:event_btnGuardarEncomiendaActionPerformed
 
@@ -601,11 +600,13 @@ public class JFEncomiendas extends javax.swing.JFrame {
     }//GEN-LAST:event_JCheckInterprovincialActionPerformed
 
     private void btnVerPaquetesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerPaquetesActionPerformed
-        JFListaPaquetes listaPaquetes = new JFListaPaquetes();
-        listaPaquetes.setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
-        listaPaquetes.setVisible(true);
-
-
+        listaPaquete = ventanaPaquete.listaPaquetes;
+        JFListaPaquetesByEncomienda viewListaPaquetes = new JFListaPaquetesByEncomienda();
+        viewListaPaquetes.setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
+        viewListaPaquetes.setVisible(true);
+        System.out.println("ANTES DE MOSTRAR EN LA LISTA\n"+listaPaquete.toString());
+        paqueteController.mostarPaquetesByEncomienda((DefaultTableModel) viewListaPaquetes.jTListaPaquetes.getModel(), listaPaquete);
+        
     }//GEN-LAST:event_btnVerPaquetesActionPerformed
 
     private void jMISalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -622,9 +623,9 @@ public class JFEncomiendas extends javax.swing.JFrame {
         infoEncomienda.setVisible(true);
         try {
             encomiendaController.MostrarInfoEncomida(infoEncomienda, idEncomienda);
-            
+
         } catch (SQLException ex) {
-            Logger.getLogger(JFEncomiendas.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex);
         }
     }//GEN-LAST:event_jTEncomiendasMouseClicked
 
@@ -647,7 +648,6 @@ public class JFEncomiendas extends javax.swing.JFrame {
         encomiendaController.mostrarEncomienda((DefaultTableModel) this.jTEncomiendas.getModel());
     }//GEN-LAST:event_btnRestablecerActionPerformed
 
-  
     /**
      * @param args the command line arguments
      */
