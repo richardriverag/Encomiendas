@@ -210,19 +210,20 @@ public class EncomiendaController implements ActionListener, ItemListener {
                 
                 double precioTotal = 0; 
                 // Obtener la última encomienda para obtener su ID
-                Encomienda ultimaEncomienda = encomiendaService.obtenerUltimaEncomienda();
+                
                 //System.out.println(ultimaEncomienda);
                 encomiendaAGuardar.setPrecioEncomienda(1.0);                
-                encomiendaService.saveEncomienda(encomiendaAGuardar); 
+                encomiendaService.saveEncomienda(encomiendaAGuardar);
+                Encomienda ultimaEncomienda = encomiendaService.obtenerUltimaEncomienda();
                 if (ultimaEncomienda != null) {
-                    int idEncomienda = ultimaEncomienda.getIdEncomienda() + 1;
+                    int idEncomienda = ultimaEncomienda.getIdEncomienda();
 
                     // Asignar el ID de la encomienda a cada paquete
                     for (Paquete paquete : viewEncomienda.listaPaquete) {
                         System.out.println("paquete añadido");
                         paquete.setIdEncomienda(idEncomienda);
                         encomiendaService.paqueteService.savePaquete(paquete);
-                        precioTotal = paquete.getPrecioPaquete();
+                        precioTotal += paquete.getPrecioPaquete();
                     }
                     encomiendaService.savePrecioEncomienda(idEncomienda, precioTotal);
                     

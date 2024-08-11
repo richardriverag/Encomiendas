@@ -114,25 +114,36 @@ public class EncomiendaRepository implements Repository<Encomienda> {
     }
 
     @Override
-    public void save(Encomienda encomienda) throws SQLException {
-        String sql = "INSERT INTO encomienda (id_agencia_origen, id_agencia_destino, cedula_receptor, cedula_emisor, fecha_envio, fecha_llegada, tipo_entrega, direccion_entrega, cod_postal_entrega, estado_encomienda, precio_encomienda) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?)";
+  public void save(Encomienda encomienda) throws SQLException {
+    // Consulta SQL con parámetros
+    String sql = "INSERT INTO encomienda (id_agencia_origen, id_agencia_destino, cedula_receptor, cedula_emisor, fecha_envio, fecha_llegada, tipo_entrega, direccion_entrega, cod_postal_entrega, estado_encomienda, precio_encomienda) "
+            + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?)";
 
-        try (PreparedStatement myStament = myConn.prepareStatement(sql)) {
-            myStament.setLong(1, encomienda.getAgenciaOrigen().getIdAgencia());
-            myStament.setLong(2, encomienda.getAgenciaDestino().getIdAgencia());
-            myStament.setString(3, encomienda.getReceptor().getCedula());
-            myStament.setString(4, encomienda.getEmisor().getCedula());
-            myStament.setDate(5, java.sql.Date.valueOf(encomienda.getFechaEmision()));
-            myStament.setDate(6, java.sql.Date.valueOf(encomienda.getFechaLLegada()));
-            myStament.setString(7, String.valueOf(encomienda.getTipoEntrega()));
+    try (PreparedStatement myStament = myConn.prepareStatement(sql)) {
+        // Manejo de valores nulos para cada parámetro
+        myStament.setLong(1, encomienda.getAgenciaOrigen().getIdAgencia());
+        myStament.setLong(2, encomienda.getAgenciaDestino().getIdAgencia());
+        myStament.setString(3, encomienda.getReceptor().getCedula());
+        myStament.setString(4, encomienda.getEmisor().getCedula());
+        myStament.setDate(5, java.sql.Date.valueOf(encomienda.getFechaEmision()));
+        myStament.setDate(6, java.sql.Date.valueOf(encomienda.getFechaLLegada()));
+        myStament.setString(7, encomienda.getTipoEntrega());
+        if (encomienda.getDireccionEntrega() != null) {
             myStament.setString(8, encomienda.getDireccionEntrega());
+        } else {
+            myStament.setNull(8, java.sql.Types.VARCHAR);
+        }      
+        if (encomienda.getCodigoPostal() != null) {
             myStament.setInt(9, encomienda.getCodigoPostal());
-            myStament.setString(10, encomienda.getEstado().nombreEstado());
-            myStament.setFloat(11, Float.parseFloat(encomienda.getPrecioEncomienda().toString()));
-            myStament.executeUpdate();
+        } else {
+            myStament.setNull(9, java.sql.Types.INTEGER);
         }
+        myStament.setString(10, encomienda.getEstado().nombreEstado());
+        myStament.setFloat(11, encomienda.getPrecioEncomienda().floatValue());
+        // Ejecutar la consulta
+        myStament.executeUpdate();
     }
+}
 
     @Override
     public void delete(Integer id) throws SQLException {

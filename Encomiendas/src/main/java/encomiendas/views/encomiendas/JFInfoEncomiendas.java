@@ -47,7 +47,7 @@ public class JFInfoEncomiendas extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         panelInterprovincial = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        jCBAgenciaDestino = new javax.swing.JComboBox<>();
+        txtAgenD = new javax.swing.JTextField();
         panelEntregaDomicilio = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         txtDirEntrega = new javax.swing.JTextField();
@@ -194,13 +194,6 @@ public class JFInfoEncomiendas extends javax.swing.JFrame {
 
         jLabel8.setText("Agencia de destino:");
 
-        jCBAgenciaDestino.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jCBAgenciaDestino.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCBAgenciaDestinoActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout panelInterprovincialLayout = new javax.swing.GroupLayout(panelInterprovincial);
         panelInterprovincial.setLayout(panelInterprovincialLayout);
         panelInterprovincialLayout.setHorizontalGroup(
@@ -208,18 +201,18 @@ public class JFInfoEncomiendas extends javax.swing.JFrame {
             .addGroup(panelInterprovincialLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jCBAgenciaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60)
+                .addComponent(txtAgenD)
                 .addContainerGap())
         );
         panelInterprovincialLayout.setVerticalGroup(
             panelInterprovincialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelInterprovincialLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addGroup(panelInterprovincialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jCBAgenciaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addGap(15, 15, 15)
+                .addGroup(panelInterprovincialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtAgenD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         panelEntregaDomicilio.setBorder(javax.swing.BorderFactory.createTitledBorder("Entrega a domicilio"));
@@ -420,10 +413,6 @@ public class JFInfoEncomiendas extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_JCheckDomicilioActionPerformed
 
-    private void jCBAgenciaDestinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBAgenciaDestinoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCBAgenciaDestinoActionPerformed
-
     private void txtcedulaEmisor1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcedulaEmisor1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtcedulaEmisor1ActionPerformed
@@ -480,7 +469,6 @@ public class JFInfoEncomiendas extends javax.swing.JFrame {
     private javax.swing.JButton btnDesembarcar;
     private javax.swing.JButton btnDespachar;
     private javax.swing.JButton btnVerPaquetes;
-    private javax.swing.JComboBox<String> jCBAgenciaDestino;
     private javax.swing.JComboBox<String> jCBAgenciaOrigen;
     private javax.swing.JCheckBox jCheckInterprovincial;
     private com.toedter.calendar.JDateChooser jDCFechaEnvio;
@@ -503,6 +491,7 @@ public class JFInfoEncomiendas extends javax.swing.JFrame {
     private javax.swing.JPanel panelInterprovincial;
     private javax.swing.JPanel panelOpEmpleado;
     private javax.swing.JPanel panelOpciones;
+    private javax.swing.JTextField txtAgenD;
     private javax.swing.JTextField txtCedulaReceptor;
     private javax.swing.JTextField txtCodPostal;
     private javax.swing.JTextField txtDirEntrega;

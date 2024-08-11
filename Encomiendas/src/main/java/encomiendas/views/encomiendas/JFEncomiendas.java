@@ -622,6 +622,7 @@ public class JFEncomiendas extends javax.swing.JFrame {
     private void btnCrearEncomiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearEncomiendaActionPerformed
         listaPaquete = ventanaPaquete.listaPaquetes;
         encomiendaController.actionPerformed(evt);
+        encomiendaController.mostrarEncomienda((DefaultTableModel) this.jTEncomiendas.getModel());
     }//GEN-LAST:event_btnCrearEncomiendaActionPerformed
 
     private void jCBAgenciaOrigenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBAgenciaOrigenActionPerformed
