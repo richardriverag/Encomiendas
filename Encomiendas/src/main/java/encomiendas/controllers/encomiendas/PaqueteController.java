@@ -86,6 +86,7 @@ public class PaqueteController implements ActionListener {
         }
 
         if (e.getSource() == viewPaquetes.btnVolver) {
+            
             System.out.println(viewPaquetes.listaPaquetes.toString());
         }
 

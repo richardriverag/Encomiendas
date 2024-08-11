@@ -44,6 +44,9 @@ public class EncomiendaService {
     public void saveEncomienda(Encomienda encomienda) throws SQLException {
         encomiendaRepository.save(encomienda);
     }
+    public void savePrecioEncomienda(int id, double precio) throws SQLException {
+        encomiendaRepository.updatePrecio(id, precio);
+    }
 
     //Eliminar una encomienda
     public void deleteEncomienda(Integer id) throws SQLException {

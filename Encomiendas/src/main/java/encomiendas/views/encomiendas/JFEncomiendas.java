@@ -23,6 +23,7 @@ public class JFEncomiendas extends javax.swing.JFrame {
     PaqueteRepository paqueteRepository;
     PaqueteService paqueteService;
     PaqueteController paqueteController;
+    
 
     private Encomienda encomienda = new Encomienda();
     EncomiendaRepository encomiendaRepository;
@@ -517,7 +518,7 @@ public class JFEncomiendas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFiltrarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        listaPaquete = ventanaPaquete.listaPaquetes;
+        
 //        System.out.println(listaPaquete.toString());
         encomiendaController.actionPerformed(evt);
         limpiar();
@@ -542,6 +543,7 @@ public class JFEncomiendas extends javax.swing.JFrame {
 
     private void btnGuardarEncomiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarEncomiendaActionPerformed
         encomiendaController.actionPerformed(evt);
+        
         btnGuardarEncomienda.setVisible(false);
     }//GEN-LAST:event_btnGuardarEncomiendaActionPerformed
 
@@ -618,6 +620,7 @@ public class JFEncomiendas extends javax.swing.JFrame {
     }//GEN-LAST:event_jTEncomiendasMouseClicked
 
     private void btnCrearEncomiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearEncomiendaActionPerformed
+        listaPaquete = ventanaPaquete.listaPaquetes;
         encomiendaController.actionPerformed(evt);
     }//GEN-LAST:event_btnCrearEncomiendaActionPerformed
 

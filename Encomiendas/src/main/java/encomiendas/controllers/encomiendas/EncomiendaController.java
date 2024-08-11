@@ -18,7 +18,9 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class EncomiendaController implements ActionListener, ItemListener {
-
+    private Encomienda encomiendaParaGuardar = new Encomienda();
+        
+    private Encomienda encomiendaAGuardar = new Encomienda();
     private JFrame view;
     private EncomiendaService encomiendaService;
 
@@ -112,9 +114,7 @@ public class EncomiendaController implements ActionListener, ItemListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         
-        Encomienda encomiendaParaGuardar = new Encomienda();
-        
-        Encomienda encomiendaAGuardar = new Encomienda();
+       
 
         if (e.getSource() == viewEncomienda.btnGuardarEncomienda) {
             try {
@@ -191,7 +191,7 @@ public class EncomiendaController implements ActionListener, ItemListener {
                             null
                     );
                     
-
+                
                 }
 
                 //toca crear una encomienda segun los parametros llenados
@@ -207,22 +207,26 @@ public class EncomiendaController implements ActionListener, ItemListener {
             try {
 
                 // Guardar la encomienda en la base de datos
-                System.out.println(encomiendaAGuardar);
-                encomiendaService.saveEncomienda(encomiendaAGuardar);
-
+                
+                double precioTotal = 0; 
                 // Obtener la última encomienda para obtener su ID
                 Encomienda ultimaEncomienda = encomiendaService.obtenerUltimaEncomienda();
-                System.out.println(ultimaEncomienda);                
-                
+                //System.out.println(ultimaEncomienda);
+                encomiendaAGuardar.setPrecioEncomienda(1.0);                
+                encomiendaService.saveEncomienda(encomiendaAGuardar); 
                 if (ultimaEncomienda != null) {
-                    int idEncomienda = ultimaEncomienda.getIdEncomienda();
+                    int idEncomienda = ultimaEncomienda.getIdEncomienda() + 1;
 
                     // Asignar el ID de la encomienda a cada paquete
                     for (Paquete paquete : viewEncomienda.listaPaquete) {
+                        System.out.println("paquete añadido");
                         paquete.setIdEncomienda(idEncomienda);
                         encomiendaService.paqueteService.savePaquete(paquete);
+                        precioTotal = paquete.getPrecioPaquete();
                     }
-
+                    encomiendaService.savePrecioEncomienda(idEncomienda, precioTotal);
+                    
+                       
                     JOptionPane.showMessageDialog(null, "La encomienda se ha guardado exitosamente.");
                 } else {
                     JOptionPane.showMessageDialog(null, "Error al obtener la última encomienda.");

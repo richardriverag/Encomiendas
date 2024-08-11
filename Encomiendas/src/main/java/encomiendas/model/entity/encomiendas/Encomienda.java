@@ -177,7 +177,7 @@ public class Encomienda {
             case "En bodega":
                 this.estado = new EnBodegaD();
                 break;
-            case "EnBodegaO":
+            case "En bodega origen":
                 this.estado = new EnBodegaO();
                 break;
             case "EnTransito":

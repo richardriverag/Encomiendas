@@ -115,7 +115,7 @@ public class EncomiendaRepository implements Repository<Encomienda> {
 
     @Override
     public void save(Encomienda encomienda) throws SQLException {
-        String sql = "INSERT INTO encomiendas (id_agencia_origen, id_agencia_destino, cedula_receptor, cedula_emisor, fecha_envio, fecha_llegada, tipo_entrega, direccion_entrega, cod_postal_entrega, estado_encomienda, precio_encomienda) "
+        String sql = "INSERT INTO encomienda (id_agencia_origen, id_agencia_destino, cedula_receptor, cedula_emisor, fecha_envio, fecha_llegada, tipo_entrega, direccion_entrega, cod_postal_entrega, estado_encomienda, precio_encomienda) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?)";
 
         try (PreparedStatement myStament = myConn.prepareStatement(sql)) {
@@ -149,6 +149,20 @@ public class EncomiendaRepository implements Repository<Encomienda> {
             myStament.executeUpdate();
         }
 
+    }
+    public void updatePrecio(Integer id, double precio) throws SQLException {
+    String query = "UPDATE encomienda SET precio_encomienda = ? WHERE id_encomienda = ?";
+    
+        try (PreparedStatement myStmt = myConn.prepareStatement(query)) {
+            // Establecer el precio en el primer parámetro
+            myStmt.setDouble(1, precio);
+
+            // Establecer el id de la encomienda en el segundo parámetro
+            myStmt.setInt(2, id);
+
+            // Ejecutar la actualización
+            myStmt.executeUpdate();
+        }
     }
 
     //TO DO: HACER TODOO
