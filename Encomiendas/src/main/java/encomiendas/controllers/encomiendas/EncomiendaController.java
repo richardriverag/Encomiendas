@@ -6,20 +6,25 @@ import encomiendas.model.entity.usuarios.Agencia;
 import encomiendas.model.entity.usuarios.Cliente;
 import encomiendas.services.encomiendas.EncomiendaService;
 import encomiendas.views.encomiendas.JFEncomiendas;
+import encomiendas.views.encomiendas.JFInfoEncomiendas;
+import encomiendas.views.encomiendas.JFListaPaquetesByEncomienda;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class EncomiendaController implements ActionListener, ItemListener {
+
     private Encomienda encomiendaParaGuardar = new Encomienda();
-        
+
     private Encomienda encomiendaAGuardar = new Encomienda();
     private JFrame view;
     private EncomiendaService encomiendaService;
@@ -110,11 +115,34 @@ public class EncomiendaController implements ActionListener, ItemListener {
             System.out.println("Error al cargar agencias de origen: " + ex);
         }
     }
+    
+ 
+    
+
+    public void MostrarInfoEncomida(JFInfoEncomiendas viewInfoEncominda, String idEncominda) throws SQLException {
+        Integer idEncomienda = Integer.parseInt(idEncominda);
+        Encomienda encomienda = encomiendaService.getEncomiendaById(idEncomienda);
+        viewInfoEncominda.txtCedulaReceptor.setText(encomienda.getReceptor().getCedula());
+        viewInfoEncominda.txtcedulaEmisor.setText(encomienda.getEmisor().getCedula());
+        LocalDate localDate = encomienda.getFechaEmision();
+        viewInfoEncominda.txtEstadoEncomienda.setText(encomienda.consultarEstado());
+        viewInfoEncominda.jDCFechaEnvio.setDate(Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        viewInfoEncominda.txtAgenciaO.setText(encomienda.getAgenciaOrigen().getNombreAgencia());
+        viewInfoEncominda.txtAgenD.setText(encomienda.getAgenciaDestino().getNombreAgencia());
+        viewInfoEncominda.txtDirEntrega.setText(encomienda.getDireccionEntrega());
+        viewInfoEncominda.txtCodPostal.setText(encomienda.getCodigoPostal().toString());
+        if ("Domicilio".equals(encomienda.getTipoEntrega()) && encomienda.getAgenciaDestino().getIdAgencia() != encomienda.getAgenciaOrigen().getIdAgencia()) {
+            viewInfoEncominda.JCheckDomicilio.setSelected(true);
+            viewInfoEncominda.jCheckInterprovincial.setSelected(true);
+        } else if ("Domicilio".equals(encomienda.getTipoEntrega()) && encomienda.getAgenciaDestino().getIdAgencia() == encomienda.getAgenciaOrigen().getIdAgencia()) {
+            viewInfoEncominda.JCheckDomicilio.setSelected(true);
+        } else {
+            viewInfoEncominda.jCheckInterprovincial.setSelected(true);
+        }
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        
-       
 
         if (e.getSource() == viewEncomienda.btnGuardarEncomienda) {
             try {
@@ -174,7 +202,7 @@ public class EncomiendaController implements ActionListener, ItemListener {
                     encomiendaParaGuardar.setDireccionEntrega(viewEncomienda.txtDirEntrega.getText());
                     encomiendaParaGuardar.setCodigoPostal(Integer.parseInt(viewEncomienda.txtCodPostal.getText()));
                     encomiendaParaGuardar.setAgenciaDestino(encomiendaService.obtenerAgenciaPorNombre(viewEncomienda.jCBAgenciaOrigen.getSelectedItem().toString()));
-                    
+
                     //Cuando es en la misma ciudad a domicillio
                     encomiendaAGuardar = new Encomienda(
                             null,
@@ -190,8 +218,7 @@ public class EncomiendaController implements ActionListener, ItemListener {
                             null,
                             null
                     );
-                    
-                
+
                 }
 
                 //toca crear una encomienda segun los parametros llenados
@@ -207,12 +234,11 @@ public class EncomiendaController implements ActionListener, ItemListener {
             try {
 
                 // Guardar la encomienda en la base de datos
-                
-                double precioTotal = 0; 
+                double precioTotal = 0;
                 // Obtener la última encomienda para obtener su ID
-                
+
                 //System.out.println(ultimaEncomienda);
-                encomiendaAGuardar.setPrecioEncomienda(1.0);                
+                encomiendaAGuardar.setPrecioEncomienda(1.0);
                 encomiendaService.saveEncomienda(encomiendaAGuardar);
                 Encomienda ultimaEncomienda = encomiendaService.obtenerUltimaEncomienda();
                 if (ultimaEncomienda != null) {
@@ -226,8 +252,7 @@ public class EncomiendaController implements ActionListener, ItemListener {
                         precioTotal += paquete.getPrecioPaquete();
                     }
                     encomiendaService.savePrecioEncomienda(idEncomienda, precioTotal);
-                    
-                       
+
                     JOptionPane.showMessageDialog(null, "La encomienda se ha guardado exitosamente.");
                 } else {
                     JOptionPane.showMessageDialog(null, "Error al obtener la última encomienda.");

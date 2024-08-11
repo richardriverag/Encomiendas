@@ -63,9 +63,9 @@ public class PaqueteController implements ActionListener {
         }
 
         if (e.getSource() == viewPaquetes.btnCancelar) {
-            
+
             viewPaquetes.listaPaquetes = new ArrayList<>();
-        
+
         }
 
         if (e.getSource() == viewPaquetes.btnAddPaquete) {
@@ -86,7 +86,7 @@ public class PaqueteController implements ActionListener {
         }
 
         if (e.getSource() == viewPaquetes.btnVolver) {
-            
+
             System.out.println(viewPaquetes.listaPaquetes.toString());
         }
 
@@ -123,9 +123,27 @@ public class PaqueteController implements ActionListener {
         }
 
     }
-    
-    public void mostarPaquetesByEncomienda(List<Paquete> listaPaquetes){
-    
+
+    public void mostarPaquetesByEncomienda(DefaultTableModel modeloTablaPaquetes, List<Paquete> listaPaquetes) {
+        // Obtener la lista de paquetes desde el servicio
+        List<Paquete> listaDePaquetes = listaPaquetes;
+        // Limpiar cualquier fila existente en la tabla (opcional)
+        modeloTablaPaquetes.setRowCount(0);
+
+        // Iterar sobre la lista de paquetes e insertar cada uno en la tabla
+        for (Paquete paquete : listaDePaquetes) {
+            // Convertir el paquete en un array de objetos para agregarlo como una fila
+            Object[] fila = new Object[]{
+                paquete.getDescripcion(),
+                paquete.getPeso(),
+                paquete.getVolumen(),
+                paquete.getIsFragil(),
+                paquete.getPrecioPaquete(), // Agrega aquí más atributos del paquete si es necesario
+            };
+
+            // Agregar la fila al modelo de la tabla
+            modeloTablaPaquetes.addRow(fila);
+        }
     }
 
 }

@@ -18,17 +18,16 @@ public class JFPaquetes extends javax.swing.JFrame {
     PaqueteController paqueteController;
 
     public List<Paquete> listaPaquetes = new ArrayList<>();
-    
+
     public JFPaquetes() {
         initComponents();
         this.setLocationRelativeTo(this);
         this.setTitle("Paquetes");
-        
+
         //MOSTRAR PRECIO
         lblPrecioPaq.setVisible(false);
         txtPrecioPaquete.setVisible(false);
         btnAddPaquete.setVisible(false);
-        
 
         //instancia del controlador
         paqueteRepository = new PaqueteRepository(con.getInstance());

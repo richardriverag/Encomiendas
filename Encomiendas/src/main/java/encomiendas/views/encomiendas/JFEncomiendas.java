@@ -11,6 +11,7 @@ import encomiendas.model.entity.encomiendas.Encomienda;
 import encomiendas.model.entity.encomiendas.Paquete;
 import encomiendas.services.encomiendas.EncomiendaService;
 import encomiendas.services.encomiendas.PaqueteService;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -23,7 +24,6 @@ public class JFEncomiendas extends javax.swing.JFrame {
     PaqueteRepository paqueteRepository;
     PaqueteService paqueteService;
     PaqueteController paqueteController;
-    
 
     private Encomienda encomienda = new Encomienda();
     EncomiendaRepository encomiendaRepository;
@@ -554,7 +554,7 @@ public class JFEncomiendas extends javax.swing.JFrame {
 
     private void btnGuardarEncomiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarEncomiendaActionPerformed
         encomiendaController.actionPerformed(evt);
-        
+
         btnGuardarEncomienda.setVisible(false);
     }//GEN-LAST:event_btnGuardarEncomiendaActionPerformed
 
@@ -598,11 +598,13 @@ public class JFEncomiendas extends javax.swing.JFrame {
     }//GEN-LAST:event_JCheckInterprovincialActionPerformed
 
     private void btnVerPaquetesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerPaquetesActionPerformed
-        JFListaPaquetes listaPaquetes = new JFListaPaquetes();
-        listaPaquetes.setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
-        listaPaquetes.setVisible(true);
-
-
+        listaPaquete = ventanaPaquete.listaPaquetes;
+        JFListaPaquetesByEncomienda viewListaPaquetes = new JFListaPaquetesByEncomienda();
+        viewListaPaquetes.setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
+        viewListaPaquetes.setVisible(true);
+        System.out.println("ANTES DE MOSTRAR EN LA LISTA\n"+listaPaquete.toString());
+        paqueteController.mostarPaquetesByEncomienda((DefaultTableModel) viewListaPaquetes.jTListaPaquetes.getModel(), listaPaquete);
+        
     }//GEN-LAST:event_btnVerPaquetesActionPerformed
 
     private void jMISalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -613,21 +615,15 @@ public class JFEncomiendas extends javax.swing.JFrame {
         int index = jTEncomiendas.getSelectedRow();
         TableModel model = jTEncomiendas.getModel();
         String idEncomienda = model.getValueAt(index, 0).toString();
-        String remitenteE = model.getValueAt(index, 1).toString();
-        String destiantarioE = model.getValueAt(index, 2).toString();
-        String agenciaO = model.getValueAt(index, 3).toString();
-        String agenciaD = model.getValueAt(index, 4).toString();
-
         JFInfoEncomiendas infoEncomienda = new JFInfoEncomiendas();
         infoEncomienda.setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
         infoEncomienda.setVisible(true);
+        try {
+            encomiendaController.MostrarInfoEncomida(infoEncomienda, idEncomienda);
 
-        //encomienda.txtIDPaquete.setText(idPaquete);
-        // encomienda.txtDescripPaquete.setText(descripcion);
-        //encomienda.txtPesoPaquete.setText(pesoPaquete);
-        //encomienda.txtVolPaquete.setText(volumenPaquete);
-        //encomienda.txtPrecioPaquete.setText(precioPaquete);
-        //encomienda.jCBIsFragil.setSelected(isFragil);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
     }//GEN-LAST:event_jTEncomiendasMouseClicked
 
     private void btnCrearEncomiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearEncomiendaActionPerformed
@@ -649,7 +645,6 @@ public class JFEncomiendas extends javax.swing.JFrame {
         encomiendaController.mostrarEncomienda((DefaultTableModel) this.jTEncomiendas.getModel());
     }//GEN-LAST:event_btnRestablecerActionPerformed
 
-  
     /**
      * @param args the command line arguments
      */
