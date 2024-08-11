@@ -6,12 +6,15 @@ import encomiendas.model.entity.usuarios.Agencia;
 import encomiendas.model.entity.usuarios.Cliente;
 import encomiendas.services.encomiendas.EncomiendaService;
 import encomiendas.views.encomiendas.JFEncomiendas;
+import encomiendas.views.encomiendas.JFInfoEncomiendas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -23,14 +26,11 @@ public class EncomiendaController implements ActionListener, ItemListener {
     private Encomienda encomiendaAGuardar = new Encomienda();
     private JFrame view;
     private EncomiendaService encomiendaService;
-
+    JFInfoEncomiendas viewEncomiendaInfo;
     private JFEncomiendas viewEncomienda;
-
-    public EncomiendaController(JFrame view, EncomiendaService encomienda) {
-        this.view = view;
-        this.encomiendaService = encomienda;
-    }
-
+    private JFInfoEncomiendas viewInfoEncominda;
+    private String idEncominda;
+   
     public EncomiendaController(JFEncomiendas viewEncomienda, EncomiendaService encomienda) {
         this.encomiendaService = encomienda;
         this.viewEncomienda = viewEncomienda;
@@ -38,6 +38,12 @@ public class EncomiendaController implements ActionListener, ItemListener {
         viewEncomienda.jCBAgenciaOrigen.addItemListener(this);
 
     }
+     public EncomiendaController(JFInfoEncomiendas viewEncomiendaInfo, EncomiendaService encomienda) {
+        this.encomiendaService = encomienda;
+        this.viewEncomiendaInfo = viewEncomiendaInfo;
+       
+    }
+   
 
     public void mostrarEncomienda(DefaultTableModel modeloTablaEncomienda) {
         try {
@@ -93,6 +99,28 @@ public class EncomiendaController implements ActionListener, ItemListener {
             System.out.println(ex);
         }
     }
+    public void MostrarInfoEncomida(JFInfoEncomiendas viewInfoEncominda,String idEncominda) throws SQLException{
+        Integer idEncomienda = Integer.parseInt(idEncominda);
+        Encomienda encomienda = encomiendaService.getEncomiendaById(idEncomienda);
+        viewInfoEncominda.txtCedulaReceptor.setText(encomienda.getReceptor().getCedula());
+        viewInfoEncominda.txtcedulaEmisor.setText(encomienda.getEmisor().getCedula());
+        LocalDate localDate = encomienda.getFechaEmision();
+        viewInfoEncominda.txtEstadoEncomienda.setText(encomienda.consultarEstado());
+        viewInfoEncominda.jDCFechaEnvio.setDate(Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        viewInfoEncominda.txtAgenciaO.setText(encomienda.getAgenciaOrigen().getNombreAgencia());
+        viewInfoEncominda.txtAgenD.setText(encomienda.getAgenciaDestino().getNombreAgencia());
+        viewInfoEncominda.txtDirEntrega.setText(encomienda.getDireccionEntrega());
+        viewInfoEncominda.txtCodPostal.setText(encomienda.getCodigoPostal().toString());
+        if("Domicilio".equals(encomienda.getTipoEntrega()) && encomienda.getAgenciaDestino().getIdAgencia() != encomienda.getAgenciaOrigen().getIdAgencia()){
+            viewInfoEncominda.JCheckDomicilio.setSelected(true);
+            viewInfoEncominda.jCheckInterprovincial.setSelected(true);
+        }else if("Domicilio".equals(encomienda.getTipoEntrega()) && encomienda.getAgenciaDestino().getIdAgencia() == encomienda.getAgenciaOrigen().getIdAgencia()){
+            viewInfoEncominda.JCheckDomicilio.setSelected(true);
+        }
+        else{
+            viewInfoEncominda.jCheckInterprovincial.setSelected(true);
+        }
+    }
 
     public void cargarAgenciasOrigen() {
         try {
@@ -110,7 +138,7 @@ public class EncomiendaController implements ActionListener, ItemListener {
             System.out.println("Error al cargar agencias de origen: " + ex);
         }
     }
-
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         
@@ -241,7 +269,17 @@ public class EncomiendaController implements ActionListener, ItemListener {
             System.out.println(viewEncomienda.listaPaquete.toString());
         }
     }
-
+   
+    public void actionPerformedInfo(ActionEvent e) {
+        if (e.getSource() == viewEncomiendaInfo.btnDesembarcar) {
+        
+        }
+        if(e.getSource() == viewEncomiendaInfo.btnDespachar){
+        
+        }
+    }
+        
+    
     @Override
     public void itemStateChanged(ItemEvent e) {
         if (e.getSource() == viewEncomienda.jCBAgenciaOrigen && e.getStateChange() == ItemEvent.SELECTED) {

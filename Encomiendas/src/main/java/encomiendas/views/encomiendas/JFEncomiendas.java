@@ -11,8 +11,11 @@ import encomiendas.model.entity.encomiendas.Encomienda;
 import encomiendas.model.entity.encomiendas.Paquete;
 import encomiendas.services.encomiendas.EncomiendaService;
 import encomiendas.services.encomiendas.PaqueteService;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -610,24 +613,19 @@ public class JFEncomiendas extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jTEncomiendasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTEncomiendasMouseClicked
+         
         int index = jTEncomiendas.getSelectedRow();
         TableModel model = jTEncomiendas.getModel();
         String idEncomienda = model.getValueAt(index, 0).toString();
-        String remitenteE = model.getValueAt(index, 1).toString();
-        String destiantarioE = model.getValueAt(index, 2).toString();
-        String agenciaO = model.getValueAt(index, 3).toString();
-        String agenciaD = model.getValueAt(index, 4).toString();
-
         JFInfoEncomiendas infoEncomienda = new JFInfoEncomiendas();
         infoEncomienda.setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
         infoEncomienda.setVisible(true);
-
-        //encomienda.txtIDPaquete.setText(idPaquete);
-        // encomienda.txtDescripPaquete.setText(descripcion);
-        //encomienda.txtPesoPaquete.setText(pesoPaquete);
-        //encomienda.txtVolPaquete.setText(volumenPaquete);
-        //encomienda.txtPrecioPaquete.setText(precioPaquete);
-        //encomienda.jCBIsFragil.setSelected(isFragil);
+        try {
+            encomiendaController.MostrarInfoEncomida(infoEncomienda, idEncomienda);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(JFEncomiendas.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jTEncomiendasMouseClicked
 
     private void btnCrearEncomiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearEncomiendaActionPerformed

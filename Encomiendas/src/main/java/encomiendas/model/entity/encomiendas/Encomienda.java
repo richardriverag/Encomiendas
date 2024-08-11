@@ -29,7 +29,7 @@ public class Encomienda {
         this.agenciaOrigen = agenciaOrigen;
         this.agenciaDestino = agenciaDestino;
         this.receptor = receptor;
-    this.emisor = emisor;
+        this.emisor = emisor;
         this.fechaEmision = fechaEmision;
         this.fechaLLegada = fechaLLegada;
         this.tipoEntrega = tipoEntrega;
