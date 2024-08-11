@@ -65,9 +65,9 @@ public class EncomiendaService {
     }
 
     //Cambiar el estado de una encomienda
-    public void cambiarEstado(Integer idEncomienda) throws SQLException {
+    public void cambiarEstado(Integer idEncomienda, String estado) throws SQLException {
         Encomienda encomienda = getEncomiendaById(idEncomienda);
-        encomienda.cambiarEstado();
+        encomienda.setEstadoFromString(estado);
         updateEncomienda(idEncomienda, encomienda);
     }
 

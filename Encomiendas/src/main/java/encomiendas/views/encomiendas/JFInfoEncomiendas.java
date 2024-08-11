@@ -15,6 +15,8 @@ import encomiendas.model.entity.encomiendas.Encomienda;
 import encomiendas.services.encomiendas.EncomiendaService;
 import encomiendas.services.encomiendas.PaqueteService;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -70,7 +72,7 @@ public class JFInfoEncomiendas extends javax.swing.JFrame {
         btnDesembarcar1 = new javax.swing.JButton();
         panelDatosEncomienda = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
-        txtCedulaReceptor = new javax.swing.JTextField();
+        txtIdEncomienda = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         txtcedulaEmisor = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
@@ -83,6 +85,8 @@ public class JFInfoEncomiendas extends javax.swing.JFrame {
         txtEstadoEncomienda = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         txtAgenciaO = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        txtCedulaReceptor = new javax.swing.JTextField();
         panelInterprovincial = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         txtAgenD = new javax.swing.JTextField();
@@ -117,9 +121,9 @@ public class JFInfoEncomiendas extends javax.swing.JFrame {
 
         jLabel16.setText("Número de cédula del receptor");
 
-        txtCedulaReceptor.addActionListener(new java.awt.event.ActionListener() {
+        txtIdEncomienda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCedulaReceptorActionPerformed(evt);
+                txtIdEncomiendaActionPerformed(evt);
             }
         });
 
@@ -165,6 +169,14 @@ public class JFInfoEncomiendas extends javax.swing.JFrame {
             }
         });
 
+        jLabel18.setText("Id Encomienda");
+
+        txtCedulaReceptor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCedulaReceptorActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelDatosEncomiendaLayout = new javax.swing.GroupLayout(panelDatosEncomienda);
         panelDatosEncomienda.setLayout(panelDatosEncomiendaLayout);
         panelDatosEncomiendaLayout.setHorizontalGroup(
@@ -172,66 +184,69 @@ public class JFInfoEncomiendas extends javax.swing.JFrame {
             .addGroup(panelDatosEncomiendaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelDatosEncomiendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDatosEncomiendaLayout.createSequentialGroup()
+                        .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtEstadoEncomienda, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelDatosEncomiendaLayout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtAgenciaO, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelDatosEncomiendaLayout.createSequentialGroup()
+                        .addComponent(jLabel14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jDCFechaEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelDatosEncomiendaLayout.createSequentialGroup()
+                        .addComponent(jLabel15)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtcedulaEmisor, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelDatosEncomiendaLayout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addGap(25, 25, 25)
+                        .addComponent(jCheckInterprovincial)
+                        .addGap(47, 47, 47)
+                        .addComponent(jLabel11)
+                        .addGap(17, 17, 17)
+                        .addComponent(JCheckDomicilio)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(panelDatosEncomiendaLayout.createSequentialGroup()
                         .addGroup(panelDatosEncomiendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelDatosEncomiendaLayout.createSequentialGroup()
-                                .addComponent(jLabel16)
-                                .addGap(16, 16, 16)
-                                .addComponent(txtCedulaReceptor, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelDatosEncomiendaLayout.createSequentialGroup()
-                                .addComponent(jLabel15)
-                                .addGap(24, 24, 24)
-                                .addComponent(txtcedulaEmisor, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelDatosEncomiendaLayout.createSequentialGroup()
-                                .addComponent(jLabel14)
-                                .addGap(180, 180, 180)
-                                .addComponent(jDCFechaEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelDatosEncomiendaLayout.createSequentialGroup()
-                                .addComponent(jLabel12)
-                                .addGap(25, 25, 25)
-                                .addComponent(jCheckInterprovincial)
-                                .addGap(47, 47, 47)
-                                .addComponent(jLabel11)
-                                .addGap(17, 17, 17)
-                                .addComponent(JCheckDomicilio)))
-                        .addGap(0, 1, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDatosEncomiendaLayout.createSequentialGroup()
+                            .addComponent(jLabel16)
+                            .addComponent(jLabel18))
+                        .addGap(18, 18, 18)
                         .addGroup(panelDatosEncomiendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelDatosEncomiendaLayout.createSequentialGroup()
-                                .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(panelDatosEncomiendaLayout.createSequentialGroup()
-                                .addComponent(jLabel13)
-                                .addGap(87, 87, 87)))
-                        .addGroup(panelDatosEncomiendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtAgenciaO)
-                            .addComponent(txtEstadoEncomienda, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE))))
+                                .addComponent(txtIdEncomienda, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 1, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDatosEncomiendaLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(txtCedulaReceptor, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         panelDatosEncomiendaLayout.setVerticalGroup(
             panelDatosEncomiendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelDatosEncomiendaLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(panelDatosEncomiendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelDatosEncomiendaLayout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(jLabel16))
+                .addGap(15, 15, 15)
+                .addGroup(panelDatosEncomiendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtIdEncomienda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel18))
+                .addGap(21, 21, 21)
+                .addGroup(panelDatosEncomiendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
                     .addComponent(txtCedulaReceptor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGroup(panelDatosEncomiendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtcedulaEmisor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panelDatosEncomiendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelDatosEncomiendaLayout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(jLabel15))
-                    .addComponent(txtcedulaEmisor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jDCFechaEnvio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(panelDatosEncomiendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel14)
-                    .addComponent(jDCFechaEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(panelDatosEncomiendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelDatosEncomiendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(txtAgenciaO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(panelDatosEncomiendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
                     .addComponent(txtEstadoEncomienda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -453,7 +468,7 @@ public class JFInfoEncomiendas extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(panelDatosEncomienda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(panelInterprovincial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(panelEntregaDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -463,7 +478,7 @@ public class JFInfoEncomiendas extends javax.swing.JFrame {
                         .addComponent(panelOpEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(panelConductores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
@@ -473,9 +488,9 @@ public class JFInfoEncomiendas extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jMISalirActionPerformed
 
-    private void txtCedulaReceptorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaReceptorActionPerformed
+    private void txtIdEncomiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdEncomiendaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCedulaReceptorActionPerformed
+    }//GEN-LAST:event_txtIdEncomiendaActionPerformed
 
     private void txtcedulaEmisorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcedulaEmisorActionPerformed
         // TODO add your handling code here:
@@ -518,24 +533,48 @@ public class JFInfoEncomiendas extends javax.swing.JFrame {
     }//GEN-LAST:event_txtAgenciaOActionPerformed
 
     private void btnDespacharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDespacharActionPerformed
-        encomiendaController.actionPerformedInfo(evt);
+        try {
+            encomiendaController.actionPerformedInfo(evt);
+        } catch (SQLException ex) {
+            Logger.getLogger(JFInfoEncomiendas.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnDespacharActionPerformed
 
     private void btnDesembarcarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDesembarcarActionPerformed
-        encomiendaController.actionPerformedInfo(evt);
+        try {
+            encomiendaController.actionPerformedInfo(evt);
+        } catch (SQLException ex) {
+            Logger.getLogger(JFInfoEncomiendas.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnDesembarcarActionPerformed
 
     private void btnDesembarcar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDesembarcar1ActionPerformed
-        // TODO add your handling code here:
+        try {
+            encomiendaController.actionPerformedInfo(evt);
+        } catch (SQLException ex) {
+            Logger.getLogger(JFInfoEncomiendas.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnDesembarcar1ActionPerformed
 
     private void btnEntregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntregarActionPerformed
-        // TODO add your handling code here:
+        try {
+            encomiendaController.actionPerformedInfo(evt);
+        } catch (SQLException ex) {
+            Logger.getLogger(JFInfoEncomiendas.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnEntregarActionPerformed
 
     private void btnEmbarcarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmbarcarActionPerformed
-        // TODO add your handling code here:
+        try {
+            encomiendaController.actionPerformedInfo(evt);
+        } catch (SQLException ex) {
+            Logger.getLogger(JFInfoEncomiendas.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnEmbarcarActionPerformed
+
+    private void txtCedulaReceptorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaReceptorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCedulaReceptorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -591,6 +630,7 @@ public class JFInfoEncomiendas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuItem jMISalir;
@@ -608,6 +648,7 @@ public class JFInfoEncomiendas extends javax.swing.JFrame {
     public javax.swing.JTextField txtCodPostal;
     public javax.swing.JTextField txtDirEntrega;
     public javax.swing.JTextField txtEstadoEncomienda;
+    public javax.swing.JTextField txtIdEncomienda;
     public javax.swing.JTextField txtcedulaEmisor;
     // End of variables declaration//GEN-END:variables
 }

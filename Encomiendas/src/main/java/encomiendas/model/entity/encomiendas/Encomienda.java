@@ -174,13 +174,13 @@ public class Encomienda {
 
     public void setEstadoFromString(String estadoStr) {
         switch (estadoStr) {
-            case "En bodega":
+            case "En bodega destino":
                 this.estado = new EnBodegaD();
                 break;
             case "En bodega origen":
                 this.estado = new EnBodegaO();
                 break;
-            case "EnTransito":
+            case "En Transito":
                 this.estado = new EnTransito();
                 break;
             case "Entregado":
