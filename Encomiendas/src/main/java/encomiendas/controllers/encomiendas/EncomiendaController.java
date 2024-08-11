@@ -42,8 +42,7 @@ public class EncomiendaController implements ActionListener, ItemListener {
     }
      public EncomiendaController(JFInfoEncomiendas viewEncomiendaInfo, EncomiendaService encomienda) {
         this.encomiendaService = encomienda;
-        this.viewEncomiendaInfo = viewEncomiendaInfo;
-       
+        this.viewEncomiendaInfo = viewEncomiendaInfo;    
     }
    
 
@@ -141,7 +140,6 @@ public class EncomiendaController implements ActionListener, ItemListener {
             System.out.println("Error al cargar agencias de origen: " + ex);
         }
     }
-    
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -269,14 +267,34 @@ public class EncomiendaController implements ActionListener, ItemListener {
         }
     }
    
-    public void actionPerformedInfo(ActionEvent e) {
-        if (e.getSource() == viewEncomiendaInfo.btnDesembarcar) {
-        
-        }
-        if(e.getSource() == viewEncomiendaInfo.btnDespachar){
-        
-        }
+   public void actionPerformedInfo(ActionEvent e) throws SQLException {
+    Integer idEncomienda = Integer.parseInt(viewEncomiendaInfo.txtIdEncomienda.getText());
+    String estado = "";
+    String mensaje = "";
+
+    if (e.getSource() == viewEncomiendaInfo.btnDesembarcar) {
+        estado = "En bodega destino";
+        encomiendaService.cambiarEstado(idEncomienda, estado);
+        mensaje = "Se cambió el estado de la encomienda a 'En bodega destino'.";
+    } else if (e.getSource() == viewEncomiendaInfo.btnDespachar) {
+        estado = "Recolectado";
+        encomiendaService.cambiarEstado(idEncomienda, estado);
+        mensaje = "Se cambió el estado de la encomienda a 'Recolectado'.";
+    } else if (e.getSource() == viewEncomiendaInfo.btnEmbarcar) {
+        estado = "EnTransito";
+        encomiendaService.cambiarEstado(idEncomienda, estado);
+        mensaje = "Se cambió el estado de la encomienda a 'EnTransito'.";
+    } else if (e.getSource() == viewEncomiendaInfo.btnEntregar) {
+        estado = "Entregado";
+        encomiendaService.cambiarEstado(idEncomienda, estado);
+        mensaje = "Se cambió el estado de la encomienda a 'Entregado'.";
     }
+
+    // Mostrar el mensaje en un diálogo
+    if (!mensaje.isEmpty()) {
+        JOptionPane.showMessageDialog(viewEncomiendaInfo, mensaje, "Estado Cambiado", JOptionPane.INFORMATION_MESSAGE);
+    }
+}
         
     
     @Override
@@ -284,7 +302,7 @@ public class EncomiendaController implements ActionListener, ItemListener {
         if (e.getSource() == viewEncomienda.jCBAgenciaOrigen && e.getStateChange() == ItemEvent.SELECTED) {
             // Solo ejecutar el código si una nueva agencia es seleccionada
             String agenciaOrigenSeleccionada = viewEncomienda.jCBAgenciaOrigen.getSelectedItem().toString();
-
+            
             try {
                 List<Agencia> todasLasAgencias = encomiendaService.obtenerAgencias();
                 System.out.println("SI JALE LAS AGENCIAS");

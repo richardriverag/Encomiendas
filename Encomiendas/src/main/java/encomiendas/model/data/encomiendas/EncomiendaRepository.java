@@ -155,8 +155,9 @@ public class EncomiendaRepository implements Repository<Encomienda> {
 
     @Override
     public void update(Integer id, Encomienda encomienda) throws SQLException {
-        try (PreparedStatement myStament = myConn.prepareStatement("update encomienda set estado = ? where id_agencia = ?")) {
-            myStament.setString(1, String.valueOf(encomienda.getTipoEntrega()));
+        try (PreparedStatement myStament = myConn.prepareStatement("update encomienda set estado_encomienda = ? where id_encomienda = ?")) {
+            myStament.setString(1, String.valueOf(encomienda.getEstado().nombreEstado()));
+            myStament.setInt(2, id);
             myStament.executeUpdate();
         }
 
