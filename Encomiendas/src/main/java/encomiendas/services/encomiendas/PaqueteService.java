@@ -20,6 +20,11 @@ public class PaqueteService {
         return paqueteRepository.findAll();
     }
 
+    public List<Paquete> getAllPaquetesByEncomienda(Integer idEncomienda) throws SQLException {
+        return paqueteRepository.findAllByEncomienda(idEncomienda);
+    }
+
+    
     //Obtener un paquete por id
     public Paquete getPaqueteById(Integer id) throws SQLException {
         return paqueteRepository.getById(id);

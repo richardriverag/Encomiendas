@@ -85,7 +85,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="510" y="30" width="190" height="210"/>
+                  <AbsoluteConstraints x="510" y="30" width="190" height="240"/>
                 </Constraint>
               </Constraints>
 
@@ -118,7 +118,7 @@
                           <Component id="btnCrearEncomienda" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="btnCancelar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="10" max="32767" attributes="0"/>
+                          <EmptySpace pref="40" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -609,7 +609,11 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="btnFiltrar" min="-2" pref="157" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="btnFiltrar" min="-2" pref="157" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="btnRestablecer" min="-2" pref="135" max="-2" attributes="0"/>
+                              </Group>
                               <Component id="jScrollPane2" min="-2" pref="642" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="32" max="32767" attributes="0"/>
@@ -620,7 +624,10 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                          <Component id="btnFiltrar" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="btnFiltrar" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnRestablecer" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jScrollPane2" min="-2" pref="275" max="-2" attributes="0"/>
                           <EmptySpace pref="45" max="32767" attributes="0"/>
@@ -715,6 +722,14 @@
                     </Component>
                   </SubComponents>
                 </Container>
+                <Component class="javax.swing.JButton" name="btnRestablecer">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Reestablecer"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRestablecerActionPerformed"/>
+                  </Events>
+                </Component>
               </SubComponents>
             </Container>
           </SubComponents>

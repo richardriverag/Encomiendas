@@ -123,5 +123,9 @@ public class PaqueteController implements ActionListener {
         }
 
     }
+    
+    public void mostarPaquetesByEncomienda(List<Paquete> listaPaquetes){
+    
+    }
 
 }

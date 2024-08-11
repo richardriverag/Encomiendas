@@ -34,6 +34,7 @@ public class JFPaquetes extends javax.swing.JFrame {
         paqueteRepository = new PaqueteRepository(con.getInstance());
         paqueteService = new PaqueteService(paqueteRepository);
         paqueteController = new PaqueteController(this, paqueteService);
+        btnAddPaquete.setVisible(false);
     }
 
     /**
@@ -243,6 +244,7 @@ public class JFPaquetes extends javax.swing.JFrame {
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         paqueteController.actionPerformed(evt);
         this.setVisible(false);
+        limpiar();
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed

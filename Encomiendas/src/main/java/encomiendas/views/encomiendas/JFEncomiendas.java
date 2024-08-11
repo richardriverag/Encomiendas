@@ -109,6 +109,7 @@ public class JFEncomiendas extends javax.swing.JFrame {
         btnFiltrar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTEncomiendas = new javax.swing.JTable();
+        btnRestablecer = new javax.swing.JButton();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
 
@@ -181,10 +182,10 @@ public class JFEncomiendas extends javax.swing.JFrame {
                 .addComponent(btnCrearEncomienda)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCancelar)
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
-        jPanel2.add(panelOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 30, 190, 210));
+        jPanel2.add(panelOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 30, 190, 240));
 
         panelDatos.setBorder(javax.swing.BorderFactory.createTitledBorder("Encomienda"));
 
@@ -446,6 +447,13 @@ public class JFEncomiendas extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jTEncomiendas);
 
+        btnRestablecer.setText("Reestablecer");
+        btnRestablecer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRestablecerActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -453,7 +461,10 @@ public class JFEncomiendas extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(btnFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnRestablecer, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 642, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
@@ -461,7 +472,9 @@ public class JFEncomiendas extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addComponent(btnFiltrar)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnFiltrar)
+                    .addComponent(btnRestablecer))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(45, Short.MAX_VALUE))
@@ -518,8 +531,6 @@ public class JFEncomiendas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFiltrarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        
-//        System.out.println(listaPaquete.toString());
         encomiendaController.actionPerformed(evt);
         limpiar();
     }//GEN-LAST:event_btnCancelarActionPerformed
@@ -554,7 +565,7 @@ public class JFEncomiendas extends javax.swing.JFrame {
     private void btnAgregarPaqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPaqueteActionPerformed
         ventanaPaquete.setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
         ventanaPaquete.setVisible(true);
-        ventanaPaquete.btnAddPaquete.setVisible(true);
+        ventanaPaquete.btnAddPaquete.setVisible(false);
         btnCrearEncomienda.setVisible(true);
     }//GEN-LAST:event_btnAgregarPaqueteActionPerformed
 
@@ -623,6 +634,7 @@ public class JFEncomiendas extends javax.swing.JFrame {
         listaPaquete = ventanaPaquete.listaPaquetes;
         encomiendaController.actionPerformed(evt);
         encomiendaController.mostrarEncomienda((DefaultTableModel) this.jTEncomiendas.getModel());
+        limpiar();
     }//GEN-LAST:event_btnCrearEncomiendaActionPerformed
 
     private void jCBAgenciaOrigenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBAgenciaOrigenActionPerformed
@@ -633,6 +645,11 @@ public class JFEncomiendas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCBAgenciaOrigenMouseReleased
 
+    private void btnRestablecerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestablecerActionPerformed
+        encomiendaController.mostrarEncomienda((DefaultTableModel) this.jTEncomiendas.getModel());
+    }//GEN-LAST:event_btnRestablecerActionPerformed
+
+  
     /**
      * @param args the command line arguments
      */
@@ -676,6 +693,7 @@ public class JFEncomiendas extends javax.swing.JFrame {
     public javax.swing.JButton btnCrearEncomienda;
     public javax.swing.JButton btnFiltrar;
     public javax.swing.JButton btnGuardarEncomienda;
+    private javax.swing.JButton btnRestablecer;
     public javax.swing.JButton btnVerPaquetes;
     public javax.swing.JComboBox<String> jCBAgenciaDestino;
     public javax.swing.JComboBox<String> jCBAgenciaOrigen;
