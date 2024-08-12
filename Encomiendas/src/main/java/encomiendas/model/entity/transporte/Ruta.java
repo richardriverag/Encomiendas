@@ -12,6 +12,7 @@ public class Ruta {
 
     public Ruta() {
     }
+
     
     public Ruta(int id,String descripcion, Agencia agenciaSalida, boolean esInterprovincial) {
         this.id = id;
@@ -19,7 +20,6 @@ public class Ruta {
         this.agenciaSalida = agenciaSalida;
         this.tipo_ruta = esInterprovincial;
     }
-
     // Getters y Setters
     
     // descripcion

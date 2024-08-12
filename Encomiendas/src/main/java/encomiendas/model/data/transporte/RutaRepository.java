@@ -8,7 +8,6 @@ package encomiendas.model.data.transporte;
  *
  * @author Sebastian Aisalla
  */
-
 import encomiendas.model.data.Repository;
 import encomiendas.model.entity.transporte.Ruta;
 import java.sql.*;
@@ -16,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RutaRepository implements Repository<Ruta> {
+
     private Connection myConn;
 
     public RutaRepository(Connection myConn) {
@@ -25,8 +25,7 @@ public class RutaRepository implements Repository<Ruta> {
     @Override
     public List<Ruta> findAll() throws SQLException {
         List<Ruta> rutas = new ArrayList<>();
-        try (Statement stmt = myConn.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT * FROM ruta")) {
+        try (Statement stmt = myConn.createStatement(); ResultSet rs = stmt.executeQuery("SELECT * FROM ruta")) {
             while (rs.next()) {
                 Ruta ruta = createRuta(rs);
                 rutas.add(ruta);
@@ -42,10 +41,14 @@ public class RutaRepository implements Repository<Ruta> {
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                ruta = createRuta(rs);
+                // Verifica si todos los campos importantes están en null
+                if (rs.getObject("ruta_id") != null) {  // Cambia "columna_principal" por una columna clave
+                    ruta = createRuta(rs);
+                }
             }
         }
         return ruta;
+
     }
 
     @Override
@@ -81,10 +84,10 @@ public class RutaRepository implements Repository<Ruta> {
 
     private Ruta createRuta(ResultSet rs) throws SQLException {
         Ruta ruta = new Ruta();
+        ruta.setId(rs.getInt("ruta_id"));
         ruta.setDescripcion(rs.getString("descripcion"));
         ruta.setParadas(rs.getString("listaParadas"));
         ruta.setEsInterprovincial(rs.getBoolean("tipo_ruta"));
         return ruta;
     }
 }
-
