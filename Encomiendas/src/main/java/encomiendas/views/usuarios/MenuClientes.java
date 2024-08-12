@@ -32,10 +32,9 @@ public class MenuClientes extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         btPerfil = new javax.swing.JButton();
-        btClientes = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jTFUsuarioCliente = new javax.swing.JTextField();
+        jLCliente = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -57,36 +56,22 @@ public class MenuClientes extends javax.swing.JFrame {
                 btPerfilActionPerformed(evt);
             }
         });
-        jPanel2.add(btPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 150, 30));
-
-        btClientes.setBackground(new java.awt.Color(200, 0, 0));
-        btClientes.setForeground(new java.awt.Color(255, 255, 255));
-        btClientes.setText("boton2");
-        btClientes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 255, 255), null, null));
-        btClientes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btClientesActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 150, 30));
-
-        jButton3.setBackground(new java.awt.Color(200, 0, 0));
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("jButton3");
-        jButton3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 255, 255), null, null));
-        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 150, 30));
-
-        jButton4.setBackground(new java.awt.Color(200, 0, 0));
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("jButton4");
-        jButton4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 255, 255), null, null));
-        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 150, 30));
+        jPanel2.add(btPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 150, 30));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(jLabel1.getFont().deriveFont(jLabel1.getFont().getSize()-2f));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo - copia.jpg"))); // NOI18N
         jLabel1.setToolTipText("");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 90, 90));
+
+        jTFUsuarioCliente.setEditable(false);
+        jPanel2.add(jTFUsuarioCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 130, -1));
+
+        jLCliente.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        jLCliente.setForeground(new java.awt.Color(255, 255, 255));
+        jLCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLCliente.setText("Cliente:");
+        jPanel2.add(jLCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 130, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 430));
 
@@ -140,10 +125,6 @@ public class MenuClientes extends javax.swing.JFrame {
         jPanel3.repaint();
     }//GEN-LAST:event_btPerfilActionPerformed
 
-    private void btClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btClientesActionPerformed
-        
-    }//GEN-LAST:event_btClientesActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -181,14 +162,13 @@ public class MenuClientes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btClientes;
     private javax.swing.JButton btPerfil;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jLCliente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JTextField jTFUsuarioCliente;
     // End of variables declaration//GEN-END:variables
 }

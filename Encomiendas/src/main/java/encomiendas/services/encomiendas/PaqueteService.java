@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class PaqueteService {
-
+    
     private final PaqueteRepository paqueteRepository;
 
     public PaqueteService(PaqueteRepository paqueteRepository) {
@@ -20,6 +20,11 @@ public class PaqueteService {
         return paqueteRepository.findAll();
     }
 
+    public List<Paquete> getAllPaquetesByEncomienda(Integer idEncomienda) throws SQLException {
+        return paqueteRepository.findAllByEncomienda(idEncomienda);
+    }
+
+    
     //Obtener un paquete por id
     public Paquete getPaqueteById(Integer id) throws SQLException {
         return paqueteRepository.getById(id);

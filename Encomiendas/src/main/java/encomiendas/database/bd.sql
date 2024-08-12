@@ -76,6 +76,7 @@ CREATE TABLE encomienda (
     direccion_entrega VARCHAR(200),
     cod_postal_entrega VARCHAR(10),
     estado_encomienda VARCHAR(50),
+    precio_encomienda FLOAT,
     FOREIGN KEY (id_agencia_origen) REFERENCES AGENCIA(id_agencia),
     FOREIGN KEY (id_agencia_destino) REFERENCES AGENCIA(id_agencia),
     FOREIGN KEY (cedula_receptor) REFERENCES USUARIO(cedula),
@@ -84,9 +85,11 @@ CREATE TABLE encomienda (
 
 CREATE TABLE paquete (
     id_paquete INT PRIMARY KEY AUTO_INCREMENT,
+    descripcion VARCHAR(75),
     peso FLOAT,
     volumen FLOAT,
     isFragil BOOLEAN,
+    precio FLOAT,
     id_encomienda INT,
     FOREIGN KEY (id_encomienda) REFERENCES ENCOMIENDA(id_encomienda)
 );
@@ -150,14 +153,18 @@ VALUES
 -- Insertar datos en la tabla USUARIO
 INSERT INTO usuario (cedula, nombres, apellidos, correo, telefono, rol, direccion, ciudad, telefono_adicional, tipo_licencia, activo, id_agencia)
 VALUES
+('V12345673', 'Michael', 'Trocellier', 'michael@example.com', '1234567890', 'Administrador', 'Av. Ejemplo 1', 'Ciudad A', '0987654321', 'A', TRUE, 1),
 ('V12345678', 'Juan', 'Pérez', 'juan.perez@example.com', '1234567890', 'Empleado', 'Av. Ejemplo 1', 'Ciudad A', '0987654321', 'A', TRUE, 1),
 ('V87654321', 'Ana', 'Gómez', 'ana.gomez@example.com', '2345678901', 'Cliente', 'Av. Ejemplo 2', 'Ciudad B', '0123456789', 'B', TRUE, 2);
 
 -- Insertar datos en la tabla CUENTA
 INSERT INTO cuenta (cedula, username, contrasenia)
 VALUES
+('V12345673', 'micos', 'password123'),
 ('V12345678', 'juanperez', 'password123'),
 ('V87654321', 'anagomez', 'password456');
+
+
 
 -- Insertar datos en la tabla TRANSPORTE
 INSERT INTO transporte (capacidad_carga, modelo, anio_fabricacion, kilometraje, tipo_transporte, estado_transporte)
@@ -219,3 +226,5 @@ VALUES
 ('2024-07-20', '2024-07-21', TRUE, 1, 1),
 ('2024-07-21', '2024-07-22', TRUE, 2, 2);
 
+
+select * from encomiendas.paquetes;
