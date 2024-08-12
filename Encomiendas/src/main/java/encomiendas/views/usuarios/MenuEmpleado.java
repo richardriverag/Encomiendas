@@ -1,15 +1,14 @@
 package encomiendas.views.usuarios;
 
-
-import encomiendas.views.encomiendas.JFEncomiendas;
-import java.awt.BorderLayout;
-
 /**
  *
  * @author USER-PC
  */
 public class MenuEmpleado extends javax.swing.JFrame {
 
+    /**
+     * Creates new form MenuClientes
+     */
     public MenuEmpleado() {
         initComponents();
         setLocationRelativeTo(null);
@@ -24,165 +23,438 @@ public class MenuEmpleado extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPMenúAdministrador = new javax.swing.JPanel();
-        jPAdministradorMétodos = new javax.swing.JPanel();
+        jPMenuEmpleado = new javax.swing.JPanel();
+        jPEmpleadoMétodos = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLEmpleado = new javax.swing.JLabel();
         jTFUsuarioEmpleado = new javax.swing.JTextField();
+        JTPEmpleado = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
+        jPMétodoEditar5 = new javax.swing.JPanel();
+        jPAEditarUsuarios4 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jFTNombresE = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jTFApellidoE = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jTFCedulaE = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jTFCorreoE = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jTFTelefonoE = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jLFotoPerfilE = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jTFUsuarioE = new javax.swing.JTextField();
+        btECredencial = new javax.swing.JButton();
         btEPerfil = new javax.swing.JButton();
+        jTFContrasenia = new javax.swing.JTextField();
+        jBCambiarFoto = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jPMétodoEditar2 = new javax.swing.JPanel();
+        jPAEditarUsuarios2 = new javax.swing.JPanel();
+        jLTablaUsuarios2 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTbEClientes = new javax.swing.JTable();
         btEClientes = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jPMétodoEditar3 = new javax.swing.JPanel();
+        jPAEditarUsuarios3 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTbConductores = new javax.swing.JTable();
+        jLTablaUsuarios3 = new javax.swing.JLabel();
         btEConductores = new javax.swing.JButton();
-        btEEncomiendas = new javax.swing.JButton();
-        jPEmpleado = new javax.swing.JPanel();
-        jLBienvenida = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jPMétodoEditar4 = new javax.swing.JPanel();
+        jPAEEcomiendas = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Menú - Administrador");
+        setTitle("Menú - Empleado");
         setResizable(false);
 
-        jPMenúAdministrador.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPMenuEmpleado.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPAdministradorMétodos.setBackground(new java.awt.Color(0, 0, 0));
-        jPAdministradorMétodos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPEmpleadoMétodos.setBackground(new java.awt.Color(0, 0, 0));
+        jPEmpleadoMétodos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(jLabel1.getFont().deriveFont(jLabel1.getFont().getSize()-2f));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo - copia.jpg"))); // NOI18N
         jLabel1.setToolTipText("");
-        jPAdministradorMétodos.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 90, 90));
+        jPEmpleadoMétodos.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 90, 90));
 
         jLEmpleado.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLEmpleado.setForeground(new java.awt.Color(255, 255, 255));
         jLEmpleado.setText("Empleado:");
-        jPAdministradorMétodos.add(jLEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, -1));
+        jPEmpleadoMétodos.add(jLEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, -1));
 
         jTFUsuarioEmpleado.setEditable(false);
-        jPAdministradorMétodos.add(jTFUsuarioEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 130, -1));
+        jTFUsuarioEmpleado.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jTFUsuarioEmpleado.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jPEmpleadoMétodos.add(jTFUsuarioEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 130, -1));
 
-        btEPerfil.setBackground(new java.awt.Color(200, 0, 0));
-        btEPerfil.setForeground(new java.awt.Color(255, 255, 255));
-        btEPerfil.setText("Perfil");
-        btEPerfil.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 255, 255), null, null));
-        btEPerfil.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btEPerfilActionPerformed(evt);
-            }
-        });
-        jPAdministradorMétodos.add(btEPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 150, 30));
+        jPMenuEmpleado.add(jPEmpleadoMétodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 440));
 
-        btEClientes.setBackground(new java.awt.Color(200, 0, 0));
-        btEClientes.setForeground(new java.awt.Color(255, 255, 255));
-        btEClientes.setText("Clientes");
-        btEClientes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 255, 255), null, null));
-        btEClientes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btEClientesActionPerformed(evt);
-            }
-        });
-        jPAdministradorMétodos.add(btEClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 150, 30));
+        JTPEmpleado.setBackground(new java.awt.Color(200, 0, 0));
+        JTPEmpleado.setForeground(new java.awt.Color(255, 255, 255));
 
-        btEConductores.setBackground(new java.awt.Color(200, 0, 0));
-        btEConductores.setForeground(new java.awt.Color(255, 255, 255));
-        btEConductores.setText("Conductores");
-        btEConductores.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 255, 255), null, null));
-        btEConductores.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btEConductoresActionPerformed(evt);
-            }
-        });
-        jPAdministradorMétodos.add(btEConductores, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 150, 30));
+        jPMétodoEditar5.setBackground(new java.awt.Color(204, 0, 51));
+        jPMétodoEditar5.setMinimumSize(new java.awt.Dimension(690, 430));
+        jPMétodoEditar5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btEEncomiendas.setBackground(new java.awt.Color(200, 0, 0));
-        btEEncomiendas.setForeground(new java.awt.Color(255, 255, 255));
-        btEEncomiendas.setText("Encomiendas");
-        btEEncomiendas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 255, 255), null, null));
-        btEEncomiendas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btEEncomiendasActionPerformed(evt);
-            }
-        });
-        jPAdministradorMétodos.add(btEEncomiendas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 150, 30));
+        jLabel2.setText("Nombres:");
 
-        jPMenúAdministrador.add(jPAdministradorMétodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 430));
+        jFTNombresE.setEditable(false);
 
-        jPEmpleado.setBackground(new java.awt.Color(37, 37, 61));
+        jLabel3.setText("Apellido:");
 
-        jLBienvenida.setFont(new java.awt.Font("Segoe UI", 3, 44)); // NOI18N
-        jLBienvenida.setForeground(new java.awt.Color(255, 255, 255));
-        jLBienvenida.setText("BIENVENIDO ");
+        jTFApellidoE.setEditable(false);
 
-        javax.swing.GroupLayout jPEmpleadoLayout = new javax.swing.GroupLayout(jPEmpleado);
-        jPEmpleado.setLayout(jPEmpleadoLayout);
-        jPEmpleadoLayout.setHorizontalGroup(
-            jPEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPEmpleadoLayout.createSequentialGroup()
-                .addContainerGap(213, Short.MAX_VALUE)
-                .addComponent(jLBienvenida)
-                .addGap(195, 195, 195))
+        jLabel4.setText("Cédula:");
+
+        jTFCedulaE.setEditable(false);
+
+        jLabel5.setText("Correo:");
+
+        jTFCorreoE.setEditable(false);
+
+        jLabel6.setText("Teléfono:");
+
+        jTFTelefonoE.setEditable(false);
+
+        jLabel9.setText("Foto de perfil:");
+
+        jLFotoPerfilE.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel7.setText("Cuenta");
+
+        jLabel8.setText("Usuario:");
+
+        jLabel10.setText("Contraseña:");
+
+        jTFUsuarioE.setEditable(false);
+
+        btECredencial.setText("Ver Credenciales");
+
+        btEPerfil.setText("Mostrar");
+
+        jTFContrasenia.setEditable(false);
+
+        jBCambiarFoto.setText("Cambiar Foto");
+
+        javax.swing.GroupLayout jPAEditarUsuarios4Layout = new javax.swing.GroupLayout(jPAEditarUsuarios4);
+        jPAEditarUsuarios4.setLayout(jPAEditarUsuarios4Layout);
+        jPAEditarUsuarios4Layout.setHorizontalGroup(
+            jPAEditarUsuarios4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPAEditarUsuarios4Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jPAEditarUsuarios4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel10))
+                .addGap(48, 48, 48)
+                .addGroup(jPAEditarUsuarios4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPAEditarUsuarios4Layout.createSequentialGroup()
+                        .addGroup(jPAEditarUsuarios4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jFTNombresE)
+                            .addComponent(jTFApellidoE)
+                            .addComponent(jTFCedulaE)
+                            .addComponent(jTFCorreoE)
+                            .addComponent(jTFTelefonoE, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                        .addGroup(jPAEditarUsuarios4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addGroup(jPAEditarUsuarios4Layout.createSequentialGroup()
+                                .addGap(41, 41, 41)
+                                .addGroup(jPAEditarUsuarios4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jBCambiarFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLFotoPerfilE, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(jPAEditarUsuarios4Layout.createSequentialGroup()
+                        .addGroup(jPAEditarUsuarios4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTFUsuarioE, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTFContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btECredencial, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(65, 65, 65))
+            .addGroup(jPAEditarUsuarios4Layout.createSequentialGroup()
+                .addGap(212, 212, 212)
+                .addComponent(btEPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
-        jPEmpleadoLayout.setVerticalGroup(
-            jPEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPEmpleadoLayout.createSequentialGroup()
-                .addGap(104, 104, 104)
-                .addComponent(jLBienvenida, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(139, Short.MAX_VALUE))
+        jPAEditarUsuarios4Layout.setVerticalGroup(
+            jPAEditarUsuarios4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPAEditarUsuarios4Layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addGroup(jPAEditarUsuarios4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPAEditarUsuarios4Layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLFotoPerfilE, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPAEditarUsuarios4Layout.createSequentialGroup()
+                        .addGroup(jPAEditarUsuarios4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jFTNombresE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPAEditarUsuarios4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(jTFApellidoE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPAEditarUsuarios4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jTFCedulaE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPAEditarUsuarios4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(jTFCorreoE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPAEditarUsuarios4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(jTFTelefonoE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPAEditarUsuarios4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jBCambiarFoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btEPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPAEditarUsuarios4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPAEditarUsuarios4Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel7)
+                        .addGap(23, 23, 23)
+                        .addGroup(jPAEditarUsuarios4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(jTFUsuarioE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(21, 21, 21)
+                        .addGroup(jPAEditarUsuarios4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel10)
+                            .addComponent(jTFContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPAEditarUsuarios4Layout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addComponent(btECredencial, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33))))
         );
 
-        jPMenúAdministrador.add(jPEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, 690, 430));
+        jPMétodoEditar5.add(jPAEditarUsuarios4, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 5, 680, 390));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPMétodoEditar5, javax.swing.GroupLayout.DEFAULT_SIZE, 690, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPMétodoEditar5, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 1, Short.MAX_VALUE))
+        );
+
+        JTPEmpleado.addTab(" Perfil", jPanel1);
+
+        jPMétodoEditar2.setBackground(new java.awt.Color(204, 0, 51));
+        jPMétodoEditar2.setMinimumSize(new java.awt.Dimension(690, 430));
+        jPMétodoEditar2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLTablaUsuarios2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLTablaUsuarios2.setText("Lista de Clientes");
+
+        jTbEClientes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Cédula", "Nombres", "Apellidos", "Correo", "Teléfono", "Rol", "Dirección ", "Ciudad", "Teléfono Secundario", "TÍpo Licencia ", "Estado", "Id Agencia "
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(jTbEClientes);
+
+        btEClientes.setText("Mostrar");
+
+        javax.swing.GroupLayout jPAEditarUsuarios2Layout = new javax.swing.GroupLayout(jPAEditarUsuarios2);
+        jPAEditarUsuarios2.setLayout(jPAEditarUsuarios2Layout);
+        jPAEditarUsuarios2Layout.setHorizontalGroup(
+            jPAEditarUsuarios2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPAEditarUsuarios2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPAEditarUsuarios2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPAEditarUsuarios2Layout.createSequentialGroup()
+                        .addComponent(jLTablaUsuarios2)
+                        .addGap(138, 138, 138)
+                        .addComponent(btEClientes))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 666, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(8, Short.MAX_VALUE))
+        );
+        jPAEditarUsuarios2Layout.setVerticalGroup(
+            jPAEditarUsuarios2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPAEditarUsuarios2Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(jPAEditarUsuarios2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLTablaUsuarios2)
+                    .addComponent(btEClientes))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(35, Short.MAX_VALUE))
+        );
+
+        jPMétodoEditar2.add(jPAEditarUsuarios2, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 5, 680, 390));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPMétodoEditar2, javax.swing.GroupLayout.DEFAULT_SIZE, 690, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jPMétodoEditar2, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 2, Short.MAX_VALUE))
+        );
+
+        JTPEmpleado.addTab("Clientes", jPanel2);
+
+        jPMétodoEditar3.setBackground(new java.awt.Color(204, 0, 51));
+        jPMétodoEditar3.setMinimumSize(new java.awt.Dimension(690, 430));
+        jPMétodoEditar3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTbConductores.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Cédula", "Nombres", "Apellidos", "Correo", "Teléfono", "Rol", "Dirección ", "Ciudad", "Teléfono Secundario", "TÍpo Licencia ", "Estado", "Id Agencia "
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(jTbConductores);
+
+        jLTablaUsuarios3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLTablaUsuarios3.setText("Lista de Conductores");
+
+        btEConductores.setText("Mostrar");
+
+        javax.swing.GroupLayout jPAEditarUsuarios3Layout = new javax.swing.GroupLayout(jPAEditarUsuarios3);
+        jPAEditarUsuarios3.setLayout(jPAEditarUsuarios3Layout);
+        jPAEditarUsuarios3Layout.setHorizontalGroup(
+            jPAEditarUsuarios3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPAEditarUsuarios3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPAEditarUsuarios3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPAEditarUsuarios3Layout.createSequentialGroup()
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 666, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 8, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPAEditarUsuarios3Layout.createSequentialGroup()
+                        .addComponent(jLTablaUsuarios3)
+                        .addGap(104, 104, 104)
+                        .addComponent(btEConductores)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+        jPAEditarUsuarios3Layout.setVerticalGroup(
+            jPAEditarUsuarios3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPAEditarUsuarios3Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(jPAEditarUsuarios3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLTablaUsuarios3)
+                    .addComponent(btEConductores))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(35, Short.MAX_VALUE))
+        );
+
+        jPMétodoEditar3.add(jPAEditarUsuarios3, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 5, 680, 390));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPMétodoEditar3, javax.swing.GroupLayout.DEFAULT_SIZE, 690, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPMétodoEditar3, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
+        );
+
+        JTPEmpleado.addTab("Conductores", jPanel3);
+
+        jPMétodoEditar4.setBackground(new java.awt.Color(204, 0, 51));
+        jPMétodoEditar4.setMinimumSize(new java.awt.Dimension(690, 430));
+        jPMétodoEditar4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        javax.swing.GroupLayout jPAEEcomiendasLayout = new javax.swing.GroupLayout(jPAEEcomiendas);
+        jPAEEcomiendas.setLayout(jPAEEcomiendasLayout);
+        jPAEEcomiendasLayout.setHorizontalGroup(
+            jPAEEcomiendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 680, Short.MAX_VALUE)
+        );
+        jPAEEcomiendasLayout.setVerticalGroup(
+            jPAEEcomiendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 390, Short.MAX_VALUE)
+        );
+
+        jPMétodoEditar4.add(jPAEEcomiendas, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 5, 680, 390));
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPMétodoEditar4, javax.swing.GroupLayout.DEFAULT_SIZE, 690, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPMétodoEditar4, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
+        );
+
+        JTPEmpleado.addTab("Encomiendas", jPanel4);
+
+        jPMenuEmpleado.add(JTPEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, -1, 440));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPMenúAdministrador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPMenuEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPMenúAdministrador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPMenuEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btEPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEPerfilActionPerformed
-        PanelEPerfil paneEPerfil = new PanelEPerfil();
-        paneEPerfil.setSize(690, 430);
-        paneEPerfil.setLocation(0, 0);
-
-        jPEmpleado.removeAll();
-        jPEmpleado.add(paneEPerfil, BorderLayout.CENTER);
-        jPEmpleado.revalidate();
-        jPEmpleado.repaint();
-    }//GEN-LAST:event_btEPerfilActionPerformed
-
-    private void btEClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEClientesActionPerformed
-        PanelECliente panelECliente = new PanelECliente();
-        panelECliente.setSize(690, 430);
-        panelECliente.setLocation(0, 0);
-
-        jPEmpleado.removeAll();
-        jPEmpleado.add(panelECliente, BorderLayout.CENTER);
-        jPEmpleado.revalidate();
-        jPEmpleado.repaint();
-    }//GEN-LAST:event_btEClientesActionPerformed
-
-    private void btEConductoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEConductoresActionPerformed
-        PanelEConductor panelEConductor = new PanelEConductor();
-        panelEConductor.setSize(690, 430);
-        panelEConductor.setLocation(0, 0);
-
-        jPEmpleado.removeAll();
-        jPEmpleado.add(panelEConductor, BorderLayout.CENTER);
-        jPEmpleado.revalidate();
-        jPEmpleado.repaint();
-    }//GEN-LAST:event_btEConductoresActionPerformed
-
-    private void btEEncomiendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEEncomiendasActionPerformed
-        JFEncomiendas encomiendas = new JFEncomiendas();
-        encomiendas.setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
-        encomiendas.setVisible(true);
-    }//GEN-LAST:event_btEEncomiendasActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -216,6 +488,14 @@ public class MenuEmpleado extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -226,16 +506,51 @@ public class MenuEmpleado extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btEClientes;
-    private javax.swing.JButton btEConductores;
-    private javax.swing.JButton btEEncomiendas;
-    private javax.swing.JButton btEPerfil;
-    private javax.swing.JLabel jLBienvenida;
-    private javax.swing.JLabel jLEmpleado;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPAdministradorMétodos;
-    private javax.swing.JPanel jPEmpleado;
-    private javax.swing.JPanel jPMenúAdministrador;
-    private javax.swing.JTextField jTFUsuarioEmpleado;
+    public javax.swing.JTabbedPane JTPEmpleado;
+    public javax.swing.JButton btEClientes;
+    public javax.swing.JButton btEConductores;
+    public javax.swing.JButton btECredencial;
+    public javax.swing.JButton btEPerfil;
+    public javax.swing.JButton jBCambiarFoto;
+    public javax.swing.JTextField jFTNombresE;
+    public javax.swing.JLabel jLEmpleado;
+    public javax.swing.JLabel jLFotoPerfilE;
+    private javax.swing.JLabel jLTablaUsuarios2;
+    private javax.swing.JLabel jLTablaUsuarios3;
+    public javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPAEEcomiendas;
+    private javax.swing.JPanel jPAEditarUsuarios2;
+    private javax.swing.JPanel jPAEditarUsuarios3;
+    private javax.swing.JPanel jPAEditarUsuarios4;
+    public javax.swing.JPanel jPEmpleadoMétodos;
+    private javax.swing.JPanel jPMenuEmpleado;
+    private javax.swing.JPanel jPMétodoEditar2;
+    private javax.swing.JPanel jPMétodoEditar3;
+    private javax.swing.JPanel jPMétodoEditar4;
+    private javax.swing.JPanel jPMétodoEditar5;
+    public javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    public javax.swing.JTextField jTFApellidoE;
+    public javax.swing.JTextField jTFCedulaE;
+    public javax.swing.JTextField jTFContrasenia;
+    public javax.swing.JTextField jTFCorreoE;
+    public javax.swing.JTextField jTFTelefonoE;
+    public javax.swing.JTextField jTFUsuarioE;
+    public javax.swing.JTextField jTFUsuarioEmpleado;
+    public javax.swing.JTable jTbConductores;
+    public javax.swing.JTable jTbEClientes;
     // End of variables declaration//GEN-END:variables
 }

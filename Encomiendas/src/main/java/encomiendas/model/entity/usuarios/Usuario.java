@@ -1,22 +1,19 @@
 package encomiendas.model.entity.usuarios;
 
-
 import encomiendas.database.Conexion;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
-public class Usuario extends Conexion{
+public class Usuario extends Conexion {
 
     private String cedula;
     private String nombres;
     private String apellidos;
     private String correo;
     private String telefono;
+    private String direccion;
     private String ciudad;
     private String telefonoAdicional;
-    
     private Boolean activo;
+    private byte[] fotoPerfil;
     private int idAgencia;
 
     public Usuario(String cedula, String nombres, String apellidos, String correo, String telefono, String ciudad, String telefonoAdicional, Boolean activo, int idAgencia) {
@@ -34,9 +31,6 @@ public class Usuario extends Conexion{
 
     public Usuario() {
     }
-    
-    
-    
     
     public String getCedula() {
         return cedula;
@@ -78,6 +72,14 @@ public class Usuario extends Conexion{
         this.telefono = telefono;
     }
 
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
     public String getCiudad() {
         return ciudad;
     }
@@ -94,14 +96,20 @@ public class Usuario extends Conexion{
         this.telefonoAdicional = telefonoAdicional;
     }
 
-   
-
     public Boolean getActivo() {
         return activo;
     }
 
     public void setActivo(Boolean activo) {
         this.activo = activo;
+    }
+
+    public byte[] getFotoPerfil() {
+        return fotoPerfil;
+    }
+
+    public void setFotoPerfil(byte[] fotoPerfil) {
+        this.fotoPerfil = fotoPerfil;
     }
 
     public int getIdAgencia() {
@@ -111,8 +119,8 @@ public class Usuario extends Conexion{
     public void setIdAgencia(int idAgencia) {
         this.idAgencia = idAgencia;
     }
-    
-    public Boolean obtenerDatos(String cedula){
+
+    public Boolean obtenerDatos(String cedula) {
         return true;
     }
 
