@@ -13,7 +13,7 @@ public class Transporte {
     // Constructor sin argumentos
     public Transporte() {
         this.historial = new HistorialMantenimiento();
-    }
+    }   
 
     // Constructor con argumentos
     public Transporte(int transporte_id, double capacidad_carga, String modelo, int anio_fabricacion, double kilometraje, String tipo_transporte, ESTADO_TRANSPORTE estado) {
