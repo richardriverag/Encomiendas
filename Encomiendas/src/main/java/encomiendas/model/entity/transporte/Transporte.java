@@ -1,6 +1,6 @@
 package encomiendas.model.entity.transporte;
 
-public abstract class Transporte {
+public class Transporte {
     private int transporte_id;
     private double capacidad_carga;
     private String modelo;
