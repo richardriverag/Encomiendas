@@ -2,37 +2,41 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package encomiendas.services.almacenamiento;
+package encomiendas.services.almacen;
 
 import encomiendas.model.data.almacenamiento.FichaEncomiendaRepository;
 import encomiendas.model.entity.almacenamiento.FichaEncomienda;
 import java.sql.SQLException;
-import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
- * @author Gabriel
+ * @author tandr
  */
 public class FichaEncomiendaService {
-    private final FichaEncomiendaRepository fichaEncomiendaRepository;
-    
-    public FichaEncomiendaService(FichaEncomiendaRepository fichaEncomiendaRepository) {
-        this.fichaEncomiendaRepository = fichaEncomiendaRepository;
+    private final FichaEncomiendaRepository fichaRepository;
+
+    public FichaEncomiendaService(FichaEncomiendaRepository fichaRepository) {
+        this.fichaRepository = fichaRepository;
     }
-    
-    
-    
-    public List<FichaEncomienda> getAllFichas() throws SQLException{
-    return fichaEncomiendaRepository.findAll();
+    public FichaEncomienda buscarFicha(FichaEncomienda ficha){
+        return this.fichaRepository.buscar(ficha);
     }
-    
-    public void  guardar(FichaEncomienda fichaEncomienda) throws SQLException{
-        fichaEncomiendaRepository.save(fichaEncomienda);
+    public void guardarFicha (FichaEncomienda ficha) throws SQLException{
+        try {
+            this.fichaRepository.save(ficha);
+            JOptionPane.showMessageDialog(null, "Ficha guardada con éxito.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Ficha no se ha guardado.");
+        }
+        
     }
-    public void modificar (Integer id, FichaEncomienda fichaEncomienda) throws SQLException{
-        fichaEncomiendaRepository.update(id, fichaEncomienda);
+    public void update(int id, FichaEncomienda ficha) throws SQLException{
+        try {
+        fichaRepository.update(id, ficha);
+        JOptionPane.showMessageDialog(null, "Ficha retirada con éxito.");
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error al al retirar la Ficha ");
     }
-    public FichaEncomienda buscar (FichaEncomienda fichaEncomienda){
-       return fichaEncomiendaRepository.buscar(fichaEncomienda);
-    }
+  }
 }

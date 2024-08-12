@@ -6,7 +6,7 @@ package encomiendas.controllers.almacenamiento;
 
 import encomiendas.model.entity.almacenamiento.Almacen;
 import encomiendas.model.entity.almacenamiento.Seccion;
-import encomiendas.services.almacenamiento.DbSeccion;
+import encomiendas.services.almacen.SeccionService;
 import encomiendas.views.almacenamiento.FRMAlmacen;
 import encomiendas.views.almacenamiento.NuevaFicha;
 import java.awt.Component;
@@ -14,10 +14,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -28,18 +32,18 @@ import javax.swing.table.DefaultTableModel;
 public class CtrSeccion implements ActionListener {
 
     private Seccion Sec;
-    private DbSeccion dbSec;
+    private  SeccionService seccionService;
     private FRMAlmacen frmAlm; 
     private NuevaFicha frmFicha;
 
-    public CtrSeccion(Seccion Sec, DbSeccion dbSec, FRMAlmacen frmAlm, NuevaFicha frmFicha) {
+    public CtrSeccion(Seccion Sec, SeccionService dbSec, FRMAlmacen frmAlm, NuevaFicha frmFicha) {
         this.Sec = Sec;
-        this.dbSec = dbSec;
+        this.seccionService = dbSec;
         this.frmAlm = frmAlm;
         this.frmFicha = frmFicha;
         frmAlm.cbAlmacen.addActionListener(this);
         frmAlm.btnActualizarSeccion.addActionListener(this);
-        cargarSecciones();
+        
         addTableMouseListener(); 
     }
     
@@ -50,7 +54,11 @@ public class CtrSeccion implements ActionListener {
        if (e.getSource() == frmAlm.cbAlmacen) {
            almacenConSecciones();
        }else if(e.getSource() == frmAlm.btnActualizarSeccion){
-           actualizarSeccion();
+           try {
+               actualizarSeccion();
+           } catch (SQLException ex) {
+               Logger.getLogger(CtrSeccion.class.getName()).log(Level.SEVERE, null, ex);
+           }
        }
        
     }
@@ -64,7 +72,7 @@ public class CtrSeccion implements ActionListener {
     }
     private void cargarSecciones(int idAlmacen) {
         // Obtener las secciones desde la base de datos
-        List<Seccion> secciones = dbSec.obtenerSecciones(idAlmacen);
+        List<Seccion> secciones = seccionService.obtenerSecciones(idAlmacen);
         
         // Crear el modelo de la tabla
         DefaultTableModel model = new DefaultTableModel();
@@ -106,7 +114,7 @@ public class CtrSeccion implements ActionListener {
     }
     
     
-   private void actualizarSeccion() {
+   private void actualizarSeccion() throws SQLException {
     try {
         int idSeccion = Integer.parseInt(frmAlm.txtCodigoSeccion.getText());
         String nombre = frmAlm.txtNombreSeccion.getText();
@@ -118,18 +126,11 @@ public class CtrSeccion implements ActionListener {
 
         // Crear el objeto Seccion con el idAlmacen correcto
         Seccion seccion = new Seccion(idSeccion, nombre, capacidad, idAlmacen);
-        if (dbSec.actualizar(seccion)) {
-            System.out.println("Sección actualizada con éxito.");
-            // Opcional: Mostrar un mensaje de éxito al usuario
-            // JOptionPane.showMessageDialog(frmAlm, "Sección actualizada con éxito");
-            
-            // Volver a cargar las secciones para reflejar los cambios
+        seccionService.actualizar(0,seccion);
+        JOptionPane.showMessageDialog(frmAlm, "Sección actualizada con éxito");
             almacenConSecciones();
-        } else {
-            System.err.println("Error al actualizar la sección.");
-            // Opcional: Mostrar un mensaje de error al usuario
-            // JOptionPane.showMessageDialog(frmAlm, "Error al actualizar la sección");
-        }
+            // Opcional: Mostrar un mensaje de éxito al usuario
+        
     } catch (NumberFormatException ex) {
         System.err.println("Error al parsear los valores: " + ex.getMessage());
         // Opcional: Mostrar un mensaje de error al usuario
@@ -137,8 +138,8 @@ public class CtrSeccion implements ActionListener {
     }
 }
    
-   public void cargarSecciones() {   
-    List<Seccion> secciones = dbSec.obtenerTodas(); // Obtener la lista de secciones
+   public void cargarSecciones() throws SQLException {   
+    List<Seccion> secciones = seccionService.obtenerTodas(); // Obtener la lista de secciones
        DefaultComboBoxModel<Seccion> model = new DefaultComboBoxModel<>();
     for (Seccion s : secciones) {
         model.addElement(s); // Agregar cada sección al modelo

@@ -4,8 +4,9 @@
  */
 package encomiendas.views.almacenamiento;
 
-import encomiendas.model.entity.almacenamiento.Encomienda;
 import encomiendas.model.entity.almacenamiento.Seccion;
+import encomiendas.model.entity.encomiendas.Encomienda;
+
 
 /**
  *
