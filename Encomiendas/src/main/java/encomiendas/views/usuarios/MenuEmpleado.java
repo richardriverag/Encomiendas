@@ -1,17 +1,18 @@
 package encomiendas.views.usuarios;
 
+import encomiendas.views.encomiendas.JFEncomiendas;
+import javax.swing.JFrame;
+
 /**
  *
  * @author USER-PC
  */
 public class MenuEmpleado extends javax.swing.JFrame {
 
-    /**
-     * Creates new form MenuClientes
-     */
     public MenuEmpleado() {
         initComponents();
         setLocationRelativeTo(null);
+
     }
 
     /**
@@ -69,6 +70,7 @@ public class MenuEmpleado extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jPMétodoEditar4 = new javax.swing.JPanel();
         jPAEEcomiendas = new javax.swing.JPanel();
+        btnAbrirEncomiendas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menú - Empleado");
@@ -414,15 +416,28 @@ public class MenuEmpleado extends javax.swing.JFrame {
         jPMétodoEditar4.setMinimumSize(new java.awt.Dimension(690, 430));
         jPMétodoEditar4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btnAbrirEncomiendas.setText("Abrir encomiendas");
+        btnAbrirEncomiendas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAbrirEncomiendasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPAEEcomiendasLayout = new javax.swing.GroupLayout(jPAEEcomiendas);
         jPAEEcomiendas.setLayout(jPAEEcomiendasLayout);
         jPAEEcomiendasLayout.setHorizontalGroup(
             jPAEEcomiendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 680, Short.MAX_VALUE)
+            .addGroup(jPAEEcomiendasLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(btnAbrirEncomiendas, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(528, Short.MAX_VALUE))
         );
         jPAEEcomiendasLayout.setVerticalGroup(
             jPAEEcomiendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 390, Short.MAX_VALUE)
+            .addGroup(jPAEEcomiendasLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(btnAbrirEncomiendas, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(344, Short.MAX_VALUE))
         );
 
         jPMétodoEditar4.add(jPAEEcomiendas, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 5, 680, 390));
@@ -455,6 +470,13 @@ public class MenuEmpleado extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAbrirEncomiendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirEncomiendasActionPerformed
+        JFEncomiendas encomiendas = new JFEncomiendas();
+
+        encomiendas.setVisible(true);
+        encomiendas.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_btnAbrirEncomiendasActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -511,6 +533,7 @@ public class MenuEmpleado extends javax.swing.JFrame {
     public javax.swing.JButton btEConductores;
     public javax.swing.JButton btECredencial;
     public javax.swing.JButton btEPerfil;
+    public javax.swing.JButton btnAbrirEncomiendas;
     public javax.swing.JButton jBCambiarFoto;
     public javax.swing.JTextField jFTNombresE;
     public javax.swing.JLabel jLEmpleado;
