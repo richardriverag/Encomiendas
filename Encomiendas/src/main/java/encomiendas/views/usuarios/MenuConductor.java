@@ -1,8 +1,8 @@
 package encomiendas.views.usuarios;
 
-public class MenuClientes extends javax.swing.JFrame {
+public class MenuConductor extends javax.swing.JFrame {
 
-    public MenuClientes() {
+    public MenuConductor() {
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -13,11 +13,11 @@ public class MenuClientes extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPDefault = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        lblBienvenidosCon = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        btPerfil = new javax.swing.JButton();
+        btPerfilCon = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jTFUsuarioCliente = new javax.swing.JTextField();
+        jTFUsuarioConductor = new javax.swing.JTextField();
         jLCliente = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -28,9 +28,9 @@ public class MenuClientes extends javax.swing.JFrame {
 
         jPDefault.setBackground(new java.awt.Color(37, 37, 61));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 44)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("BIENVENIDO ");
+        lblBienvenidosCon.setFont(new java.awt.Font("Segoe UI", 3, 44)); // NOI18N
+        lblBienvenidosCon.setForeground(new java.awt.Color(255, 255, 255));
+        lblBienvenidosCon.setText("BIENVENIDO ");
 
         javax.swing.GroupLayout jPDefaultLayout = new javax.swing.GroupLayout(jPDefault);
         jPDefault.setLayout(jPDefaultLayout);
@@ -38,14 +38,14 @@ public class MenuClientes extends javax.swing.JFrame {
             jPDefaultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPDefaultLayout.createSequentialGroup()
                 .addContainerGap(215, Short.MAX_VALUE)
-                .addComponent(jLabel2)
+                .addComponent(lblBienvenidosCon)
                 .addGap(195, 195, 195))
         );
         jPDefaultLayout.setVerticalGroup(
             jPDefaultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPDefaultLayout.createSequentialGroup()
                 .addGap(105, 105, 105)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblBienvenidosCon, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(138, Short.MAX_VALUE))
         );
 
@@ -54,11 +54,11 @@ public class MenuClientes extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btPerfil.setBackground(new java.awt.Color(200, 0, 0));
-        btPerfil.setForeground(new java.awt.Color(255, 255, 255));
-        btPerfil.setText("Perfil");
-        btPerfil.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 255, 255), null, null));
-        jPanel2.add(btPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 150, 30));
+        btPerfilCon.setBackground(new java.awt.Color(200, 0, 0));
+        btPerfilCon.setForeground(new java.awt.Color(255, 255, 255));
+        btPerfilCon.setText("Perfil");
+        btPerfilCon.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 255, 255), null, null));
+        jPanel2.add(btPerfilCon, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 150, 30));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(jLabel1.getFont().deriveFont(jLabel1.getFont().getSize()-2f));
@@ -66,13 +66,13 @@ public class MenuClientes extends javax.swing.JFrame {
         jLabel1.setToolTipText("");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 90, 90));
 
-        jTFUsuarioCliente.setEditable(false);
-        jPanel2.add(jTFUsuarioCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 130, -1));
+        jTFUsuarioConductor.setEditable(false);
+        jPanel2.add(jTFUsuarioConductor, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 130, -1));
 
         jLCliente.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLCliente.setForeground(new java.awt.Color(255, 255, 255));
         jLCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLCliente.setText("Cliente:");
+        jLCliente.setText("Conductor:");
         jPanel2.add(jLCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 130, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 430));
@@ -108,14 +108,22 @@ public class MenuClientes extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuConductor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuConductor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuConductor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuConductor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -128,19 +136,19 @@ public class MenuClientes extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuClientes().setVisible(true);
+                new MenuConductor().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btPerfil;
+    public javax.swing.JButton btPerfilCon;
     private javax.swing.JLabel jLCliente;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     public javax.swing.JPanel jPDefault;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    public javax.swing.JTextField jTFUsuarioCliente;
+    public javax.swing.JTextField jTFUsuarioConductor;
+    private javax.swing.JLabel lblBienvenidosCon;
     // End of variables declaration//GEN-END:variables
 }
