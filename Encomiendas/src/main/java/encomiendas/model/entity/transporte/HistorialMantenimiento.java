@@ -13,11 +13,16 @@ import java.util.List;
  */
 public class HistorialMantenimiento {
      private List<Mantenimiento> mantenimientos;
+     
      public HistorialMantenimiento() {
         this.mantenimientos = new ArrayList<>();
     }
+     
      public void agregarMantenimiento(Mantenimiento mantenimiento) {
         this.mantenimientos.add(mantenimiento);
     }
      
+    public List<Mantenimiento> getMantenimientos() {
+        return mantenimientos;
+    }
 }
