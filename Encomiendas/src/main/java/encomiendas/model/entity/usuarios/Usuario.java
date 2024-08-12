@@ -15,11 +15,11 @@ public class Usuario extends Conexion{
     private String telefono;
     private String ciudad;
     private String telefonoAdicional;
-    private String fotoPerfil;
+    
     private Boolean activo;
     private int idAgencia;
 
-    public Usuario(String cedula, String nombres, String apellidos, String correo, String telefono, String ciudad, String telefonoAdicional, String fotoPerfil, Boolean activo, int idAgencia) {
+    public Usuario(String cedula, String nombres, String apellidos, String correo, String telefono, String ciudad, String telefonoAdicional, Boolean activo, int idAgencia) {
         this.cedula = cedula;
         this.nombres = nombres;
         this.apellidos = apellidos;
@@ -27,10 +27,16 @@ public class Usuario extends Conexion{
         this.telefono = telefono;
         this.ciudad = ciudad;
         this.telefonoAdicional = telefonoAdicional;
-        this.fotoPerfil = fotoPerfil;
+        
         this.activo = activo;
         this.idAgencia = idAgencia;
     }
+
+    public Usuario() {
+    }
+    
+    
+    
     
     public String getCedula() {
         return cedula;
@@ -88,13 +94,7 @@ public class Usuario extends Conexion{
         this.telefonoAdicional = telefonoAdicional;
     }
 
-    public String getFotoPerfil() {
-        return fotoPerfil;
-    }
-
-    public void setFotoPerfil(String fotoPerfil) {
-        this.fotoPerfil = fotoPerfil;
-    }
+   
 
     public Boolean getActivo() {
         return activo;

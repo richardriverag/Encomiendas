@@ -66,7 +66,6 @@ public class ClienteRepository implements UserRepository<Cliente> {
                 myRs.getString("telefono"),
                 myRs.getString("ciudad"),
                 myRs.getString("telefono_adicional"),
-                myRs.getString("foto_perfil"),
                 myRs.getBoolean("activo"),
                 myRs.getInt("id_agencia"),
                 myRs.getString("direccion")

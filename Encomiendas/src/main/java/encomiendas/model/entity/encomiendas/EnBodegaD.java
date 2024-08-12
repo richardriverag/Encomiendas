@@ -9,4 +9,10 @@ public class EnBodegaD implements Estado {
     public String ConsultarEstado() {
         return "La encomienda está en la bodega del destino.";
     }
+    
+    @Override
+    public String nombreEstado() {
+        return "En bodega destino";
+    }
+
 }

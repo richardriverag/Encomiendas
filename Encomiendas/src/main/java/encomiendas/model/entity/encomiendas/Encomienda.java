@@ -15,7 +15,8 @@ public class Encomienda {
     private Cliente receptor;
     private Cliente emisor;
     private LocalDate fechaEmision;
-    private Character tipoEntrega;
+    private LocalDate fechaLLegada; 
+    private String tipoEntrega;
     private String direccionEntrega;
     private Integer codigoPostal;
     private Estado estado;
@@ -23,13 +24,14 @@ public class Encomienda {
     private List<Paquete> paquetes;
 
     //En caso de que la encomienda sea de entrega a domicilio
-    public Encomienda(Integer id, Agencia agenciaOrigen, Agencia agenciaDestino, Cliente receptor, Cliente emisor, LocalDate fechaEmision, Character tipoEntrega, String direccionEntrega, Integer codigoPostal, Double precioEncomienda, List<Paquete> paquetes) {
+    public Encomienda(Integer id, Agencia agenciaOrigen, Agencia agenciaDestino, Cliente receptor, Cliente emisor, LocalDate fechaEmision, LocalDate fechaLLegada, String tipoEntrega, String direccionEntrega, Integer codigoPostal, Double precioEncomienda, List<Paquete> paquetes) {
         this.idEncomienda = id;
         this.agenciaOrigen = agenciaOrigen;
         this.agenciaDestino = agenciaDestino;
         this.receptor = receptor;
         this.emisor = emisor;
         this.fechaEmision = fechaEmision;
+        this.fechaLLegada = fechaLLegada;
         this.tipoEntrega = tipoEntrega;
         this.direccionEntrega = direccionEntrega;
         this.codigoPostal = codigoPostal;
@@ -39,13 +41,14 @@ public class Encomienda {
     }
 
     //En caso de que la encomienda sea de entrega en agencia
-    public Encomienda(Integer id, Agencia agenciaOrigen, Agencia agenciaDestino, Cliente receptor, Cliente emisor, LocalDate fechaEmision, Double precioEncomienda, Character tipoEntrega, List<Paquete> paquetes) {
+    public Encomienda(Integer id, Agencia agenciaOrigen, Agencia agenciaDestino, Cliente receptor, Cliente emisor, LocalDate fechaEmision, LocalDate fechaLlegada, String tipoEntrega, List<Paquete> paquetes, Double precioEncomienda) {
         this.idEncomienda = id;
         this.agenciaOrigen = agenciaOrigen;
         this.agenciaDestino = agenciaDestino;
         this.receptor = receptor;
         this.emisor = emisor;
         this.fechaEmision = fechaEmision;
+        this.fechaLLegada = fechaLlegada;
         this.tipoEntrega = tipoEntrega;
         this.paquetes = paquetes;
         this.precioEncomienda = precioEncomienda;
@@ -79,6 +82,14 @@ public class Encomienda {
         this.agenciaDestino = agenciaDestino;
     }
 
+    public LocalDate getFechaLLegada() {
+        return fechaLLegada;
+    }
+
+    public void setFechaLLegada(LocalDate fechaLLegada) {
+        this.fechaLLegada = fechaLLegada;
+    }
+
     public Cliente getReceptor() {
         return receptor;
     }
@@ -103,13 +114,15 @@ public class Encomienda {
         this.fechaEmision = fechaEmision;
     }
 
-    public Character getTipoEntrega() {
+    public String getTipoEntrega() {
         return tipoEntrega;
     }
 
-    public void setTipoEntrega(Character tipoEntrega) {
+    public void setTipoEntrega(String tipoEntrega) {
         this.tipoEntrega = tipoEntrega;
     }
+
+  
 
     public String getDireccionEntrega() {
         return direccionEntrega;
@@ -161,13 +174,13 @@ public class Encomienda {
 
     public void setEstadoFromString(String estadoStr) {
         switch (estadoStr) {
-            case "EnBodegaD":
+            case "En bodega destino":
                 this.estado = new EnBodegaD();
                 break;
-            case "EnBodegaO":
+            case "En bodega origen":
                 this.estado = new EnBodegaO();
                 break;
-            case "EnTransito":
+            case "En Transito":
                 this.estado = new EnTransito();
                 break;
             case "Entregado":
@@ -188,6 +201,11 @@ public class Encomienda {
 
     public void setPrecioEncomienda(Double precioEncomienda) {
         this.precioEncomienda = precioEncomienda;
+    }
+
+    @Override
+    public String toString() {
+        return "Encomienda{" + "idEncomienda=" + idEncomienda + ", agenciaOrigen=" + agenciaOrigen + ", agenciaDestino=" + agenciaDestino + ", receptor=" + receptor + ", emisor=" + emisor + ", fechaEmision=" + fechaEmision + ", fechaLLegada=" + fechaLLegada + ", tipoEntrega=" + tipoEntrega + ", direccionEntrega=" + direccionEntrega + ", codigoPostal=" + codigoPostal + ", estado=" + estado + ", precioEncomienda=" + precioEncomienda + ", paquetes=" + paquetes + '}';
     }
     
     
