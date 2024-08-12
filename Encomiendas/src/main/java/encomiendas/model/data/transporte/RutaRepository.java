@@ -53,8 +53,8 @@ public class RutaRepository implements Repository<Ruta> {
         String sql = "INSERT INTO ruta (descripcion, listaParadas, tipo_ruta) VALUES (?, ?, ?)";
         try (PreparedStatement stmt = myConn.prepareStatement(sql)) {
             stmt.setString(1, ruta.getDescripcion());
-            stmt.setString(2, ruta.getListaParadas());
-            stmt.setBoolean(3, ruta.isTipoRuta());
+            stmt.setString(2, ruta.getParadas());
+            stmt.setBoolean(3, ruta.isEsInterprovincial());
             stmt.executeUpdate();
         }
     }
@@ -72,8 +72,8 @@ public class RutaRepository implements Repository<Ruta> {
         String sql = "UPDATE ruta SET descripcion = ?, listaParadas = ?, tipo_ruta = ? WHERE ruta_id = ?";
         try (PreparedStatement stmt = myConn.prepareStatement(sql)) {
             stmt.setString(1, ruta.getDescripcion());
-            stmt.setString(2, ruta.getListaParadas());
-            stmt.setBoolean(3, ruta.isTipoRuta());
+            stmt.setString(2, ruta.getParadas());
+            stmt.setBoolean(3, ruta.isEsInterprovincial());
             stmt.setInt(4, id);
             stmt.executeUpdate();
         }
@@ -81,10 +81,9 @@ public class RutaRepository implements Repository<Ruta> {
 
     private Ruta createRuta(ResultSet rs) throws SQLException {
         Ruta ruta = new Ruta();
-        ruta.setRutaId(rs.getInt("ruta_id"));
         ruta.setDescripcion(rs.getString("descripcion"));
-        ruta.setListaParadas(rs.getString("listaParadas"));
-        ruta.setTipoRuta(rs.getBoolean("tipo_ruta"));
+        ruta.setParadas(rs.getString("listaParadas"));
+        ruta.setEsInterprovincial(rs.getBoolean("tipo_ruta"));
         return ruta;
     }
 }
