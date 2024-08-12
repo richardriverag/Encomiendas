@@ -2,19 +2,19 @@ package encomiendas.model.entity.usuarios;
 
 import encomiendas.database.Conexion;
 
-public class Usuario extends Conexion{
+public class Usuario extends Conexion {
 
     private String cedula;
     private String nombres;
     private String apellidos;
     private String correo;
     private String telefono;
+    private String direccion;
     private String ciudad;
     private String telefonoAdicional;
-    private byte[] fotoPerfil;
     private Boolean activo;
+    private byte[] fotoPerfil;
     private int idAgencia;
-    private Cuenta cuenta;
 
     public String getCedula() {
         return cedula;
@@ -56,6 +56,14 @@ public class Usuario extends Conexion{
         this.telefono = telefono;
     }
 
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
     public String getCiudad() {
         return ciudad;
     }
@@ -72,20 +80,20 @@ public class Usuario extends Conexion{
         this.telefonoAdicional = telefonoAdicional;
     }
 
-    public byte[] getFotoPerfil() {
-        return fotoPerfil;
-    }
-
-    public void setFotoPerfil(byte[] fotoPerfil) {
-        this.fotoPerfil = fotoPerfil;
-    }
-
     public Boolean getActivo() {
         return activo;
     }
 
     public void setActivo(Boolean activo) {
         this.activo = activo;
+    }
+
+    public byte[] getFotoPerfil() {
+        return fotoPerfil;
+    }
+
+    public void setFotoPerfil(byte[] fotoPerfil) {
+        this.fotoPerfil = fotoPerfil;
     }
 
     public int getIdAgencia() {
@@ -96,15 +104,7 @@ public class Usuario extends Conexion{
         this.idAgencia = idAgencia;
     }
 
-    public Cuenta getCuenta() {
-        return cuenta;
-    }
-
-    public void setCuenta(Cuenta cuenta) {
-        this.cuenta = cuenta;
-    }
-    
-    public Boolean obtenerDatos(String cedula){
+    public Boolean obtenerDatos(String cedula) {
         return true;
     }
 

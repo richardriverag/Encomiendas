@@ -51,6 +51,7 @@ public class MenuEmpleado extends javax.swing.JFrame {
         btECredencial = new javax.swing.JButton();
         btEPerfil = new javax.swing.JButton();
         jTFContrasenia = new javax.swing.JTextField();
+        jBCambiarFoto = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPMétodoEditar2 = new javax.swing.JPanel();
         jPAEditarUsuarios2 = new javax.swing.JPanel();
@@ -142,6 +143,8 @@ public class MenuEmpleado extends javax.swing.JFrame {
 
         jTFContrasenia.setEditable(false);
 
+        jBCambiarFoto.setText("Cambiar Foto");
+
         javax.swing.GroupLayout jPAEditarUsuarios4Layout = new javax.swing.GroupLayout(jPAEditarUsuarios4);
         jPAEditarUsuarios4.setLayout(jPAEditarUsuarios4Layout);
         jPAEditarUsuarios4Layout.setHorizontalGroup(
@@ -166,12 +169,14 @@ public class MenuEmpleado extends javax.swing.JFrame {
                             .addComponent(jTFCedulaE)
                             .addComponent(jTFCorreoE)
                             .addComponent(jTFTelefonoE, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                         .addGroup(jPAEditarUsuarios4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9)
                             .addGroup(jPAEditarUsuarios4Layout.createSequentialGroup()
                                 .addGap(41, 41, 41)
-                                .addComponent(jLFotoPerfilE, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(jPAEditarUsuarios4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jBCambiarFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLFotoPerfilE, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPAEditarUsuarios4Layout.createSequentialGroup()
                         .addGroup(jPAEditarUsuarios4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTFUsuarioE, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -214,7 +219,9 @@ public class MenuEmpleado extends javax.swing.JFrame {
                             .addComponent(jLabel6)
                             .addComponent(jTFTelefonoE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btEPerfil)
+                .addGroup(jPAEditarUsuarios4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jBCambiarFoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btEPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(jPAEditarUsuarios4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPAEditarUsuarios4Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -227,9 +234,9 @@ public class MenuEmpleado extends javax.swing.JFrame {
                         .addGroup(jPAEditarUsuarios4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10)
                             .addComponent(jTFContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(16, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPAEditarUsuarios4Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(65, 65, 65)
                         .addComponent(btECredencial, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33))))
         );
@@ -496,9 +503,10 @@ public class MenuEmpleado extends javax.swing.JFrame {
     public javax.swing.JButton btEConductores;
     public javax.swing.JButton btECredencial;
     public javax.swing.JButton btEPerfil;
+    public javax.swing.JButton jBCambiarFoto;
     public javax.swing.JTextField jFTNombresE;
     public javax.swing.JLabel jLEmpleado;
-    private javax.swing.JLabel jLFotoPerfilE;
+    public javax.swing.JLabel jLFotoPerfilE;
     private javax.swing.JLabel jLTablaUsuarios2;
     private javax.swing.JLabel jLTablaUsuarios3;
     public javax.swing.JLabel jLabel1;
@@ -521,7 +529,7 @@ public class MenuEmpleado extends javax.swing.JFrame {
     private javax.swing.JPanel jPMétodoEditar3;
     private javax.swing.JPanel jPMétodoEditar4;
     private javax.swing.JPanel jPMétodoEditar5;
-    private javax.swing.JPanel jPanel1;
+    public javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;

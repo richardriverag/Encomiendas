@@ -46,7 +46,7 @@ public class DbEmpleado {
         }
         return empleados;
     }
-    
+
     public List<Object[]> ListaConductores() {
         List<Object[]> empleados = new ArrayList<>();
         Connection con = getInstance();
@@ -101,6 +101,26 @@ public class DbEmpleado {
         } catch (SQLException e) {
             System.err.println(e + " NO se pudo conectar");
             return null;
+        }
+    }
+
+    public boolean cambiarImagenPerfil(byte[] bytesImagen, String ced) {
+        PreparedStatement ps = null;
+        Connection con = getInstance();
+
+        String sql = "UPDATE usuario SET fotoPerfil=? WHERE cedula=?";
+
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setBytes(1, bytesImagen);
+            ps.setString(2, ced);
+            ps.execute();
+
+            return true;
+
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
         }
     }
 }
