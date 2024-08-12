@@ -1,14 +1,14 @@
 package encomiendas.views.usuarios;
 
-import encomiendas.views.encomiendas.JFEncomiendas;
-import java.awt.BorderLayout;
-
 /**
  *
  * @author USER-PC
  */
 public class MenuEmpleado extends javax.swing.JFrame {
 
+    /**
+     * Creates new form MenuClientes
+     */
     public MenuEmpleado() {
         initComponents();
         setLocationRelativeTo(null);
@@ -455,46 +455,6 @@ public class MenuEmpleado extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btEPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEPerfilActionPerformed
-        PanelEPerfil paneEPerfil = new PanelEPerfil();
-        paneEPerfil.setSize(690, 430);
-        paneEPerfil.setLocation(0, 0);
-
-        jPEmpleado.removeAll();
-        jPEmpleado.add(paneEPerfil, BorderLayout.CENTER);
-        jPEmpleado.revalidate();
-        jPEmpleado.repaint();
-    }//GEN-LAST:event_btEPerfilActionPerformed
-
-    private void btEClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEClientesActionPerformed
-        PanelECliente panelECliente = new PanelECliente();
-        panelECliente.setSize(690, 430);
-        panelECliente.setLocation(0, 0);
-
-        jPEmpleado.removeAll();
-        jPEmpleado.add(panelECliente, BorderLayout.CENTER);
-        jPEmpleado.revalidate();
-        jPEmpleado.repaint();
-    }//GEN-LAST:event_btEClientesActionPerformed
-
-    private void btEConductoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEConductoresActionPerformed
-        PanelEConductor panelEConductor = new PanelEConductor();
-        panelEConductor.setSize(690, 430);
-        panelEConductor.setLocation(0, 0);
-
-        jPEmpleado.removeAll();
-        jPEmpleado.add(panelEConductor, BorderLayout.CENTER);
-        jPEmpleado.revalidate();
-        jPEmpleado.repaint();
-    }//GEN-LAST:event_btEConductoresActionPerformed
-
-    private void btEEncomiendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEEncomiendasActionPerformed
-        JFEncomiendas encomiendas = new JFEncomiendas();
-        encomiendas.setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
-        encomiendas.setVisible(true);
-    }//GEN-LAST:event_btEEncomiendasActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -520,6 +480,14 @@ public class MenuEmpleado extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(MenuEmpleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
