@@ -4,6 +4,13 @@
  */
 package encomiendas.controllers.almacenamiento;
 
+import encomiendas.model.entity.almacenamiento.Encomienda;
+import encomiendas.model.entity.almacenamiento.FichaEncomienda;
+import encomiendas.model.entity.almacenamiento.Seccion;
+import encomiendas.services.almacenamiento.DbFichaEncomienda;
+import encomiendas.services.almacenamiento.DbSeccion;
+import encomiendas.views.almacenamiento.FRMAlmacen;
+import encomiendas.views.almacenamiento.NuevaFicha;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -13,14 +20,6 @@ import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
-import modelo.entidades.Agencia;
-import modelo.entidades.Encomienda;
-import modelo.entidades.FichaEncomienda;
-import modelo.entidades.Seccion;
-import modelo.services.DbFichaEncomienda;
-import modelo.services.DbSeccion;
-import vista.FRMAlmacen;
-import vista.NuevaFicha;
 
 /**
  *

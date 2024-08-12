@@ -4,6 +4,7 @@
  */
 package encomiendas.services.almacenamiento;
 
+import encomiendas.model.entity.almacenamiento.Agencia;
 import java.util.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,7 +12,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import modelo.Conexion;
-import modelo.entidades.Agencia;
 
 /**
  *

@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package encomiendas.services.almacenamiento;
+import encomiendas.model.entity.almacenamiento.Almacen;
+import encomiendas.model.entity.almacenamiento.Seccion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,8 +15,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.Conexion;
-import modelo.entidades.Almacen;
-import modelo.entidades.Seccion;
 /**
  *
  * @author tandr

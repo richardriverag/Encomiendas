@@ -4,6 +4,7 @@
  */
 package encomiendas.services.almacenamiento;
 
+import encomiendas.model.entity.almacenamiento.FichaEncomienda;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -15,8 +16,7 @@ import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.Conexion;
-import modelo.entidades.FichaEncomienda;
-import modelo.entidades.Seccion;
+
 
 /**
  *

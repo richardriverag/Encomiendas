@@ -4,6 +4,9 @@
  */
 package encomiendas.controllers.almacenamiento;
 
+import encomiendas.model.entity.almacenamiento.Agencia;
+import encomiendas.services.almacenamiento.DbAgencia;
+import encomiendas.views.almacenamiento.FRMAlmacen;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,9 +14,6 @@ import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JList;
-import modelo.entidades.Agencia;
-import modelo.services.DbAgencia;
-import vista.FRMAlmacen;
 
 /**
  *

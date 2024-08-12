@@ -4,6 +4,11 @@
  */
 package encomiendas.controllers.almacenamiento;
 
+import encomiendas.model.entity.almacenamiento.Almacen;
+import encomiendas.model.entity.almacenamiento.Seccion;
+import encomiendas.services.almacenamiento.DbSeccion;
+import encomiendas.views.almacenamiento.FRMAlmacen;
+import encomiendas.views.almacenamiento.NuevaFicha;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,11 +19,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JList;
 import javax.swing.table.DefaultTableModel;
-import modelo.entidades.Almacen;
-import modelo.entidades.Seccion;
-import modelo.services.DbSeccion;
-import vista.FRMAlmacen;
-import vista.NuevaFicha;
+
 
 /**
  *

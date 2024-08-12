@@ -4,8 +4,8 @@
  */
 package encomiendas.views.almacenamiento;
 
-import modelo.entidades.Encomienda;
-import modelo.entidades.Seccion;
+import encomiendas.model.entity.almacenamiento.Encomienda;
+import encomiendas.model.entity.almacenamiento.Seccion;
 
 /**
  *

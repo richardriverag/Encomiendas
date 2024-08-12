@@ -1,7 +1,7 @@
 package encomiendas.views.almacenamiento;
 
-import modelo.entidades.Agencia;
-import modelo.entidades.Almacen;
+import encomiendas.model.entity.almacenamiento.Agencia;
+import encomiendas.model.entity.almacenamiento.Almacen;
 
 public class FRMAlmacen extends javax.swing.JFrame {
     public FRMAlmacen() {

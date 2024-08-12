@@ -12,10 +12,10 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
-import modelo.entidades.Agencia;
-import modelo.entidades.Almacen;
-import modelo.services.DbAlmacen;
-import vista.FRMAlmacen;
+import encomiendas.model.entity.almacenamiento.Agencia;
+import encomiendas.model.entity.almacenamiento.Almacen;
+import encomiendas.services.almacenamiento.DbAlmacen;
+import encomiendas.views.almacenamiento.FRMAlmacen;
 
 /**
  *
