@@ -23,10 +23,10 @@ import javax.swing.table.DefaultTableModel;
  */
 public class JFRuta extends javax.swing.JFrame {
 
-    Conexion con = new Conexion();
-    RutaController rutaController;
-    RutaRepository rutaRepository;
-    RutaService rutaService;
+    private Conexion con = new Conexion();
+    private RutaController rutaController;
+    private RutaRepository rutaRepository;
+    private RutaService rutaService;
     private int idRutaActualizar;
 
     /**
@@ -425,6 +425,7 @@ public class JFRuta extends javax.swing.JFrame {
         cmbEditTipoRuta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Interprovincial", "Local" }));
         cmbEditTipoRuta.setSelectedItem(-1);
         cmbEditTipoRuta.setAutoscrolls(true);
+        cmbEditTipoRuta.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         cmbEditTipoRuta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 cmbEditTipoRutaMouseReleased(evt);
@@ -466,7 +467,7 @@ public class JFRuta extends javax.swing.JFrame {
                     .addComponent(jLabel18))
                 .addGap(24, 24, 24)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cmbEditTipoRuta, 0, 501, Short.MAX_VALUE)
+                    .addComponent(cmbEditTipoRuta, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtEditListaParadas)
                     .addComponent(txtEditDescripcion))
                 .addGap(26, 26, 26))
@@ -516,12 +517,13 @@ public class JFRuta extends javax.swing.JFrame {
         jpanelEditarDatosLayout.setHorizontalGroup(
             jpanelEditarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpanelEditarDatosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jpanelEditarDatosLayout.createSequentialGroup()
                 .addGap(192, 192, 192)
                 .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 363, Short.MAX_VALUE))
+            .addGroup(jpanelEditarDatosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
             .addGroup(jpanelEditarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpanelEditarDatosLayout.createSequentialGroup()
                     .addContainerGap(343, Short.MAX_VALUE)
@@ -658,8 +660,6 @@ public class JFRuta extends javax.swing.JFrame {
         // TODO add your handling code here:
         // Obtener el índice de la pestaña seleccionada
         int selectedIndex = jTabbedPane1.getSelectedIndex();
-
-        // Suponiendo que la tabla está en la segunda pestaña (índice 1)
         if (selectedIndex == 2) {
             cargarRutasCompletas();  // Llama a la función para cargar la tabla
         }
