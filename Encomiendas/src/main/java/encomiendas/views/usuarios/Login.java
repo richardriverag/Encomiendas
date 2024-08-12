@@ -31,8 +31,8 @@ public class Login extends javax.swing.JFrame {
         imagen = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        usuario = new javax.swing.JTextField();
-        contrasenia = new javax.swing.JPasswordField();
+        txtUsername = new javax.swing.JTextField();
+        txtContrasenia = new javax.swing.JPasswordField();
         botonIngresar = new javax.swing.JButton();
         resetiarContrasenia = new javax.swing.JButton();
         registrarse = new javax.swing.JButton();
@@ -60,13 +60,13 @@ public class Login extends javax.swing.JFrame {
         jLabel2.setText("Contraseña:");
         fondoLogin.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, -1, -1));
 
-        usuario.setToolTipText("");
-        usuario.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        fondoLogin.add(usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, 120, -1));
+        txtUsername.setToolTipText("");
+        txtUsername.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        fondoLogin.add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, 120, -1));
 
-        contrasenia.setToolTipText("");
-        contrasenia.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        fondoLogin.add(contrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, 120, -1));
+        txtContrasenia.setToolTipText("");
+        txtContrasenia.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        fondoLogin.add(txtContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, 120, -1));
 
         botonIngresar.setBackground(new java.awt.Color(223, 216, 241));
         botonIngresar.setText("Login");
@@ -79,11 +79,6 @@ public class Login extends javax.swing.JFrame {
         resetiarContrasenia.setToolTipText("");
         resetiarContrasenia.setBorder(null);
         resetiarContrasenia.setContentAreaFilled(false);
-        resetiarContrasenia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                resetiarContraseniaActionPerformed(evt);
-            }
-        });
         fondoLogin.add(resetiarContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, 150, 20));
 
         registrarse.setForeground(new java.awt.Color(255, 255, 255));
@@ -91,11 +86,6 @@ public class Login extends javax.swing.JFrame {
         registrarse.setToolTipText("");
         registrarse.setBorder(null);
         registrarse.setContentAreaFilled(false);
-        registrarse.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registrarseActionPerformed(evt);
-            }
-        });
         fondoLogin.add(registrarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 360, 170, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -111,20 +101,6 @@ public class Login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void resetiarContraseniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetiarContraseniaActionPerformed
-        // TODO add your handling code here:
-        RecuperarContrasenia recuperarContrasenia  = new RecuperarContrasenia();
-            recuperarContrasenia.setVisible(true);
-            this.dispose();
-    }//GEN-LAST:event_resetiarContraseniaActionPerformed
-
-    private void registrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarseActionPerformed
-        // TODO add your handling code here:
-            Registro nuevoRegistro = new Registro();
-            nuevoRegistro.setVisible(true);
-            this.dispose();
-    }//GEN-LAST:event_registrarseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -158,14 +134,14 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonIngresar;
-    private javax.swing.JPasswordField contrasenia;
+    public javax.swing.JButton botonIngresar;
     private javax.swing.JPanel fondoLogin;
     private javax.swing.JLabel imagen;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JButton registrarse;
-    private javax.swing.JButton resetiarContrasenia;
-    private javax.swing.JTextField usuario;
+    public javax.swing.JButton registrarse;
+    public javax.swing.JButton resetiarContrasenia;
+    public javax.swing.JPasswordField txtContrasenia;
+    public javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }

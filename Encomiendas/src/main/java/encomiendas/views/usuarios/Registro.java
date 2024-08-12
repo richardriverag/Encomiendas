@@ -33,18 +33,18 @@ public class Registro extends javax.swing.JFrame {
         fondoRegistro = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        nombreTxt = new javax.swing.JTextField();
-        apellidosTxt = new javax.swing.JTextField();
-        correoTxt = new javax.swing.JTextField();
-        cedulaTxt = new javax.swing.JTextField();
-        nombreUsuarioTxt = new javax.swing.JTextField();
-        contaseniaTxt = new javax.swing.JTextField();
-        telefono1Txt = new javax.swing.JTextField();
-        telefono2Txt = new javax.swing.JTextField();
-        direccionTxt = new javax.swing.JTextField();
-        botonRegistrarse = new javax.swing.JButton();
+        txtNombres = new javax.swing.JTextField();
+        txtApellidos = new javax.swing.JTextField();
+        txtCorreo = new javax.swing.JTextField();
+        txtCedula = new javax.swing.JTextField();
+        txtUsername = new javax.swing.JTextField();
+        txtContrasenia = new javax.swing.JTextField();
+        txtTelefono = new javax.swing.JTextField();
+        txtTelefonoAdicional = new javax.swing.JTextField();
+        txtDireccion = new javax.swing.JTextField();
+        btnRegistrarse = new javax.swing.JButton();
         logoRegistro = new javax.swing.JLabel();
-        jCBCiudad = new javax.swing.JComboBox<>();
+        comboBoxCiudad = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registro");
@@ -66,138 +66,128 @@ public class Registro extends javax.swing.JFrame {
         jLabel2.setText("Crea una cuenta");
         fondoRegistro.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, 30));
 
-        nombreTxt.setForeground(new java.awt.Color(153, 153, 153));
-        nombreTxt.setText("Nombres");
-        nombreTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtNombres.setForeground(new java.awt.Color(153, 153, 153));
+        txtNombres.setText("Nombres");
+        txtNombres.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                nombreTxtFocusGained(evt);
+                txtNombresFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                nombreTxtFocusLost(evt);
+                txtNombresFocusLost(evt);
             }
         });
-        fondoRegistro.add(nombreTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 130, -1));
+        fondoRegistro.add(txtNombres, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 130, -1));
 
-        apellidosTxt.setForeground(new java.awt.Color(153, 153, 153));
-        apellidosTxt.setText("Apellidos");
-        apellidosTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtApellidos.setForeground(new java.awt.Color(153, 153, 153));
+        txtApellidos.setText("Apellidos");
+        txtApellidos.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                apellidosTxtFocusGained(evt);
+                txtApellidosFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                apellidosTxtFocusLost(evt);
+                txtApellidosFocusLost(evt);
             }
         });
-        fondoRegistro.add(apellidosTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 130, -1));
+        fondoRegistro.add(txtApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 130, -1));
 
-        correoTxt.setForeground(new java.awt.Color(153, 153, 153));
-        correoTxt.setText("Correo");
-        correoTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtCorreo.setForeground(new java.awt.Color(153, 153, 153));
+        txtCorreo.setText("Correo");
+        txtCorreo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                correoTxtFocusGained(evt);
+                txtCorreoFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                correoTxtFocusLost(evt);
+                txtCorreoFocusLost(evt);
             }
         });
-        fondoRegistro.add(correoTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 270, -1));
+        fondoRegistro.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 270, -1));
 
-        cedulaTxt.setForeground(new java.awt.Color(153, 153, 153));
-        cedulaTxt.setText("Cédula");
-        cedulaTxt.setToolTipText("");
-        cedulaTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtCedula.setForeground(new java.awt.Color(153, 153, 153));
+        txtCedula.setText("Cédula");
+        txtCedula.setToolTipText("");
+        txtCedula.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                cedulaTxtFocusGained(evt);
+                txtCedulaFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                cedulaTxtFocusLost(evt);
+                txtCedulaFocusLost(evt);
             }
         });
-        fondoRegistro.add(cedulaTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 130, -1));
+        fondoRegistro.add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 130, -1));
 
-        nombreUsuarioTxt.setForeground(new java.awt.Color(153, 153, 153));
-        nombreUsuarioTxt.setText("Nombre de Usuario");
-        nombreUsuarioTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtUsername.setForeground(new java.awt.Color(153, 153, 153));
+        txtUsername.setText("Nombre de Usuario");
+        txtUsername.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                nombreUsuarioTxtFocusGained(evt);
+                txtUsernameFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                nombreUsuarioTxtFocusLost(evt);
+                txtUsernameFocusLost(evt);
             }
         });
-        fondoRegistro.add(nombreUsuarioTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 130, -1));
+        fondoRegistro.add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 130, -1));
 
-        contaseniaTxt.setForeground(new java.awt.Color(153, 153, 153));
-        contaseniaTxt.setText("Contraseña");
-        contaseniaTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtContrasenia.setForeground(new java.awt.Color(153, 153, 153));
+        txtContrasenia.setText("Contraseña");
+        txtContrasenia.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                contaseniaTxtFocusGained(evt);
+                txtContraseniaFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                contaseniaTxtFocusLost(evt);
+                txtContraseniaFocusLost(evt);
             }
         });
-        fondoRegistro.add(contaseniaTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 130, -1));
+        fondoRegistro.add(txtContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 130, -1));
 
-        telefono1Txt.setForeground(new java.awt.Color(153, 153, 153));
-        telefono1Txt.setText("Teléfono");
-        telefono1Txt.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtTelefono.setForeground(new java.awt.Color(153, 153, 153));
+        txtTelefono.setText("Teléfono");
+        txtTelefono.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                telefono1TxtFocusGained(evt);
+                txtTelefonoFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                telefono1TxtFocusLost(evt);
+                txtTelefonoFocusLost(evt);
             }
         });
-        fondoRegistro.add(telefono1Txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 130, -1));
+        fondoRegistro.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 130, -1));
 
-        telefono2Txt.setForeground(new java.awt.Color(153, 153, 153));
-        telefono2Txt.setText("Teléfono Adicional");
-        telefono2Txt.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtTelefonoAdicional.setForeground(new java.awt.Color(153, 153, 153));
+        txtTelefonoAdicional.setText("Teléfono Adicional");
+        txtTelefonoAdicional.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                telefono2TxtFocusGained(evt);
+                txtTelefonoAdicionalFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                telefono2TxtFocusLost(evt);
+                txtTelefonoAdicionalFocusLost(evt);
             }
         });
-        fondoRegistro.add(telefono2Txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, 130, -1));
+        fondoRegistro.add(txtTelefonoAdicional, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, 130, -1));
 
-        direccionTxt.setForeground(new java.awt.Color(153, 153, 153));
-        direccionTxt.setText("Dirección");
-        direccionTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtDireccion.setForeground(new java.awt.Color(153, 153, 153));
+        txtDireccion.setText("Dirección");
+        txtDireccion.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                direccionTxtFocusGained(evt);
+                txtDireccionFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                direccionTxtFocusLost(evt);
+                txtDireccionFocusLost(evt);
             }
         });
-        direccionTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                direccionTxtActionPerformed(evt);
-            }
-        });
-        fondoRegistro.add(direccionTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 170, -1));
+        fondoRegistro.add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 170, -1));
 
-        botonRegistrarse.setBackground(new java.awt.Color(223, 216, 241));
-        botonRegistrarse.setText("Registrarse");
-        botonRegistrarse.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 51), new java.awt.Color(0, 0, 51), null, null));
-        botonRegistrarse.setFocusable(false);
-        botonRegistrarse.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonRegistrarseActionPerformed(evt);
-            }
-        });
-        fondoRegistro.add(botonRegistrarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 370, 80, 20));
+        btnRegistrarse.setBackground(new java.awt.Color(223, 216, 241));
+        btnRegistrarse.setText("Registrarse");
+        btnRegistrarse.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 51), new java.awt.Color(0, 0, 51), null, null));
+        btnRegistrarse.setFocusable(false);
+        fondoRegistro.add(btnRegistrarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 370, 80, 20));
 
         logoRegistro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LogoPequenio.jpg"))); // NOI18N
         fondoRegistro.add(logoRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, -1, -1));
 
-        jCBCiudad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Quito", "Guayaquil", "Cuenca" }));
-        jCBCiudad.setToolTipText("");
-        jCBCiudad.setFocusable(false);
-        fondoRegistro.add(jCBCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 330, 90, -1));
+        comboBoxCiudad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Quito", "Guayaquil", "Cuenca" }));
+        comboBoxCiudad.setToolTipText("");
+        comboBoxCiudad.setFocusable(false);
+        fondoRegistro.add(comboBoxCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 330, 90, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -213,163 +203,149 @@ public class Registro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void nombreTxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombreTxtFocusGained
+    private void txtNombresFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombresFocusGained
         // TODO add your handling code here:
-        if (nombreTxt.getText().equals("Nombres")) {
-        nombreTxt.setText("");
-        nombreTxt.setForeground(Color.BLACK);
+        if (txtNombres.getText().equals("Nombres")) {
+        txtNombres.setText("");
+        txtNombres.setForeground(Color.BLACK);
         }
-    }//GEN-LAST:event_nombreTxtFocusGained
+    }//GEN-LAST:event_txtNombresFocusGained
 //funciones para poner un texto provicional en un txt
-    private void nombreTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombreTxtFocusLost
+    private void txtNombresFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombresFocusLost
         // TODO add your handling code here:
-        if (nombreTxt.getText().isEmpty()) {
-        nombreTxt.setForeground(Color.GRAY);
-        nombreTxt.setText("Nombres");
+        if (txtNombres.getText().isEmpty()) {
+        txtNombres.setForeground(Color.GRAY);
+        txtNombres.setText("Nombres");
         }
-    }//GEN-LAST:event_nombreTxtFocusLost
+    }//GEN-LAST:event_txtNombresFocusLost
 
-    private void apellidosTxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_apellidosTxtFocusGained
+    private void txtApellidosFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtApellidosFocusGained
         // TODO add your handling code here:
-        if (apellidosTxt.getText().equals("Apellidos")) {
-        apellidosTxt.setText("");
-        apellidosTxt.setForeground(Color.BLACK);
+        if (txtApellidos.getText().equals("Apellidos")) {
+        txtApellidos.setText("");
+        txtApellidos.setForeground(Color.BLACK);
         }
-    }//GEN-LAST:event_apellidosTxtFocusGained
+    }//GEN-LAST:event_txtApellidosFocusGained
 
-    private void apellidosTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_apellidosTxtFocusLost
+    private void txtApellidosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtApellidosFocusLost
         // TODO add your handling code here:
-        if (apellidosTxt.getText().isEmpty()) {
-        apellidosTxt.setForeground(Color.GRAY);
-        apellidosTxt.setText("Apellidos");
+        if (txtApellidos.getText().isEmpty()) {
+        txtApellidos.setForeground(Color.GRAY);
+        txtApellidos.setText("Apellidos");
         }
-    }//GEN-LAST:event_apellidosTxtFocusLost
+    }//GEN-LAST:event_txtApellidosFocusLost
 
-    private void correoTxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_correoTxtFocusGained
+    private void txtCorreoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCorreoFocusGained
         // TODO add your handling code here:
-        if (correoTxt.getText().equals("Correo")) {
-        correoTxt.setText("");
-        correoTxt.setForeground(Color.BLACK);
+        if (txtCorreo.getText().equals("Correo")) {
+        txtCorreo.setText("");
+        txtCorreo.setForeground(Color.BLACK);
         }
-    }//GEN-LAST:event_correoTxtFocusGained
+    }//GEN-LAST:event_txtCorreoFocusGained
 
-    private void correoTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_correoTxtFocusLost
+    private void txtCorreoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCorreoFocusLost
         // TODO add your handling code here:
-        if (correoTxt.getText().isEmpty()) {
-        correoTxt.setForeground(Color.GRAY);
-        correoTxt.setText("Correo");
+        if (txtCorreo.getText().isEmpty()) {
+        txtCorreo.setForeground(Color.GRAY);
+        txtCorreo.setText("Correo");
         }
-    }//GEN-LAST:event_correoTxtFocusLost
+    }//GEN-LAST:event_txtCorreoFocusLost
 
-    private void cedulaTxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cedulaTxtFocusGained
+    private void txtCedulaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCedulaFocusGained
         // TODO add your handling code here:
-        if (cedulaTxt.getText().equals("Cédula")) {
-        cedulaTxt.setText("");
-        cedulaTxt.setForeground(Color.BLACK);
+        if (txtCedula.getText().equals("Cédula")) {
+        txtCedula.setText("");
+        txtCedula.setForeground(Color.BLACK);
         }
-    }//GEN-LAST:event_cedulaTxtFocusGained
+    }//GEN-LAST:event_txtCedulaFocusGained
 
-    private void cedulaTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cedulaTxtFocusLost
+    private void txtCedulaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCedulaFocusLost
         // TODO add your handling code here:
-        if (cedulaTxt.getText().isEmpty()) {
-        cedulaTxt.setForeground(Color.GRAY);
-        cedulaTxt.setText("Cédula");
+        if (txtCedula.getText().isEmpty()) {
+        txtCedula.setForeground(Color.GRAY);
+        txtCedula.setText("Cédula");
         }
-    }//GEN-LAST:event_cedulaTxtFocusLost
+    }//GEN-LAST:event_txtCedulaFocusLost
 
-    private void nombreUsuarioTxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombreUsuarioTxtFocusGained
+    private void txtUsernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsernameFocusGained
         // TODO add your handling code here:
-        if (nombreUsuarioTxt.getText().equals("Nombre de Usuario")) {
-        nombreUsuarioTxt.setText("");
-        nombreUsuarioTxt.setForeground(Color.BLACK);
+        if (txtUsername.getText().equals("Nombre de Usuario")) {
+        txtUsername.setText("");
+        txtUsername.setForeground(Color.BLACK);
         }
-    }//GEN-LAST:event_nombreUsuarioTxtFocusGained
+    }//GEN-LAST:event_txtUsernameFocusGained
 
-    private void nombreUsuarioTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombreUsuarioTxtFocusLost
+    private void txtUsernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsernameFocusLost
         // TODO add your handling code here:
-        if (nombreUsuarioTxt.getText().isEmpty()) {
-        nombreUsuarioTxt.setForeground(Color.GRAY);
-        nombreUsuarioTxt.setText("Nombre de Usuario");
+        if (txtUsername.getText().isEmpty()) {
+        txtUsername.setForeground(Color.GRAY);
+        txtUsername.setText("Nombre de Usuario");
         }
-    }//GEN-LAST:event_nombreUsuarioTxtFocusLost
+    }//GEN-LAST:event_txtUsernameFocusLost
 
-    private void contaseniaTxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_contaseniaTxtFocusGained
+    private void txtContraseniaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtContraseniaFocusGained
         // TODO add your handling code here:
-        if (contaseniaTxt.getText().equals("Contraseña")) {
-        contaseniaTxt.setText("");
-        contaseniaTxt.setForeground(Color.BLACK);
+        if (txtContrasenia.getText().equals("Contraseña")) {
+        txtContrasenia.setText("");
+        txtContrasenia.setForeground(Color.BLACK);
         }
-    }//GEN-LAST:event_contaseniaTxtFocusGained
+    }//GEN-LAST:event_txtContraseniaFocusGained
 
-    private void contaseniaTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_contaseniaTxtFocusLost
+    private void txtContraseniaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtContraseniaFocusLost
         // TODO add your handling code here:
-        if (contaseniaTxt.getText().isEmpty()) {
-        contaseniaTxt.setForeground(Color.GRAY);
-        contaseniaTxt.setText("Contraseña");
+        if (txtContrasenia.getText().isEmpty()) {
+        txtContrasenia.setForeground(Color.GRAY);
+        txtContrasenia.setText("Contraseña");
         }
-    }//GEN-LAST:event_contaseniaTxtFocusLost
+    }//GEN-LAST:event_txtContraseniaFocusLost
 
-    private void telefono1TxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_telefono1TxtFocusGained
+    private void txtTelefonoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefonoFocusGained
         // TODO add your handling code here:
-        if (telefono1Txt.getText().equals("Teléfono")) {
-        telefono1Txt.setText("");
-        telefono1Txt.setForeground(Color.BLACK);
+        if (txtTelefono.getText().equals("Teléfono")) {
+        txtTelefono.setText("");
+        txtTelefono.setForeground(Color.BLACK);
         }
-    }//GEN-LAST:event_telefono1TxtFocusGained
+    }//GEN-LAST:event_txtTelefonoFocusGained
 
-    private void telefono1TxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_telefono1TxtFocusLost
+    private void txtTelefonoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefonoFocusLost
         // TODO add your handling code here:
-        if (telefono1Txt.getText().isEmpty()) {
-        telefono1Txt.setForeground(Color.GRAY);
-        telefono1Txt.setText("Teléfono");
+        if (txtTelefono.getText().isEmpty()) {
+        txtTelefono.setForeground(Color.GRAY);
+        txtTelefono.setText("Teléfono");
         }
-    }//GEN-LAST:event_telefono1TxtFocusLost
+    }//GEN-LAST:event_txtTelefonoFocusLost
 
-    private void telefono2TxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_telefono2TxtFocusGained
+    private void txtTelefonoAdicionalFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefonoAdicionalFocusGained
         // TODO add your handling code here:
-        if (telefono2Txt.getText().equals("Teléfono Adicional")) {
-        telefono2Txt.setText("");
-        telefono2Txt.setForeground(Color.BLACK);
+        if (txtTelefonoAdicional.getText().equals("Teléfono Adicional")) {
+        txtTelefonoAdicional.setText("");
+        txtTelefonoAdicional.setForeground(Color.BLACK);
         }
-    }//GEN-LAST:event_telefono2TxtFocusGained
+    }//GEN-LAST:event_txtTelefonoAdicionalFocusGained
 
-    private void telefono2TxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_telefono2TxtFocusLost
+    private void txtTelefonoAdicionalFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefonoAdicionalFocusLost
         // TODO add your handling code here:
-        if (telefono2Txt.getText().isEmpty()) {
-        telefono2Txt.setForeground(Color.GRAY);
-        telefono2Txt.setText("Teléfono Adicional");
+        if (txtTelefonoAdicional.getText().isEmpty()) {
+        txtTelefonoAdicional.setForeground(Color.GRAY);
+        txtTelefonoAdicional.setText("Teléfono Adicional");
         }
-    }//GEN-LAST:event_telefono2TxtFocusLost
+    }//GEN-LAST:event_txtTelefonoAdicionalFocusLost
 
-    private void direccionTxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_direccionTxtFocusGained
+    private void txtDireccionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDireccionFocusGained
         // TODO add your handling code here:
-        if (direccionTxt.getText().isEmpty()) {
-        direccionTxt.setForeground(Color.GRAY);
-        direccionTxt.setText("Dirección");
+        if (txtDireccion.getText().equals("Dirección")) {
+        txtDireccion.setText("");
+        txtDireccion.setForeground(Color.BLACK);
         }
-    }//GEN-LAST:event_direccionTxtFocusGained
+    }//GEN-LAST:event_txtDireccionFocusGained
 
-    private void direccionTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_direccionTxtFocusLost
+    private void txtDireccionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDireccionFocusLost
         // TODO add your handling code here:
-        if (direccionTxt.getText().isEmpty()) {
-        direccionTxt.setForeground(Color.GRAY);
-        direccionTxt.setText("Dirección");
+        if (txtDireccion.getText().isEmpty()) {
+        txtDireccion.setForeground(Color.GRAY);
+        txtDireccion.setText("Dirección");
         }
-    }//GEN-LAST:event_direccionTxtFocusLost
-
-    private void direccionTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_direccionTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_direccionTxtActionPerformed
-
-    private void botonRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarseActionPerformed
-            //Aqui va toda la logica de creación de nuevo usuario 
-            
-            JOptionPane.showMessageDialog(this, "Cuenta creada exitosamente");
-            Login login= new Login();
-            login.setVisible(true);
-            this.dispose();
-            
-    }//GEN-LAST:event_botonRegistrarseActionPerformed
+    }//GEN-LAST:event_txtDireccionFocusLost
 
     /**
      * @param args the command line arguments
@@ -403,20 +379,20 @@ public class Registro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField apellidosTxt;
-    private javax.swing.JButton botonRegistrarse;
-    private javax.swing.JTextField cedulaTxt;
-    private javax.swing.JTextField contaseniaTxt;
-    private javax.swing.JTextField correoTxt;
-    private javax.swing.JTextField direccionTxt;
+    public javax.swing.JButton btnRegistrarse;
+    public javax.swing.JComboBox<String> comboBoxCiudad;
     private javax.swing.JPanel fondoRegistro;
-    private javax.swing.JComboBox<String> jCBCiudad;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel logoRegistro;
-    private javax.swing.JTextField nombreTxt;
-    private javax.swing.JTextField nombreUsuarioTxt;
-    private javax.swing.JTextField telefono1Txt;
-    private javax.swing.JTextField telefono2Txt;
+    public javax.swing.JTextField txtApellidos;
+    public javax.swing.JTextField txtCedula;
+    public javax.swing.JTextField txtContrasenia;
+    public javax.swing.JTextField txtCorreo;
+    public javax.swing.JTextField txtDireccion;
+    public javax.swing.JTextField txtNombres;
+    public javax.swing.JTextField txtTelefono;
+    public javax.swing.JTextField txtTelefonoAdicional;
+    public javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }
