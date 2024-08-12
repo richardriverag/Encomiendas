@@ -13,6 +13,7 @@ import java.util.List;
  */
 public class HistorialMantenimiento {
      private List<Mantenimiento> mantenimientos;
+     
      public HistorialMantenimiento() {
         this.mantenimientos = new ArrayList<>();
     }
