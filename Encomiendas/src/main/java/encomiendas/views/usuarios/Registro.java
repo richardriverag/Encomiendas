@@ -179,6 +179,11 @@ public class Registro extends javax.swing.JFrame {
         btnRegistrarse.setText("Registrarse");
         btnRegistrarse.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 51), new java.awt.Color(0, 0, 51), null, null));
         btnRegistrarse.setFocusable(false);
+        btnRegistrarse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarseActionPerformed(evt);
+            }
+        });
         fondoRegistro.add(btnRegistrarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 370, 80, 20));
 
         logoRegistro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LogoPequenio.jpg"))); // NOI18N
@@ -346,6 +351,10 @@ public class Registro extends javax.swing.JFrame {
         txtDireccion.setText("Dirección");
         }
     }//GEN-LAST:event_txtDireccionFocusLost
+
+    private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRegistrarseActionPerformed
 
     /**
      * @param args the command line arguments
