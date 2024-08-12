@@ -80,6 +80,7 @@ public class usuarioController implements ActionListener {
                     JOptionPane.showMessageDialog(null, "hola soy un Administrador");
                     MenuAdministrador frmAdministrador = new MenuAdministrador();
                     frmLogin.dispose();
+                    frmAdministrador.jTFUsuarioAdministrador.setText(cedula);
                     frmAdministrador.setVisible(true);
                 }
 
@@ -210,5 +211,6 @@ public class usuarioController implements ActionListener {
         frmEmpMenu.jTFUsuarioEmpleado.setText(cedula);
         ctrEmpleado.iniciar();
     }
+    
    
 }
