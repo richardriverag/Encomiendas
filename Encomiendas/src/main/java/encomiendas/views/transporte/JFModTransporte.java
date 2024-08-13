@@ -4,6 +4,8 @@
  */
 package encomiendas.views.transporte;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author hp
@@ -26,104 +28,124 @@ public class JFModTransporte extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        btnMantenimiento = new javax.swing.JButton();
-        btnTransporte = new javax.swing.JButton();
-        btnRuta = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        btnMantenimiento2 = new javax.swing.JButton();
+        btnTransporte2 = new javax.swing.JButton();
+        btnRuta2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones"));
+        jPanel4.setBackground(new java.awt.Color(204, 0, 51));
 
-        btnMantenimiento.setText("Mantenimiento");
-        btnMantenimiento.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        btnMantenimiento.setContentAreaFilled(false);
-        btnMantenimiento.addActionListener(new java.awt.event.ActionListener() {
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Secciones"));
+
+        btnMantenimiento2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnMantenimiento2.setText("Mantenimiento");
+        btnMantenimiento2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        btnMantenimiento2.setContentAreaFilled(false);
+        btnMantenimiento2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMantenimientoActionPerformed(evt);
             }
         });
 
-        btnTransporte.setText("Transporte");
-        btnTransporte.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        btnTransporte.setContentAreaFilled(false);
-        btnTransporte.addActionListener(new java.awt.event.ActionListener() {
+        btnTransporte2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnTransporte2.setText("Transporte");
+        btnTransporte2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        btnTransporte2.setContentAreaFilled(false);
+        btnTransporte2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTransporteActionPerformed(evt);
             }
         });
 
-        btnRuta.setText("Ruta");
-        btnRuta.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        btnRuta.setContentAreaFilled(false);
-        btnRuta.addActionListener(new java.awt.event.ActionListener() {
+        btnRuta2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnRuta2.setText("Ruta");
+        btnRuta2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        btnRuta2.setContentAreaFilled(false);
+        btnRuta2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRutaActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(71, 71, 71)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnMantenimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(72, Short.MAX_VALUE))
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(79, 79, 79)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnTransporte2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRuta2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMantenimiento2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(74, 74, 74)
-                .addComponent(btnTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnMantenimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(97, Short.MAX_VALUE))
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(btnTransporte2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(btnRuta2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(btnMantenimiento2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(58, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(24, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
+            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRutaActionPerformed
+        // TODO add your handling code here:
+        JFRuta ruta = new JFRuta();
+        ruta.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        ruta.setVisible(true);
+        ruta.setResizable(false);
+        ruta.setLocationRelativeTo(null);
+    }//GEN-LAST:event_btnRutaActionPerformed
+
     private void btnTransporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransporteActionPerformed
         JFTransporte transporte = new JFTransporte();
+        transporte.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         transporte.setVisible(true);
         transporte.setResizable(false);
         transporte.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnTransporteActionPerformed
 
-    private void btnRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRutaActionPerformed
-        // TODO add your handling code here:
-        JFRuta ruta = new JFRuta();
-        ruta.setVisible(true);
-        ruta.setResizable(false);
-        ruta.setLocationRelativeTo(null);     
-    }//GEN-LAST:event_btnRutaActionPerformed
-
     private void btnMantenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMantenimientoActionPerformed
         // TODO add your handling code here:
         JFMantenimiento mantenimiento = new JFMantenimiento();
+        mantenimiento.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         mantenimiento.setVisible(true);
         mantenimiento.setResizable(false);
         mantenimiento.setLocationRelativeTo(null);
@@ -166,8 +188,17 @@ public class JFModTransporte extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnMantenimiento;
+    private javax.swing.JButton btnMantenimiento1;
+    private javax.swing.JButton btnMantenimiento2;
     private javax.swing.JButton btnRuta;
+    private javax.swing.JButton btnRuta1;
+    private javax.swing.JButton btnRuta2;
     private javax.swing.JButton btnTransporte;
+    private javax.swing.JButton btnTransporte1;
+    private javax.swing.JButton btnTransporte2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     // End of variables declaration//GEN-END:variables
 }
