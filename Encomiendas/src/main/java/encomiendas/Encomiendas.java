@@ -1,7 +1,12 @@
 package encomiendas;
 
-import encomiendas.views.transporte.JFRuta;
-import encomiendas.views.transporte.JFTransporte;
+
+import encomiendas.controllers.usuarios.usuarioController;
+import encomiendas.model.data.usuarios.DbUsuarios;
+import encomiendas.views.usuarios.Login;
+import encomiendas.views.usuarios.RecuperarContrasenia;
+import encomiendas.views.usuarios.Registro;
+
 
 
 /**
@@ -11,9 +16,17 @@ import encomiendas.views.transporte.JFTransporte;
 public class Encomiendas {
 
     public static void main(String[] args) {
-        JFTransporte transporte = new JFTransporte();
-        transporte.setVisible(true);
-        transporte.setResizable(false);
-        transporte.setLocationRelativeTo(null);
+        DbUsuarios modDbCliente = new DbUsuarios();
+        Login frmLogin = new Login();
+        Registro frmRegistro = new Registro();
+        frmRegistro.setVisible(false);
+        RecuperarContrasenia frmRContrasenia = new RecuperarContrasenia();
+        frmRContrasenia.setVisible(false);
+        
+        usuarioController crtUsuario = new usuarioController(modDbCliente, frmLogin, frmRegistro, frmRContrasenia);
+        
+        crtUsuario.iniciar();
+        frmLogin.setVisible(true);
+
     }
 }
