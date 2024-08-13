@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
-import encomiendas.model.entity.agencia.Agencia;
+import encomiendas.model.entity.agencias.Agencia;
 
 
 /**
