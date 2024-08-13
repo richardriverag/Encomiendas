@@ -73,7 +73,7 @@ public class TransporteRepository implements Repository<Transporte> {
 
     @Override
     public void update(Integer id, Transporte transporte) throws SQLException {
-        String sql = "UPDATE transporte SET capacidad_carga = ?, modelo = ?, anio_fabricacion = ?, kilometraje = ?, tipo_transporte = ?, estado = ? WHERE transporte_id = ?";
+        String sql = "UPDATE transporte SET capacidad_carga = ?, modelo = ?, anio_fabricacion = ?, kilometraje = ?, tipo_transporte = ?, estado_transporte = ? WHERE transporte_id = ?";
         try (PreparedStatement stmt = myConn.prepareStatement(sql)) {
             stmt.setDouble(1, transporte.getCapacidad_carga());
             stmt.setString(2, transporte.getModelo());
