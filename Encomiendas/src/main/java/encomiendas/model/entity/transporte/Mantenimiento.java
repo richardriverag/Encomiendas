@@ -9,6 +9,7 @@ public class Mantenimiento {
     private Transporte transporte;
 
     public Mantenimiento() {
+        this.transporte = new Transporte();
     }
 
     
