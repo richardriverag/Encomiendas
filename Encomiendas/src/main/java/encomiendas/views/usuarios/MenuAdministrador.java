@@ -1,23 +1,29 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package encomiendas.views.usuarios;
 
+import encomiendas.controllers.usuarios.AdministradorController;
+import encomiendas.database.Conexion;
+import encomiendas.model.data.usuarios.UsuarioRepository;
+import encomiendas.services.usuarios.UsuarioService;
 import java.awt.BorderLayout;
 
-/**
- *
- * @author USER-PC
- */
 public class MenuAdministrador extends javax.swing.JFrame {
 
-    /**
-     * Creates new form MenuClientes
-     */
+    Conexion con = new Conexion();
+
+    UsuarioRepository usuarioRepository;
+    UsuarioService usuarioService;
+    AdministradorController administradorController;
+    
     public MenuAdministrador() {
         initComponents();
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(this);
+        setTitle("Lista de usuarios");
+
+        //instancia del controlador
+        usuarioRepository = new UsuarioRepository(con.getInstance());
+        usuarioService = new UsuarioService(usuarioRepository);
+        administradorController = new AdministradorController(this, usuarioService);
+
     }
 
     /**
@@ -34,13 +40,10 @@ public class MenuAdministrador extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLAdministrador = new javax.swing.JLabel();
         jTFUsuarioAdministrador = new javax.swing.JTextField();
-        btRegistroUsuarios = new javax.swing.JButton();
+        btListaUsuarios = new javax.swing.JButton();
         btIngresoUsuarios = new javax.swing.JButton();
         btActualizarUsuarios = new javax.swing.JButton();
-        btVisualizarAgencias = new javax.swing.JButton();
-        btIngresoAgencias = new javax.swing.JButton();
-        btEditarAgencias = new javax.swing.JButton();
-        jPAdministrador = new javax.swing.JPanel();
+        jFrameAdministrador = new javax.swing.JPanel();
         jLBienvenida = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -66,98 +69,50 @@ public class MenuAdministrador extends javax.swing.JFrame {
         jTFUsuarioAdministrador.setEditable(false);
         jPAdministradorMétodos.add(jTFUsuarioAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 130, -1));
 
-        btRegistroUsuarios.setBackground(new java.awt.Color(200, 0, 0));
-        btRegistroUsuarios.setForeground(new java.awt.Color(255, 255, 255));
-        btRegistroUsuarios.setText("Registro Usuarios");
-        btRegistroUsuarios.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 255, 255), null, null));
-        btRegistroUsuarios.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btRegistroUsuariosActionPerformed(evt);
-            }
-        });
-        jPAdministradorMétodos.add(btRegistroUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 150, 30));
+        btListaUsuarios.setBackground(new java.awt.Color(200, 0, 0));
+        btListaUsuarios.setForeground(new java.awt.Color(255, 255, 255));
+        btListaUsuarios.setText("Lista de Usuarios");
+        btListaUsuarios.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 255, 255), null, null));
+        jPAdministradorMétodos.add(btListaUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 150, 30));
 
         btIngresoUsuarios.setBackground(new java.awt.Color(200, 0, 0));
         btIngresoUsuarios.setForeground(new java.awt.Color(255, 255, 255));
         btIngresoUsuarios.setText("Ingreso Usuarios");
         btIngresoUsuarios.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 255, 255), null, null));
-        btIngresoUsuarios.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btIngresoUsuariosActionPerformed(evt);
-            }
-        });
         jPAdministradorMétodos.add(btIngresoUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 150, 30));
 
         btActualizarUsuarios.setBackground(new java.awt.Color(200, 0, 0));
         btActualizarUsuarios.setForeground(new java.awt.Color(255, 255, 255));
         btActualizarUsuarios.setText("Actualizar Usuarios");
         btActualizarUsuarios.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 255, 255), null, null));
-        btActualizarUsuarios.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btActualizarUsuariosActionPerformed(evt);
-            }
-        });
         jPAdministradorMétodos.add(btActualizarUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 150, 30));
-
-        btVisualizarAgencias.setBackground(new java.awt.Color(200, 0, 0));
-        btVisualizarAgencias.setForeground(new java.awt.Color(255, 255, 255));
-        btVisualizarAgencias.setText("Visualizar Agencias");
-        btVisualizarAgencias.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 255, 255), null, null));
-        btVisualizarAgencias.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btVisualizarAgenciasActionPerformed(evt);
-            }
-        });
-        jPAdministradorMétodos.add(btVisualizarAgencias, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 150, 30));
-
-        btIngresoAgencias.setBackground(new java.awt.Color(200, 0, 0));
-        btIngresoAgencias.setForeground(new java.awt.Color(255, 255, 255));
-        btIngresoAgencias.setText("Ingreso Agencias");
-        btIngresoAgencias.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 255, 255), null, null));
-        btIngresoAgencias.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btIngresoAgenciasActionPerformed(evt);
-            }
-        });
-        jPAdministradorMétodos.add(btIngresoAgencias, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 150, 30));
-
-        btEditarAgencias.setBackground(new java.awt.Color(200, 0, 0));
-        btEditarAgencias.setForeground(new java.awt.Color(255, 255, 255));
-        btEditarAgencias.setText("Editar Agencias");
-        btEditarAgencias.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 255, 255), null, null));
-        btEditarAgencias.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btEditarAgenciasActionPerformed(evt);
-            }
-        });
-        jPAdministradorMétodos.add(btEditarAgencias, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 150, 30));
 
         jPMenúAdministrador.add(jPAdministradorMétodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 430));
 
-        jPAdministrador.setBackground(new java.awt.Color(37, 37, 61));
+        jFrameAdministrador.setBackground(new java.awt.Color(37, 37, 61));
 
         jLBienvenida.setFont(new java.awt.Font("Segoe UI", 3, 44)); // NOI18N
         jLBienvenida.setForeground(new java.awt.Color(255, 255, 255));
         jLBienvenida.setText("BIENVENIDO ");
 
-        javax.swing.GroupLayout jPAdministradorLayout = new javax.swing.GroupLayout(jPAdministrador);
-        jPAdministrador.setLayout(jPAdministradorLayout);
-        jPAdministradorLayout.setHorizontalGroup(
-            jPAdministradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPAdministradorLayout.createSequentialGroup()
+        javax.swing.GroupLayout jFrameAdministradorLayout = new javax.swing.GroupLayout(jFrameAdministrador);
+        jFrameAdministrador.setLayout(jFrameAdministradorLayout);
+        jFrameAdministradorLayout.setHorizontalGroup(
+            jFrameAdministradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jFrameAdministradorLayout.createSequentialGroup()
                 .addContainerGap(213, Short.MAX_VALUE)
                 .addComponent(jLBienvenida)
                 .addGap(195, 195, 195))
         );
-        jPAdministradorLayout.setVerticalGroup(
-            jPAdministradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPAdministradorLayout.createSequentialGroup()
+        jFrameAdministradorLayout.setVerticalGroup(
+            jFrameAdministradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jFrameAdministradorLayout.createSequentialGroup()
                 .addGap(104, 104, 104)
                 .addComponent(jLBienvenida, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(139, Short.MAX_VALUE))
         );
 
-        jPMenúAdministrador.add(jPAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, 690, 430));
+        jPMenúAdministrador.add(jFrameAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, 690, 430));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -172,51 +127,6 @@ public class MenuAdministrador extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btRegistroUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistroUsuariosActionPerformed
-        PanelARegistroUsuarios panelAVU = new PanelARegistroUsuarios();
-        panelAVU.setSize(690, 430);
-        panelAVU.setLocation(0, 0);
-
-        jPAdministrador.removeAll();
-        jPAdministrador.add(panelAVU, BorderLayout.CENTER);
-        jPAdministrador.revalidate();
-        jPAdministrador.repaint();
-    }//GEN-LAST:event_btRegistroUsuariosActionPerformed
-
-    private void btIngresoUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btIngresoUsuariosActionPerformed
-        PanelAIngresoUsuarios panelAIU = new PanelAIngresoUsuarios();
-        panelAIU.setSize(690, 430);
-        panelAIU.setLocation(0, 0);
-
-        jPAdministrador.removeAll();
-        jPAdministrador.add(panelAIU, BorderLayout.CENTER);
-        jPAdministrador.revalidate();
-        jPAdministrador.repaint();
-    }//GEN-LAST:event_btIngresoUsuariosActionPerformed
-
-    private void btActualizarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btActualizarUsuariosActionPerformed
-        PanelAActualizarUsuarios panelAEU = new PanelAActualizarUsuarios();
-        panelAEU.setSize(690, 430);
-        panelAEU.setLocation(0, 0);
-
-        jPAdministrador.removeAll();
-        jPAdministrador.add(panelAEU, BorderLayout.CENTER);
-        jPAdministrador.revalidate();
-        jPAdministrador.repaint();
-    }//GEN-LAST:event_btActualizarUsuariosActionPerformed
-
-    private void btVisualizarAgenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVisualizarAgenciasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btVisualizarAgenciasActionPerformed
-
-    private void btIngresoAgenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btIngresoAgenciasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btIngresoAgenciasActionPerformed
-
-    private void btEditarAgenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarAgenciasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btEditarAgenciasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -247,6 +157,10 @@ public class MenuAdministrador extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -257,18 +171,15 @@ public class MenuAdministrador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btActualizarUsuarios;
-    private javax.swing.JButton btEditarAgencias;
-    private javax.swing.JButton btIngresoAgencias;
-    private javax.swing.JButton btIngresoUsuarios;
-    private javax.swing.JButton btRegistroUsuarios;
-    private javax.swing.JButton btVisualizarAgencias;
+    public javax.swing.JButton btActualizarUsuarios;
+    public javax.swing.JButton btIngresoUsuarios;
+    public javax.swing.JButton btListaUsuarios;
+    private javax.swing.JPanel jFrameAdministrador;
     private javax.swing.JLabel jLAdministrador;
     private javax.swing.JLabel jLBienvenida;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPAdministrador;
     private javax.swing.JPanel jPAdministradorMétodos;
     private javax.swing.JPanel jPMenúAdministrador;
-    private javax.swing.JTextField jTFUsuarioAdministrador;
+    public javax.swing.JTextField jTFUsuarioAdministrador;
     // End of variables declaration//GEN-END:variables
 }

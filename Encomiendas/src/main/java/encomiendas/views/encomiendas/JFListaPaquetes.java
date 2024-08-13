@@ -34,7 +34,7 @@ public class JFListaPaquetes extends javax.swing.JFrame {
         paqueteService = new PaqueteService(paqueteRepository);
         paqueteController = new PaqueteController(this, paqueteService);
 
-//        paqueteController.mostrarPaquetes((DefaultTableModel) this.jTListaPaquetes.getModel());
+        //paqueteController.mostrarPaquetes((DefaultTableModel) this.jTListaPaquetes.getModel(), Integer.parseInt(txtIdEncomienda.getText()));
 
     }
 
@@ -74,11 +74,7 @@ public class JFListaPaquetes extends javax.swing.JFrame {
 
         jTListaPaquetes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "ID Paquete", "Descripcion", "Peso", "Volumen", "Es frágil", "Precio", "ID Encomienda"
