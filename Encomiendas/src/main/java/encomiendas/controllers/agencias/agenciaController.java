@@ -4,8 +4,8 @@
  */
 package encomiendas.controllers.agencias;
 
-import encomiendas.model.data.Agencia.DbAgencia;
-import encomiendas.model.entity.agencia.Agencia;
+import encomiendas.model.data.agencias.DbAgencia;
+import encomiendas.model.entity.agencias.Agencia;
 import encomiendas.views.agencia.ConsultaAgencia;
 import encomiendas.views.agencia.ModificarInformacionAgencia;
 import encomiendas.views.agencia.NuevaAgencia;
