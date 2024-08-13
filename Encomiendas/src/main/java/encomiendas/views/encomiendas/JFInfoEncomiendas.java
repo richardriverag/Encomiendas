@@ -124,6 +124,8 @@ public class JFInfoEncomiendas extends javax.swing.JFrame {
 
         jLabel16.setText("Número de cédula del receptor");
 
+        txtIdEncomienda.setEditable(false);
+        txtIdEncomienda.setOpaque(true);
         txtIdEncomienda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIdEncomiendaActionPerformed(evt);
@@ -132,6 +134,8 @@ public class JFInfoEncomiendas extends javax.swing.JFrame {
 
         jLabel15.setText("Número de cédula del emisor");
 
+        txtcedulaEmisor.setEditable(false);
+        txtcedulaEmisor.setOpaque(true);
         txtcedulaEmisor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtcedulaEmisorActionPerformed(evt);
@@ -140,10 +144,14 @@ public class JFInfoEncomiendas extends javax.swing.JFrame {
 
         jLabel14.setText("Fecha de envío:");
 
+        jDCFechaEnvio.setEnabled(false);
+
         jLabel13.setText("Agencia de origen");
 
         jLabel12.setText("Interprovincial:");
 
+        jCheckInterprovincial.setEnabled(false);
+        jCheckInterprovincial.setOpaque(true);
         jCheckInterprovincial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckInterprovincialActionPerformed(evt);
@@ -152,12 +160,16 @@ public class JFInfoEncomiendas extends javax.swing.JFrame {
 
         jLabel11.setText("Entrega a domicilio:");
 
+        JCheckDomicilio.setEnabled(false);
+        JCheckDomicilio.setOpaque(true);
         JCheckDomicilio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JCheckDomicilioActionPerformed(evt);
             }
         });
 
+        txtEstadoEncomienda.setEditable(false);
+        txtEstadoEncomienda.setOpaque(true);
         txtEstadoEncomienda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEstadoEncomiendaActionPerformed(evt);
@@ -166,6 +178,8 @@ public class JFInfoEncomiendas extends javax.swing.JFrame {
 
         jLabel17.setText("Estado de la encomienda:");
 
+        txtAgenciaO.setEditable(false);
+        txtAgenciaO.setOpaque(true);
         txtAgenciaO.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtAgenciaOActionPerformed(evt);
@@ -174,6 +188,8 @@ public class JFInfoEncomiendas extends javax.swing.JFrame {
 
         jLabel18.setText("Id Encomienda");
 
+        txtCedulaReceptor.setEditable(false);
+        txtCedulaReceptor.setOpaque(true);
         txtCedulaReceptor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCedulaReceptorActionPerformed(evt);
@@ -266,6 +282,9 @@ public class JFInfoEncomiendas extends javax.swing.JFrame {
 
         jLabel8.setText("Agencia de destino:");
 
+        txtAgenD.setEditable(false);
+        txtAgenD.setOpaque(true);
+
         javax.swing.GroupLayout panelInterprovincialLayout = new javax.swing.GroupLayout(panelInterprovincial);
         panelInterprovincial.setLayout(panelInterprovincialLayout);
         panelInterprovincialLayout.setHorizontalGroup(
@@ -291,7 +310,13 @@ public class JFInfoEncomiendas extends javax.swing.JFrame {
 
         jLabel9.setText("Dirección de entrega:");
 
+        txtDirEntrega.setEditable(false);
+        txtDirEntrega.setOpaque(true);
+
         jLabel10.setText("Codigo postal:");
+
+        txtCodPostal.setEditable(false);
+        txtCodPostal.setOpaque(true);
 
         javax.swing.GroupLayout panelEntregaDomicilioLayout = new javax.swing.GroupLayout(panelEntregaDomicilio);
         panelEntregaDomicilio.setLayout(panelEntregaDomicilioLayout);

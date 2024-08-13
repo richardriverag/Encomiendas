@@ -14,31 +14,31 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class PaqueteController implements ActionListener {
-
+    
     private PaqueteService paquete;
     private JFrame viewListaPaquetes;
     //OJO
     private JFPaquetes viewPaquetes;
     private JFEncomiendas viewEncomiendas;
-
+    
     public PaqueteController(JFrame viewListaPaquetes, PaqueteService paquete) {
         this.paquete = paquete;
         this.viewListaPaquetes = viewListaPaquetes;
     }
-
+    
     public PaqueteController(JFEncomiendas viewEncomiendas, PaqueteService paquete) {
         this.paquete = paquete;
         this.viewEncomiendas = viewEncomiendas;
     }
-
+    
     public PaqueteController(JFPaquetes viewPaquetes, PaqueteService paquete) {
         this.paquete = paquete;
         this.viewPaquetes = viewPaquetes;
     }
-
+    
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        
         if (e.getSource() == viewPaquetes.btnGuardarPaquete) {
             Paquete nuevoPaquete = new Paquete(
                     null,
@@ -48,28 +48,29 @@ public class PaqueteController implements ActionListener {
                     viewPaquetes.jCBIsFragil.isSelected(),
                     null
             );
-
+            
             viewPaquetes.listaPaquetes.add(nuevoPaquete);
-
+            
             System.out.println("ANTES DEL PRECIO:\n" + nuevoPaquete.toString());
-
+            
             JOptionPane.showMessageDialog(null, "Se agrego el paquete, verifique su precio");
-
+            
             viewPaquetes.txtPrecioPaquete.setText(String.valueOf(nuevoPaquete.getPrecioPaquete()));
-
+            viewPaquetes.txtPrecioPaquete.setEditable(false);
+            
             System.out.println("DESPUES DEL PRECIO:\n" + nuevoPaquete.toString());
-
+            
             viewPaquetes.btnAddPaquete.setVisible(true);
         }
-
+        
         if (e.getSource() == viewPaquetes.btnCancelar) {
-
+            
             viewPaquetes.listaPaquetes = new ArrayList<>();
-
+            
         }
-
+        
         if (e.getSource() == viewPaquetes.btnAddPaquete) {
-
+            
             JOptionPane.showMessageDialog(null, "El paquete se insertó con éxito.");
             // Mostrar diálogo de confirmación
             int respuesta = JOptionPane.showConfirmDialog(
@@ -84,16 +85,16 @@ public class PaqueteController implements ActionListener {
             }
             viewPaquetes.btnAddPaquete.setVisible(false);
         }
-
+        
         if (e.getSource() == viewPaquetes.btnVolver) {
-
+            
             System.out.println(viewPaquetes.listaPaquetes.toString());
         }
-
+        
     }
-
+    
     public void mostrarPaquetes(DefaultTableModel modeloTablaPaquetes, Integer idEncomienda) {
-
+        
         try {
             // Obtener la lista de paquetes desde el servicio
             System.out.println("ID ENCOMIENDA DENTRO DEL CONTROLADOR:" + idEncomienda);
@@ -123,9 +124,9 @@ public class PaqueteController implements ActionListener {
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-
+        
     }
-
+    
     public void mostarPaquetesByEncomienda(DefaultTableModel modeloTablaPaquetes, List<Paquete> listaPaquetes) {
         // Obtener la lista de paquetes desde el servicio
         List<Paquete> listaDePaquetes = listaPaquetes;
@@ -147,5 +148,5 @@ public class PaqueteController implements ActionListener {
             modeloTablaPaquetes.addRow(fila);
         }
     }
-
+    
 }

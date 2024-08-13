@@ -62,6 +62,8 @@ public class JFEncomiendas extends javax.swing.JFrame {
         encomiendaController = new EncomiendaController(this, encomiedaService);
         encomiendaController.cargarAgenciasOrigen();
         encomiendaController.mostrarEncomienda((DefaultTableModel) this.jTEncomiendas.getModel());
+        
+        btnCrearEncomienda.setVisible(false);
     }
 
     /**
@@ -557,7 +559,6 @@ public class JFEncomiendas extends javax.swing.JFrame {
 
     private void btnGuardarEncomiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarEncomiendaActionPerformed
         encomiendaController.actionPerformed(evt);
-
         btnGuardarEncomienda.setVisible(false);
     }//GEN-LAST:event_btnGuardarEncomiendaActionPerformed
 

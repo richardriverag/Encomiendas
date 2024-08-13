@@ -21,6 +21,7 @@ public class VentanaFiltar extends javax.swing.JFrame {
         setTitle("Filtros para encomienda");
         this.setLocationRelativeTo(vistaEncomiendas);
         this.vistaEncomiendas = vistaEncomiendas;
+        vistaEncomiendas.encomiendaController.cargarAgenciasFiltro(comboAgeO, comboAgeD);
     }
 
     /**
