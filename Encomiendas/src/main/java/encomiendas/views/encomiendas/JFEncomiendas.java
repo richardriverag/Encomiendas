@@ -615,7 +615,7 @@ public class JFEncomiendas extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jTEncomiendasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTEncomiendasMouseClicked
-         
+       
         int index = jTEncomiendas.getSelectedRow();
         TableModel model = jTEncomiendas.getModel();
         String idEncomienda = model.getValueAt(index, 0).toString();
