@@ -227,4 +227,4 @@ VALUES
 ('2024-07-21', '2024-07-22', TRUE, 2, 2);
 
 
-select * from encomiendas.paquetes;
+select * from encomiendas.paquete;
