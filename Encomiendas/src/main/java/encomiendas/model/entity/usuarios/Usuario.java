@@ -124,4 +124,10 @@ public class Usuario extends Conexion {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "Usuario{" + "cedula=" + cedula + ", nombres=" + nombres + ", apellidos=" + apellidos + ", correo=" + correo + ", telefono=" + telefono + ", direccion=" + direccion + ", ciudad=" + ciudad + ", telefonoAdicional=" + telefonoAdicional + ", activo=" + activo + ", fotoPerfil=" + fotoPerfil + ", idAgencia=" + idAgencia + '}';
+    }
+    
+    
 }

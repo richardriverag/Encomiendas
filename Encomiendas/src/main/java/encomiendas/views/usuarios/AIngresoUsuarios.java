@@ -33,7 +33,7 @@ public class AIngresoUsuarios extends javax.swing.JFrame {
     public AIngresoUsuarios() {
         initComponents();
         setLocationRelativeTo(this);
-        setTitle("Lista de usuarios");
+        setTitle("Ingreso de usuarios");
 
         //instancia del controlador
         usuarioRepository = new UsuarioRepository(con.getInstance());
@@ -54,7 +54,6 @@ public class AIngresoUsuarios extends javax.swing.JFrame {
         jTFTeléfono.setText("");
         jTFTeléfonoAdicional.setText("");
         jTFCiudad.setText("");
-        jTFDireccion.setText("");
         jTFAgencia.setText("");
 
         jCBRol.setSelectedIndex(0); // Selecciona el primer elemento del ComboBox
@@ -72,7 +71,6 @@ public class AIngresoUsuarios extends javax.swing.JFrame {
         jTFTeléfono.setEnabled(false);
         jTFTeléfonoAdicional.setEnabled(false);
         jTFCiudad.setEnabled(false);
-        jTFDireccion.setEnabled(false);
         jCBTipoLicencia.setEnabled(false);
         jCBActivo.setEnabled(false);
         jTFAgencia.setEnabled(false);
@@ -100,10 +98,9 @@ public class AIngresoUsuarios extends javax.swing.JFrame {
         String apellidos = jTFApellidos.getText();
         String correo = jTFCorreo.getText();
         String telefono = jTFTeléfono.getText();
-        String direccion = "NULL";
         String telefonoAdicional = jTFTeléfonoAdicional.getText();
         String ciudad = jTFCiudad.getText();
-        String tipoLicencia = "NULL";
+        String tipoLicencia;
         boolean activo = jCBActivo.getSelectedItem().equals("Habilitado");
         int idAgencia = Integer.parseInt(jTFAgencia.getText()); // Implementa cómo obtener el ID de la agencia seleccionada.
         String rol = (String) jCBRol.getSelectedItem();
@@ -121,11 +118,6 @@ public class AIngresoUsuarios extends javax.swing.JFrame {
                 break;
             case "Empleado":
                 usuario = new Empleado();
-                break;
-            case "Cliente":
-                usuario = new Cliente();
-                direccion = jTFDireccion.getText();
-                ((Cliente) usuario).setDireccion(direccion);
                 break;
             default:
                 throw new IllegalArgumentException("Rol desconocido: " + rol);
@@ -181,16 +173,12 @@ public class AIngresoUsuarios extends javax.swing.JFrame {
         jTFTeléfono = new javax.swing.JTextField();
         jTFTeléfonoAdicional = new javax.swing.JTextField();
         jTFCiudad = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTAgencia = new javax.swing.JTable();
         jLAgencia = new javax.swing.JLabel();
         jTFAgencia = new javax.swing.JTextField();
         jBIngresoUsuario = new javax.swing.JButton();
-        jLDireccion = new javax.swing.JLabel();
-        jTFDireccion = new javax.swing.JTextField();
         jBLimpiarVentana = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLCédula.setText("Cédula:");
 
@@ -221,23 +209,10 @@ public class AIngresoUsuarios extends javax.swing.JFrame {
 
         jLActivo.setText("Activo:");
 
-        jCBActivo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Habilitado", "Desabilitado" }));
+        jCBActivo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Habilitado" }));
 
         jLTablaAgencía.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLTablaAgencía.setText("Tabla Agencia:");
-
-        jTAgencia.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTAgencia);
 
         jLAgencia.setText("Agencia:");
 
@@ -248,8 +223,6 @@ public class AIngresoUsuarios extends javax.swing.JFrame {
                 jBIngresoUsuarioActionPerformed(evt);
             }
         });
-
-        jLDireccion.setText("Dirección:");
 
         jBLimpiarVentana.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jBLimpiarVentana.setText("Limpiar Ventana");
@@ -266,66 +239,58 @@ public class AIngresoUsuarios extends javax.swing.JFrame {
             .addGroup(jPAIngresoUsuariosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPAIngresoUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPAIngresoUsuariosLayout.createSequentialGroup()
+                    .addGroup(jPAIngresoUsuariosLayout.createSequentialGroup()
                         .addGroup(jPAIngresoUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPAIngresoUsuariosLayout.createSequentialGroup()
-                                .addGroup(jPAIngresoUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLApellidos)
-                                    .addGroup(jPAIngresoUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLRol)
-                                        .addComponent(jLCorreo)))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPAIngresoUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTFApellidos)
-                                    .addComponent(jTFCorreo)
-                                    .addComponent(jCBRol, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPAIngresoUsuariosLayout.createSequentialGroup()
-                                .addComponent(jLTablaAgencía)
-                                .addGap(33, 33, 33)
-                                .addComponent(jLAgencia)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTFAgencia, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPAIngresoUsuariosLayout.createSequentialGroup()
-                                .addGroup(jPAIngresoUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLNombres)
-                                    .addComponent(jLCédula))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPAIngresoUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTFCédula, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTFNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLApellidos)
+                            .addGroup(jPAIngresoUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLRol)
+                                .addComponent(jLCorreo)))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPAIngresoUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTFApellidos)
+                            .addComponent(jTFCorreo)
+                            .addComponent(jCBRol, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPAIngresoUsuariosLayout.createSequentialGroup()
+                        .addComponent(jLTablaAgencía)
+                        .addGap(33, 33, 33)
+                        .addComponent(jLAgencia)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTFAgencia, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPAIngresoUsuariosLayout.createSequentialGroup()
+                        .addGroup(jPAIngresoUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLNombres)
+                            .addComponent(jLCédula))
                         .addGap(18, 18, 18)
                         .addGroup(jPAIngresoUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPAIngresoUsuariosLayout.createSequentialGroup()
-                                .addComponent(jLDireccion)
+                            .addComponent(jTFCédula, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTFNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addGroup(jPAIngresoUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPAIngresoUsuariosLayout.createSequentialGroup()
+                        .addComponent(jTeléfonoAdicional)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTFTeléfonoAdicional))
+                    .addGroup(jPAIngresoUsuariosLayout.createSequentialGroup()
+                        .addGroup(jPAIngresoUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLTeléfonoPrincipal)
+                            .addComponent(jLTípoLicencia)
+                            .addComponent(jLActivo))
+                        .addGroup(jPAIngresoUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPAIngresoUsuariosLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTFDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPAIngresoUsuariosLayout.createSequentialGroup()
-                                .addComponent(jTeléfonoAdicional)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTFTeléfonoAdicional))
+                                .addComponent(jTFTeléfono, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPAIngresoUsuariosLayout.createSequentialGroup()
+                                .addGap(32, 32, 32)
                                 .addGroup(jPAIngresoUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLTeléfonoPrincipal)
-                                    .addComponent(jLTípoLicencia)
-                                    .addComponent(jLActivo))
-                                .addGroup(jPAIngresoUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPAIngresoUsuariosLayout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jTFTeléfono, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPAIngresoUsuariosLayout.createSequentialGroup()
-                                        .addGap(32, 32, 32)
-                                        .addGroup(jPAIngresoUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jCBActivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jCBTipoLicencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(0, 0, Short.MAX_VALUE))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPAIngresoUsuariosLayout.createSequentialGroup()
-                                .addGap(0, 18, Short.MAX_VALUE)
-                                .addComponent(jLCiudad)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTFCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(11, 11, 11)))
-                .addContainerGap())
+                                    .addComponent(jCBActivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jCBTipoLicencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPAIngresoUsuariosLayout.createSequentialGroup()
+                        .addGap(0, 18, Short.MAX_VALUE)
+                        .addComponent(jLCiudad)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTFCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(17, 17, 17))
             .addGroup(jPAIngresoUsuariosLayout.createSequentialGroup()
                 .addGap(123, 123, 123)
                 .addComponent(jBIngresoUsuario)
@@ -337,13 +302,9 @@ public class AIngresoUsuarios extends javax.swing.JFrame {
             jPAIngresoUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPAIngresoUsuariosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPAIngresoUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPAIngresoUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLDireccion)
-                        .addComponent(jTFDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPAIngresoUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLCédula)
-                        .addComponent(jTFCédula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPAIngresoUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLCédula)
+                    .addComponent(jTFCédula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPAIngresoUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLNombres)
@@ -375,9 +336,7 @@ public class AIngresoUsuarios extends javax.swing.JFrame {
                     .addComponent(jTFAgencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTFCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLCiudad))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPAIngresoUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBIngresoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBLimpiarVentana, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -397,12 +356,12 @@ public class AIngresoUsuarios extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 420, Short.MAX_VALUE)
+            .addGap(0, 298, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGap(0, 22, Short.MAX_VALUE)
                     .addComponent(jPAIngresoUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 23, Short.MAX_VALUE)))
         );
 
         pack();
@@ -430,10 +389,6 @@ public class AIngresoUsuarios extends javax.swing.JFrame {
             case "Conductor":
                 desbloquearCampos();
                 jCBTipoLicencia.setEnabled(true);
-                break;
-            case "Cliente":
-                desbloquearCampos();
-                jTFDireccion.setEnabled(true);
                 break;
         }
 
@@ -492,21 +447,17 @@ public class AIngresoUsuarios extends javax.swing.JFrame {
     private javax.swing.JLabel jLCiudad;
     private javax.swing.JLabel jLCorreo;
     private javax.swing.JLabel jLCédula;
-    private javax.swing.JLabel jLDireccion;
     private javax.swing.JLabel jLNombres;
     private javax.swing.JLabel jLRol;
     private javax.swing.JLabel jLTablaAgencía;
     private javax.swing.JLabel jLTeléfonoPrincipal;
     private javax.swing.JLabel jLTípoLicencia;
     private javax.swing.JPanel jPAIngresoUsuarios;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTAgencia;
     private javax.swing.JTextField jTFAgencia;
     private javax.swing.JTextField jTFApellidos;
     private javax.swing.JTextField jTFCiudad;
     private javax.swing.JTextField jTFCorreo;
     private javax.swing.JTextField jTFCédula;
-    private javax.swing.JTextField jTFDireccion;
     private javax.swing.JTextField jTFNombres;
     private javax.swing.JTextField jTFTeléfono;
     private javax.swing.JTextField jTFTeléfonoAdicional;

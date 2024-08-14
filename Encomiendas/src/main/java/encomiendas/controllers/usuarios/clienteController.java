@@ -34,7 +34,7 @@ public class clienteController implements ActionListener {
         this.modCliente = modCliente;
         this.modCuenta = modCuenta;
         this.panelCliente = panelCliente;
-        this.frmCliente.btPerfil.addActionListener(this);
+        this.frmCliente.btnEncomiendas.addActionListener(this);
     }
 
     public void iniciar() {
@@ -70,7 +70,7 @@ public class clienteController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         // Si presiona en el botón Perfil se activa y muestra el panel con la info del Perfil
-        if (e.getSource() == frmCliente.btPerfil) {
+        if (e.getSource() == frmCliente.btnEncomiendas) {
             PanelPerfilClientes panel1 = new PanelPerfilClientes();
             panel1.setSize(690, 430);
             panel1.setLocation(0, 0);

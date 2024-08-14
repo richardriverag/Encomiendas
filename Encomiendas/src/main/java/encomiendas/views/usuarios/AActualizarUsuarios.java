@@ -4,6 +4,7 @@ import encomiendas.controllers.usuarios.AdministradorController;
 import encomiendas.database.Conexion;
 import encomiendas.model.data.usuarios.UsuarioRepository;
 import encomiendas.services.usuarios.UsuarioService;
+import static java.lang.Boolean.TRUE;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,7 +23,10 @@ public class AActualizarUsuarios extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(this);
         setTitle("Actualizar lista de usuarios");
-
+        
+        jTFUsuarioSeleccionado.setEnabled(false);
+        jBModificar.setEnabled(false);
+        jBEliminar.setEnabled(false);
 
         //instancia del controlador
         usuarioRepository = new UsuarioRepository(con.getInstance());
@@ -32,6 +36,7 @@ public class AActualizarUsuarios extends javax.swing.JFrame {
 
         administradorController.ListarUsuariosTable((DefaultTableModel) this.jTListaUsuarios.getModel());
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -257,6 +262,9 @@ public class AActualizarUsuarios extends javax.swing.JFrame {
             // Mostrar la cédula en el JTextField jTFUsuarioSeleccionado
             jTFUsuarioSeleccionado.setText(cedula);
         }
+        
+        jBEliminar.setEnabled(true);
+        jBModificar.setEnabled(true);
     }//GEN-LAST:event_jTListaUsuariosMousePressed
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
@@ -265,7 +273,10 @@ public class AActualizarUsuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_jBEliminarActionPerformed
 
     private void jBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarActionPerformed
-        // TODO add your handling code here:
+        AEdicionUsuario ediciónUsuario = new AEdicionUsuario();
+        ediciónUsuario.setVisible(TRUE);
+        String cedula = jTFUsuarioSeleccionado.getText();
+        ediciónUsuario.jTFCedula.setText(cedula);
     }//GEN-LAST:event_jBModificarActionPerformed
 
     /**

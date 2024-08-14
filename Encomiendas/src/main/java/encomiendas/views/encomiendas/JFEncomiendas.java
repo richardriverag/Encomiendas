@@ -26,10 +26,11 @@ public class JFEncomiendas extends javax.swing.JFrame {
     PaqueteRepository paqueteRepository;
     PaqueteService paqueteService;
     PaqueteController paqueteController;
+    public JFInfoEncomiendas infoEncomienda = new JFInfoEncomiendas();
 
     private Encomienda encomienda = new Encomienda();
     EncomiendaRepository encomiendaRepository;
-    EncomiendaController encomiendaController;
+    public EncomiendaController encomiendaController;
 
     ClienteRepository clienteRepository;
     AgenciaRepository agenciaRepository;
@@ -620,7 +621,6 @@ public class JFEncomiendas extends javax.swing.JFrame {
         int index = jTEncomiendas.getSelectedRow();
         TableModel model = jTEncomiendas.getModel();
         String idEncomienda = model.getValueAt(index, 0).toString();
-        JFInfoEncomiendas infoEncomienda = new JFInfoEncomiendas();
         infoEncomienda.setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
         infoEncomienda.setVisible(true);
         try {
@@ -714,15 +714,15 @@ public class JFEncomiendas extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JPanel jPanel1;
     public javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
+    public javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane2;
     public javax.swing.JTable jTEncomiendas;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JPanel panelDatos;
+    public javax.swing.JTabbedPane jTabbedPane1;
+    public javax.swing.JPanel panelDatos;
     private javax.swing.JPanel panelEntregaDomicilio;
     private javax.swing.JPanel panelInterprovincial;
-    private javax.swing.JPanel panelOpciones;
+    public javax.swing.JPanel panelOpciones;
     public javax.swing.JTextField txtCedulaReceptor;
     public javax.swing.JTextField txtCodPostal;
     public javax.swing.JTextField txtDirEntrega;

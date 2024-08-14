@@ -94,7 +94,7 @@ public class VentanaFiltar extends javax.swing.JFrame {
 
         comboAgeO.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Agencia Centro", "Agencia Norte" }));
 
-        comboTipoEntrega.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Domicilio", "Agencia" }));
+        comboTipoEntrega.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todas", "Domicilio", "Agencia" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

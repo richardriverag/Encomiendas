@@ -1,5 +1,8 @@
 package encomiendas.views.usuarios;
 
+import encomiendas.views.encomiendas.JFEncomiendas;
+import javax.swing.table.DefaultTableModel;
+
 public class MenuClientes extends javax.swing.JFrame {
 
     public MenuClientes() {
@@ -15,10 +18,11 @@ public class MenuClientes extends javax.swing.JFrame {
         jPDefault = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        btPerfil = new javax.swing.JButton();
+        btnEncomiendas = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jTFUsuarioCliente = new javax.swing.JTextField();
         jLCliente = new javax.swing.JLabel();
+        btPerfil1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menú - Cliente");
@@ -54,11 +58,16 @@ public class MenuClientes extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btPerfil.setBackground(new java.awt.Color(200, 0, 0));
-        btPerfil.setForeground(new java.awt.Color(255, 255, 255));
-        btPerfil.setText("Perfil");
-        btPerfil.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 255, 255), null, null));
-        jPanel2.add(btPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 150, 30));
+        btnEncomiendas.setBackground(new java.awt.Color(200, 0, 0));
+        btnEncomiendas.setForeground(new java.awt.Color(255, 255, 255));
+        btnEncomiendas.setText("Ver encomiendas");
+        btnEncomiendas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 255, 255), null, null));
+        btnEncomiendas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEncomiendasActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnEncomiendas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 150, 30));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(jLabel1.getFont().deriveFont(jLabel1.getFont().getSize()-2f));
@@ -74,6 +83,12 @@ public class MenuClientes extends javax.swing.JFrame {
         jLCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLCliente.setText("Cliente:");
         jPanel2.add(jLCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 130, -1));
+
+        btPerfil1.setBackground(new java.awt.Color(200, 0, 0));
+        btPerfil1.setForeground(new java.awt.Color(255, 255, 255));
+        btPerfil1.setText("Perfil");
+        btPerfil1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 255, 255), null, null));
+        jPanel2.add(btPerfil1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 150, 30));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 430));
 
@@ -91,41 +106,20 @@ public class MenuClientes extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+    private void btnEncomiendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEncomiendasActionPerformed
+        JFEncomiendas vistaEncomienda = new JFEncomiendas();
+        vistaEncomienda.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        vistaEncomienda.panelDatos.setVisible(false);
+        vistaEncomienda.panelOpciones.setVisible(false);
+        vistaEncomienda.infoEncomienda.panelOpEmpleado.setVisible(false);
+        vistaEncomienda.infoEncomienda.panelConductores.setVisible(false);
+        vistaEncomienda.setVisible(true);
+        vistaEncomienda.encomiendaController.mostrarEncomiendaCliente((DefaultTableModel) vistaEncomienda.jTEncomiendas.getModel(), jTFUsuarioCliente.getText());
+    }//GEN-LAST:event_btnEncomiendasActionPerformed
 
-        /* Create and display the form */
+ 
+    public static void main(String args[]) {
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MenuClientes().setVisible(true);
@@ -134,7 +128,8 @@ public class MenuClientes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btPerfil;
+    public javax.swing.JButton btPerfil1;
+    public javax.swing.JButton btnEncomiendas;
     private javax.swing.JLabel jLCliente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

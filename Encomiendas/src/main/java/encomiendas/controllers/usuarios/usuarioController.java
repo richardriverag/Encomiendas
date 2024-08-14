@@ -9,6 +9,7 @@ import encomiendas.model.entity.usuarios.Empleado;
 import encomiendas.views.usuarios.Login;
 import encomiendas.views.usuarios.MenuAdministrador;
 import encomiendas.views.usuarios.MenuClientes;
+import encomiendas.views.usuarios.MenuConductor;
 import encomiendas.views.usuarios.MenuEmpleado;
 import encomiendas.views.usuarios.PanelPerfilClientes;
 import encomiendas.views.usuarios.RecuperarContrasenia;
@@ -16,6 +17,7 @@ import encomiendas.views.usuarios.Registro;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
 
 public class usuarioController implements ActionListener {
 
@@ -57,9 +59,9 @@ public class usuarioController implements ActionListener {
                 //JOptionPane.showMessageDialog(null, "Se encontro el usuario");
                 String rol = modeloDb.obtenerRol(cedula);
                 if (rol.equals("Cliente")) {
-                    JOptionPane.showMessageDialog(null, "hola soy un cliente");
-                    Cliente cliente = null;
+                    Cliente cliente = new Cliente();
                     cliente.setCedula(cedula);
+                    System.out.println(cliente.getCedula());
                     cliente.obtenerDatos(cedula);//con esto obtengo todos los datos del cliente
 
                     frmLogin.dispose();
@@ -67,7 +69,6 @@ public class usuarioController implements ActionListener {
                 }
 
                 if (rol.equals("Empleado")) {
-                    JOptionPane.showMessageDialog(null, "hola soy un empleado");
                     Empleado empleado = new Empleado();
                     empleado.setCedula(cedula);
                     empleado.obtenerDatos(cedula);
@@ -77,19 +78,22 @@ public class usuarioController implements ActionListener {
                 }
 
                 if (rol.equals("Administrador")) {
-                    JOptionPane.showMessageDialog(null, "hola soy un Administrador");
                     MenuAdministrador frmAdministrador = new MenuAdministrador();
                     frmLogin.dispose();
                     frmAdministrador.jTFUsuarioAdministrador.setText(cedula);
                     frmAdministrador.setVisible(true);
+                    frmAdministrador.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
                 }
 
                 if (rol.equals("Conductor")) {
-                    JOptionPane.showMessageDialog(null, "hola soy un Conductor");
+                    MenuConductor frmConductor = new MenuConductor();
+                    frmConductor.dispose();
+                    frmConductor.jTFUsuarioConductor.setText(cedula);
+                    frmConductor.setVisible(true);
+                    frmConductor.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
                 }
                 if (rol.equals("Agencia")) {
-                    JOptionPane.showMessageDialog(null, "hola soy un Conductor");
                     MenuEmpleado frmEmpleado = new MenuEmpleado();
                     frmLogin.dispose();
                     frmEmpleado.setVisible(true);
@@ -119,9 +123,9 @@ public class usuarioController implements ActionListener {
         }
 
         //si se presiono el botón enviar del frame de Olvidar COntraseña
-        /*if(e.getSource()== frmRecuperarContrasenia.btnEnviarContrasenia){   
+        if(e.getSource()== frmRecuperarContrasenia.btnEnviarContrasenia){   
             botonRecuperarContraseña(e);
-        }*/
+        }
     }
 
     public void botonRegistrase(ActionEvent e) {
@@ -161,26 +165,11 @@ public class usuarioController implements ActionListener {
         }
     }
 
-    /*public void botonRecuperarContraseña(ActionEvent e){
-        
-            modeloUsuario.setCorreo(frmRecuperarContrasenia.correoTxt.getText());
-            
-            frmRecuperarContrasenia.correoTxt.setText(null);
-            frmRecuperarContrasenia.txtCedula.setText(null);
-            
-            if(modeloDb.validarExistencia(modeloUsuario)){
-                
-                JOptionPane.showMessageDialog(null, "Se envío un correo con sus credenciales");
-                frmRegistro.dispose();
-                frmLogin.setVisible(true);
-                
-            }else{
-                JOptionPane.showMessageDialog(null, "No existe en el sistema, Registrese");
-                frmRecuperarContrasenia.dispose();
-                frmLogin.setVisible(true);
-                
-            }
-    }*/
+    public void botonRecuperarContraseña(ActionEvent e){
+        JOptionPane.showMessageDialog(null, "Se envio la clave a su correo");
+        frmRecuperarContrasenia.dispose();
+        frmLogin.setVisible(true);       
+    }
     
     private void abrirMenuCliente() {
         DbCliente modClienteDb = new DbCliente();
@@ -194,6 +183,7 @@ public class usuarioController implements ActionListener {
         String contrasenia = frmLogin.txtContrasenia.getText();
         String cedula = modeloDb.validarExistencia(username, contrasenia);
         frmClienteMenu.jTFUsuarioCliente.setText(cedula);
+        frmClienteMenu.setVisible(true);
         ctrCliente.iniciar();
     }
 

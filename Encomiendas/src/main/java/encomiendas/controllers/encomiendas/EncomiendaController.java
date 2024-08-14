@@ -73,6 +73,34 @@ public class EncomiendaController implements ActionListener, ItemListener {
             System.out.println(ex);
         }
     }
+    
+     public void mostrarEncomiendaCliente(DefaultTableModel modeloTablaEncomienda, String idCliente) {
+        try {
+            // Obtener la lista de paquetes desde el servicio
+            List<Encomienda> listaEncomienda = encomiendaService.getAllEncomiendasByClient(idCliente);
+
+            // Limpiar cualquier fila existente en la tabla (opcional)
+            modeloTablaEncomienda.setRowCount(0);
+
+            // Iterar sobre la lista de paquetes e insertar cada uno en la tabla
+            for (Encomienda encomienda : listaEncomienda) {
+                // Convertir el paquete en un array de objetos para agregarlo como una fila
+                Object[] fila = new Object[]{
+                    encomienda.getIdEncomienda(),
+                    encomienda.getEmisor().getNombres(),
+                    encomienda.getReceptor().getNombres(),
+                    encomienda.getAgenciaOrigen().getNombreAgencia(),
+                    encomienda.getAgenciaDestino().getNombreAgencia()
+
+                };
+
+                // Agregar la fila al modelo de la tabla
+                modeloTablaEncomienda.addRow(fila);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
 
     public void mostrarEncomiendaFiltro(DefaultTableModel modeloTablaEncomienda, String cedulaR, String cedulaE, String agenciaD, String agenciaO, String tipoEntrega) {
         try {
@@ -150,12 +178,12 @@ public class EncomiendaController implements ActionListener, ItemListener {
             // Limpiar cualquier opción existente en los combo boxes
             agenciaOrigen.removeAllItems();
             agenciaDestino.removeAllItems();
-
+            agenciaOrigen.addItem("Todas");
             // Agregar cada agencia al combo box de origen
             for (Agencia agencia : todasLasAgencias) {
                 agenciaOrigen.addItem(agencia.getNombreAgencia());
             }
-
+            
             // Agregar un listener para cargar agencias de destino cuando se seleccione una agencia de origen
             agenciaOrigen.addItemListener(e -> {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -164,10 +192,11 @@ public class EncomiendaController implements ActionListener, ItemListener {
 
                     // Limpiar opciones existentes en el combo box de destino
                     agenciaDestino.removeAllItems();
-
+                    agenciaDestino.addItem("Todas");
                     // Agregar las agencias al combo box de destino excluyendo la agencia de origen seleccionada
                     for (Agencia agencia : todasLasAgencias) {
-                        if (!agencia.getNombreAgencia().equals(agenciaSeleccionada)) {
+                       
+                        if (!agencia.getNombreAgencia().equals(agenciaSeleccionada) && !agencia.getNombreAgencia().equals("Todas")) {
                             agenciaDestino.addItem(agencia.getNombreAgencia());
                         }
                     }
