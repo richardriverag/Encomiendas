@@ -1,6 +1,6 @@
 package encomiendas.views.usuarios;
 
-import encomiendas.views.transporte.JFModTransporte;
+import encomiendas.views.encomiendas.JFEncomiendas;
 import javax.swing.JFrame;
 
 /**
@@ -9,12 +9,10 @@ import javax.swing.JFrame;
  */
 public class MenuEmpleado extends javax.swing.JFrame {
 
-    /**
-     * Creates new form MenuClientes
-     */
     public MenuEmpleado() {
         initComponents();
         setLocationRelativeTo(null);
+
     }
 
     /**
@@ -72,7 +70,7 @@ public class MenuEmpleado extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jPMétodoEditar4 = new javax.swing.JPanel();
         jPAEEcomiendas = new javax.swing.JPanel();
-        JTPEmpleado1 = new javax.swing.JTabbedPane();
+        btnAbrirEncomiendas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menú - Empleado");
@@ -103,11 +101,6 @@ public class MenuEmpleado extends javax.swing.JFrame {
 
         JTPEmpleado.setBackground(new java.awt.Color(200, 0, 0));
         JTPEmpleado.setForeground(new java.awt.Color(255, 255, 255));
-        JTPEmpleado.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                JTPEmpleadoStateChanged(evt);
-            }
-        });
 
         jPMétodoEditar5.setBackground(new java.awt.Color(204, 0, 51));
         jPMétodoEditar5.setMinimumSize(new java.awt.Dimension(690, 430));
@@ -423,15 +416,28 @@ public class MenuEmpleado extends javax.swing.JFrame {
         jPMétodoEditar4.setMinimumSize(new java.awt.Dimension(690, 430));
         jPMétodoEditar4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btnAbrirEncomiendas.setText("Abrir encomiendas");
+        btnAbrirEncomiendas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAbrirEncomiendasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPAEEcomiendasLayout = new javax.swing.GroupLayout(jPAEEcomiendas);
         jPAEEcomiendas.setLayout(jPAEEcomiendasLayout);
         jPAEEcomiendasLayout.setHorizontalGroup(
             jPAEEcomiendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 680, Short.MAX_VALUE)
+            .addGroup(jPAEEcomiendasLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(btnAbrirEncomiendas, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(528, Short.MAX_VALUE))
         );
         jPAEEcomiendasLayout.setVerticalGroup(
             jPAEEcomiendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 390, Short.MAX_VALUE)
+            .addGroup(jPAEEcomiendasLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(btnAbrirEncomiendas, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(344, Short.MAX_VALUE))
         );
 
         jPMétodoEditar4.add(jPAEEcomiendas, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 5, 680, 390));
@@ -449,10 +455,6 @@ public class MenuEmpleado extends javax.swing.JFrame {
 
         JTPEmpleado.addTab("Encomiendas", jPanel4);
 
-        JTPEmpleado1.setBackground(new java.awt.Color(200, 0, 0));
-        JTPEmpleado1.setForeground(new java.awt.Color(255, 255, 255));
-        JTPEmpleado.addTab("Transporte", JTPEmpleado1);
-
         jPMenuEmpleado.add(JTPEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, -1, 440));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -469,16 +471,12 @@ public class MenuEmpleado extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void JTPEmpleadoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_JTPEmpleadoStateChanged
-        int selectedIndex = JTPEmpleado.getSelectedIndex();
-        if (selectedIndex == 4) {
-            JFModTransporte modTransporte = new JFModTransporte();
-            modTransporte.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            modTransporte.setVisible(true);
-            modTransporte.setResizable(false);
-            modTransporte.setLocationRelativeTo(null); // Llama a la función para cargar la tabla
-        }
-    }//GEN-LAST:event_JTPEmpleadoStateChanged
+    private void btnAbrirEncomiendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirEncomiendasActionPerformed
+        JFEncomiendas encomiendas = new JFEncomiendas();
+
+        encomiendas.setVisible(true);
+        encomiendas.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_btnAbrirEncomiendasActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -531,11 +529,11 @@ public class MenuEmpleado extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTabbedPane JTPEmpleado;
-    public javax.swing.JTabbedPane JTPEmpleado1;
     public javax.swing.JButton btEClientes;
     public javax.swing.JButton btEConductores;
     public javax.swing.JButton btECredencial;
     public javax.swing.JButton btEPerfil;
+    public javax.swing.JButton btnAbrirEncomiendas;
     public javax.swing.JButton jBCambiarFoto;
     public javax.swing.JTextField jFTNombresE;
     public javax.swing.JLabel jLEmpleado;

@@ -8,6 +8,7 @@ import encomiendas.controllers.encomiendas.PaqueteController;
 import encomiendas.database.Conexion;
 import encomiendas.model.data.encomiendas.PaqueteRepository;
 import encomiendas.services.encomiendas.PaqueteService;
+import java.text.DecimalFormat;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -33,9 +34,11 @@ public class JFListaPaquetes extends javax.swing.JFrame {
         paqueteRepository = new PaqueteRepository(con.getInstance());
         paqueteService = new PaqueteService(paqueteRepository);
         paqueteController = new PaqueteController(this, paqueteService);
-
+        
+        
+        txtIdEncomienda.setEditable(false);
+        
         //paqueteController.mostrarPaquetes((DefaultTableModel) this.jTListaPaquetes.getModel(), Integer.parseInt(txtIdEncomienda.getText()));
-
     }
 
     JFPaquetes paquetes = new JFPaquetes();
@@ -161,12 +164,31 @@ public class JFListaPaquetes extends javax.swing.JFrame {
         paquetes.pack();
         paquetes.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         paquetes.btnAddPaquete.setVisible(false);
+        paquetes.btnCancelar.setVisible(false);
+        paquetes.btnGuardarPaquete.setVisible(false);
 
         paquetes.txtDescripPaquete.setText(descripcion);
         paquetes.txtPesoPaquete.setText(pesoPaquete);
-        paquetes.txtVolPaquete.setText(volumenPaquete);
-        paquetes.txtPrecioPaquete.setText(precioPaquete);
+        // Crear un formateador para dos decimales
+        DecimalFormat df = new DecimalFormat("#.##");
+
+        // Convertir el valor de volumenPaquete a double y formatearlo
+        double volumen = Double.parseDouble(volumenPaquete);
+        String volumenFormateado = df.format(volumen);
+
+        // Convertir el valor de precioPaquete a double y formatearlo
+        double precio = Double.parseDouble(precioPaquete);
+        String precioFormateado = df.format(precio);
+
+        paquetes.txtVolPaquete.setText(volumenFormateado);
+        paquetes.txtPrecioPaquete.setText(precioFormateado);
         paquetes.jCBIsFragil.setSelected(isFragil);
+
+        paquetes.txtDescripPaquete.setEditable(false);
+        paquetes.txtPesoPaquete.setEditable(false);
+        paquetes.txtVolPaquete.setEditable(false);
+        paquetes.txtPrecioPaquete.setEditable(false);
+        paquetes.jCBIsFragil.setEnabled(false);
 
     }//GEN-LAST:event_jTListaPaquetesMouseClicked
 

@@ -8,7 +8,6 @@ import encomiendas.model.entity.usuarios.Cliente;
 import encomiendas.services.encomiendas.EncomiendaService;
 import encomiendas.views.encomiendas.JFEncomiendas;
 import encomiendas.views.encomiendas.JFInfoEncomiendas;
-import encomiendas.views.encomiendas.JFListaPaquetesByEncomienda;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -18,6 +17,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -33,7 +33,7 @@ public class EncomiendaController implements ActionListener, ItemListener {
     private JFEncomiendas viewEncomienda;
     private JFInfoEncomiendas viewInfoEncominda;
     private String idEncominda;
-   
+
     public EncomiendaController(JFEncomiendas viewEncomienda, EncomiendaService encomienda) {
         this.encomiendaService = encomienda;
         this.viewEncomienda = viewEncomienda;
@@ -41,11 +41,11 @@ public class EncomiendaController implements ActionListener, ItemListener {
         viewEncomienda.jCBAgenciaOrigen.addItemListener(this);
 
     }
-     public EncomiendaController(JFInfoEncomiendas viewEncomiendaInfo, EncomiendaService encomienda) {
+
+    public EncomiendaController(JFInfoEncomiendas viewEncomiendaInfo, EncomiendaService encomienda) {
         this.encomiendaService = encomienda;
-        this.viewEncomiendaInfo = viewEncomiendaInfo;    
+        this.viewEncomiendaInfo = viewEncomiendaInfo;
     }
-   
 
     public void mostrarEncomienda(DefaultTableModel modeloTablaEncomienda) {
         try {
@@ -101,10 +101,12 @@ public class EncomiendaController implements ActionListener, ItemListener {
             System.out.println(ex);
         }
     }
-    public void MostrarInfoEncomida(JFInfoEncomiendas viewInfoEncominda,String idEncominda) throws SQLException{
+
+    public void MostrarInfoEncomida(JFInfoEncomiendas viewInfoEncominda, String idEncominda) throws SQLException {
         Integer idEncomienda = Integer.parseInt(idEncominda);
         Encomienda encomienda = encomiendaService.getEncomiendaById(idEncomienda);
         viewInfoEncominda.txtIdEncomienda.setText(encomienda.getIdEncomienda().toString());
+        
         viewInfoEncominda.txtCedulaReceptor.setText(encomienda.getReceptor().getCedula());
         viewInfoEncominda.txtcedulaEmisor.setText(encomienda.getEmisor().getCedula());
         LocalDate localDate = encomienda.getFechaEmision();
@@ -114,13 +116,12 @@ public class EncomiendaController implements ActionListener, ItemListener {
         viewInfoEncominda.txtAgenD.setText(encomienda.getAgenciaDestino().getNombreAgencia());
         viewInfoEncominda.txtDirEntrega.setText(encomienda.getDireccionEntrega());
         viewInfoEncominda.txtCodPostal.setText(encomienda.getCodigoPostal().toString());
-        if("Domicilio".equals(encomienda.getTipoEntrega()) && encomienda.getAgenciaDestino().getIdAgencia() != encomienda.getAgenciaOrigen().getIdAgencia()){
+        if ("Domicilio".equals(encomienda.getTipoEntrega()) && encomienda.getAgenciaDestino().getIdAgencia() != encomienda.getAgenciaOrigen().getIdAgencia()) {
             viewInfoEncominda.JCheckDomicilio.setSelected(true);
             viewInfoEncominda.jCheckInterprovincial.setSelected(true);
-        }else if("Domicilio".equals(encomienda.getTipoEntrega()) && encomienda.getAgenciaDestino().getIdAgencia() == encomienda.getAgenciaOrigen().getIdAgencia()){
+        } else if ("Domicilio".equals(encomienda.getTipoEntrega()) && encomienda.getAgenciaDestino().getIdAgencia() == encomienda.getAgenciaOrigen().getIdAgencia()) {
             viewInfoEncominda.JCheckDomicilio.setSelected(true);
-        }
-        else{
+        } else {
             viewInfoEncominda.jCheckInterprovincial.setSelected(true);
         }
     }
@@ -139,6 +140,43 @@ public class EncomiendaController implements ActionListener, ItemListener {
             }
         } catch (SQLException ex) {
             System.out.println("Error al cargar agencias de origen: " + ex);
+        }
+    }
+
+    public void cargarAgenciasFiltro(JComboBox<String> agenciaOrigen, JComboBox<String> agenciaDestino) {
+        try {
+            // Obtener la lista de agencias desde el servicio
+            List<Agencia> todasLasAgencias = encomiendaService.obtenerAgencias();
+
+            // Limpiar cualquier opción existente en los combo boxes
+            agenciaOrigen.removeAllItems();
+            agenciaDestino.removeAllItems();
+
+            // Agregar cada agencia al combo box de origen
+            for (Agencia agencia : todasLasAgencias) {
+                agenciaOrigen.addItem(agencia.getNombreAgencia());
+            }
+
+            // Agregar un listener para cargar agencias de destino cuando se seleccione una agencia de origen
+            agenciaOrigen.addItemListener(e -> {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    // Obtener la agencia de origen seleccionada
+                    String agenciaSeleccionada = (String) e.getItem();
+
+                    // Limpiar opciones existentes en el combo box de destino
+                    agenciaDestino.removeAllItems();
+
+                    // Agregar las agencias al combo box de destino excluyendo la agencia de origen seleccionada
+                    for (Agencia agencia : todasLasAgencias) {
+                        if (!agencia.getNombreAgencia().equals(agenciaSeleccionada)) {
+                            agenciaDestino.addItem(agencia.getNombreAgencia());
+                        }
+                    }
+                }
+            });
+
+        } catch (SQLException ex) {
+            System.out.println("Error al cargar agencias: " + ex);
         }
     }
 
@@ -267,43 +305,42 @@ public class EncomiendaController implements ActionListener, ItemListener {
             System.out.println(viewEncomienda.listaPaquete.toString());
         }
     }
-   
-   public void actionPerformedInfo(ActionEvent e) throws SQLException {
-    Integer idEncomienda = Integer.parseInt(viewEncomiendaInfo.txtIdEncomienda.getText());
-    String estado = "";
-    String mensaje = "";
 
-    if (e.getSource() == viewEncomiendaInfo.btnDesembarcar) {
-        estado = "En bodega destino";
-        encomiendaService.cambiarEstado(idEncomienda, estado);
-        mensaje = "Se cambió el estado de la encomienda a 'En bodega destino'.";
-    } else if (e.getSource() == viewEncomiendaInfo.btnDespachar) {
-        estado = "Recolectado";
-        encomiendaService.cambiarEstado(idEncomienda, estado);
-        mensaje = "Se cambió el estado de la encomienda a 'Recolectado'.";
-    } else if (e.getSource() == viewEncomiendaInfo.btnEmbarcar) {
-        estado = "EnTransito";
-        encomiendaService.cambiarEstado(idEncomienda, estado);
-        mensaje = "Se cambió el estado de la encomienda a 'EnTransito'.";
-    } else if (e.getSource() == viewEncomiendaInfo.btnEntregar) {
-        estado = "Entregado";
-        encomiendaService.cambiarEstado(idEncomienda, estado);
-        mensaje = "Se cambió el estado de la encomienda a 'Entregado'.";
+    public void actionPerformedInfo(ActionEvent e) throws SQLException {
+        Integer idEncomienda = Integer.parseInt(viewEncomiendaInfo.txtIdEncomienda.getText());
+        String estado = "";
+        String mensaje = "";
+
+        if (e.getSource() == viewEncomiendaInfo.btnDesembarcar) {
+            estado = "En bodega destino";
+            encomiendaService.cambiarEstado(idEncomienda, estado);
+            mensaje = "Se cambió el estado de la encomienda a 'En bodega destino'.";
+        } else if (e.getSource() == viewEncomiendaInfo.btnDespachar) {
+            estado = "Recolectado";
+            encomiendaService.cambiarEstado(idEncomienda, estado);
+            mensaje = "Se cambió el estado de la encomienda a 'Recolectado'.";
+        } else if (e.getSource() == viewEncomiendaInfo.btnEmbarcar) {
+            estado = "EnTransito";
+            encomiendaService.cambiarEstado(idEncomienda, estado);
+            mensaje = "Se cambió el estado de la encomienda a 'EnTransito'.";
+        } else if (e.getSource() == viewEncomiendaInfo.btnEntregar) {
+            estado = "Entregado";
+            encomiendaService.cambiarEstado(idEncomienda, estado);
+            mensaje = "Se cambió el estado de la encomienda a 'Entregado'.";
+        }
+
+        // Mostrar el mensaje en un diálogo
+        if (!mensaje.isEmpty()) {
+            JOptionPane.showMessageDialog(viewEncomiendaInfo, mensaje, "Estado Cambiado", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 
-    // Mostrar el mensaje en un diálogo
-    if (!mensaje.isEmpty()) {
-        JOptionPane.showMessageDialog(viewEncomiendaInfo, mensaje, "Estado Cambiado", JOptionPane.INFORMATION_MESSAGE);
-    }
-}
-        
-    
     @Override
     public void itemStateChanged(ItemEvent e) {
         if (e.getSource() == viewEncomienda.jCBAgenciaOrigen && e.getStateChange() == ItemEvent.SELECTED) {
             // Solo ejecutar el código si una nueva agencia es seleccionada
             String agenciaOrigenSeleccionada = viewEncomienda.jCBAgenciaOrigen.getSelectedItem().toString();
-            
+
             try {
                 List<Agencia> todasLasAgencias = encomiendaService.obtenerAgencias();
                 System.out.println("SI JALE LAS AGENCIAS");

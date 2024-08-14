@@ -3,6 +3,7 @@ package encomiendas.controllers.usuarios;
 import encomiendas.model.data.usuarios.DbEmpleado;
 import encomiendas.model.entity.usuarios.Cuenta;
 import encomiendas.model.entity.usuarios.Empleado;
+import encomiendas.views.encomiendas.JFEncomiendas;
 import encomiendas.views.usuarios.MenuEmpleado;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -16,6 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
@@ -169,6 +171,9 @@ public class empleadoController implements ActionListener {
             }
 
         }
+        
+    
+        
     }
 
 }
