@@ -1,6 +1,32 @@
 package encomiendas.views.usuarios;
 
+import encomiendas.controllers.almacenamiento.CtrAlmacen;
+import encomiendas.controllers.almacenamiento.CtrFichaEncomienda;
+import encomiendas.controllers.almacenamiento.CtrSeccion;
+import encomiendas.database.Conexion;
+import encomiendas.model.data.Agencia.AgenciaRepository;
+import encomiendas.model.data.almacenamiento.AlmacenamientoRepository;
+import encomiendas.model.data.almacenamiento.FichaEncomiendaRepository;
+import encomiendas.model.data.almacenamiento.SeccionRepository;
+import encomiendas.model.data.encomiendas.EncomiendaRepository;
+import encomiendas.model.data.encomiendas.PaqueteRepository;
+import encomiendas.model.data.usuarios.ClienteRepository;
+import encomiendas.model.entity.almacenamiento.Almacen;
+import encomiendas.model.entity.almacenamiento.FichaEncomienda;
+import encomiendas.model.entity.almacenamiento.Seccion;
+import encomiendas.model.entity.usuarios.Agencia;
+import encomiendas.services.almacen.AlmacenService;
+import encomiendas.services.almacen.FichaEncomiendaService;
+import encomiendas.services.almacen.SeccionService;
+import encomiendas.services.encomiendas.EncomiendaService;
+import encomiendas.services.encomiendas.PaqueteService;
+import encomiendas.views.almacenamiento.FRMAlmacen;
+import encomiendas.views.almacenamiento.NuevaFicha;
 import encomiendas.views.encomiendas.JFEncomiendas;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 
 /**
@@ -71,6 +97,9 @@ public class MenuEmpleado extends javax.swing.JFrame {
         jPMétodoEditar4 = new javax.swing.JPanel();
         jPAEEcomiendas = new javax.swing.JPanel();
         btnAbrirEncomiendas = new javax.swing.JButton();
+        JPAlmacenamiento = new javax.swing.JPanel();
+        btnVerAlmacen = new javax.swing.JButton();
+        btnAlmacenar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menú - Empleado");
@@ -455,6 +484,49 @@ public class MenuEmpleado extends javax.swing.JFrame {
 
         JTPEmpleado.addTab("Encomiendas", jPanel4);
 
+        btnVerAlmacen.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnVerAlmacen.setText("Ver almacén");
+        btnVerAlmacen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerAlmacenActionPerformed(evt);
+            }
+        });
+
+        btnAlmacenar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnAlmacenar.setText("Almacenar");
+        btnAlmacenar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlmacenarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout JPAlmacenamientoLayout = new javax.swing.GroupLayout(JPAlmacenamiento);
+        JPAlmacenamiento.setLayout(JPAlmacenamientoLayout);
+        JPAlmacenamientoLayout.setHorizontalGroup(
+            JPAlmacenamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 690, Short.MAX_VALUE)
+            .addGroup(JPAlmacenamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(JPAlmacenamientoLayout.createSequentialGroup()
+                    .addGap(182, 182, 182)
+                    .addComponent(btnVerAlmacen)
+                    .addGap(73, 73, 73)
+                    .addComponent(btnAlmacenar, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(182, Short.MAX_VALUE)))
+        );
+        JPAlmacenamientoLayout.setVerticalGroup(
+            JPAlmacenamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 405, Short.MAX_VALUE)
+            .addGroup(JPAlmacenamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(JPAlmacenamientoLayout.createSequentialGroup()
+                    .addGap(177, 177, 177)
+                    .addGroup(JPAlmacenamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnVerAlmacen, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAlmacenar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap(178, Short.MAX_VALUE)))
+        );
+
+        JTPEmpleado.addTab("Almacenamiento", JPAlmacenamiento);
+
         jPMenuEmpleado.add(JTPEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, -1, 440));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -477,6 +549,83 @@ public class MenuEmpleado extends javax.swing.JFrame {
         encomiendas.setVisible(true);
         encomiendas.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_btnAbrirEncomiendasActionPerformed
+
+    private void btnVerAlmacenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerAlmacenActionPerformed
+        Almacen almacen = new Almacen();
+        FRMAlmacen frmAlm = new FRMAlmacen();
+        NuevaFicha frmFicha = new NuevaFicha();
+        Agencia agencia =  new  Agencia();
+        Seccion seccion = new Seccion();
+        FichaEncomienda ficha = new FichaEncomienda();
+        Connection connection = Conexion.getInstance();
+
+        SeccionRepository seccionRepository = new SeccionRepository(connection);
+        FichaEncomiendaRepository fichaRepository = new FichaEncomiendaRepository(connection);
+        AlmacenamientoRepository almacenRepository = new AlmacenamientoRepository(connection);
+        EncomiendaRepository encomiendaRepo =  new EncomiendaRepository(connection);
+        SeccionService seccionService = new SeccionService(seccionRepository);
+        AlmacenService almacenService =  new AlmacenService(almacenRepository);
+        FichaEncomiendaService fichaService =  new FichaEncomiendaService(fichaRepository);
+        AgenciaRepository agenciaRepo = new AgenciaRepository(connection);
+        ClienteRepository clienteRepository = new ClienteRepository(connection);
+        PaqueteRepository paqueteRepository = new PaqueteRepository(connection);
+        PaqueteService paqueteService = new PaqueteService(paqueteRepository);
+        
+        EncomiendaService encoService = new EncomiendaService(encomiendaRepo,clienteRepository,agenciaRepo,paqueteService);
+        
+        try {
+            CtrSeccion ctrSeccion =  new CtrSeccion(seccion,seccionService,frmAlm,frmFicha);
+            CtrAlmacen crtAlm = new CtrAlmacen(frmAlm,almacenService,agenciaRepo);
+            crtAlm.cargarAlmacenes();
+            crtAlm.cargarAgencias();
+            ctrSeccion.cargarSecciones();
+            CtrFichaEncomienda ctrFicha = new CtrFichaEncomienda(ficha,fichaService,frmFicha,frmAlm,seccionService,encoService);
+            ctrFicha.cargarEncomiendas();
+        } catch (SQLException ex) {
+            
+        }
+        
+        frmAlm.setVisible(true);
+
+    }//GEN-LAST:event_btnVerAlmacenActionPerformed
+
+    private void btnAlmacenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlmacenarActionPerformed
+        Almacen almacen = new Almacen();
+        FRMAlmacen frmAlm = new FRMAlmacen();
+        NuevaFicha frmFicha = new NuevaFicha();
+        Agencia agencia =  new  Agencia();
+        Seccion seccion = new Seccion();
+        FichaEncomienda ficha = new FichaEncomienda();
+        Connection connection = Conexion.getInstance();
+
+        SeccionRepository seccionRepository = new SeccionRepository(connection);
+        FichaEncomiendaRepository fichaRepository = new FichaEncomiendaRepository(connection);
+        AlmacenamientoRepository almacenRepository = new AlmacenamientoRepository(connection);
+        EncomiendaRepository encomiendaRepo =  new EncomiendaRepository(connection);
+        SeccionService seccionService = new SeccionService(seccionRepository);
+        AlmacenService almacenService =  new AlmacenService(almacenRepository);
+        FichaEncomiendaService fichaService =  new FichaEncomiendaService(fichaRepository);
+        AgenciaRepository agenciaRepo = new AgenciaRepository(connection);
+        ClienteRepository clienteRepository = new ClienteRepository(connection);
+        PaqueteRepository paqueteRepository = new PaqueteRepository(connection);
+        PaqueteService paqueteService = new PaqueteService(paqueteRepository);
+        
+        EncomiendaService encoService = new EncomiendaService(encomiendaRepo,clienteRepository,agenciaRepo,paqueteService);
+        
+        try {
+            CtrSeccion ctrSeccion =  new CtrSeccion(seccion,seccionService,frmAlm,frmFicha);
+            CtrAlmacen crtAlm = new CtrAlmacen(frmAlm,almacenService,agenciaRepo);
+            crtAlm.cargarAlmacenes();
+            crtAlm.cargarAgencias();
+            ctrSeccion.cargarSecciones();
+            CtrFichaEncomienda ctrFicha = new CtrFichaEncomienda(ficha,fichaService,frmFicha,frmAlm,seccionService,encoService);
+            ctrFicha.cargarEncomiendas();
+        } catch (SQLException ex) {
+            
+        }
+        
+        frmFicha.setVisible(true);
+    }//GEN-LAST:event_btnAlmacenarActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -528,12 +677,15 @@ public class MenuEmpleado extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel JPAlmacenamiento;
     public javax.swing.JTabbedPane JTPEmpleado;
     public javax.swing.JButton btEClientes;
     public javax.swing.JButton btEConductores;
     public javax.swing.JButton btECredencial;
     public javax.swing.JButton btEPerfil;
     public javax.swing.JButton btnAbrirEncomiendas;
+    public javax.swing.JButton btnAlmacenar;
+    public javax.swing.JButton btnVerAlmacen;
     public javax.swing.JButton jBCambiarFoto;
     public javax.swing.JTextField jFTNombresE;
     public javax.swing.JLabel jLEmpleado;
