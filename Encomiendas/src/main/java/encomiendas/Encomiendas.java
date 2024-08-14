@@ -1,39 +1,26 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
-
 package encomiendas;
 
-import encomiendas.controllers.agencias.agenciaController;
-import encomiendas.model.data.agencias.DbAgencia;
-import encomiendas.model.entity.agencias.Agencia;
-import encomiendas.views.agencia.ConsultaAgencia;
-import encomiendas.views.agencia.ModificarInformacionAgencia;
-import encomiendas.views.agencia.NuevaAgencia;
+import encomiendas.controllers.usuarios.usuarioController;
+import encomiendas.model.data.usuarios.DbUsuarios;
+import encomiendas.views.usuarios.Login;
+import encomiendas.views.usuarios.RecuperarContrasenia;
+import encomiendas.views.usuarios.Registro;
 
-/**
- *
- * @author Richard
- */
+
 public class Encomiendas {
 
     public static void main(String[] args) {
-        Agencia agencia=new Agencia();
-        DbAgencia dbagencia=new DbAgencia();
-        ConsultaAgencia frmConsultaAgencia= new ConsultaAgencia();
-        NuevaAgencia frmNuevaAgencia=new NuevaAgencia();
-        ModificarInformacionAgencia frmModificarInformacionAgencia=new ModificarInformacionAgencia();
+        DbUsuarios modDbCliente = new DbUsuarios();
+        Login frmLogin = new Login();
+        Registro frmRegistro = new Registro();
+        frmRegistro.setVisible(false);
+        RecuperarContrasenia frmRContrasenia = new RecuperarContrasenia();
+        frmRContrasenia.setVisible(false);
         
-        agenciaController ctragencia=new agenciaController(agencia,dbagencia,frmConsultaAgencia,frmNuevaAgencia,frmModificarInformacionAgencia);
-        ctragencia.iniciar();
-        frmConsultaAgencia.setVisible(true);
-        //frmNuevaAgencia.setVisible(true);
-        //frmModificarInformacionAgencia.setVisible(true);
-        /*
-        JFTransporte transporte = new JFTransporte();
-        transporte.setVisible(true);
-        transporte.setResizable(false);
-        transporte.setLocationRelativeTo(null);*/
+        usuarioController crtUsuario = new usuarioController(modDbCliente, frmLogin, frmRegistro, frmRContrasenia);
         
+        crtUsuario.iniciar();
+        frmLogin.setVisible(true);
+
     }
 }
