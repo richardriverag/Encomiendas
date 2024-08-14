@@ -1,31 +1,27 @@
 package encomiendas.model.entity.transporte;
 
 import encomiendas.model.entity.usuarios.Agencia;
+import java.util.List;
 
 public class Ruta {
-    private String id;
+    private int id;
     private String descripcion;
     private Agencia agenciaSalida;
-    private boolean esInterprovincial;
+    private String paradas;
+    private boolean tipo_ruta;
 
-    public Ruta(String id, String descripcion, Agencia agenciaSalida, boolean esInterprovincial) {
+    public Ruta() {
+    }
+
+    
+    public Ruta(int id,String descripcion, Agencia agenciaSalida, boolean esInterprovincial) {
         this.id = id;
         this.descripcion = descripcion;
         this.agenciaSalida = agenciaSalida;
-        this.esInterprovincial = esInterprovincial;
+        this.tipo_ruta = esInterprovincial;
     }
-
     // Getters y Setters
     
-    // Id
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
     // descripcion
     public String getDescripcion() {
         return descripcion;
@@ -46,11 +42,29 @@ public class Ruta {
 
     // esInterprovincial
     public boolean isEsInterprovincial() {
-        return esInterprovincial;
+        return tipo_ruta;
     }
 
     // Setter for esInterprovincial
     public void setEsInterprovincial(boolean esInterprovincial) {
-        this.esInterprovincial = esInterprovincial;
+        this.tipo_ruta = esInterprovincial;
     }
+
+    public String getParadas() {
+        return paradas;
+    }
+
+    public void setParadas(String paradas) {
+        this.paradas = paradas;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    
 }

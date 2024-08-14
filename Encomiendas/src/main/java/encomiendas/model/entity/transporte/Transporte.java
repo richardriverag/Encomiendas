@@ -1,6 +1,6 @@
 package encomiendas.model.entity.transporte;
 
-public abstract class Transporte {
+public class Transporte {
     private int transporte_id;
     private double capacidad_carga;
     private String modelo;
@@ -13,7 +13,7 @@ public abstract class Transporte {
     // Constructor sin argumentos
     public Transporte() {
         this.historial = new HistorialMantenimiento();
-    }
+    }   
 
     // Constructor con argumentos
     public Transporte(int transporte_id, double capacidad_carga, String modelo, int anio_fabricacion, double kilometraje, String tipo_transporte, ESTADO_TRANSPORTE estado) {
