@@ -23,6 +23,7 @@ import encomiendas.services.encomiendas.PaqueteService;
 import encomiendas.views.almacenamiento.FRMAlmacen;
 import encomiendas.views.almacenamiento.NuevaFicha;
 import encomiendas.views.encomiendas.JFEncomiendas;
+import encomiendas.views.transporte.JFModTransporte;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -100,6 +101,8 @@ public class MenuEmpleado extends javax.swing.JFrame {
         JPAlmacenamiento = new javax.swing.JPanel();
         btnVerAlmacen = new javax.swing.JButton();
         btnAlmacenar = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menú - Empleado");
@@ -527,6 +530,32 @@ public class MenuEmpleado extends javax.swing.JFrame {
 
         JTPEmpleado.addTab("Almacenamiento", JPAlmacenamiento);
 
+        jButton1.setText("Abir Transporte");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(537, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(349, Short.MAX_VALUE))
+        );
+
+        JTPEmpleado.addTab("Transporte", jPanel5);
+
         jPMenuEmpleado.add(JTPEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, -1, 440));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -626,6 +655,12 @@ public class MenuEmpleado extends javax.swing.JFrame {
         
         frmFicha.setVisible(true);
     }//GEN-LAST:event_btnAlmacenarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        JFModTransporte modTransporte = new JFModTransporte();
+        modTransporte.setVisible(true);
+        modTransporte.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_jButton1ActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -687,6 +722,7 @@ public class MenuEmpleado extends javax.swing.JFrame {
     public javax.swing.JButton btnAlmacenar;
     public javax.swing.JButton btnVerAlmacen;
     public javax.swing.JButton jBCambiarFoto;
+    private javax.swing.JButton jButton1;
     public javax.swing.JTextField jFTNombresE;
     public javax.swing.JLabel jLEmpleado;
     public javax.swing.JLabel jLFotoPerfilE;
@@ -716,6 +752,7 @@ public class MenuEmpleado extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     public javax.swing.JTextField jTFApellidoE;
