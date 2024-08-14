@@ -4,6 +4,7 @@ import encomiendas.controllers.usuarios.AdministradorController;
 import encomiendas.database.Conexion;
 import encomiendas.model.data.usuarios.UsuarioRepository;
 import encomiendas.services.usuarios.UsuarioService;
+import encomiendas.views.encomiendas.JFEncomiendas;
 import java.awt.BorderLayout;
 
 public class MenuAdministrador extends javax.swing.JFrame {
@@ -42,7 +43,8 @@ public class MenuAdministrador extends javax.swing.JFrame {
         jTFUsuarioAdministrador = new javax.swing.JTextField();
         btListaUsuarios = new javax.swing.JButton();
         btIngresoUsuarios = new javax.swing.JButton();
-        btActualizarUsuarios = new javax.swing.JButton();
+        btnAbrirEncomiendas = new javax.swing.JButton();
+        btActualizarUsuarios1 = new javax.swing.JButton();
         jFrameAdministrador = new javax.swing.JPanel();
         jLBienvenida = new javax.swing.JLabel();
 
@@ -81,11 +83,22 @@ public class MenuAdministrador extends javax.swing.JFrame {
         btIngresoUsuarios.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 255, 255), null, null));
         jPAdministradorMétodos.add(btIngresoUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 150, 30));
 
-        btActualizarUsuarios.setBackground(new java.awt.Color(200, 0, 0));
-        btActualizarUsuarios.setForeground(new java.awt.Color(255, 255, 255));
-        btActualizarUsuarios.setText("Actualizar Usuarios");
-        btActualizarUsuarios.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 255, 255), null, null));
-        jPAdministradorMétodos.add(btActualizarUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 150, 30));
+        btnAbrirEncomiendas.setBackground(new java.awt.Color(200, 0, 0));
+        btnAbrirEncomiendas.setForeground(new java.awt.Color(255, 255, 255));
+        btnAbrirEncomiendas.setText("Abrir encomiendas");
+        btnAbrirEncomiendas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 255, 255), null, null));
+        btnAbrirEncomiendas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAbrirEncomiendasActionPerformed(evt);
+            }
+        });
+        jPAdministradorMétodos.add(btnAbrirEncomiendas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 150, 30));
+
+        btActualizarUsuarios1.setBackground(new java.awt.Color(200, 0, 0));
+        btActualizarUsuarios1.setForeground(new java.awt.Color(255, 255, 255));
+        btActualizarUsuarios1.setText("Actualizar Usuarios");
+        btActualizarUsuarios1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 255, 255), null, null));
+        jPAdministradorMétodos.add(btActualizarUsuarios1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 150, 30));
 
         jPMenúAdministrador.add(jPAdministradorMétodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 430));
 
@@ -127,6 +140,12 @@ public class MenuAdministrador extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAbrirEncomiendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirEncomiendasActionPerformed
+        JFEncomiendas viewEncomiendas = new JFEncomiendas();
+        viewEncomiendas.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        viewEncomiendas.setVisible(true);
+    }//GEN-LAST:event_btnAbrirEncomiendasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -171,9 +190,10 @@ public class MenuAdministrador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btActualizarUsuarios;
+    public javax.swing.JButton btActualizarUsuarios1;
     public javax.swing.JButton btIngresoUsuarios;
     public javax.swing.JButton btListaUsuarios;
+    public javax.swing.JButton btnAbrirEncomiendas;
     private javax.swing.JPanel jFrameAdministrador;
     private javax.swing.JLabel jLAdministrador;
     private javax.swing.JLabel jLBienvenida;

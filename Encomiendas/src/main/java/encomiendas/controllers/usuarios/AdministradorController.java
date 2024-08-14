@@ -49,7 +49,7 @@ public class AdministradorController implements ActionListener {
 
         this.frameMenuAdministrador.btListaUsuarios.addActionListener(this);
         this.frameMenuAdministrador.btIngresoUsuarios.addActionListener(this);
-        this.frameMenuAdministrador.btActualizarUsuarios.addActionListener(this);
+        this.frameMenuAdministrador.btnAbrirEncomiendas.addActionListener(this);
         this.frameEdicionUsuario.jBValidarUsuario.addActionListener(this); // Agregar el ActionListener
     }
 
@@ -65,7 +65,7 @@ public class AdministradorController implements ActionListener {
             mostrarFrameListaUsuarios();
         } else if (e.getSource() == frameMenuAdministrador.btIngresoUsuarios) {
             mostrarFrameIngresoUsuarios();
-        } else if (e.getSource() == frameMenuAdministrador.btActualizarUsuarios) {
+        } else if (e.getSource() == frameMenuAdministrador.btnAbrirEncomiendas) {
             mostrarFrameActualizarUsuarios();
         }
     }

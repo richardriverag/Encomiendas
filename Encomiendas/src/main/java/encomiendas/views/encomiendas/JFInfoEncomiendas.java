@@ -681,11 +681,11 @@ public class JFInfoEncomiendas extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMISalir;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPanel panelConductores;
+    public javax.swing.JPanel panelConductores;
     private javax.swing.JPanel panelDatosEncomienda;
     private javax.swing.JPanel panelEntregaDomicilio;
     private javax.swing.JPanel panelInterprovincial;
-    private javax.swing.JPanel panelOpEmpleado;
+    public javax.swing.JPanel panelOpEmpleado;
     private javax.swing.JPanel panelOpciones;
     public javax.swing.JTextField txtAgenD;
     public javax.swing.JTextField txtAgenciaO;
