@@ -121,6 +121,7 @@ CREATE TABLE almacen (
     limite_superior_caducidad INT,
     nombre_almacen VARCHAR(100),
     id_agencia INT,
+    numeroSecciones INT,
     FOREIGN KEY (id_agencia) REFERENCES AGENCIA(id_agencia)
 );
 
@@ -209,10 +210,10 @@ VALUES
 (2, 2);
 
 -- Insertar datos en la tabla Almacen
-INSERT INTO almacen (limite_superior_caducidad, nombre_almacen, id_agencia)
+INSERT INTO almacen (limite_superior_caducidad, nombre_almacen, id_agencia,numeroSecciones)
 VALUES
-(12, 'Almacén Principal', 1),
-(24, 'Almacén Secundario', 2);
+(12, 'Almacén Principal', 1, 1),
+(24, 'Almacén Secundario', 2, 1);
 
 -- Insertar datos en la tabla Seccion
 INSERT INTO seccion (nombre, capacidad, id_almacen)

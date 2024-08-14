@@ -28,7 +28,7 @@ public class FRMAlmacen extends javax.swing.JFrame {
         txtCaducidad = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        btnAtras = new javax.swing.JButton();
+        btnAlmacenSalir = new javax.swing.JButton();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         txtcantidadSecciones = new javax.swing.JTextField();
@@ -41,7 +41,7 @@ public class FRMAlmacen extends javax.swing.JFrame {
         btnGuardarAlmacen = new javax.swing.JButton();
         cbAgencia = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
-        jButton5 = new javax.swing.JButton();
+        btnFichaSalir = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         txtNombreFichaSeccion = new javax.swing.JTextField();
         txtCodigoFicha = new javax.swing.JTextField();
@@ -59,7 +59,7 @@ public class FRMAlmacen extends javax.swing.JFrame {
         txtEncomiendaId = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jButton4 = new javax.swing.JButton();
+        btnSeccionSalir = new javax.swing.JButton();
         txtCapacidadSeccion = new javax.swing.JTextField();
         txtCodigoSeccion = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -103,10 +103,10 @@ public class FRMAlmacen extends javax.swing.JFrame {
 
         jLabel17.setText("Código");
 
-        btnAtras.setText("Atras");
-        btnAtras.addActionListener(new java.awt.event.ActionListener() {
+        btnAlmacenSalir.setText("Salir");
+        btnAlmacenSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAtrasActionPerformed(evt);
+                btnAlmacenSalirActionPerformed(evt);
             }
         });
 
@@ -188,7 +188,7 @@ public class FRMAlmacen extends javax.swing.JFrame {
                         .addComponent(jLabel19)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnAtras)
+                        .addComponent(btnAlmacenSalir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnGuardarAlmacen)
                         .addGap(59, 59, 59))))
@@ -226,7 +226,7 @@ public class FRMAlmacen extends javax.swing.JFrame {
                     .addComponent(cbAgencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAtras)
+                    .addComponent(btnAlmacenSalir)
                     .addComponent(btnGuardarAlmacen))
                 .addGap(27, 27, 27))
         );
@@ -235,10 +235,10 @@ public class FRMAlmacen extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(192, 223, 255));
 
-        jButton5.setText("Atrás");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnFichaSalir.setText("Salir");
+        btnFichaSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnFichaSalirActionPerformed(evt);
             }
         });
 
@@ -356,7 +356,7 @@ public class FRMAlmacen extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(46, 46, 46)
-                .addComponent(jButton5)
+                .addComponent(btnFichaSalir)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnRetirar)
                 .addGap(77, 77, 77))
@@ -400,7 +400,7 @@ public class FRMAlmacen extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRetirar)
-                    .addComponent(jButton5))
+                    .addComponent(btnFichaSalir))
                 .addGap(16, 16, 16))
         );
 
@@ -408,10 +408,10 @@ public class FRMAlmacen extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(192, 223, 255));
 
-        jButton4.setText("Atrás");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnSeccionSalir.setText("Salir");
+        btnSeccionSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnSeccionSalirActionPerformed(evt);
             }
         });
 
@@ -488,7 +488,7 @@ public class FRMAlmacen extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton4)
+                                .addComponent(btnSeccionSalir)
                                 .addGap(151, 151, 151)
                                 .addComponent(btnActualizarSeccion))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -548,7 +548,7 @@ public class FRMAlmacen extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEliminar)
                     .addComponent(btnModificar)
-                    .addComponent(jButton4)
+                    .addComponent(btnSeccionSalir)
                     .addComponent(btnActualizarSeccion))
                 .addGap(24, 24, 24))
         );
@@ -590,14 +590,9 @@ public class FRMAlmacen extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCapacidadSeccionActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        //Bienvenido ventanaBienvenido = new Bienvenido();
-        //ventanaBienvenido.setVisible(true);
-
-        // Cerrar la ventana actual
+    private void btnSeccionSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeccionSalirActionPerformed
         this.dispose();
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btnSeccionSalirActionPerformed
 
     private void txtNombreAlmacenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreAlmacenActionPerformed
         // TODO add your handling code here:
@@ -607,11 +602,9 @@ public class FRMAlmacen extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtcantidadSeccionesActionPerformed
 
-    private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
-       Bienvenido bienvenido = new Bienvenido();
-       bienvenido.setVisible(true);
-       this.dispose();
-    }//GEN-LAST:event_btnAtrasActionPerformed
+    private void btnAlmacenSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlmacenSalirActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnAlmacenSalirActionPerformed
 
     private void txtCaducidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCaducidadActionPerformed
         // TODO add your handling code here:
@@ -629,9 +622,9 @@ public class FRMAlmacen extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBuscarAlmacenActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btnFichaSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFichaSalirActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_btnFichaSalirActionPerformed
 
     private void txtNombreFichaSeccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreFichaSeccionActionPerformed
         // TODO add your handling code here:
@@ -729,17 +722,17 @@ public class FRMAlmacen extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnActualizarSeccion;
-    public javax.swing.JButton btnAtras;
+    public javax.swing.JButton btnAlmacenSalir;
     public javax.swing.JButton btnBuscarAlmacen;
     public javax.swing.JButton btnBuscarFicha;
     public javax.swing.JButton btnEliminar;
+    public javax.swing.JButton btnFichaSalir;
     public javax.swing.JButton btnGuardarAlmacen;
     public javax.swing.JButton btnModificar;
     public javax.swing.JButton btnRetirar;
+    public javax.swing.JButton btnSeccionSalir;
     public javax.swing.JComboBox<Agencia> cbAgencia;
     public javax.swing.JComboBox<Almacen> cbAlmacen;
-    public javax.swing.JButton jButton4;
-    public javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     public javax.swing.JLabel jLabel10;

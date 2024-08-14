@@ -47,7 +47,7 @@ public class NuevaFicha extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(192, 223, 255));
 
-        btnAtras.setText("Atrás");
+        btnAtras.setText("Salir");
         btnAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAtrasActionPerformed(evt);
@@ -147,8 +147,7 @@ public class NuevaFicha extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
-        Bienvenido bienvenido = new Bienvenido();
-       bienvenido.setVisible(true);
+
         this.dispose();
     }//GEN-LAST:event_btnAtrasActionPerformed
 

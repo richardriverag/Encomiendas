@@ -139,7 +139,6 @@ public class CtrSeccion implements ActionListener {
 }
    
    public void cargarSecciones() throws SQLException {   
-       System.out.println("Si carga secciones");
     List<Seccion> secciones = seccionService.obtenerTodas(); // Obtener la lista de secciones
        DefaultComboBoxModel<Seccion> model = new DefaultComboBoxModel<>();
     for (Seccion s : secciones) {
@@ -153,7 +152,6 @@ public class CtrSeccion implements ActionListener {
         public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
             if (value instanceof Seccion) {
                 Seccion seccion = (Seccion) value;
-                System.out.println("NombreSeccion");
                 setText(seccion.getNombreSeccion()); // Mostrar el nombre de la sección en el ComboBox
             } else {
                 setText(value.toString()); // Para otros casos, como el texto "Seleccionar" si lo tienes
