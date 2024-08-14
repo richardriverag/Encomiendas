@@ -59,7 +59,6 @@ public class usuarioController implements ActionListener {
                 //JOptionPane.showMessageDialog(null, "Se encontro el usuario");
                 String rol = modeloDb.obtenerRol(cedula);
                 if (rol.equals("Cliente")) {
-                    JOptionPane.showMessageDialog(null, "hola soy un cliente");
                     Cliente cliente = new Cliente();
                     cliente.setCedula(cedula);
                     System.out.println(cliente.getCedula());
@@ -70,7 +69,6 @@ public class usuarioController implements ActionListener {
                 }
 
                 if (rol.equals("Empleado")) {
-                    JOptionPane.showMessageDialog(null, "hola soy un empleado");
                     Empleado empleado = new Empleado();
                     empleado.setCedula(cedula);
                     empleado.obtenerDatos(cedula);
@@ -80,7 +78,6 @@ public class usuarioController implements ActionListener {
                 }
 
                 if (rol.equals("Administrador")) {
-                    JOptionPane.showMessageDialog(null, "hola soy un Administrador");
                     MenuAdministrador frmAdministrador = new MenuAdministrador();
                     frmLogin.dispose();
                     frmAdministrador.jTFUsuarioAdministrador.setText(cedula);
@@ -89,7 +86,6 @@ public class usuarioController implements ActionListener {
                 }
 
                 if (rol.equals("Conductor")) {
-                    JOptionPane.showMessageDialog(null, "hola soy un Conductor");
                     MenuConductor frmConductor = new MenuConductor();
                     frmConductor.dispose();
                     frmConductor.jTFUsuarioConductor.setText(cedula);
@@ -98,7 +94,6 @@ public class usuarioController implements ActionListener {
 
                 }
                 if (rol.equals("Agencia")) {
-                    JOptionPane.showMessageDialog(null, "hola soy un Conductor");
                     MenuEmpleado frmEmpleado = new MenuEmpleado();
                     frmLogin.dispose();
                     frmEmpleado.setVisible(true);
