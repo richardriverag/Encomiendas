@@ -8,6 +8,9 @@ import encomiendas.controllers.transporte.TransporteController;
 import encomiendas.database.Conexion;
 import encomiendas.model.data.transporte.TransporteRepository;
 import encomiendas.model.entity.transporte.ESTADO_TRANSPORTE;
+import static encomiendas.model.entity.transporte.ESTADO_TRANSPORTE.DISPONIBLE;
+import static encomiendas.model.entity.transporte.ESTADO_TRANSPORTE.EN_MANTENIMIENTO;
+import static encomiendas.model.entity.transporte.ESTADO_TRANSPORTE.FUERA_DE_SERVICIO;
 import encomiendas.model.entity.transporte.Ruta;
 import encomiendas.model.entity.transporte.Transporte;
 import encomiendas.services.transporte.TransporteService;
@@ -24,12 +27,13 @@ import javax.swing.table.DefaultTableModel;
  */
 public class JFTransporte extends javax.swing.JFrame {
 
-    private Conexion con = new Conexion();
-    private TransporteController transControler;
-    private TransporteRepository transRepository;
-    private TransporteService tranService;
+    Conexion con = new Conexion();
+    TransporteController transControler;
+    TransporteRepository transRepository;
+    TransporteService tranService;
     private int idTransActualizar;
-    
+    private DefaultTableModel modeloTablaConsulta;
+
     public JFTransporte() {
         initComponents();
         transRepository = new TransporteRepository(con.getInstance());
@@ -67,7 +71,6 @@ public class JFTransporte extends javax.swing.JFrame {
         ckLiviano = new javax.swing.JCheckBox();
         cmbEstado = new javax.swing.JComboBox<>();
         jPanel5 = new javax.swing.JPanel();
-        btnAgregarHistorial = new javax.swing.JButton();
         btnAgregarTrans = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
@@ -97,12 +100,13 @@ public class JFTransporte extends javax.swing.JFrame {
         txtCapacidadCargaEdit = new javax.swing.JTextField();
         txtAnioFabEdit = new javax.swing.JTextField();
         txtKilometrajeEdit = new javax.swing.JTextField();
-        txtEstadoEdit = new javax.swing.JTextField();
         ckPesadoEdit = new javax.swing.JCheckBox();
         ckLivEdit = new javax.swing.JCheckBox();
+        cmbEstadoEdit = new javax.swing.JComboBox<>();
         jPanel14 = new javax.swing.JPanel();
-        btnEditHistorial = new javax.swing.JButton();
-        btnGuardarTrans = new javax.swing.JButton();
+        btnGuardarCambiosTrans = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -119,27 +123,35 @@ public class JFTransporte extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jTabbedPane1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTabbedPane1.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jTabbedPane1StateChanged(evt);
             }
         });
 
+        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
         jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder("Transporte\n"));
 
         jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos"));
 
-        jLabel8.setText("Capacidad de carga");
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel8.setText("Capacidad de carga:");
 
-        jLabel9.setText("Modelo");
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel9.setText("Modelo:");
 
-        jLabel10.setText("Año de fabricación");
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel10.setText("Año de fabricación:");
 
-        jLabel11.setText("Kilometraje");
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel11.setText("Kilometraje:");
 
-        jLabel12.setText("Tipo de transporte");
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel12.setText("Tipo de transporte:");
 
-        jLabel1.setText("Estado");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel1.setText("Estado:");
 
         txtModelo.setMinimumSize(new java.awt.Dimension(64, 19));
 
@@ -150,8 +162,18 @@ public class JFTransporte extends javax.swing.JFrame {
         txtKilometraje.setMinimumSize(new java.awt.Dimension(64, 19));
 
         ckPesado.setText("Pesado");
+        ckPesado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ckPesadoActionPerformed(evt);
+            }
+        });
 
         ckLiviano.setText("Liviano");
+        ckLiviano.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ckLivianoActionPerformed(evt);
+            }
+        });
 
         cmbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mantenimiento", "Disponible", "Fuera de servicio" }));
         cmbEstado.setSelectedItem(-1);
@@ -167,7 +189,7 @@ public class JFTransporte extends javax.swing.JFrame {
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addGap(43, 43, 43)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -179,21 +201,21 @@ public class JFTransporte extends javax.swing.JFrame {
                         .addGap(62, 62, 62)
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtKilometraje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtAnioFab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtAnioFab, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
                             .addGroup(jPanel10Layout.createSequentialGroup()
                                 .addComponent(ckPesado)
                                 .addGap(37, 37, 37)
                                 .addComponent(ckLiviano))
-                            .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(cmbEstado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8)
                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(58, 58, 58)
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCapacidadCarga, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(122, Short.MAX_VALUE))
+                            .addComponent(txtModelo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtCapacidadCarga, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(134, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -228,10 +250,7 @@ public class JFTransporte extends javax.swing.JFrame {
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        btnAgregarHistorial.setText("Agregar Historial");
-        btnAgregarHistorial.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        btnAgregarHistorial.setContentAreaFilled(false);
-
+        btnAgregarTrans.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnAgregarTrans.setText("Agregar Transporte");
         btnAgregarTrans.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         btnAgregarTrans.setContentAreaFilled(false);
@@ -246,20 +265,16 @@ public class JFTransporte extends javax.swing.JFrame {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(btnAgregarHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(276, 276, 276)
                 .addComponent(btnAgregarTrans, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAgregarHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAgregarTrans, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(30, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(19, Short.MAX_VALUE)
+                .addComponent(btnAgregarTrans, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
         );
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
@@ -276,10 +291,11 @@ public class JFTransporte extends javax.swing.JFrame {
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(19, Short.MAX_VALUE)
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -295,16 +311,20 @@ public class JFTransporte extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Agregar", jPanel1);
 
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Transporte"));
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("ID");
 
+        btnBuscar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnBuscar.setText("Buscar");
         btnBuscar.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         btnBuscar.setContentAreaFilled(false);
@@ -323,8 +343,8 @@ public class JFTransporte extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(49, 49, 49)
                 .addComponent(txtIdBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
-                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
         );
         jPanel7Layout.setVerticalGroup(
@@ -334,7 +354,7 @@ public class JFTransporte extends javax.swing.JFrame {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtIdBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
@@ -368,7 +388,7 @@ public class JFTransporte extends javax.swing.JFrame {
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -378,11 +398,10 @@ public class JFTransporte extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -427,6 +446,7 @@ public class JFTransporte extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(tablaTransporteCom);
 
+        btnEliminar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnEliminar.setText("Eliminar");
         btnEliminar.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         btnEliminar.setContentAreaFilled(false);
@@ -436,9 +456,15 @@ public class JFTransporte extends javax.swing.JFrame {
             }
         });
 
+        btnEditar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnEditar.setText("Editar");
         btnEditar.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         btnEditar.setContentAreaFilled(false);
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -446,16 +472,16 @@ public class JFTransporte extends javax.swing.JFrame {
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 695, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(69, 69, 69))
             .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel11Layout.createSequentialGroup()
                     .addGap(86, 86, 86)
-                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(277, Short.MAX_VALUE)))
         );
         jPanel11Layout.setVerticalGroup(
@@ -464,12 +490,12 @@ public class JFTransporte extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))
             .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
                     .addContainerGap(266, Short.MAX_VALUE)
-                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(38, 38, 38)))
         );
 
@@ -492,21 +518,28 @@ public class JFTransporte extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Actualizar", jPanel3);
 
+        jPanel12.setBackground(new java.awt.Color(255, 255, 255));
         jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder("Transporte\n"));
 
         jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos"));
 
-        jLabel13.setText("Capacidad de carga");
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel13.setText("Capacidad de carga:");
 
-        jLabel14.setText("Modelo");
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel14.setText("Modelo:");
 
-        jLabel15.setText("Año de fabricación");
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel15.setText("Año de fabricación:");
 
-        jLabel16.setText("Kilometraje");
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel16.setText("Kilometraje:");
 
-        jLabel17.setText("Tipo de transporte");
+        jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel17.setText("Tipo de transporte:");
 
-        jLabel3.setText("Estado");
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel3.setText("Estado:");
 
         txtModeloEdit.setMinimumSize(new java.awt.Dimension(64, 19));
 
@@ -516,11 +549,31 @@ public class JFTransporte extends javax.swing.JFrame {
 
         txtKilometrajeEdit.setMinimumSize(new java.awt.Dimension(64, 19));
 
-        txtEstadoEdit.setMinimumSize(new java.awt.Dimension(64, 19));
-
         ckPesadoEdit.setText("Pesado");
+        ckPesadoEdit.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        ckPesadoEdit.setContentAreaFilled(false);
+        ckPesadoEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ckPesadoEditActionPerformed(evt);
+            }
+        });
 
         ckLivEdit.setText("Liviano");
+        ckLivEdit.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        ckLivEdit.setContentAreaFilled(false);
+        ckLivEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ckLivEditActionPerformed(evt);
+            }
+        });
+
+        cmbEstadoEdit.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mantenimiento", "Disponible", "Fuera de servicio" }));
+        cmbEstadoEdit.setSelectedItem(-1);
+        cmbEstadoEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbEstadoEditActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
@@ -539,22 +592,22 @@ public class JFTransporte extends javax.swing.JFrame {
                                 .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(62, 62, 62)
                         .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtAnioFabEdit, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
                             .addGroup(jPanel13Layout.createSequentialGroup()
                                 .addComponent(ckPesadoEdit)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(ckLivEdit))
-                            .addComponent(txtKilometrajeEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtEstadoEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(txtKilometrajeEdit, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
+                            .addComponent(txtAnioFabEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cmbEstadoEdit, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel13Layout.createSequentialGroup()
                         .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel13)
                             .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(58, 58, 58)
-                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtModeloEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCapacidadCargaEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(121, Short.MAX_VALUE))
+                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtCapacidadCargaEdit, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
+                            .addComponent(txtModeloEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(133, Short.MAX_VALUE))
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -578,8 +631,8 @@ public class JFTransporte extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(txtEstadoEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(cmbEstadoEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
                     .addComponent(ckPesadoEdit)
@@ -589,33 +642,58 @@ public class JFTransporte extends javax.swing.JFrame {
 
         jPanel14.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        btnEditHistorial.setText("Editar Historial");
-        btnEditHistorial.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        btnEditHistorial.setContentAreaFilled(false);
+        btnGuardarCambiosTrans.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnGuardarCambiosTrans.setText("Guardar Transporte");
+        btnGuardarCambiosTrans.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        btnGuardarCambiosTrans.setContentAreaFilled(false);
+        btnGuardarCambiosTrans.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarCambiosTransActionPerformed(evt);
+            }
+        });
 
-        btnGuardarTrans.setText("Guardar Transporte");
-        btnGuardarTrans.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        btnGuardarTrans.setContentAreaFilled(false);
+        btnLimpiar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        btnLimpiar.setContentAreaFilled(false);
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
+
+        btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnCancelar.setText("Cancelar");
+        btnCancelar.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        btnCancelar.setContentAreaFilled(false);
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
         jPanel14Layout.setHorizontalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel14Layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(btnEditHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnGuardarTrans, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
+                .addGap(92, 92, 92)
+                .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51)
+                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addComponent(btnGuardarCambiosTrans, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(104, 104, 104))
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel14Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
+                .addContainerGap(24, Short.MAX_VALUE)
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEditHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGuardarTrans, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                    .addComponent(btnGuardarCambiosTrans, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18))
         );
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
@@ -653,7 +731,7 @@ public class JFTransporte extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Editar", jPanel4);
@@ -681,11 +759,11 @@ public class JFTransporte extends javax.swing.JFrame {
             String modelo = txtModelo.getText();
             int anioFab = Integer.parseInt(txtAnioFab.getText());
             double kilometraje = Double.parseDouble(txtKilometraje.getText());
-            String estado = (String)cmbEstado.getSelectedItem();
+            String estado = (String) cmbEstado.getSelectedItem();
             String tipoTransporte;
-            if(ckPesado.isSelected()){
+            if (ckPesado.isSelected()) {
                 tipoTransporte = "Pesado";
-            }else{
+            } else {
                 tipoTransporte = "Liviano";
             }
             Transporte transporte = new Transporte();
@@ -694,12 +772,15 @@ public class JFTransporte extends javax.swing.JFrame {
             transporte.setAnio_fabricacion(anioFab);
             transporte.setKilometraje(kilometraje);
             transporte.setTipo_transporte(tipoTransporte);
-            if(estado.equals("Mantenimiento")){
-                transporte.setEstado(ESTADO_TRANSPORTE.EN_MANTENIMIENTO);
-            }else if(estado.equals("Disponible")){
-                transporte.setEstado(ESTADO_TRANSPORTE.DISPONIBLE);
-            }else if(estado.equals("Fuera de servicio")){
-                transporte.setEstado(ESTADO_TRANSPORTE.FUERA_DE_SERVICIO);
+            switch (estado) {
+                case "Mantenimiento" ->
+                    transporte.setEstado(ESTADO_TRANSPORTE.EN_MANTENIMIENTO);
+                case "Disponible" ->
+                    transporte.setEstado(ESTADO_TRANSPORTE.DISPONIBLE);
+                case "Fuera de servicio" ->
+                    transporte.setEstado(ESTADO_TRANSPORTE.FUERA_DE_SERVICIO);
+                default -> {
+                }
             }
             transControler.crearTransporte(transporte);
             JOptionPane.showMessageDialog(null, "Transporte agregado correctamente", "Información", JOptionPane.INFORMATION_MESSAGE);
@@ -727,17 +808,20 @@ public class JFTransporte extends javax.swing.JFrame {
         int selectedIndex = jTabbedPane1.getSelectedIndex();
         if (selectedIndex == 2) {
             cargarTransportesCompletas();  // Llama a la función para cargar la tabla
+        } else if (selectedIndex == 1) {
+            txtIdBuscar.setText("");
+            limpiarTabla();
         }
-       
+
     }//GEN-LAST:event_jTabbedPane1StateChanged
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-         if (tablaTransporteCom.getRowCount() > 0) {
+        if (tablaTransporteCom.getRowCount() > 0) {
             //se haya seleccionado una fila dado que se puede seleccionar de 0 registros en adelante
             if (tablaTransporteCom.getSelectedRow() != -1) {
                 try {
-                    idTransActualizar = Integer.parseInt(String.valueOf(tablaTransporteCom.getValueAt(tablaTransporteCom.getSelectedRow(), 0)));
-                    transControler.eliminarTransporte(idTransActualizar);
+                    int idTransEliminar = Integer.parseInt(String.valueOf(tablaTransporteCom.getValueAt(tablaTransporteCom.getSelectedRow(), 0)));
+                    transControler.eliminarTransporte(idTransEliminar);
                     JOptionPane.showMessageDialog(null, "Transporte eliminado correctamente", "Información", JOptionPane.INFORMATION_MESSAGE);
                     cargarTransportesCompletas();
 
@@ -745,27 +829,142 @@ public class JFTransporte extends javax.swing.JFrame {
                     Logger.getLogger(JFRuta.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "No hay nada para eliminar en la tabla", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "No se selecciono ningun transporte", "Advertencia", JOptionPane.WARNING_MESSAGE);
             }
         } else {
-            JOptionPane.showMessageDialog(null, "No se selecciono ningun transporte", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "No hay nada para eliminar en la tabla", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
+    private void ckPesadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckPesadoActionPerformed
+        // TODO add your handling code here:
+        if (ckPesado.isSelected()) {
+            ckLiviano.setEnabled(false);
+        } else {
+            ckLiviano.setEnabled(true);
+        }
+
+    }//GEN-LAST:event_ckPesadoActionPerformed
+
+    private void ckLivianoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckLivianoActionPerformed
+        if (ckLiviano.isSelected()) {
+            ckPesado.setEnabled(false);
+        } else {
+            ckPesado.setEnabled(true);
+        }
+    }//GEN-LAST:event_ckLivianoActionPerformed
+
+    private void cmbEstadoEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbEstadoEditActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbEstadoEditActionPerformed
+
+    private void ckPesadoEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckPesadoEditActionPerformed
+        if (ckPesadoEdit.isSelected()) {
+            ckLivEdit.setEnabled(false);
+        } else {
+            ckLivEdit.setEnabled(true);
+        }
+    }//GEN-LAST:event_ckPesadoEditActionPerformed
+
+    private void ckLivEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckLivEditActionPerformed
+        if (ckLivEdit.isSelected()) {
+            ckPesadoEdit.setEnabled(false);
+        } else {
+            ckPesadoEdit.setEnabled(true);
+        }
+    }//GEN-LAST:event_ckLivEditActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        if (tablaTransporteCom.getRowCount() > 0) {
+            if (tablaTransporteCom.getSelectedRow() != -1) {
+                jTabbedPane1.setEnabledAt(3, true);
+                jTabbedPane1.setSelectedIndex(3);
+                jTabbedPane1.setEnabledAt(0, false);
+                jTabbedPane1.setEnabledAt(1, false);
+                jTabbedPane1.setEnabledAt(2, false);
+
+                idTransActualizar = Integer.parseInt(String.valueOf(tablaTransporteCom.getValueAt(tablaTransporteCom.getSelectedRow(), 0)));
+                setearTransporte(idTransActualizar);
+
+            } else {
+                JOptionPane.showMessageDialog(null, "No se selecciono ningun Transporte", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "No hay nada para editar en la tabla", "Advertencia", JOptionPane.WARNING_MESSAGE);
+
+        }
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnGuardarCambiosTransActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarCambiosTransActionPerformed
+        try {
+            Transporte transporte = new Transporte();
+            transporte.setCapacidad_carga(Double.parseDouble(txtCapacidadCargaEdit.getText()));
+            transporte.setModelo(txtModeloEdit.getText());
+            transporte.setAnio_fabricacion(Integer.parseInt(txtAnioFabEdit.getText()));
+            transporte.setKilometraje(Double.parseDouble(txtKilometrajeEdit.getText()));
+            switch ((String) cmbEstadoEdit.getSelectedItem()) {
+                case "Mantenimiento" ->
+                    transporte.setEstado(ESTADO_TRANSPORTE.EN_MANTENIMIENTO);
+                case "Disponible" ->
+                    transporte.setEstado(ESTADO_TRANSPORTE.DISPONIBLE);
+                case "Fuera de servicio" ->
+                    transporte.setEstado(ESTADO_TRANSPORTE.FUERA_DE_SERVICIO);
+                default -> {
+                }
+            }
+            if (ckPesadoEdit.isSelected()) {
+                transporte.setTipo_transporte("Pesado");
+            } else {
+                transporte.setTipo_transporte("Liviano");
+            }
+            transControler.actualizarTransporte(idTransActualizar, transporte);
+            JOptionPane.showMessageDialog(null, "Transporte actualizado correctamente", "Información", JOptionPane.INFORMATION_MESSAGE);
+            jTabbedPane1.setEnabledAt(3, false);
+            jTabbedPane1.setSelectedIndex(2);
+            jTabbedPane1.setEnabledAt(0, true);
+            jTabbedPane1.setEnabledAt(1, true);
+            jTabbedPane1.setEnabledAt(2, true);
+        } catch (SQLException ex) {
+            Logger.getLogger(JFTransporte.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnGuardarCambiosTransActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        txtCapacidadCargaEdit.setText("");
+        txtModeloEdit.setText("");
+        txtAnioFabEdit.setText("");
+        txtKilometrajeEdit.setText("");
+        ckPesadoEdit.setSelected(false);
+        ckLivEdit.setSelected(false);
+        cmbEstadoEdit.setSelectedIndex(-1);
+
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+        jTabbedPane1.setEnabledAt(3, false);
+        jTabbedPane1.setSelectedIndex(2);
+        jTabbedPane1.setEnabledAt(0, true);
+        jTabbedPane1.setEnabledAt(1, true);
+        jTabbedPane1.setEnabledAt(2, true);
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgregarHistorial;
     private javax.swing.JButton btnAgregarTrans;
     private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton btnEditHistorial;
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnGuardarTrans;
+    private javax.swing.JButton btnGuardarCambiosTrans;
+    private javax.swing.JButton btnLimpiar;
     private javax.swing.JCheckBox ckLivEdit;
     private javax.swing.JCheckBox ckLiviano;
     private javax.swing.JCheckBox ckPesado;
     private javax.swing.JCheckBox ckPesadoEdit;
     private javax.swing.JComboBox<String> cmbEstado;
+    private javax.swing.JComboBox<String> cmbEstadoEdit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -804,7 +1003,6 @@ public class JFTransporte extends javax.swing.JFrame {
     private javax.swing.JTextField txtAnioFabEdit;
     private javax.swing.JTextField txtCapacidadCarga;
     private javax.swing.JTextField txtCapacidadCargaEdit;
-    private javax.swing.JTextField txtEstadoEdit;
     private javax.swing.JTextField txtIdBuscar;
     private javax.swing.JTextField txtKilometraje;
     private javax.swing.JTextField txtKilometrajeEdit;
@@ -820,27 +1018,30 @@ public class JFTransporte extends javax.swing.JFrame {
         cmbEstado.setSelectedIndex(-1);
         ckLiviano.setSelected(false);
         ckPesado.setSelected(false);
+        ckPesado.setEnabled(true);
+        ckLiviano.setEnabled(true);
+
     }
 
     private void cargarTransporte(Transporte transporte) {
-        DefaultTableModel modeloTabla = new DefaultTableModel() {
+            modeloTablaConsulta = new DefaultTableModel() {
             //filas y columnas no sean editables
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
         };
-        String titulos[] = {"ID", "Capacidad Carga", "Modelo", "Año", "Kilometraje","Tipo Transporte","Estado"};
+        String titulos[] = {"ID", "Capacidad Carga", "Modelo", "Año", "Kilometraje", "Tipo Transporte", "Estado"};
         //seteamos las columnas
-        modeloTabla.setColumnIdentifiers(titulos);
-        Object[] objeto = {transporte.getTransporte_id(),transporte.getCapacidad_carga(),
-                            transporte.getModelo(),transporte.getAnio_fabricacion(),
-                            transporte.getKilometraje(),transporte.getTipo_transporte(),
-                            transporte.getEstado()};
+        modeloTablaConsulta.setColumnIdentifiers(titulos);
+        Object[] objeto = {transporte.getTransporte_id(), transporte.getCapacidad_carga(),
+            transporte.getModelo(), transporte.getAnio_fabricacion(),
+            transporte.getKilometraje(), transporte.getTipo_transporte(),
+            transporte.getEstado()};
         // Agregar la fila al modelo de la tabla
-        modeloTabla.addRow(objeto);
+        modeloTablaConsulta.addRow(objeto);
         // Establecer el modelo de la tabla
-        tablaConsulta.setModel(modeloTabla);
+        tablaConsulta.setModel(modeloTablaConsulta);
     }
 
     private void cargarTransportesCompletas() {
@@ -853,15 +1054,15 @@ public class JFTransporte extends javax.swing.JFrame {
                 }
             };
             //nombres de las columnas
-            String titulos[] = {"ID", "Capacidad Carga", "Modelo", "Año", "Kilometraje","Tipo Transporte","Estado"};
+            String titulos[] = {"ID", "Capacidad Carga", "Modelo", "Año", "Kilometraje", "Tipo Transporte", "Estado"};
             //seteamos las columnas
             modeloTabla.setColumnIdentifiers(titulos);
             List<Transporte> listaTransporte = transControler.listarTransportes();
             if (listaTransporte != null) {
                 for (Transporte transporte : listaTransporte) {
-                    Object[] objeto = {transporte.getTransporte_id(),transporte.getCapacidad_carga(),
-                        transporte.getModelo(),transporte.getAnio_fabricacion(),
-                        transporte.getKilometraje(),transporte.getTipo_transporte(),
+                    Object[] objeto = {transporte.getTransporte_id(), transporte.getCapacidad_carga(),
+                        transporte.getModelo(), transporte.getAnio_fabricacion(),
+                        transporte.getKilometraje(), transporte.getTipo_transporte(),
                         transporte.getEstado()};
                     modeloTabla.addRow(objeto);
                 }
@@ -871,6 +1072,49 @@ public class JFTransporte extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(JFTransporte.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
+    }
+
+    private void setearTransporte(int idTransActualizar) {
+        try {
+            Transporte transporte = transControler.obtenerTransporte(idTransActualizar);
+            txtCapacidadCargaEdit.setText(String.valueOf(transporte.getCapacidad_carga()));
+            txtModeloEdit.setText(transporte.getModelo());
+            txtAnioFabEdit.setText(String.valueOf(transporte.getAnio_fabricacion()));
+            txtKilometrajeEdit.setText(String.valueOf(transporte.getKilometraje()));
+            switch (transporte.getTipo_transporte()) {
+                case "Pesado":
+                    ckPesadoEdit.setSelected(true);
+                    ckLivEdit.setEnabled(false);
+                    break;
+                case "Liviano":
+                    ckLivEdit.setSelected(true);
+                    ckPesadoEdit.setSelected(false);
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null, "Problemas con el Tipo de transporte", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                    break;
+            }
+            switch (transporte.getEstado()) {
+                case EN_MANTENIMIENTO ->
+                    cmbEstadoEdit.setSelectedIndex(0);
+                case DISPONIBLE ->
+                    cmbEstadoEdit.setSelectedIndex(1);
+                case FUERA_DE_SERVICIO ->
+                    cmbEstadoEdit.setSelectedIndex(3);
+                default ->
+                    JOptionPane.showMessageDialog(null, "Problemas con el Estado", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(JFTransporte.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void limpiarTabla() {
+        // Si la tabla ya tiene un modelo de tabla, limpiar todas las filas
+        if (modeloTablaConsulta != null) {
+            modeloTablaConsulta.setRowCount(0);
+        }
     }
 }
