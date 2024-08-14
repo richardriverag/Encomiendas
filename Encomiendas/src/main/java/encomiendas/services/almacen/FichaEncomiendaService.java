@@ -48,4 +48,7 @@ public class FichaEncomiendaService {
         JOptionPane.showMessageDialog(null, "Error al al retirar la Ficha ");
     }
   }
+    public int contarFichasEnSecciones(int idSeccion) throws SQLException{
+        return this.fichaRepository.contarFichasEnSeccion(idSeccion);
+    }
 }

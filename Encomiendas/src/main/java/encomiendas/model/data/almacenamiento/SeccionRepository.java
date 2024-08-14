@@ -85,19 +85,33 @@ public class SeccionRepository implements Repository<Seccion> {
 
     @Override
     public void update(Integer id, Seccion seccion) throws SQLException {
-        String sql = "UPDATE seccion SET nombre = ?, capacidad = ?, id_almacen = ? WHERE id_seccion = ?";
-        try (PreparedStatement stmt = myConn.prepareStatement(sql)) {
-            stmt.setString(1, seccion.getNombreSeccion());
-            stmt.setInt(2, seccion.getCapacidad());
-            stmt.setInt(3, seccion.getIdAlmacen());
-            stmt.setInt(4, seccion.getIdSeccion());
-            int rowsAffected = stmt.executeUpdate();
-            if (rowsAffected == 0) {
-                throw new SQLException("No se encontró la sección con el ID: " + seccion.getIdSeccion());
-            }
-        }
+    String sql = "UPDATE seccion SET nombre = ?, capacidad = ?, id_almacen = ? WHERE id_seccion = ?";
     
+    // Desactivar el modo autocommit para manejar la transacción manualmente
+    myConn.setAutoCommit(false);
+
+    try (PreparedStatement stmt = myConn.prepareStatement(sql)) {
+        stmt.setString(1, seccion.getNombreSeccion());
+        stmt.setInt(2, seccion.getCapacidad());
+        stmt.setInt(3, seccion.getIdAlmacen());
+        stmt.setInt(4, seccion.getIdSeccion());
+        
+        int rowsAffected = stmt.executeUpdate();
+        if (rowsAffected == 0) {
+            throw new SQLException("No se encontró la sección con el ID: " + seccion.getIdSeccion());
+        }
+
+        // Confirmar la transacción
+        myConn.commit();
+    } catch (SQLException ex) {
+        // En caso de error, revertir la transacción
+        myConn.rollback();
+        throw ex;  // Rethrow the exception to be handled by the caller
+    } finally {
+        // Restaurar el modo autocommit
+        myConn.setAutoCommit(true);
     }
+}
     
      public String obtenerNombreSeccion(int idSeccion) {
         String nombreSeccion = null;

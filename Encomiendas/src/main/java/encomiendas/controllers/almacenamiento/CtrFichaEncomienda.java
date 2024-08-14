@@ -98,7 +98,6 @@ public class CtrFichaEncomienda implements ActionListener {
     }
     
 
-    
      private void guardarFicha() throws SQLException {
         String DATE_FORMAT = "yyyy-MM-dd";
         SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
@@ -121,12 +120,19 @@ public class CtrFichaEncomienda implements ActionListener {
         ficha.setEstadoFicha(1);
         ficha.setFechaSalida(null);
         Seccion seccionSeleccionada = (Seccion) frmFicha.cbSeccion.getSelectedItem();
+        
         if (seccionSeleccionada != null) {
             ficha.setIdSeccion(seccionSeleccionada.getIdSeccion()); 
         } else {
             // Manejar el caso donde no se ha seleccionado ninguna agencia
             System.out.println("No se ha seleccionado ninguna seccion.");
         }
+        int capacidadMaxima = seccionSeleccionada.getCapacidad();// se agrego al codigo
+        int fichasExistentes = fichaService.contarFichasEnSecciones(seccionSeleccionada.getIdSeccion());
+            if (fichasExistentes == capacidadMaxima) {
+                JOptionPane.showMessageDialog(null, "La sección seleccionada ya está completa.", "Sección completa", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
         Encomienda encomiendaSeleccionada = (Encomienda) frmFicha.cbEncomienda.getSelectedItem();
         if (encomiendaSeleccionada != null) {
             ficha.setEncomienda(encomiendaSeleccionada.getIdEncomienda()); 
@@ -192,6 +198,7 @@ public class CtrFichaEncomienda implements ActionListener {
         });
     
     }
+    
     
     
 }

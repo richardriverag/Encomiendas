@@ -586,7 +586,6 @@ public class MenuEmpleado extends javax.swing.JFrame {
         }
         
         frmAlm.setVisible(true);
-        this.dispose();
 
     }//GEN-LAST:event_btnVerAlmacenActionPerformed
 
@@ -626,7 +625,6 @@ public class MenuEmpleado extends javax.swing.JFrame {
         }
         
         frmFicha.setVisible(true);
-        this.dispose();
     }//GEN-LAST:event_btnAlmacenarActionPerformed
     /**
      * @param args the command line arguments

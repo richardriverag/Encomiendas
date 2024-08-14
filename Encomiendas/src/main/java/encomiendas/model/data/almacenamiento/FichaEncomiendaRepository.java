@@ -128,6 +128,24 @@ public class FichaEncomiendaRepository implements Repository<FichaEncomienda> {
         }
     }
     
+    public int contarFichasEnSeccion (int idSeccion) throws SQLException{
+     String sql = "SELECT COUNT(*) FROM Ficha_Encomienda WHERE id_seccion = ?";
+        try (PreparedStatement statement = myConn.prepareStatement(sql)) {
+            statement.setInt(1, idSeccion);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getInt(1);  // Retorna el número de fichas
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new SQLException("Error al contar las fichas en la sección.", e);
+        }
+        return 0;  // Retorna 0 si no se encontró ninguna ficha
+    
+    }
+    
     
     
     

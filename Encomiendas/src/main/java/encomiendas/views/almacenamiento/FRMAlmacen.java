@@ -601,7 +601,7 @@ public class FRMAlmacen extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCapacidadSeccionActionPerformed
 
     private void btnSeccionSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeccionSalirActionPerformed
-        this.dispose();
+       this.setVisible(false);
     }//GEN-LAST:event_btnSeccionSalirActionPerformed
 
     private void txtNombreAlmacenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreAlmacenActionPerformed
@@ -613,7 +613,7 @@ public class FRMAlmacen extends javax.swing.JFrame {
     }//GEN-LAST:event_txtcantidadSeccionesActionPerformed
 
     private void btnAlmacenSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlmacenSalirActionPerformed
-        this.dispose();
+        this.setVisible(false);
     }//GEN-LAST:event_btnAlmacenSalirActionPerformed
 
     private void txtCaducidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCaducidadActionPerformed
@@ -633,7 +633,7 @@ public class FRMAlmacen extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarAlmacenActionPerformed
 
     private void btnFichaSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFichaSalirActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
     }//GEN-LAST:event_btnFichaSalirActionPerformed
 
     private void txtNombreFichaSeccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreFichaSeccionActionPerformed
