@@ -1,11 +1,14 @@
 package encomiendas.controllers.usuarios;
 
+import static com.sun.java.accessibility.util.AWTEventMonitor.addActionListener;
+import encomiendas.model.entity.usuarios.Administrador;
 import encomiendas.model.entity.usuarios.Cliente;
 import encomiendas.model.entity.usuarios.Conductor;
 import encomiendas.model.entity.usuarios.Cuenta;
+import encomiendas.model.entity.usuarios.Empleado;
 import encomiendas.model.entity.usuarios.Usuario;
 import encomiendas.services.usuarios.UsuarioService;
-import encomiendas.views.usuarios.AEdiciónUsuario;
+import encomiendas.views.usuarios.AEdicionUsuario;
 import encomiendas.views.usuarios.MenuAdministrador;
 import encomiendas.views.usuarios.AActualizarUsuarios;
 import encomiendas.views.usuarios.AIngresoUsuarios;
@@ -27,7 +30,7 @@ public class AdministradorController implements ActionListener {
     private AListaUsuarios frameListaUsuarios;
     private AIngresoUsuarios frameIngresoUsuarios;
     private AActualizarUsuarios frameActualizarUsuarios;
-    private AEdiciónUsuario frameEdiciónUsuario;
+    private AEdicionUsuario frameEdicionUsuario;
 
     public AdministradorController(JFrame view, UsuarioService usuarioService) {
         this.view = view;
@@ -42,11 +45,12 @@ public class AdministradorController implements ActionListener {
         this.frameListaUsuarios = new AListaUsuarios();
         this.frameIngresoUsuarios = new AIngresoUsuarios();
         this.frameActualizarUsuarios = new AActualizarUsuarios();
-        this.frameEdiciónUsuario = new AEdiciónUsuario();
+        this.frameEdicionUsuario = new AEdicionUsuario();
 
         this.frameMenuAdministrador.btListaUsuarios.addActionListener(this);
         this.frameMenuAdministrador.btIngresoUsuarios.addActionListener(this);
         this.frameMenuAdministrador.btActualizarUsuarios.addActionListener(this);
+        this.frameEdicionUsuario.jBValidarUsuario.addActionListener(this); // Agregar el ActionListener
     }
 
     public void iniciar() {
@@ -211,7 +215,81 @@ public class AdministradorController implements ActionListener {
 
         usuarioService.saveCuenta(cuenta);
     }
-   
+
+    public void buscarUsuarioParaEdicion(AEdicionUsuario frameEdicionUsuario, String cedula) {
+        if (cedula.isEmpty()) {
+            JOptionPane.showMessageDialog(frameEdicionUsuario, "Ingrese una cédula para buscar.");
+            return;
+        }
+
+        try {
+            Usuario usuario = usuarioService.getUsuarioById(cedula);
+            if (usuario != null) {
+                // Llenar los campos del JFrame con la información del usuario
+                frameEdicionUsuario.jTFNombres.setText(usuario.getNombres());
+                frameEdicionUsuario.jTFApellidos.setText(usuario.getApellidos());
+                frameEdicionUsuario.jTFCorreo.setText(usuario.getCorreo());
+                frameEdicionUsuario.jTFTelefono.setText(usuario.getTelefono());
+                frameEdicionUsuario.jTFTelefonoAdicional.setText(usuario.getTelefonoAdicional());
+                frameEdicionUsuario.jTFAgencia.setText(String.valueOf(usuario.getIdAgencia()));
+                frameEdicionUsuario.jTFCiudad.setText(usuario.getCiudad());
+
+                // Configurar JComboBox
+                String rol = usuario instanceof Administrador ? "Administrador"
+                        : usuario instanceof Cliente ? "Cliente"
+                                : usuario instanceof Conductor ? "Conductor"
+                                        : "Empleado";
+                frameEdicionUsuario.jCBRol.setSelectedItem(rol);
+
+                String tipoLicencia = usuario instanceof Conductor ? ((Conductor) usuario).getTipoLicencia() : "N/A";
+                frameEdicionUsuario.jCBTípoLicencia.setSelectedItem(tipoLicencia);
+
+                frameEdicionUsuario.jCBActivo.setSelectedItem(usuario.getActivo() ? "Habilitado" : "Deshabilitado");
+            } else {
+                JOptionPane.showMessageDialog(frameEdicionUsuario, "No se encontró ningún usuario con esa cédula.");
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            JOptionPane.showMessageDialog(frameEdicionUsuario, "Error al buscar el usuario.");
+        }
+    }
+
+    public void actualizarUsuario(AEdicionUsuario frameEdicionUsuario, String cedula) {
+        try {
+
+            Usuario usuario = new Usuario();
+
+            // Actualizar el rol y el tipo de licencia
+            String rol = (String) frameEdicionUsuario.jCBRol.getSelectedItem();
+            if ("Administrador".equals(rol)) {
+                usuario = new Administrador();
+            } else if ("Conductor".equals(rol)) {
+                usuario = new Conductor();
+                ((Conductor) usuario).setTipoLicencia((String) frameEdicionUsuario.jCBTípoLicencia.getSelectedItem());
+            } else if ("Empleado".equals(rol)) {
+                usuario = new Empleado();
+            }
+
+            // Actualizar los datos del usuario con la información del JFrame
+            usuario.setNombres(frameEdicionUsuario.jTFNombres.getText());
+            usuario.setApellidos(frameEdicionUsuario.jTFApellidos.getText());
+            usuario.setCorreo(frameEdicionUsuario.jTFCorreo.getText());
+            usuario.setTelefono(frameEdicionUsuario.jTFTelefono.getText());
+            usuario.setTelefonoAdicional(frameEdicionUsuario.jTFTelefonoAdicional.getText());
+            usuario.setCiudad(frameEdicionUsuario.jTFCiudad.getText());
+            usuario.setActivo(frameEdicionUsuario.jCBActivo.getSelectedItem().equals("Habilitado"));
+            usuario.setIdAgencia(Integer.parseInt(frameEdicionUsuario.jTFAgencia.getText()));
+
+            usuario.setCedula(cedula);
+            usuarioService.updateUsuario(cedula, usuario);
+            JOptionPane.showMessageDialog(frameEdicionUsuario, "Usuario actualizado exitosamente.");
+
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            JOptionPane.showMessageDialog(frameEdicionUsuario, "Error al actualizar el usuario.");
+        }
+    }
+
     private void mostrarFrameListaUsuarios() {
         frameListaUsuarios.setLocationRelativeTo(null);  // Centrar el JFrame
         frameListaUsuarios.setVisible(true);

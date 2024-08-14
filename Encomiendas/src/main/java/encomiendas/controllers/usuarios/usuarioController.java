@@ -119,9 +119,9 @@ public class usuarioController implements ActionListener {
         }
 
         //si se presiono el botón enviar del frame de Olvidar COntraseña
-        /*if(e.getSource()== frmRecuperarContrasenia.btnEnviarContrasenia){   
+        if(e.getSource()== frmRecuperarContrasenia.btnEnviarContrasenia){   
             botonRecuperarContraseña(e);
-        }*/
+        }
     }
 
     public void botonRegistrase(ActionEvent e) {
@@ -161,26 +161,11 @@ public class usuarioController implements ActionListener {
         }
     }
 
-    /*public void botonRecuperarContraseña(ActionEvent e){
-        
-            modeloUsuario.setCorreo(frmRecuperarContrasenia.correoTxt.getText());
-            
-            frmRecuperarContrasenia.correoTxt.setText(null);
-            frmRecuperarContrasenia.txtCedula.setText(null);
-            
-            if(modeloDb.validarExistencia(modeloUsuario)){
-                
-                JOptionPane.showMessageDialog(null, "Se envío un correo con sus credenciales");
-                frmRegistro.dispose();
-                frmLogin.setVisible(true);
-                
-            }else{
-                JOptionPane.showMessageDialog(null, "No existe en el sistema, Registrese");
-                frmRecuperarContrasenia.dispose();
-                frmLogin.setVisible(true);
-                
-            }
-    }*/
+    public void botonRecuperarContraseña(ActionEvent e){
+        JOptionPane.showMessageDialog(null, "Se envio la clave a su correo");
+        frmRecuperarContrasenia.dispose();
+        frmLogin.setVisible(true);       
+    }
     
     private void abrirMenuCliente() {
         DbCliente modClienteDb = new DbCliente();
