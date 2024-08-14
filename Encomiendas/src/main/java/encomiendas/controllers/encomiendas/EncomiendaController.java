@@ -178,12 +178,12 @@ public class EncomiendaController implements ActionListener, ItemListener {
             // Limpiar cualquier opción existente en los combo boxes
             agenciaOrigen.removeAllItems();
             agenciaDestino.removeAllItems();
-
+            agenciaOrigen.addItem("Todas");
             // Agregar cada agencia al combo box de origen
             for (Agencia agencia : todasLasAgencias) {
                 agenciaOrigen.addItem(agencia.getNombreAgencia());
             }
-
+            
             // Agregar un listener para cargar agencias de destino cuando se seleccione una agencia de origen
             agenciaOrigen.addItemListener(e -> {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -192,10 +192,11 @@ public class EncomiendaController implements ActionListener, ItemListener {
 
                     // Limpiar opciones existentes en el combo box de destino
                     agenciaDestino.removeAllItems();
-
+                    agenciaDestino.addItem("Todas");
                     // Agregar las agencias al combo box de destino excluyendo la agencia de origen seleccionada
                     for (Agencia agencia : todasLasAgencias) {
-                        if (!agencia.getNombreAgencia().equals(agenciaSeleccionada)) {
+                       
+                        if (!agencia.getNombreAgencia().equals(agenciaSeleccionada) && !agencia.getNombreAgencia().equals("Todas")) {
                             agenciaDestino.addItem(agencia.getNombreAgencia());
                         }
                     }
