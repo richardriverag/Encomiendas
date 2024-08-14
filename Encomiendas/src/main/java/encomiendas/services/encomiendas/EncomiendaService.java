@@ -31,6 +31,10 @@ public class EncomiendaService {
         return encomiendaRepository.findAll();
     }
     
+    public List<Encomienda> getAllEncomiendasByClient(String idCliente) throws SQLException {
+        return encomiendaRepository.findAllByClient(idCliente);
+    }
+    
     public List<Encomienda> getAllEncomiendasFiltro(String cedulaR,String cedulaE,String agenciaD, String agenciaO, String tipoEntrega) throws SQLException {
         return encomiendaRepository.findAllFiltro(cedulaR, cedulaE, agenciaD, agenciaO, tipoEntrega);
     }

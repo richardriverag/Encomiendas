@@ -1,5 +1,9 @@
 package encomiendas.views.usuarios;
 
+import encomiendas.views.encomiendas.JFEncomiendas;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+import javax.swing.table.DefaultTableModel;
+
 public class MenuConductor extends javax.swing.JFrame {
 
     public MenuConductor() {
@@ -15,10 +19,11 @@ public class MenuConductor extends javax.swing.JFrame {
         jPDefault = new javax.swing.JPanel();
         lblBienvenidosCon = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        btPerfilCon = new javax.swing.JButton();
+        btnEncomiendas = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jTFUsuarioConductor = new javax.swing.JTextField();
         jLCliente = new javax.swing.JLabel();
+        btPerfilCon1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menú - Cliente");
@@ -54,11 +59,16 @@ public class MenuConductor extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btPerfilCon.setBackground(new java.awt.Color(200, 0, 0));
-        btPerfilCon.setForeground(new java.awt.Color(255, 255, 255));
-        btPerfilCon.setText("Perfil");
-        btPerfilCon.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 255, 255), null, null));
-        jPanel2.add(btPerfilCon, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 150, 30));
+        btnEncomiendas.setBackground(new java.awt.Color(200, 0, 0));
+        btnEncomiendas.setForeground(new java.awt.Color(255, 255, 255));
+        btnEncomiendas.setText("Abrir encomiendas");
+        btnEncomiendas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 255, 255), null, null));
+        btnEncomiendas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEncomiendasActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnEncomiendas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 150, 30));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(jLabel1.getFont().deriveFont(jLabel1.getFont().getSize()-2f));
@@ -75,6 +85,12 @@ public class MenuConductor extends javax.swing.JFrame {
         jLCliente.setText("Conductor:");
         jPanel2.add(jLCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 130, -1));
 
+        btPerfilCon1.setBackground(new java.awt.Color(200, 0, 0));
+        btPerfilCon1.setForeground(new java.awt.Color(255, 255, 255));
+        btPerfilCon1.setText("Perfil");
+        btPerfilCon1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 255, 255), null, null));
+        jPanel2.add(btPerfilCon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 150, 30));
+
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 430));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -90,6 +106,17 @@ public class MenuConductor extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnEncomiendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEncomiendasActionPerformed
+        JFEncomiendas vistaEncomienda = new JFEncomiendas();
+        vistaEncomienda.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        vistaEncomienda.panelDatos.setVisible(false);
+        vistaEncomienda.panelOpciones.setVisible(false);
+        vistaEncomienda.infoEncomienda.panelOpEmpleado.setVisible(false);
+        vistaEncomienda.infoEncomienda.panelConductores.setVisible(true);
+        vistaEncomienda.setVisible(true);
+        vistaEncomienda.encomiendaController.mostrarEncomiendaCliente((DefaultTableModel) vistaEncomienda.jTEncomiendas.getModel(), jTFUsuarioConductor.getText());
+    }//GEN-LAST:event_btnEncomiendasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -142,7 +169,8 @@ public class MenuConductor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btPerfilCon;
+    public javax.swing.JButton btPerfilCon1;
+    public javax.swing.JButton btnEncomiendas;
     private javax.swing.JLabel jLCliente;
     private javax.swing.JLabel jLabel1;
     public javax.swing.JPanel jPDefault;

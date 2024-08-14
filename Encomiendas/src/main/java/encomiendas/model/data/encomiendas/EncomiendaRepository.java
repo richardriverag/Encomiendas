@@ -77,7 +77,6 @@ public class EncomiendaRepository implements Repository<Encomienda> {
 
         // Verificar la consulta generada
         //System.out.println("Consulta SQL generada: " + query);
-
         try (PreparedStatement myStmt = myConn.prepareStatement(query)) {
             int parameterIndex = 1;
 
@@ -109,7 +108,7 @@ public class EncomiendaRepository implements Repository<Encomienda> {
 
         return encomiendas;
     }
-    
+
     @Override
     public Encomienda getById(Integer id) throws SQLException {
         Encomienda encomienda = null;
@@ -123,37 +122,56 @@ public class EncomiendaRepository implements Repository<Encomienda> {
         return encomienda;
     }
 
-    @Override
-  public void save(Encomienda encomienda) throws SQLException {
-    // Consulta SQL con parámetros
-    String sql = "INSERT INTO encomienda (id_agencia_origen, id_agencia_destino, cedula_receptor, cedula_emisor, fecha_envio, fecha_llegada, tipo_entrega, direccion_entrega, cod_postal_entrega, estado_encomienda, precio_encomienda) "
-            + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?)";
+    public List<Encomienda> findAllByClient(String idCliente) throws SQLException {
+        List<Encomienda> encomiendas = new ArrayList<>();
+        String query = "SELECT * FROM encomienda WHERE cedula_receptor = ? OR cedula_emisor = ?";
 
-    try (PreparedStatement myStament = myConn.prepareStatement(sql)) {
-        // Manejo de valores nulos para cada parámetro
-        myStament.setLong(1, encomienda.getAgenciaOrigen().getIdAgencia());
-        myStament.setLong(2, encomienda.getAgenciaDestino().getIdAgencia());
-        myStament.setString(3, encomienda.getReceptor().getCedula());
-        myStament.setString(4, encomienda.getEmisor().getCedula());
-        myStament.setDate(5, java.sql.Date.valueOf(encomienda.getFechaEmision()));
-        myStament.setDate(6, java.sql.Date.valueOf(encomienda.getFechaLLegada()));
-        myStament.setString(7, encomienda.getTipoEntrega());
-        if (encomienda.getDireccionEntrega() != null) {
-            myStament.setString(8, encomienda.getDireccionEntrega());
-        } else {
-            myStament.setNull(8, java.sql.Types.VARCHAR);
-        }      
-        if (encomienda.getCodigoPostal() != null) {
-            myStament.setInt(9, encomienda.getCodigoPostal());
-        } else {
-            myStament.setNull(9, java.sql.Types.INTEGER);
+        try (PreparedStatement preparedStatement = myConn.prepareStatement(query)) {
+            // Setear el valor del idCliente en las posiciones adecuadas
+            preparedStatement.setString(1, idCliente);
+            preparedStatement.setString(2, idCliente);
+
+            try (ResultSet myRs = preparedStatement.executeQuery()) {
+                while (myRs.next()) {
+                    Encomienda e = createEncomienda(myRs);
+                    encomiendas.add(e);
+                }
+            }
         }
-        myStament.setString(10, encomienda.getEstado().nombreEstado());
-        myStament.setFloat(11, encomienda.getPrecioEncomienda().floatValue());
-        // Ejecutar la consulta
-        myStament.executeUpdate();
+        return encomiendas;
     }
-}
+
+    @Override
+    public void save(Encomienda encomienda) throws SQLException {
+        // Consulta SQL con parámetros
+        String sql = "INSERT INTO encomienda (id_agencia_origen, id_agencia_destino, cedula_receptor, cedula_emisor, fecha_envio, fecha_llegada, tipo_entrega, direccion_entrega, cod_postal_entrega, estado_encomienda, precio_encomienda) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?)";
+
+        try (PreparedStatement myStament = myConn.prepareStatement(sql)) {
+            // Manejo de valores nulos para cada parámetro
+            myStament.setLong(1, encomienda.getAgenciaOrigen().getIdAgencia());
+            myStament.setLong(2, encomienda.getAgenciaDestino().getIdAgencia());
+            myStament.setString(3, encomienda.getReceptor().getCedula());
+            myStament.setString(4, encomienda.getEmisor().getCedula());
+            myStament.setDate(5, java.sql.Date.valueOf(encomienda.getFechaEmision()));
+            myStament.setDate(6, java.sql.Date.valueOf(encomienda.getFechaLLegada()));
+            myStament.setString(7, encomienda.getTipoEntrega());
+            if (encomienda.getDireccionEntrega() != null) {
+                myStament.setString(8, encomienda.getDireccionEntrega());
+            } else {
+                myStament.setNull(8, java.sql.Types.VARCHAR);
+            }
+            if (encomienda.getCodigoPostal() != null) {
+                myStament.setInt(9, encomienda.getCodigoPostal());
+            } else {
+                myStament.setNull(9, java.sql.Types.INTEGER);
+            }
+            myStament.setString(10, encomienda.getEstado().nombreEstado());
+            myStament.setFloat(11, encomienda.getPrecioEncomienda().floatValue());
+            // Ejecutar la consulta
+            myStament.executeUpdate();
+        }
+    }
 
     @Override
     public void delete(Integer id) throws SQLException {
@@ -172,9 +190,10 @@ public class EncomiendaRepository implements Repository<Encomienda> {
         }
 
     }
+
     public void updatePrecio(Integer id, double precio) throws SQLException {
-    String query = "UPDATE encomienda SET precio_encomienda = ? WHERE id_encomienda = ?";
-    
+        String query = "UPDATE encomienda SET precio_encomienda = ? WHERE id_encomienda = ?";
+
         try (PreparedStatement myStmt = myConn.prepareStatement(query)) {
             // Establecer el precio en el primer parámetro
             myStmt.setDouble(1, precio);
