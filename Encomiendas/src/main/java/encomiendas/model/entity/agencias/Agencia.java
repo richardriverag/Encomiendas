@@ -1,6 +1,6 @@
 package encomiendas.model.entity.agencias;
 
-import encomiendas.Conexion;
+import encomiendas.database.Conexion;
 
 public class Agencia extends Conexion{
   
