@@ -52,7 +52,7 @@ public class MantenimientoRepository implements Repository<Mantenimiento> {
     public void save(Mantenimiento mantenimiento) throws SQLException {
         String sql = "INSERT INTO mantenimiento (fecha, descripcion, transporte_id) VALUES (?, ?, ?)";
         try (PreparedStatement stmt = myConn.prepareStatement(sql)) {
-            stmt.setDate(1, Date.valueOf(mantenimiento.getFecha()));
+            stmt.setDate(1, new java.sql.Date(mantenimiento.getFecha().getTime()));
             stmt.setString(2, mantenimiento.getDescripcion());
             stmt.setInt(3, mantenimiento.getTransporteId());
             stmt.executeUpdate();
@@ -71,7 +71,7 @@ public class MantenimientoRepository implements Repository<Mantenimiento> {
     public void update(Integer id, Mantenimiento mantenimiento) throws SQLException {
         String sql = "UPDATE mantenimiento SET fecha = ?, descripcion = ?, transporte_id = ? WHERE id_mantenimiento = ?";
         try (PreparedStatement stmt = myConn.prepareStatement(sql)) {
-            stmt.setDate(1, Date.valueOf(mantenimiento.getFecha()));
+            stmt.setDate(1, new java.sql.Date(mantenimiento.getFecha().getTime()));
             stmt.setString(2, mantenimiento.getDescripcion());
             stmt.setInt(3, mantenimiento.getTransporteId());
             stmt.setInt(4, id);
@@ -82,7 +82,7 @@ public class MantenimientoRepository implements Repository<Mantenimiento> {
     private Mantenimiento createMantenimiento(ResultSet rs) throws SQLException {
         Mantenimiento mantenimiento = new Mantenimiento();
         mantenimiento.setId(rs.getInt("id_mantenimiento"));
-        mantenimiento.setFecha(rs.getDate("fecha").toLocalDate());
+        mantenimiento.setFecha(rs.getDate("fecha"));
         mantenimiento.setDescripcion(rs.getString("descripcion"));
         mantenimiento.setTransporteId(rs.getInt("transporte_id"));
         return mantenimiento;

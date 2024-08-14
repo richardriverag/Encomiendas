@@ -100,6 +100,7 @@ public class JFInfoEncomiendas extends javax.swing.JFrame {
         panelOpciones = new javax.swing.JPanel();
         btnVerPaquetes = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
         panelOpEmpleado = new javax.swing.JPanel();
         btnDespachar = new javax.swing.JButton();
         panelConductores = new javax.swing.JPanel();
@@ -123,6 +124,8 @@ public class JFInfoEncomiendas extends javax.swing.JFrame {
 
         jLabel16.setText("Número de cédula del receptor");
 
+        txtIdEncomienda.setEditable(false);
+        txtIdEncomienda.setOpaque(true);
         txtIdEncomienda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIdEncomiendaActionPerformed(evt);
@@ -131,6 +134,8 @@ public class JFInfoEncomiendas extends javax.swing.JFrame {
 
         jLabel15.setText("Número de cédula del emisor");
 
+        txtcedulaEmisor.setEditable(false);
+        txtcedulaEmisor.setOpaque(true);
         txtcedulaEmisor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtcedulaEmisorActionPerformed(evt);
@@ -139,10 +144,14 @@ public class JFInfoEncomiendas extends javax.swing.JFrame {
 
         jLabel14.setText("Fecha de envío:");
 
+        jDCFechaEnvio.setEnabled(false);
+
         jLabel13.setText("Agencia de origen");
 
         jLabel12.setText("Interprovincial:");
 
+        jCheckInterprovincial.setEnabled(false);
+        jCheckInterprovincial.setOpaque(true);
         jCheckInterprovincial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckInterprovincialActionPerformed(evt);
@@ -151,12 +160,16 @@ public class JFInfoEncomiendas extends javax.swing.JFrame {
 
         jLabel11.setText("Entrega a domicilio:");
 
+        JCheckDomicilio.setEnabled(false);
+        JCheckDomicilio.setOpaque(true);
         JCheckDomicilio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JCheckDomicilioActionPerformed(evt);
             }
         });
 
+        txtEstadoEncomienda.setEditable(false);
+        txtEstadoEncomienda.setOpaque(true);
         txtEstadoEncomienda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEstadoEncomiendaActionPerformed(evt);
@@ -165,6 +178,8 @@ public class JFInfoEncomiendas extends javax.swing.JFrame {
 
         jLabel17.setText("Estado de la encomienda:");
 
+        txtAgenciaO.setEditable(false);
+        txtAgenciaO.setOpaque(true);
         txtAgenciaO.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtAgenciaOActionPerformed(evt);
@@ -173,6 +188,8 @@ public class JFInfoEncomiendas extends javax.swing.JFrame {
 
         jLabel18.setText("Id Encomienda");
 
+        txtCedulaReceptor.setEditable(false);
+        txtCedulaReceptor.setOpaque(true);
         txtCedulaReceptor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCedulaReceptorActionPerformed(evt);
@@ -265,6 +282,9 @@ public class JFInfoEncomiendas extends javax.swing.JFrame {
 
         jLabel8.setText("Agencia de destino:");
 
+        txtAgenD.setEditable(false);
+        txtAgenD.setOpaque(true);
+
         javax.swing.GroupLayout panelInterprovincialLayout = new javax.swing.GroupLayout(panelInterprovincial);
         panelInterprovincial.setLayout(panelInterprovincialLayout);
         panelInterprovincialLayout.setHorizontalGroup(
@@ -290,7 +310,13 @@ public class JFInfoEncomiendas extends javax.swing.JFrame {
 
         jLabel9.setText("Dirección de entrega:");
 
+        txtDirEntrega.setEditable(false);
+        txtDirEntrega.setOpaque(true);
+
         jLabel10.setText("Codigo postal:");
+
+        txtCodPostal.setEditable(false);
+        txtCodPostal.setOpaque(true);
 
         javax.swing.GroupLayout panelEntregaDomicilioLayout = new javax.swing.GroupLayout(panelEntregaDomicilio);
         panelEntregaDomicilio.setLayout(panelEntregaDomicilioLayout);
@@ -337,15 +363,23 @@ public class JFInfoEncomiendas extends javax.swing.JFrame {
             }
         });
 
+        btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelOpcionesLayout = new javax.swing.GroupLayout(panelOpciones);
         panelOpciones.setLayout(panelOpcionesLayout);
         panelOpcionesLayout.setHorizontalGroup(
             panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelOpcionesLayout.createSequentialGroup()
+            .addGroup(panelOpcionesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnVerPaquetes, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnVerPaquetes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnVolver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         panelOpcionesLayout.setVerticalGroup(
@@ -355,7 +389,9 @@ public class JFInfoEncomiendas extends javax.swing.JFrame {
                 .addComponent(btnVerPaquetes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCancelar)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnVolver)
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         panelOpEmpleado.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones de empleado"));
@@ -478,7 +514,7 @@ public class JFInfoEncomiendas extends javax.swing.JFrame {
                         .addComponent(panelOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(panelOpEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(panelConductores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
@@ -525,10 +561,10 @@ public class JFInfoEncomiendas extends javax.swing.JFrame {
 
     private void btnVerPaquetesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerPaquetesActionPerformed
         JFListaPaquetes listaPaquetes = new JFListaPaquetes();
-//        System.out.println("ESTE ES EL ID DE LA ENCOMIENDA: " + txtIdEncomienda.getText().toString());
-//        paqueteController.mostrarPaquetes((DefaultTableModel) listaPaquetesView.jTListaPaquetes.getModel(), Integer.parseInt(txtIdEncomienda.getText().toString()));
-        listaPaquetes.txtIdEncomienda.setText(txtIdEncomienda.getText().toString());
+        listaPaquetes.setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
         listaPaquetes.setVisible(true);
+        listaPaquetes.txtIdEncomienda.setText(txtIdEncomienda.getText().toString());
+        paqueteController.mostrarPaquetes((DefaultTableModel) listaPaquetes.jTListaPaquetes.getModel(), Integer.parseInt(txtIdEncomienda.getText().toString()));
 
     }//GEN-LAST:event_btnVerPaquetesActionPerformed
 
@@ -580,6 +616,10 @@ public class JFInfoEncomiendas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCedulaReceptorActionPerformed
 
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_btnVolverActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -624,6 +664,7 @@ public class JFInfoEncomiendas extends javax.swing.JFrame {
     public javax.swing.JButton btnEmbarcar;
     public javax.swing.JButton btnEntregar;
     private javax.swing.JButton btnVerPaquetes;
+    private javax.swing.JButton btnVolver;
     public javax.swing.JCheckBox jCheckInterprovincial;
     public com.toedter.calendar.JDateChooser jDCFechaEnvio;
     private javax.swing.JLabel jLabel10;
@@ -640,7 +681,6 @@ public class JFInfoEncomiendas extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMISalir;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JLabel lblIdEncomienda;
     private javax.swing.JPanel panelConductores;
     private javax.swing.JPanel panelDatosEncomienda;
     private javax.swing.JPanel panelEntregaDomicilio;

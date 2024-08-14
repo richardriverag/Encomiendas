@@ -11,6 +11,7 @@ package encomiendas.controllers.transporte;
 
 import encomiendas.model.entity.transporte.Mantenimiento;
 import encomiendas.services.transporte.MantenimientoService;
+import java.sql.SQLException;
 import java.util.List;
 
 public class MantenimientoController {
@@ -20,23 +21,23 @@ public class MantenimientoController {
         this.mantenimientoService = mantenimientoService;
     }
 
-    public List<Mantenimiento> listarMantenimientos() {
+    public List<Mantenimiento> listarMantenimientos() throws SQLException {
         return mantenimientoService.obtenerTodosLosMantenimientos();
     }
 
-    public Mantenimiento obtenerMantenimiento(int id) {
+    public Mantenimiento obtenerMantenimiento(int id) throws SQLException {
         return mantenimientoService.obtenerMantenimientoPorId(id);
     }
 
-    public void crearMantenimiento(Mantenimiento mantenimiento) {
+    public void crearMantenimiento(Mantenimiento mantenimiento) throws SQLException {
         mantenimientoService.agregarMantenimiento(mantenimiento);
     }
 
-    public void actualizarMantenimiento(int id, Mantenimiento mantenimiento) {
+    public void actualizarMantenimiento(int id, Mantenimiento mantenimiento) throws SQLException {
         mantenimientoService.actualizarMantenimiento(id, mantenimiento);
     }
 
-    public void eliminarMantenimiento(int id) {
+    public void eliminarMantenimiento(int id) throws SQLException {
         mantenimientoService.eliminarMantenimiento(id);
     }
 }

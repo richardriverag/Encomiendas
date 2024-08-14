@@ -28,6 +28,7 @@ CREATE TABLE usuario (
     tipo_licencia CHAR(1),
     activo BOOLEAN,
     id_agencia INT,
+    fotoPerfil LONGBLOB,
     FOREIGN KEY (id_agencia) REFERENCES AGENCIA(id_agencia)
 );
 
@@ -46,7 +47,7 @@ CREATE TABLE transporte (
     anio_fabricacion INT,
     kilometraje DOUBLE,
     tipo_transporte VARCHAR(15),
-    estado_transporte BOOLEAN
+    estado_transporte VARCHAR(20)
 );
 
 CREATE TABLE mantenimiento (
@@ -120,6 +121,7 @@ CREATE TABLE almacen (
     limite_superior_caducidad INT,
     nombre_almacen VARCHAR(100),
     id_agencia INT,
+    numeroSecciones INT,
     FOREIGN KEY (id_agencia) REFERENCES AGENCIA(id_agencia)
 );
 
@@ -153,9 +155,8 @@ VALUES
 -- Insertar datos en la tabla USUARIO
 INSERT INTO usuario (cedula, nombres, apellidos, correo, telefono, rol, direccion, ciudad, telefono_adicional, tipo_licencia, activo, id_agencia)
 VALUES
-('V12345673', 'Michael', 'Trocellier', 'michael@example.com', '1234567890', 'Administrador', 'Av. Ejemplo 1', 'Ciudad A', '0987654321', 'A', TRUE, 1),
-('V12345678', 'Juan', 'Pérez', 'juan.perez@example.com', '1234567890', 'Empleado', 'Av. Ejemplo 1', 'Ciudad A', '0987654321', 'A', TRUE, 1),
-('V87654321', 'Ana', 'Gómez', 'ana.gomez@example.com', '2345678901', 'Cliente', 'Av. Ejemplo 2', 'Ciudad B', '0123456789', 'B', TRUE, 2);
+('V12345678', 'Juan', 'Pérez', 'juan.perez@example.com', '1234567890', 'Empleado', 'Av. Ejemplo 1', 'Ciudad A', '0987654321', '', TRUE, 1),
+('V87654321', 'Ana', 'Gómez', 'ana.gomez@example.com', '2345678901', 'Cliente', 'Av. Ejemplo 2', 'Ciudad B', '0123456789', '', TRUE, 2);
 
 -- Insertar datos en la tabla CUENTA
 INSERT INTO cuenta (cedula, username, contrasenia)
@@ -169,8 +170,8 @@ VALUES
 -- Insertar datos en la tabla TRANSPORTE
 INSERT INTO transporte (capacidad_carga, modelo, anio_fabricacion, kilometraje, tipo_transporte, estado_transporte)
 VALUES
-(5000.0, 'Camión A', 2015, 120000.0, 'Camión', TRUE),
-(3000.0, 'Furgoneta B', 2018, 80000.0, ',Moto', TRUE);
+(5000.0, 'Camión A', 2015, 120000.0, 'Camión', 'DISPONIBLE'),
+(3000.0, 'Furgoneta B', 2018, 80000.0, ',Moto', 'EN_MANTENIMIENTO');
 
 -- Insertar datos en la tabla MANTENIMIENTO
 INSERT INTO mantenimiento (fecha, descripcion, transporte_id)
@@ -209,10 +210,10 @@ VALUES
 (2, 2);
 
 -- Insertar datos en la tabla Almacen
-INSERT INTO almacen (limite_superior_caducidad, nombre_almacen, id_agencia)
+INSERT INTO almacen (limite_superior_caducidad, nombre_almacen, id_agencia,numeroSecciones)
 VALUES
-(12, 'Almacén Principal', 1),
-(24, 'Almacén Secundario', 2);
+(12, 'Almacén Principal', 1, 1),
+(24, 'Almacén Secundario', 2, 1);
 
 -- Insertar datos en la tabla Seccion
 INSERT INTO seccion (nombre, capacidad, id_almacen)
@@ -227,4 +228,4 @@ VALUES
 ('2024-07-21', '2024-07-22', TRUE, 2, 2);
 
 
-select * from encomiendas.paquetes;
+select * from encomiendas.paquete;

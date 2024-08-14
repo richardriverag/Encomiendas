@@ -10,6 +10,7 @@ package encomiendas.model.data.transporte;
  */
 
 import encomiendas.model.data.Repository;
+import encomiendas.model.entity.transporte.ESTADO_TRANSPORTE;
 import encomiendas.model.entity.transporte.Transporte;
 import java.sql.*;
 import java.util.ArrayList;
@@ -50,14 +51,14 @@ public class TransporteRepository implements Repository<Transporte> {
 
     @Override
     public void save(Transporte transporte) throws SQLException {
-        String sql = "INSERT INTO transporte (capacidad_carga, modelo, anio_fabricacion, kilometraje, tipo_transporte, estado) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO transporte (capacidad_carga, modelo, anio_fabricacion, kilometraje, tipo_transporte, estado_transporte) VALUES (?, ?, ?, ?, ?, ?)";
         try (PreparedStatement stmt = myConn.prepareStatement(sql)) {
             stmt.setDouble(1, transporte.getCapacidad_carga());
             stmt.setString(2, transporte.getModelo());
             stmt.setInt(3, transporte.getAnio_fabricacion());
             stmt.setDouble(4, transporte.getKilometraje());
             stmt.setString(5, transporte.getTipo_transporte());
-            stmt.setBoolean(6, transporte.getEstado());
+            stmt.setString(6, transporte.getEstado().toString());
             stmt.executeUpdate();
         }
     }
@@ -72,14 +73,14 @@ public class TransporteRepository implements Repository<Transporte> {
 
     @Override
     public void update(Integer id, Transporte transporte) throws SQLException {
-        String sql = "UPDATE transporte SET capacidad_carga = ?, modelo = ?, anio_fabricacion = ?, kilometraje = ?, tipo_transporte = ?, estado = ? WHERE transporte_id = ?";
+        String sql = "UPDATE transporte SET capacidad_carga = ?, modelo = ?, anio_fabricacion = ?, kilometraje = ?, tipo_transporte = ?, estado_transporte = ? WHERE transporte_id = ?";
         try (PreparedStatement stmt = myConn.prepareStatement(sql)) {
             stmt.setDouble(1, transporte.getCapacidad_carga());
             stmt.setString(2, transporte.getModelo());
             stmt.setInt(3, transporte.getAnio_fabricacion());
             stmt.setDouble(4, transporte.getKilometraje());
             stmt.setString(5, transporte.getTipo_transporte());
-            stmt.setBoolean(6, transporte.getEstado());
+            stmt.setString(6, transporte.getEstado().toString());
             stmt.setInt(7, id);
             stmt.executeUpdate();
         }
@@ -93,7 +94,8 @@ public class TransporteRepository implements Repository<Transporte> {
         transporte.setAnio_fabricacion(rs.getInt("anio_fabricacion"));
         transporte.setKilometraje(rs.getDouble("kilometraje"));
         transporte.setTipo_transporte(rs.getString("tipo_transporte"));
-        transporte.setEstado(rs.getBoolean("estado"));
+        transporte.setEstado(ESTADO_TRANSPORTE.valueOf(rs.getString("estado_transporte")));
+
         return transporte;
     }
 }

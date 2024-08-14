@@ -11,6 +11,7 @@ package encomiendas.services.transporte;
 
 import encomiendas.model.entity.transporte.Transporte;
 import encomiendas.model.data.transporte.TransporteRepository;
+import java.sql.SQLException;
 import java.util.List;
 
 public class TransporteService {
@@ -20,23 +21,23 @@ public class TransporteService {
         this.transporteRepository = transporteRepository;
     }
 
-    public List<Transporte> obtenerTodosLosTransportes() {
+    public List<Transporte> obtenerTodosLosTransportes() throws SQLException {
         return transporteRepository.findAll();
     }
 
-    public Transporte obtenerTransportePorId(int id) {
+    public Transporte obtenerTransportePorId(int id) throws SQLException {
         return transporteRepository.getById(id);
     }
 
-    public void agregarTransporte(Transporte transporte) {
+    public void agregarTransporte(Transporte transporte) throws SQLException {
         transporteRepository.save(transporte);
     }
 
-    public void actualizarTransporte(int id, Transporte transporte) {
+    public void actualizarTransporte(int id, Transporte transporte) throws SQLException {
         transporteRepository.update(id, transporte);
     }
 
-    public void eliminarTransporte(int id) {
+    public void eliminarTransporte(int id) throws SQLException {
         transporteRepository.delete(id);
     }
 }
