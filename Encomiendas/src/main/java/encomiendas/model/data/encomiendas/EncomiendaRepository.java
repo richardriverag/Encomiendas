@@ -38,10 +38,20 @@ public class EncomiendaRepository implements Repository<Encomienda> {
 
     public List<Encomienda> findAllFiltro(String cedulaR, String cedulaE, String agenciaD, String agenciaO, String tipoEntrega) throws SQLException {
         List<Encomienda> encomiendas = new ArrayList<>();
-
+        Integer idAgenciaDestino;
+        Integer idAgenciaOrigen;
         // Obtener IDs de las agencias
-        Integer idAgenciaDestino = agenciaRepo.getByNombre(agenciaD).getIdAgencia();
-        Integer idAgenciaOrigen = agenciaRepo.getByNombre(agenciaO).getIdAgencia();
+        if(!agenciaD.equals("Todas")){
+            idAgenciaDestino = agenciaRepo.getByNombre(agenciaD).getIdAgencia();
+        }else{
+            idAgenciaDestino = 99;
+        }
+        if(!agenciaO.equals("Todas")){
+            idAgenciaOrigen = agenciaRepo.getByNombre(agenciaO).getIdAgencia();
+        }else{
+            idAgenciaOrigen = 99;
+        }
+        
 
         // Usar StringBuilder para construir la consulta SQL
         StringBuilder queryBuilder = new StringBuilder("SELECT * FROM encomienda WHERE 1=1");
@@ -53,13 +63,13 @@ public class EncomiendaRepository implements Repository<Encomienda> {
         if (cedulaE != null && !cedulaE.trim().isEmpty()) {
             queryBuilder.append(" AND cedula_emisor = ?");
         }
-        if (idAgenciaDestino != null) {
+        if (idAgenciaDestino != 99) {
             queryBuilder.append(" AND id_agencia_destino = ?");
         }
-        if (idAgenciaOrigen != null) {
+        if (idAgenciaDestino != 99) {
             queryBuilder.append(" AND id_agencia_origen = ?");
         }
-        if (tipoEntrega != null && !tipoEntrega.trim().isEmpty()) {
+        if (tipoEntrega != null && !tipoEntrega.trim().isEmpty() && !tipoEntrega.equals("Todas")) {
             queryBuilder.append(" AND tipo_entrega = ?");
         }
 
@@ -78,13 +88,13 @@ public class EncomiendaRepository implements Repository<Encomienda> {
             if (cedulaE != null && !cedulaE.trim().isEmpty()) {
                 myStmt.setString(parameterIndex++, cedulaE);
             }
-            if (idAgenciaDestino != null) {
+            if (idAgenciaDestino != 99) {
                 myStmt.setInt(parameterIndex++, idAgenciaDestino);
             }
-            if (idAgenciaOrigen != null) {
+            if (idAgenciaDestino != 99) {
                 myStmt.setInt(parameterIndex++, idAgenciaOrigen);
             }
-            if (tipoEntrega != null && !tipoEntrega.trim().isEmpty()) {
+            if (tipoEntrega != null && !tipoEntrega.trim().isEmpty() && !tipoEntrega.equals("Todas")) {
                 myStmt.setString(parameterIndex++, tipoEntrega);
             }
 
