@@ -10,6 +10,9 @@ public class Empleado extends Usuario {
     
     private String direccion;
 
+    public Empleado() {
+    }
+    
     public String getDireccion() {
         return direccion;
     }

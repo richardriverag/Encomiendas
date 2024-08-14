@@ -16,6 +16,22 @@ public class Usuario extends Conexion {
     private byte[] fotoPerfil;
     private int idAgencia;
 
+    public Usuario(String cedula, String nombres, String apellidos, String correo, String telefono, String ciudad, String telefonoAdicional, Boolean activo, int idAgencia) {
+        this.cedula = cedula;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.correo = correo;
+        this.telefono = telefono;
+        this.ciudad = ciudad;
+        this.telefonoAdicional = telefonoAdicional;
+        
+        this.activo = activo;
+        this.idAgencia = idAgencia;
+    }
+
+    public Usuario() {
+    }
+    
     public String getCedula() {
         return cedula;
     }

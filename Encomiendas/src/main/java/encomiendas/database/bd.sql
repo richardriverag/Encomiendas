@@ -47,7 +47,7 @@ CREATE TABLE transporte (
     anio_fabricacion INT,
     kilometraje DOUBLE,
     tipo_transporte VARCHAR(15),
-    estado_transporte BOOLEAN
+    estado_transporte VARCHAR(20)
 );
 
 CREATE TABLE mantenimiento (
@@ -77,6 +77,7 @@ CREATE TABLE encomienda (
     direccion_entrega VARCHAR(200),
     cod_postal_entrega VARCHAR(10),
     estado_encomienda VARCHAR(50),
+    precio_encomienda FLOAT,
     FOREIGN KEY (id_agencia_origen) REFERENCES AGENCIA(id_agencia),
     FOREIGN KEY (id_agencia_destino) REFERENCES AGENCIA(id_agencia),
     FOREIGN KEY (cedula_receptor) REFERENCES USUARIO(cedula),
@@ -85,9 +86,11 @@ CREATE TABLE encomienda (
 
 CREATE TABLE paquete (
     id_paquete INT PRIMARY KEY AUTO_INCREMENT,
+    descripcion VARCHAR(75),
     peso FLOAT,
     volumen FLOAT,
     isFragil BOOLEAN,
+    precio FLOAT,
     id_encomienda INT,
     FOREIGN KEY (id_encomienda) REFERENCES ENCOMIENDA(id_encomienda)
 );
@@ -157,14 +160,17 @@ VALUES
 -- Insertar datos en la tabla CUENTA
 INSERT INTO cuenta (cedula, username, contrasenia)
 VALUES
+('V12345673', 'micos', 'password123'),
 ('V12345678', 'juanperez', 'password123'),
 ('V87654321', 'anagomez', 'password456');
+
+
 
 -- Insertar datos en la tabla TRANSPORTE
 INSERT INTO transporte (capacidad_carga, modelo, anio_fabricacion, kilometraje, tipo_transporte, estado_transporte)
 VALUES
-(5000.0, 'Camión A', 2015, 120000.0, 'Camión', TRUE),
-(3000.0, 'Furgoneta B', 2018, 80000.0, ',Moto', TRUE);
+(5000.0, 'Camión A', 2015, 120000.0, 'Camión', 'DISPONIBLE'),
+(3000.0, 'Furgoneta B', 2018, 80000.0, ',Moto', 'EN_MANTENIMIENTO');
 
 -- Insertar datos en la tabla MANTENIMIENTO
 INSERT INTO mantenimiento (fecha, descripcion, transporte_id)
@@ -220,3 +226,5 @@ VALUES
 ('2024-07-20', '2024-07-21', TRUE, 1, 1),
 ('2024-07-21', '2024-07-22', TRUE, 2, 2);
 
+
+select * from encomiendas.paquete;
