@@ -47,7 +47,7 @@ CREATE TABLE transporte (
     anio_fabricacion INT,
     kilometraje DOUBLE,
     tipo_transporte VARCHAR(15),
-    estado_transporte BOOLEAN
+    estado_transporte VARCHAR(20)
 );
 
 CREATE TABLE mantenimiento (
@@ -169,8 +169,8 @@ VALUES
 -- Insertar datos en la tabla TRANSPORTE
 INSERT INTO transporte (capacidad_carga, modelo, anio_fabricacion, kilometraje, tipo_transporte, estado_transporte)
 VALUES
-(5000.0, 'Camión A', 2015, 120000.0, 'Camión', TRUE),
-(3000.0, 'Furgoneta B', 2018, 80000.0, ',Moto', TRUE);
+(5000.0, 'Camión A', 2015, 120000.0, 'Camión', 'DISPONIBLE'),
+(3000.0, 'Furgoneta B', 2018, 80000.0, ',Moto', 'EN_MANTENIMIENTO');
 
 -- Insertar datos en la tabla MANTENIMIENTO
 INSERT INTO mantenimiento (fecha, descripcion, transporte_id)
@@ -227,4 +227,4 @@ VALUES
 ('2024-07-21', '2024-07-22', TRUE, 2, 2);
 
 
-select * from encomiendas.paquetes;
+select * from encomiendas.paquete;

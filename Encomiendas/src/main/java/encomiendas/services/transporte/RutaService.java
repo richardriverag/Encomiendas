@@ -11,6 +11,7 @@ package encomiendas.services.transporte;
 
 import encomiendas.model.entity.transporte.Ruta;
 import encomiendas.model.data.transporte.RutaRepository;
+import java.sql.SQLException;
 import java.util.List;
 
 public class RutaService {
@@ -20,23 +21,23 @@ public class RutaService {
         this.rutaRepository = rutaRepository;
     }
 
-    public List<Ruta> obtenerTodasLasRutas() {
+    public List<Ruta> obtenerTodasLasRutas() throws SQLException {
         return rutaRepository.findAll();
     }
 
-    public Ruta obtenerRutaPorId(int id) {
+    public Ruta obtenerRutaPorId(int id) throws SQLException {
         return rutaRepository.getById(id);
     }
 
-    public void agregarRuta(Ruta ruta) {
+    public void agregarRuta(Ruta ruta) throws SQLException {
         rutaRepository.save(ruta);
     }
 
-    public void actualizarRuta(int id, Ruta ruta) {
+    public void actualizarRuta(int id, Ruta ruta) throws SQLException {
         rutaRepository.update(id, ruta);
     }
 
-    public void eliminarRuta(int id) {
+    public void eliminarRuta(int id) throws SQLException {
         rutaRepository.delete(id);
     }
 }

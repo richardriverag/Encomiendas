@@ -11,6 +11,7 @@ package encomiendas.controllers.transporte;
 
 import encomiendas.model.entity.transporte.Ruta;
 import encomiendas.services.transporte.RutaService;
+import java.sql.SQLException;
 import java.util.List;
 
 public class RutaController {
@@ -20,23 +21,23 @@ public class RutaController {
         this.rutaService = rutaService;
     }
 
-    public List<Ruta> listarRutas() {
+    public List<Ruta> listarRutas() throws SQLException {
         return rutaService.obtenerTodasLasRutas();
     }
 
-    public Ruta obtenerRuta(int id) {
+    public Ruta obtenerRuta(int id) throws SQLException {
         return rutaService.obtenerRutaPorId(id);
     }
 
-    public void crearRuta(Ruta ruta) {
+    public void crearRuta(Ruta ruta) throws SQLException {
         rutaService.agregarRuta(ruta);
     }
 
-    public void actualizarRuta(int id, Ruta ruta) {
+    public void actualizarRuta(int id, Ruta ruta) throws SQLException {
         rutaService.actualizarRuta(id, ruta);
     }
 
-    public void eliminarRuta(int id) {
+    public void eliminarRuta(int id) throws SQLException {
         rutaService.eliminarRuta(id);
     }
 }
