@@ -30,6 +30,10 @@ public class UsuarioService {
         usuarioRepository.delete(cedula);
     }
 
+    public void updateUsuario(String cedula, Usuario usuario) throws SQLException {
+        usuarioRepository.update(cedula, usuario);
+    }
+
     public List<Usuario> obtenerUsuariosPorRol(String rol) throws SQLException {
         return usuarioRepository.findByRol(rol);
     }

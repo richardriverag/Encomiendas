@@ -52,7 +52,7 @@ public class AListaUsuarios extends javax.swing.JFrame {
         jCBRol = new javax.swing.JComboBox<>();
         jLListaUsuarios = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTListaUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
