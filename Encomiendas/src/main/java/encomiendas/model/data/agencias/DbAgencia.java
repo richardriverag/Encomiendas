@@ -4,16 +4,16 @@
  */
 package encomiendas.model.data.agencias;
 
-import com.sun.tools.attach.VirtualMachineDescriptor;
-import encomiendas.Conexion;
+//import com.sun.tools.attach.VirtualMachineDescriptor;
+import encomiendas.database.Conexion;
+import encomiendas.model.entity.agencias.Agencia;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+//import java.sql.Statement;
 import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
-import encomiendas.model.entity.agencias.Agencia;
 
 
 /**
@@ -21,6 +21,21 @@ import encomiendas.model.entity.agencias.Agencia;
  * @author Roberth
  */
 public class DbAgencia extends Conexion{
+    /*
+    private Connection myConn;
+    public List<Agencia> findAlla() throws SQLException {
+        List<Agencia> agencias = new ArrayList<>();
+        String query = "SELECT * FROM agencia";
+
+        try (Statement stmt = myConn.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
+            while (rs.next()) {
+                Agencia agencia = createCuenta(rs);
+                agencias.add(agencia);
+            }
+        }
+        return cuentas;
+    }
+*/
     //Rellenar el combo box
     public void RellenarComboBox(String tabla, String valor, JComboBox combo){
         PreparedStatement ps;
@@ -81,12 +96,6 @@ public class DbAgencia extends Conexion{
         } catch (SQLException e) {
             System.err.println(e);
             return false;
-        }finally{
-            try {
-                con.close();
-            } catch (SQLException e) {
-                System.err.println(e);
-            }
         }
     }
     
@@ -94,8 +103,8 @@ public class DbAgencia extends Conexion{
         PreparedStatement ps;
         Connection con= getInstance();
         String sql="UPDATE agencia set nombre_agencia=?, ubicacion_agencia=?"
-                +", codigo_postal=?, provincia_postal=?, telefono_agencia=?"
-                +", ciudad_agencia=?, estado_agencia0?, WHERE id=?";
+                +", codigo_postal=?, provincia_agencia=?, telefono_agencia=?"
+                +", ciudad_agencia=?, estado_agencia=? WHERE id_agencia=?";
         try {
             ps = con.prepareStatement(sql);
             ps.setString(1, p.getNombreAgencia());
@@ -111,12 +120,6 @@ public class DbAgencia extends Conexion{
         } catch (SQLException e) {
             System.err.println(e);
             return false;
-        }finally{
-            try {
-                con.close();
-            } catch (SQLException e) {
-                System.err.println(e);
-            }
         }
     }
     
@@ -133,12 +136,6 @@ public class DbAgencia extends Conexion{
         } catch (SQLException e) {
             System.err.println(e);
             return false;
-        }finally{
-            try {
-                con.close();
-            } catch (SQLException e) {
-                System.err.println(e);
-            }
         }
     }
     
@@ -168,12 +165,35 @@ public class DbAgencia extends Conexion{
         } catch (SQLException e) {
             System.err.println(e);
             return false;
-        }finally{
-            try {
-                con.close();
-            } catch (SQLException e) {
-                System.err.println(e);
-            }
         }
     }
+    
+    public boolean buscar2 (Agencia p){
+        PreparedStatement ps;
+        ResultSet rs;
+        Connection con= getInstance();
+        String sql="SELECT * FROM agencia WHERE id_agencia = ?";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1,String.valueOf(p.getIdAgencia()) );
+            ps.execute();
+            rs=ps.executeQuery();
+            if (rs.next()) {
+                p.setIdAgencia(Integer.parseInt(rs.getString("id_agencia")));
+                p.setNombreAgencia(rs.getString("nombre_agencia"));
+                p.setUbicacionAgencia(rs.getString("ubicacion_agencia"));
+                p.setCodigoPostal(rs.getString("codigo_postal"));
+                p.setProvinciaAgencia(rs.getString("provincia_agencia"));
+                p.setTelefonoAgencia(rs.getString("telefono_agencia"));
+                p.setCiudadAgencia(rs.getString("ciudad_agencia"));
+                p.setEstadoAgencia(Boolean.parseBoolean(rs.getString("estado_agencia")));
+                return true;
+            }
+            return false;
+        } catch (SQLException e) {
+            System.err.println(e);
+            return false;
+        }
+    }
+    
 }

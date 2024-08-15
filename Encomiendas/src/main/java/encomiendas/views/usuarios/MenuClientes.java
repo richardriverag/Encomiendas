@@ -1,10 +1,43 @@
 package encomiendas.views.usuarios;
 
+import encomiendas.controllers.agencias.AgenciaController;
+import encomiendas.model.data.agencias.DbAgencia;
+import encomiendas.model.entity.agencias.Agencia;
+import encomiendas.views.agencias.ConsultaAgencia;
+import encomiendas.views.agencias.ModificarInformacionAgencia;
+import encomiendas.views.agencias.NuevaAgencia;
+import encomiendas.views.agencias.VerChoferes;
+import javax.swing.JFrame;
+
 public class MenuClientes extends javax.swing.JFrame {
+    
+    private ConsultaAgencia frmConsultaAgencia;
+    private NuevaAgencia frmNuevaAgencia;
+    private ModificarInformacionAgencia frmModificarInformacionAgencia;
+    private VerChoferes frmVerChoferes;
+
+    private Agencia modAgencia;
+    private DbAgencia modDbAgencia;
+
+    private AgenciaController controller;
 
     public MenuClientes() {
         initComponents();
         setLocationRelativeTo(null);
+        inicializarComponentesAdicionales();
+    }
+    
+    private void inicializarComponentesAdicionales() {
+        frmConsultaAgencia = new ConsultaAgencia();
+        frmNuevaAgencia = new NuevaAgencia();
+        frmModificarInformacionAgencia = new ModificarInformacionAgencia();
+        frmVerChoferes = new VerChoferes();
+    
+        modAgencia = new Agencia();
+        modDbAgencia = new DbAgencia();
+
+        controller = new AgenciaController(modAgencia, modDbAgencia, frmConsultaAgencia, frmNuevaAgencia, frmModificarInformacionAgencia, frmVerChoferes);
+        controller.iniciar();
     }
 
     @SuppressWarnings("unchecked")
@@ -19,6 +52,7 @@ public class MenuClientes extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jTFUsuarioCliente = new javax.swing.JTextField();
         jLCliente = new javax.swing.JLabel();
+        btVerAgencias = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menú - Cliente");
@@ -58,7 +92,7 @@ public class MenuClientes extends javax.swing.JFrame {
         btPerfil.setForeground(new java.awt.Color(255, 255, 255));
         btPerfil.setText("Perfil");
         btPerfil.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 255, 255), null, null));
-        jPanel2.add(btPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 150, 30));
+        jPanel2.add(btPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 150, 30));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(jLabel1.getFont().deriveFont(jLabel1.getFont().getSize()-2f));
@@ -75,6 +109,17 @@ public class MenuClientes extends javax.swing.JFrame {
         jLCliente.setText("Cliente:");
         jPanel2.add(jLCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 130, -1));
 
+        btVerAgencias.setBackground(new java.awt.Color(200, 0, 0));
+        btVerAgencias.setForeground(new java.awt.Color(255, 255, 255));
+        btVerAgencias.setText("Lista Agencias");
+        btVerAgencias.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 255, 255), null, null));
+        btVerAgencias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btVerAgenciasActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btVerAgencias, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 150, 30));
+
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 430));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -90,6 +135,12 @@ public class MenuClientes extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btVerAgenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVerAgenciasActionPerformed
+        frmConsultaAgencia.setVisible(true);
+        frmConsultaAgencia.setLocationRelativeTo(null); 
+        frmConsultaAgencia.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_btVerAgenciasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -135,6 +186,7 @@ public class MenuClientes extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btPerfil;
+    public javax.swing.JButton btVerAgencias;
     private javax.swing.JLabel jLCliente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

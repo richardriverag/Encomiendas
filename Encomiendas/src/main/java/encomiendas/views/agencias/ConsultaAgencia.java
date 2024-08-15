@@ -2,7 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package encomiendas.views.agencia;
+package encomiendas.views.agencias;
+
 
 /**
  *
@@ -185,7 +186,7 @@ public class ConsultaAgencia extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CBSelecionAgenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBSelecionAgenciasActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_CBSelecionAgenciasActionPerformed
 
     private void TFNombreAgenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TFNombreAgenciaActionPerformed
@@ -217,6 +218,8 @@ public class ConsultaAgencia extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(ConsultaAgencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 

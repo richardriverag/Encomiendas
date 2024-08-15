@@ -1,18 +1,37 @@
 package encomiendas.views.usuarios;
 
+import encomiendas.controllers.agencias.AgenciaController;
 import encomiendas.controllers.usuarios.AdministradorController;
 import encomiendas.database.Conexion;
+import encomiendas.model.data.agencias.DbAgencia;
 import encomiendas.model.data.usuarios.UsuarioRepository;
+import encomiendas.model.entity.usuarios.Agencia;
 import encomiendas.services.usuarios.UsuarioService;
+import encomiendas.views.agencias.ConsultaAgencia;
+import encomiendas.views.agencias.ModificarInformacionAgencia;
+import encomiendas.views.agencias.NuevaAgencia;
+import encomiendas.views.agencias.VerChoferes;
 import java.awt.BorderLayout;
+import javax.swing.JFrame;
 
 public class MenuAdministrador extends javax.swing.JFrame {
 
-    Conexion con = new Conexion();
+    private ConsultaAgencia frmConsultaAgencia;
+    private NuevaAgencia frmNuevaAgencia;
+    private ModificarInformacionAgencia frmModificarInformacionAgencia;
+    private VerChoferes frmVerChoferes;
 
+    private encomiendas.model.entity.agencias.Agencia modAgencia;
+    private DbAgencia modDbAgencia;
+
+    private AgenciaController controller;
+    
+    Conexion con = new Conexion();
+    
     UsuarioRepository usuarioRepository;
     UsuarioService usuarioService;
     AdministradorController administradorController;
+
     
     public MenuAdministrador() {
         initComponents();
@@ -23,7 +42,20 @@ public class MenuAdministrador extends javax.swing.JFrame {
         usuarioRepository = new UsuarioRepository(con.getInstance());
         usuarioService = new UsuarioService(usuarioRepository);
         administradorController = new AdministradorController(this, usuarioService);
+        inicializarComponentesAdicionales();
+    }
+    
+        private void inicializarComponentesAdicionales() {
+        frmConsultaAgencia = new ConsultaAgencia();
+        frmNuevaAgencia = new NuevaAgencia();
+        frmModificarInformacionAgencia = new ModificarInformacionAgencia();
+        frmVerChoferes = new VerChoferes();
+    
+        modAgencia = new encomiendas.model.entity.agencias.Agencia();
+        modDbAgencia = new DbAgencia();
 
+        controller = new AgenciaController(modAgencia, modDbAgencia, frmConsultaAgencia, frmNuevaAgencia, frmModificarInformacionAgencia, frmVerChoferes);
+        controller.iniciar();
     }
 
     /**
@@ -43,6 +75,10 @@ public class MenuAdministrador extends javax.swing.JFrame {
         btListaUsuarios = new javax.swing.JButton();
         btIngresoUsuarios = new javax.swing.JButton();
         btActualizarUsuarios = new javax.swing.JButton();
+        btActAgencia = new javax.swing.JButton();
+        btVerChoferes = new javax.swing.JButton();
+        btVerAgencias = new javax.swing.JButton();
+        btNuevaAgencia = new javax.swing.JButton();
         jFrameAdministrador = new javax.swing.JPanel();
         jLBienvenida = new javax.swing.JLabel();
 
@@ -85,7 +121,56 @@ public class MenuAdministrador extends javax.swing.JFrame {
         btActualizarUsuarios.setForeground(new java.awt.Color(255, 255, 255));
         btActualizarUsuarios.setText("Actualizar Usuarios");
         btActualizarUsuarios.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 255, 255), null, null));
+        btActualizarUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btActualizarUsuariosActionPerformed(evt);
+            }
+        });
         jPAdministradorMétodos.add(btActualizarUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 150, 30));
+
+        btActAgencia.setBackground(new java.awt.Color(200, 0, 0));
+        btActAgencia.setForeground(new java.awt.Color(255, 255, 255));
+        btActAgencia.setText("Actualizar Agencias");
+        btActAgencia.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 255, 255), null, null));
+        btActAgencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btActAgenciaActionPerformed(evt);
+            }
+        });
+        jPAdministradorMétodos.add(btActAgencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 150, 30));
+
+        btVerChoferes.setBackground(new java.awt.Color(200, 0, 0));
+        btVerChoferes.setForeground(new java.awt.Color(255, 255, 255));
+        btVerChoferes.setText("Lista Choferes");
+        btVerChoferes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 255, 255), null, null));
+        btVerChoferes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btVerChoferesActionPerformed(evt);
+            }
+        });
+        jPAdministradorMétodos.add(btVerChoferes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 380, 150, 30));
+
+        btVerAgencias.setBackground(new java.awt.Color(200, 0, 0));
+        btVerAgencias.setForeground(new java.awt.Color(255, 255, 255));
+        btVerAgencias.setText("Lista Agencia");
+        btVerAgencias.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 255, 255), null, null));
+        btVerAgencias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btVerAgenciasActionPerformed(evt);
+            }
+        });
+        jPAdministradorMétodos.add(btVerAgencias, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 150, 30));
+
+        btNuevaAgencia.setBackground(new java.awt.Color(200, 0, 0));
+        btNuevaAgencia.setForeground(new java.awt.Color(255, 255, 255));
+        btNuevaAgencia.setText("Ingreso Agencia");
+        btNuevaAgencia.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 255, 255), null, null));
+        btNuevaAgencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btNuevaAgenciaActionPerformed(evt);
+            }
+        });
+        jPAdministradorMétodos.add(btNuevaAgencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 150, 30));
 
         jPMenúAdministrador.add(jPAdministradorMétodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 430));
 
@@ -100,7 +185,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
         jFrameAdministradorLayout.setHorizontalGroup(
             jFrameAdministradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jFrameAdministradorLayout.createSequentialGroup()
-                .addContainerGap(213, Short.MAX_VALUE)
+                .addContainerGap(215, Short.MAX_VALUE)
                 .addComponent(jLBienvenida)
                 .addGap(195, 195, 195))
         );
@@ -127,6 +212,34 @@ public class MenuAdministrador extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btNuevaAgenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNuevaAgenciaActionPerformed
+        frmNuevaAgencia.setVisible(true);
+        frmNuevaAgencia.setLocationRelativeTo(null);  
+        frmNuevaAgencia.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_btNuevaAgenciaActionPerformed
+
+    private void btActAgenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btActAgenciaActionPerformed
+        frmModificarInformacionAgencia.setVisible(true);
+        frmModificarInformacionAgencia.setLocationRelativeTo(null);
+        frmModificarInformacionAgencia.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_btActAgenciaActionPerformed
+
+    private void btVerChoferesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVerChoferesActionPerformed
+        frmVerChoferes.setVisible(true);
+        frmVerChoferes.setLocationRelativeTo(null);
+        frmVerChoferes.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_btVerChoferesActionPerformed
+
+    private void btActualizarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btActualizarUsuariosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btActualizarUsuariosActionPerformed
+
+    private void btVerAgenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVerAgenciasActionPerformed
+        frmConsultaAgencia.setVisible(true);
+        frmConsultaAgencia.setLocationRelativeTo(null);  
+        frmConsultaAgencia.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_btVerAgenciasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -171,9 +284,13 @@ public class MenuAdministrador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btActAgencia;
     public javax.swing.JButton btActualizarUsuarios;
     public javax.swing.JButton btIngresoUsuarios;
     public javax.swing.JButton btListaUsuarios;
+    public javax.swing.JButton btNuevaAgencia;
+    public javax.swing.JButton btVerAgencias;
+    public javax.swing.JButton btVerChoferes;
     private javax.swing.JPanel jFrameAdministrador;
     private javax.swing.JLabel jLAdministrador;
     private javax.swing.JLabel jLBienvenida;

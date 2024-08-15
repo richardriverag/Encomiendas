@@ -13,9 +13,7 @@ public class Agencia extends Conexion{
     private String ciudadAgencia;
     private boolean estadoAgencia;
 
-    // Constructor
-    public Agencia(int idAgencia, String nombreAgencia, String ubicacionAgencia, String codigoPostal,
-                   String provinciaAgencia, String telefonoAgencia, String ciudadAgencia, boolean estadoAgencia) {
+    public Agencia(int idAgencia, String nombreAgencia, String ubicacionAgencia, String codigoPostal, String provinciaAgencia, String telefonoAgencia, String ciudadAgencia, boolean estadoAgencia) {
         this.idAgencia = idAgencia;
         this.nombreAgencia = nombreAgencia;
         this.ubicacionAgencia = ubicacionAgencia;
@@ -25,6 +23,7 @@ public class Agencia extends Conexion{
         this.ciudadAgencia = ciudadAgencia;
         this.estadoAgencia = estadoAgencia;
     }
+  
     public Agencia(){
     }
     // Getters y Setters
